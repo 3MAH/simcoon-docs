@@ -1,0 +1,496 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Use the solver &mdash; Simcoon 1.9.7 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/solver.html"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=0f42b3e6"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Examples" href="examples/index.html" />
+    <link rel="prev" title="External" href="external.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Simcoon
+              <img src="_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#all-platforms-linux-macos-windows">All Platforms (Linux, macOS, Windows)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Use the solver</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#define-the-loading-path">Define the loading path</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/continuum_mechanics/rotation.html">Rotation library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/rotation.html#rotation-api-examples">Rotation API Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/rotation.html#rotation-of-mechanical-quantities">Rotation of mechanical quantities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/heterogeneous/effective_props.html">Micromechanics examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="continuum_mechanics/functions/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.simmit.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.simmit.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.simmit.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html#simcoon.simmit.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html#simcoon.simmit.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html#simcoon.simmit.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html#simcoon.simmit.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.simmit.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.simmit.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.simmit.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.simmit.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.simmit.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.simmit.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.simmit.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Use the solver</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/solver.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="use-the-solver">
+<h1>Use the solver<a class="headerlink" href="#use-the-solver" title="Link to this heading"></a></h1>
+<section id="elastic-tensile-test">
+<h2>Elastic tensile test<a class="headerlink" href="#elastic-tensile-test" title="Link to this heading"></a></h2>
+<p>Probably the first thing you would like to do with Simcoon is to simulate the mechanical response corresponding of a simple tension test, considering an elastic isotropic material:</p>
+<p>We first import <em>simmit</em> (the python simulation module of simcoon) and <em>numpy</em></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="kn">import</span> <span class="n">simmit</span> <span class="k">as</span> <span class="n">sim</span>
+</pre></div>
+</div>
+<p>Next we shall define the material constitutive law to be utilized and the associated material properties. We will pass them as a numpy array:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">umat_name</span> <span class="o">=</span> <span class="s1">&#39;ELISO&#39;</span> <span class="c1">#This is the 5 character code for the elastic-isotropic subroutine</span>
+<span class="n">nstatev</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1">#The number of scalar variables required, only the initial temperature is stored here to consider the thermal expansion if temperature changes.</span>
+
+<span class="n">E</span> <span class="o">=</span> <span class="mf">700000.</span> <span class="c1">#The Young modulus</span>
+<span class="n">nu</span> <span class="o">=</span> <span class="mf">0.2</span> <span class="c1">#The Poisson coefficient</span>
+<span class="n">alpha</span> <span class="o">=</span> <span class="mf">1.E-5</span> <span class="c1">#The coefficient of thermal expansion</span>
+
+<span class="c1">#Three Euler angles to represent the material orientation with respect to the reference basis (in which the loading is expressed)</span>
+<span class="n">psi_rve</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">theta_rve</span> <span class="o">=</span> <span class="mf">0.</span>
+<span class="n">phi_rve</span> <span class="o">=</span> <span class="mf">0.</span>
+
+<span class="c1">#Solver_type define the solver strategy (only a classical newton scheme is actually implemented for now), and the corate_type define the type of corotational spin rate (0 for Jauman, 1 for Green-Naghdi, 2 for logarithmic)</span>
+<span class="n">solver_type</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">corate_type</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="n">props</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">E</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="n">alpha</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>We shall then define, the location of the data input files (i.e., to define the loading path), and the results outut file and location:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">path_data</span> <span class="o">=</span> <span class="s1">&#39;data&#39;</span>
+<span class="n">path_results</span> <span class="o">=</span> <span class="s1">&#39;results&#39;</span>
+<span class="n">pathfile</span> <span class="o">=</span> <span class="s1">&#39;path.txt&#39;</span>
+<span class="n">outputfile</span> <span class="o">=</span> <span class="s1">&#39;results_ELISO.txt&#39;</span>
+</pre></div>
+</div>
+<p>The last part is to define the loading path. Further details about this file is given in the example just below but for this first example you could just create a folder ‘data’ and create a text file named ‘path.txt’ with the following inside:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#Initial_temperature
+293.5
+#Number_of_blocks
+1
+
+#Block
+1
+#Loading_type
+1
+#Control_type(NLGEOM)
+1
+#Repeat
+1
+#Steps
+1
+
+#Mode
+1
+#Dn_init 1.
+#Dn_mini 0.1
+#Dn_inc 0.01
+#time
+30.
+#mechanical_state
+E 0.01
+S 0 S 0
+S 0 S 0 S 0
+#temperature_state
+T 293.5
+</pre></div>
+</div>
+<p>The latter correspond to a pure strain-controlled tension test in the direction <em>1</em> up to 1% strain, at the temperature 293.5K.</p>
+<p>And finally we can call the solver function:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>    <span class="n">sim</span><span class="o">.</span><span class="n">solver</span><span class="p">(</span>
+<span class="n">umat_name</span><span class="p">,</span>
+<span class="n">props</span><span class="p">,</span>
+<span class="n">nstatev</span><span class="p">,</span>
+<span class="n">psi_rve</span><span class="p">,</span>
+<span class="n">theta_rve</span><span class="p">,</span>
+<span class="n">phi_rve</span><span class="p">,</span>
+<span class="n">solver_type</span><span class="p">,</span>
+<span class="n">corate_type</span><span class="p">,</span>
+<span class="n">path_data</span><span class="p">,</span>
+<span class="n">path_results</span><span class="p">,</span>
+<span class="n">pathfile</span><span class="p">,</span>
+<span class="n">outputfile</span><span class="p">,</span>
+</pre></div>
+</div>
+<p>)</p>
+<p>You can now run your just created python file (you could also create a jupyter notebook, or run the code for linear isotropic materials  that you can download in the examples). You will now find in the ‘results’ folder a file named <em>results_ELISO.txt</em>. Have a look at the existing notebook or in the documentation to know how to analyse the result file.</p>
+</section>
+<section id="define-the-loading-path">
+<h2>Define the loading path<a class="headerlink" href="#define-the-loading-path" title="Link to this heading"></a></h2>
+<p>If you navigate into the ‘data’ folder, you shall find the following files:</p>
+<ol class="arabic simple">
+<li><p>path.txt, which is structured as this:</p></li>
+</ol>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#Initial_temperature
+293.5
+#Number_of_blocks
+1
+
+#Block
+1
+#Loading_type
+1
+#Control_type(NLGEOM)
+1
+#Repeat
+1
+#Steps
+1
+
+#Mode
+1
+#Dn_init 1.
+#Dn_mini 0.1
+#Dn_inc 0.01
+#time
+30.
+#mechanical_state
+E 0.3
+S 0 S 0
+S 0 S 0 S 0
+#temperature_state
+T 293.5
+</pre></div>
+</div>
+<p>The first part of the file describe the initial temperature conditions, under the tag <strong>#Initial_temperature</strong>.</p>
+<p>Just below, under the tag <strong>#Number_of_blocks</strong>, you define the number of blocks. Here we will start with a single block, so this value is set to 1.
+The next part is to define the first block:
+<strong>#Block</strong> defines the block number
+<strong>#Loading_type</strong> defines the physical problem to solve, which is:
+1 for mechanical; 2 for thermomechanical
+<strong>#Control_type</strong> defines if the mechanical part of the problem to solve is controlled from infinitesimal strains/stress, or if a finite deformation framework is utilized.
+1 for infinitesimal strains/stress; 2 for finite deformation using Lagrangian control (Green-Lagrange strain / Piola-Kirchoff II stress); 3 for finite deformation using logarithmic strain / Kirchoff stress
+<strong>#Repeat</strong> is the number of time the block is repeated
+<strong>#Steps</strong> is the number of steps of the block</p>
+<p>The next part of the file defines the steps of the first block. It always starts with the mode of the step (#mode), which is:
+1 for linear; 2 for sinusoidal; 3 for tabular (from a file)</p>
+<p>In this example we will consider that the step mode is linear. We therefore need to set up the following</p>
+<ol class="arabic simple">
+<li><p>The mode of the step (under <strong>#mode</strong>)</p></li>
+<li><p>The initial size of the first increment (usually 1.), under <strong>#Dn_init</strong></p></li>
+<li><p>The minimal size of an increment (usually less than 1.), under <strong>#Dn_mini</strong></p></li>
+<li><p>The size of the increment as a fraction of the step $delta n$, under <strong>#Dn_inc</strong>. (<strong>#Dn_inc 0.01</strong> means that 100 increments will be utilized to simulate the step)</p></li>
+<li><p>The time <span class="math notranslate nohighlight">\(\Delta t\)</span> of the step (under <strong>#time</strong>). Note that the increment of time for any increment is <span class="math notranslate nohighlight">\(\delta t = \Delta t \delta n\)</span></p></li>
+<li><p>The mechanical loading stage at the end of the step (<strong>#mechanical_state</strong>)</p></li>
+</ol>
+<p>If Control_type=1, the elements are organized such that either stress or strain components are defined in the following order:
+11
+12 22
+13 23 33
+The letter ‘S’ in front of any component means that a stress control is considered in that direction, and the letter ‘E’ stands for a strain control. Note that those values indicate the state at the end of the step
+#. The thermal loading stage at the end of the step (<strong>#temperature_state</strong>)
+If Control_type=2, the elements are organized such that either the first Piola stress $Sigma$ or displacement gradient <span class="math notranslate nohighlight">\(\nabla u\)</span> components are defined in the following order:
+11 12 13
+21 22 23
+31 32 33
+The letter <strong>‘S’</strong> in front of any component means that a stress control is considered in that direction, and the letter <strong>‘E’</strong> stands for a kinematic control. Note that those values indicate the state at the end of the step</p>
+<p>#. The thermal loading stage at the end of the step (<strong>#temperature_state</strong>)
+For mechanical loading, the letter ‘T’ is followed by the temperature at the end of the step. For thermomechanical loading, either the final temperature can be considered (with the letter ‘T’), or the thermal flux (with the letter ‘Q’). This last quantity is defined as the rate of heat that flows to the material representative volume element considered.</p>
+<p>If the <strong>#mode</strong> is set to 2 - sinusoidal, a sinusoidal evolution is considered automatically between the state of the previous step and the final values indicated in the current step.</p>
+<p>If the <strong>#mode</strong> is set to 3 - tabular, a prescribed evolution is considered, and a file that contains such prescribed evolution must be indicated. In that case, the step block has to be defined like:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>#Mode
+3
+#File
+tabular_file.txt
+#Dn_init 1.
+#Dn_mini 0.01
+#Consigne
+S
+0  S
+0  0  0
+#T_is_set
+0
+</pre></div>
+</div>
+<p>In the following example, a biaxial test in the directions 11 and 22 is considered, with a stress control. The temperature is not set, which means that it is constant throughout the step and keep its value from the previous step (or the intial temperature if this is the first step). Note that the time is always indicated in the tabular_file.txt.
+The struture of the tabular file will be the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0       0.0             10      10
+1       0.01    20      20
+2       0.02    30      30
+3       0.03    30      30
+...
+</pre></div>
+</div>
+<p>The columns define the quantities in the following order : <strong>ninc</strong>, <strong>time</strong>, <strong>S11</strong>, <strong>S22</strong>.
+The order of the mechanical quantities is always 11,12,22,13,23,33, and if the temperature is set (with the letter ‘T’ instead of ‘0’), the following order is always considered: <strong>ninc</strong>, <strong>time</strong>, <strong>T</strong>, <strong>S11</strong>, <strong>S22</strong> in the case of the biaxial loading.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>0       0.0             293.15  10      10
+1       0.01    294.15  20      20
+2       0.02    295.15  30      30
+3       0.03    296.15  30      30
+...
+</pre></div>
+</div>
+<p><a href="#id1"><span class="problematic" id="id2">``</span></a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="external.html" class="btn btn-neutral float-left" title="External" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
