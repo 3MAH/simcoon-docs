@@ -1,0 +1,1012 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Abaqus Integration &mdash; Simcoon 1.9.7 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/simulation/abaqus.html"/>
+      <script src="../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../_static/documentation_options.js?v=0f42b3e6"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../about.html" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Ansys Integration" href="ansys.html" />
+    <link rel="prev" title="FEA Integration" href="fea_integration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Simulation</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="solver.html#elastic-tensile-test">Elastic tensile test</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#material-configuration-json">Material Configuration (JSON)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#path-configuration-json">Path Configuration (JSON)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#running-the-simulation">Running the Simulation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html#python-solver-api">Python Solver API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html#json-path-configuration">JSON Path Configuration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#general-structure">General Structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#block-parameters">Block Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#step-definitions">Step Definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html#material-json-format">Material JSON Format</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="solver.html#usage">Usage</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="solver.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="micromechanics.html">Micromechanics I/O (Python Module)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="micromechanics.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="micromechanics.html#quick-start">Quick Start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="micromechanics.html#data-classes">Data Classes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#materialorientation">MaterialOrientation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#geometryorientation">GeometryOrientation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#phase">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#layer">Layer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#ellipsoid">Ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#cylinder">Cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#section">Section</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="micromechanics.html#json-i-o-functions">JSON I/O Functions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#loading-functions">Loading Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#saving-functions">Saving Functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="micromechanics.html#json-format-examples">JSON Format Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#ellipsoids-json">Ellipsoids JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#layers-json">Layers JSON</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html#cylinders-json">Cylinders JSON</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="micromechanics.html#standalone-usage">Standalone Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="micromechanics.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="fea_integration.html">FEA Integration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="fea_integration.html#supported-fea-software">Supported FEA Software</a><ul class="current">
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#analysis-and-processing-examples">Analysis and Processing Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id1">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#quick-start">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#running-the-examples">Running the Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#see-also">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id2">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id3">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id4">Running the Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#voigt-notation-convention">Voigt Notation Convention</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id5">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#heterogeneous-materials-examples">Heterogeneous Materials Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id6">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#phase-configuration">Phase Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id7">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id8">Running the Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#data-files">Data Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#micromechanical-schemes">Micromechanical Schemes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id9">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#available-material-models">Available Material Models</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id11">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id12">Quick Start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#cyclic-loading-example">Cyclic Loading Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id13">Running the Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#state-variables">State Variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../examples/index.html#id14">See Also</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../examples/umats/ELISO.html">Isotropic elasticity examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELISO.html#define-material-properties">Define material properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELISO.html#create-loading-path-using-the-new-python-solver-api">Create loading path using the new Python Solver API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELISO.html#run-the-simulation">Run the simulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELISO.html#extract-results-from-history">Extract results from history</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELISO.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELISO.html#verify-analytical-solution">Verify analytical solution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELIST.html#create-loading-path-using-the-new-python-solver-api">Create loading path using the new Python Solver API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELIST.html#extract-results-from-history">Extract results from history</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELIST.html#verify-transverse-isotropy">Verify transverse isotropy</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELORT.html#create-loading-path-using-the-new-python-solver-api">Create loading path using the new Python Solver API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELORT.html#extract-results-from-history">Extract results from history</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/ELORT.html#verify-orthotropic-behavior">Verify orthotropic behavior</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/EPCHA.html#create-loading-path-using-the-new-python-solver-api">Create loading path using the new Python Solver API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/EPCHA.html#extract-results-from-history">Extract results from history</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/EPCHA.html#note-on-the-bauschinger-effect">Note on the Bauschinger effect</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/EPKCP.html#create-loading-path-using-the-new-python-solver-api">Create loading path using the new Python Solver API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/EPKCP.html#extract-results-from-history">Extract results from history</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../examples/umats/EPKCP.html#verify-plastic-behavior">Verify plastic behavior</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../homogenization/index.html#phase-configuration">Phase Configuration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../cpp_api/index.html">C++ API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../cpp_api/index.html#namespace-overview">Namespace Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../cpp_api/continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/continuum_mechanics/functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/continuum_mechanics/material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/continuum_mechanics/micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/continuum_mechanics/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cpp_api/simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/simulation/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cpp_api/homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../cpp_api/umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../cpp_api/umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Simulation</a></li>
+          <li class="breadcrumb-item"><a href="fea_integration.html">FEA Integration</a></li>
+      <li class="breadcrumb-item active">Abaqus Integration</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/simulation/abaqus.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="abaqus-integration">
+<h1>Abaqus Integration<a class="headerlink" href="#abaqus-integration" title="Link to this heading"></a></h1>
+<p>This guide explains how to use simcoon’s built-in constitutive models within Abaqus on Linux systems.</p>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Simcoon provides ready-to-use UMAT bridge files in the <code class="docutils literal notranslate"><span class="pre">software/</span></code> directory that allow you to use <strong>all simcoon constitutive models</strong> directly in Abaqus:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">software/umat_singleM.cpp</span></code> - Single mechanical model (selected by material name)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">software/umat_singleT.cpp</span></code> - Single thermo-mechanical model</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">software/umat_singleM_multi.cpp</span></code> - Multiscale mechanical model (reads from <code class="docutils literal notranslate"><span class="pre">material.dat</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">software/umat_externalM.cpp</span></code> - Template for adding custom external UMAT in C++</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">software/umat_externalT.cpp</span></code> - Template for custom external thermo-mechanical UMAT</p></li>
+</ul>
+<p>These files export an <code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span> <span class="pre">umat_()</span></code> function that Abaqus calls directly. The bridge:</p>
+<ol class="arabic simple">
+<li><p>Converts Abaqus arrays → simcoon Armadillo format (<code class="docutils literal notranslate"><span class="pre">abaqus2smart_M()</span></code>)</p></li>
+<li><p>Calls simcoon’s <code class="docutils literal notranslate"><span class="pre">select_umat_M()</span></code> to run the appropriate model based on the 5-character material name</p></li>
+<li><p>Converts results back → Abaqus arrays (<code class="docutils literal notranslate"><span class="pre">smart2abaqus_M()</span></code>)</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This is the <strong>opposite</strong> of the external plugin system documented in <a class="reference internal" href="../external.html"><span class="doc">External</span></a>.
+Here, simcoon models run inside Abaqus. In the external plugin system, external UMATs run inside simcoon’s solver.</p>
+</div>
+</section>
+<section id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Link to this heading"></a></h2>
+<p><strong>Linux System Requirements</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Required packages (Ubuntu/Debian)</span>
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>cmake
+sudo<span class="w"> </span>apt-get<span class="w"> </span>install<span class="w"> </span>libarmadillo-dev<span class="w"> </span>liblapack-dev<span class="w"> </span>libblas-dev
+
+<span class="c1"># Required packages (RHEL/CentOS)</span>
+sudo<span class="w"> </span>yum<span class="w"> </span>groupinstall<span class="w"> </span><span class="s2">&quot;Development Tools&quot;</span>
+sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>cmake<span class="w"> </span>armadillo-devel<span class="w"> </span>lapack-devel<span class="w"> </span>blas-devel
+</pre></div>
+</div>
+<p><strong>simcoon Installation</strong></p>
+<p>Ensure simcoon is built and installed using the provided install script:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>simcoon
+sh<span class="w"> </span>Install.sh<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span>
+
+<span class="c1"># The script will:</span>
+<span class="c1"># - Build simcoon with CMake/Ninja</span>
+<span class="c1"># - Install to $CONDA_PREFIX (your conda environment)</span>
+<span class="c1"># - Install the Python package</span>
+<span class="c1"># - Optionally run tests</span>
+
+<span class="c1"># To skip tests:</span>
+sh<span class="w"> </span>Install.sh<span class="w"> </span>-t<span class="w"> </span>-n<span class="w"> </span><span class="m">4</span>
+</pre></div>
+</div>
+</section>
+<section id="using-umat-singlem-recommended">
+<h2>Using umat_singleM (Recommended)<a class="headerlink" href="#using-umat-singlem-recommended" title="Link to this heading"></a></h2>
+<p>This is the simplest approach: the model is selected by the <strong>material name</strong> in your Abaqus input file (first 5 characters).</p>
+<p><strong>Step 1: Compile the UMAT</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>simcoon/software
+
+<span class="c1"># Compile to shared library (using conda environment)</span>
+g++<span class="w"> </span>-shared<span class="w"> </span>-fPIC<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-O2<span class="w"> </span>-o<span class="w"> </span>libumat_simcoon.so<span class="w"> </span>umat_singleM.cpp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-I<span class="nv">$CONDA_PREFIX</span>/include<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-L<span class="nv">$CONDA_PREFIX</span>/lib<span class="w"> </span>-lsimcoon<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-larmadillo<span class="w"> </span>-llapack<span class="w"> </span>-lblas
+</pre></div>
+</div>
+<p><strong>Step 2: Configure Abaqus environment</strong></p>
+<p>Create or edit your <code class="docutils literal notranslate"><span class="pre">abaqus_v6.env</span></code> file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="n">conda_prefix</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;CONDA_PREFIX&#39;</span><span class="p">,</span> <span class="s1">&#39;/path/to/conda/env&#39;</span><span class="p">)</span>
+
+<span class="c1"># Add library paths</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;LD_LIBRARY_PATH&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">conda_prefix</span> <span class="o">+</span> <span class="s1">&#39;/lib:&#39;</span> <span class="o">+</span> <span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;LD_LIBRARY_PATH&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Step 3: Run Abaqus</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>abaqus<span class="w"> </span><span class="nv">job</span><span class="o">=</span>mymodel<span class="w"> </span><span class="nv">user</span><span class="o">=</span>libumat_simcoon.so
+</pre></div>
+</div>
+<p><strong>Material definition in Abaqus input file</strong></p>
+<p>The first 5 characters of the material name select the constitutive model:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*MATERIAL, NAME=ELISO
+*DEPVAR
+5
+*USER MATERIAL, CONSTANTS=3
+** E, nu, alpha
+70000., 0.3, 1.2e-5
+</pre></div>
+</div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*MATERIAL, NAME=EPICP
+*DEPVAR
+7
+*USER MATERIAL, CONSTANTS=5
+** E, nu, alpha, sigma_y, H
+210000., 0.3, 1.2e-5, 200., 1000.
+</pre></div>
+</div>
+</section>
+<section id="using-umat-singlet-thermo-mechanical">
+<h2>Using umat_singleT (Thermo-mechanical)<a class="headerlink" href="#using-umat-singlet-thermo-mechanical" title="Link to this heading"></a></h2>
+<p>For coupled thermo-mechanical analysis with heat generation:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-shared<span class="w"> </span>-fPIC<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-O2<span class="w"> </span>-o<span class="w"> </span>libumat_simcoon_T.so<span class="w"> </span>umat_singleT.cpp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-I<span class="nv">$SIMCOON_DIR</span>/include<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-L<span class="nv">$SIMCOON_DIR</span>/lib<span class="w"> </span>-lsimcoon<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-larmadillo<span class="w"> </span>-llapack<span class="w"> </span>-lblas
+</pre></div>
+</div>
+<p>The thermo-mechanical version provides:</p>
+<ul class="simple">
+<li><p>Mechanical tangent <code class="docutils literal notranslate"><span class="pre">ddsdde</span></code> (∂σ/∂ε)</p></li>
+<li><p>Thermal stress tangent <code class="docutils literal notranslate"><span class="pre">ddsddt</span></code> (∂σ/∂T)</p></li>
+<li><p>Heat flux derivative <code class="docutils literal notranslate"><span class="pre">drplde</span></code> (∂r/∂ε)</p></li>
+<li><p>Heat capacity <code class="docutils literal notranslate"><span class="pre">drpldt</span></code> (∂r/∂T)</p></li>
+<li><p>Heat generation rate <code class="docutils literal notranslate"><span class="pre">rpl</span></code></p></li>
+</ul>
+</section>
+<section id="using-umat-singlem-multi-multiscale">
+<h2>Using umat_singleM_multi (Multiscale)<a class="headerlink" href="#using-umat-singlem-multi-multiscale" title="Link to this heading"></a></h2>
+<p>For multiscale homogenization models, the material definition is read from a <code class="docutils literal notranslate"><span class="pre">data/material.dat</span></code> file in the working directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-shared<span class="w"> </span>-fPIC<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-O2<span class="w"> </span>-o<span class="w"> </span>libumat_simcoon_multi.so<span class="w"> </span>umat_singleM_multi.cpp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-I<span class="nv">$SIMCOON_DIR</span>/include<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-L<span class="nv">$SIMCOON_DIR</span>/lib<span class="w"> </span>-lsimcoon<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-larmadillo<span class="w"> </span>-llapack<span class="w"> </span>-lblas
+</pre></div>
+</div>
+<p>Create <code class="docutils literal notranslate"><span class="pre">data/material.dat</span></code> in your Abaqus working directory with the material definition. See the homogenization documentation for file format details.</p>
+</section>
+<section id="using-umat-externalm-custom-model">
+<h2>Using umat_externalM (Custom Model)<a class="headerlink" href="#using-umat-externalm-custom-model" title="Link to this heading"></a></h2>
+<p>If you want to implement a custom constitutive model in C++:</p>
+<ol class="arabic simple">
+<li><p>Copy <code class="docutils literal notranslate"><span class="pre">software/umat_externalM.cpp</span></code> to your working directory</p></li>
+<li><p>Implement your model in the <code class="docutils literal notranslate"><span class="pre">external_umat()</span></code> function</p></li>
+<li><p>Compile and link:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>g++<span class="w"> </span>-shared<span class="w"> </span>-fPIC<span class="w"> </span>-std<span class="o">=</span>c++17<span class="w"> </span>-O2<span class="w"> </span>-o<span class="w"> </span>libumat_custom.so<span class="w"> </span>umat_externalM.cpp<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-I<span class="nv">$SIMCOON_DIR</span>/include<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-L<span class="nv">$SIMCOON_DIR</span>/lib<span class="w"> </span>-lsimcoon<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-larmadillo<span class="w"> </span>-llapack<span class="w"> </span>-lblas
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">external_umat()</span></code> signature receives simcoon-format data:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">external_umat</span><span class="p">(</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Etot</span><span class="p">,</span><span class="w">      </span><span class="c1">// Total strain</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DEtot</span><span class="p">,</span><span class="w">     </span><span class="c1">// Strain increment</span>
+<span class="w">    </span><span class="n">vec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">sigma</span><span class="p">,</span><span class="w">           </span><span class="c1">// Stress (output)</span>
+<span class="w">    </span><span class="n">mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Lt</span><span class="p">,</span><span class="w">              </span><span class="c1">// Tangent modulus (output)</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">mat</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DR</span><span class="p">,</span><span class="w">        </span><span class="c1">// Rotation increment</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nprops</span><span class="p">,</span><span class="w">    </span><span class="c1">// Number of properties</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">vec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">props</span><span class="p">,</span><span class="w">     </span><span class="c1">// Material properties</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nstatev</span><span class="p">,</span><span class="w">   </span><span class="c1">// Number of state variables</span>
+<span class="w">    </span><span class="n">vec</span><span class="w"> </span><span class="o">&amp;</span><span class="n">statev</span><span class="p">,</span><span class="w">          </span><span class="c1">// State variables (input/output)</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">T</span><span class="p">,</span><span class="w">      </span><span class="c1">// Temperature</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DT</span><span class="p">,</span><span class="w">     </span><span class="c1">// Temperature increment</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Time</span><span class="p">,</span><span class="w">   </span><span class="c1">// Step time</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">DTime</span><span class="p">,</span><span class="w">  </span><span class="c1">// Time increment</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Wm</span><span class="p">,</span><span class="w">           </span><span class="c1">// Mechanical work (output)</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Wm_r</span><span class="p">,</span><span class="w">         </span><span class="c1">// Recoverable work (output)</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Wm_ir</span><span class="p">,</span><span class="w">        </span><span class="c1">// Irrecoverable work (output)</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">Wm_d</span><span class="p">,</span><span class="w">         </span><span class="c1">// Dissipated work (output)</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">ndi</span><span class="p">,</span><span class="w">       </span><span class="c1">// Number of direct components</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="o">&amp;</span><span class="n">nshr</span><span class="p">,</span><span class="w">      </span><span class="c1">// Number of shear components</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="o">&amp;</span><span class="n">start</span><span class="p">,</span><span class="w">    </span><span class="c1">// First increment flag</span>
+<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="o">&amp;</span><span class="n">tnew_dt</span><span class="w">       </span><span class="c1">// Suggested time step ratio (output)</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="how-it-works">
+<h2>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading"></a></h2>
+<section id="architecture">
+<h3>Architecture<a class="headerlink" href="#architecture" title="Link to this heading"></a></h3>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>┌───────────────────────────────────────────────────────────────┐
+│                        Abaqus                                 │
+│                           │                                   │
+│                           ▼                                   │
+│              calls extern &quot;C&quot; umat_()                         │
+└───────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌───────────────────────────────────────────────────────────────┐
+│              umat_singleM.cpp (bridge)                        │
+│                                                               │
+│  ┌─────────────────────────────────────────────────────────┐  │
+│  │  abaqus2smart_M()                                       │  │
+│  │  - Converts stress, ddsdde, stran, dstran → Armadillo   │  │
+│  │  - Extracts temperature, properties, state variables    │  │
+│  │  - Handles 2D/3D dimensionality (ndi, nshr)             │  │
+│  └─────────────────────────────────────────────────────────┘  │
+│                           │                                   │
+│                           ▼                                   │
+│  ┌─────────────────────────────────────────────────────────┐  │
+│  │  select_umat_M(rve, ...)                                │  │
+│  │  - Reads material name (first 5 chars of cmname)        │  │
+│  │  - Dispatches to appropriate model: ELISO, EPICP, etc.  │  │
+│  └─────────────────────────────────────────────────────────┘  │
+│                           │                                   │
+│                           ▼                                   │
+│  ┌─────────────────────────────────────────────────────────┐  │
+│  │  smart2abaqus_M()                                       │  │
+│  │  - Converts sigma, Lt → stress, ddsdde arrays           │  │
+│  │  - Packs state variables + work quantities              │  │
+│  └─────────────────────────────────────────────────────────┘  │
+└───────────────────────────────────────────────────────────────┘
+                            │
+                            ▼
+┌───────────────────────────────────────────────────────────────┐
+│                        Abaqus                                 │
+│              (continues with updated stress/tangent)          │
+└───────────────────────────────────────────────────────────────┘
+</pre></div>
+</div>
+</section>
+<section id="why-extern-c-works">
+<h3>Why extern “C” works<a class="headerlink" href="#why-extern-c-works" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">extern</span> <span class="pre">&quot;C&quot;</span></code> declaration:</p>
+<ol class="arabic simple">
+<li><p><strong>Disables C++ name mangling</strong> - The function is exported as <code class="docutils literal notranslate"><span class="pre">umat_</span></code> exactly</p></li>
+<li><p><strong>Uses C calling convention</strong> - Compatible with Fortran calling convention</p></li>
+<li><p><strong>Standard types only</strong> - <code class="docutils literal notranslate"><span class="pre">double*</span></code>, <code class="docutils literal notranslate"><span class="pre">int*</span></code>, <code class="docutils literal notranslate"><span class="pre">char*</span></code> work universally</p></li>
+</ol>
+<p>Abaqus looks for the symbol <code class="docutils literal notranslate"><span class="pre">umat_</span></code> in the shared library - it doesn’t care if the library was compiled from Fortran or C++.</p>
+</section>
+<section id="state-variables-layout">
+<h3>State Variables Layout<a class="headerlink" href="#state-variables-layout" title="Link to this heading"></a></h3>
+<p>simcoon uses a specific layout for state variables (<code class="docutils literal notranslate"><span class="pre">statev</span></code> array):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>statev[0:nstatev_smart]  - Model-specific state variables
+statev[nstatev-4]        - Wm (total mechanical work)
+statev[nstatev-3]        - Wm_r (recoverable work)
+statev[nstatev-2]        - Wm_ir (irrecoverable work)
+statev[nstatev-1]        - Wm_d (dissipated work)
+</pre></div>
+</div>
+<p>Set <code class="docutils literal notranslate"><span class="pre">*DEPVAR</span></code> in your input file to <code class="docutils literal notranslate"><span class="pre">nstatev_smart</span> <span class="pre">+</span> <span class="pre">4</span></code>.</p>
+</section>
+</section>
+<section id="available-models">
+<h2>Available Models<a class="headerlink" href="#available-models" title="Link to this heading"></a></h2>
+<p>The following constitutive models are available through <code class="docutils literal notranslate"><span class="pre">select_umat_M()</span></code>:</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-text">Mechanical Models (umat_singleM)</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 12.0%" />
+<col style="width: 25.0%" />
+<col style="width: 30.0%" />
+<col style="width: 33.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Model</p></th>
+<th class="head"><p>Properties</p></th>
+<th class="head"><p>State Variables</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>ELISO</p></td>
+<td><p>Isotropic elasticity</p></td>
+<td><p>E, ν, α</p></td>
+<td><p>1 (start flag)</p></td>
+</tr>
+<tr class="row-odd"><td><p>ELIST</p></td>
+<td><p>Transversely isotropic elasticity</p></td>
+<td><p>E₁, E₂, ν₁₂, ν₂₃, G₁₂, α₁, α₂</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-even"><td><p>ELORT</p></td>
+<td><p>Orthotropic elasticity</p></td>
+<td><p>E₁, E₂, E₃, ν₁₂, ν₁₃, ν₂₃, G₁₂, G₁₃, G₂₃, α₁, α₂, α₃</p></td>
+<td><p>1</p></td>
+</tr>
+<tr class="row-odd"><td><p>EPICP</p></td>
+<td><p>Isotropic plasticity (isotropic hardening)</p></td>
+<td><p>E, ν, α, σ_y, H</p></td>
+<td><p>8 (p, Hp, …)</p></td>
+</tr>
+<tr class="row-even"><td><p>EPKCP</p></td>
+<td><p>Kinematic + isotropic hardening</p></td>
+<td><p>E, ν, α, σ_y, H, C, γ</p></td>
+<td><p>14</p></td>
+</tr>
+<tr class="row-odd"><td><p>EPCHA</p></td>
+<td><p>Chaboche cyclic plasticity</p></td>
+<td><p>E, ν, α, σ_y, Q, b, C₁, γ₁, …</p></td>
+<td><p>14+</p></td>
+</tr>
+<tr class="row-even"><td><p>EPHIL</p></td>
+<td><p>Hill anisotropic plasticity (iso hardening)</p></td>
+<td><p>E, ν, α, σ_y, H, F, G, H, L, M, N</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>EPHAC</p></td>
+<td><p>Hill + Chaboche</p></td>
+<td><p>E, ν, α, σ_y, Q, b, C₁, γ₁, F, G, H, L, M, N</p></td>
+<td><p>14+</p></td>
+</tr>
+<tr class="row-even"><td><p>SMAUT</p></td>
+<td><p>SMA unified model</p></td>
+<td><p>See SMA documentation</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-odd"><td><p>SMANI</p></td>
+<td><p>SMA anisotropic model</p></td>
+<td><p>See SMA documentation</p></td>
+<td><p>24</p></td>
+</tr>
+<tr class="row-even"><td><p>LLDM0</p></td>
+<td><p>Lemaitre-Chaboche damage</p></td>
+<td><p>E, ν, α, σ_y, H, S, s, D_c</p></td>
+<td><p>9</p></td>
+</tr>
+<tr class="row-odd"><td><p>ZENER</p></td>
+<td><p>Zener viscoelastic (single branch)</p></td>
+<td><p>E₀, E₁, η</p></td>
+<td><p>7</p></td>
+</tr>
+<tr class="row-even"><td><p>ZENNK</p></td>
+<td><p>Zener viscoelastic (N branches)</p></td>
+<td><p>E₀, E₁, η₁, E₂, η₂, …</p></td>
+<td><p>1+6N</p></td>
+</tr>
+<tr class="row-odd"><td><p>PRONK</p></td>
+<td><p>Prony series viscoelastic</p></td>
+<td><p>G₀, K₀, g₁, τ₁, k₁, τ’₁, …</p></td>
+<td><p>1+12N</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default" id="id2">
+<caption><span class="caption-text">Micromechanics Models</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<colgroup>
+<col style="width: 12.0%" />
+<col style="width: 40.0%" />
+<col style="width: 48.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Code</p></th>
+<th class="head"><p>Model</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>MIHEN</p></td>
+<td><p>Mori-Tanaka (Eshelby)</p></td>
+<td><p>Mean-field homogenization with Eshelby tensor</p></td>
+</tr>
+<tr class="row-odd"><td><p>MIMTN</p></td>
+<td><p>Mori-Tanaka with N phases</p></td>
+<td><p>Multi-phase Mori-Tanaka</p></td>
+</tr>
+<tr class="row-even"><td><p>MISCN</p></td>
+<td><p>Self-consistent (N phases)</p></td>
+<td><p>Self-consistent homogenization</p></td>
+</tr>
+<tr class="row-odd"><td><p>MIPLN</p></td>
+<td><p>Periodic layered</p></td>
+<td><p>Layered composite homogenization</p></td>
+</tr>
+</tbody>
+</table>
+<p>For micromechanics models, use <code class="docutils literal notranslate"><span class="pre">umat_singleM_multi.cpp</span></code> with a <code class="docutils literal notranslate"><span class="pre">data/material.dat</span></code> file.</p>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Link to this heading"></a></h2>
+<p><strong>Compilation errors</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check include paths</span>
+ls<span class="w"> </span><span class="nv">$SIMCOON_DIR</span>/include/simcoon/
+
+<span class="c1"># Check library exists</span>
+ls<span class="w"> </span><span class="nv">$SIMCOON_DIR</span>/lib/libsimcoon.*
+</pre></div>
+</div>
+<p><strong>Runtime library errors</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check library path</span>
+<span class="nb">echo</span><span class="w"> </span><span class="nv">$LD_LIBRARY_PATH</span>
+
+<span class="c1"># Check dependencies of your UMAT</span>
+ldd<span class="w"> </span>libumat_simcoon.so
+
+<span class="c1"># Look for missing libraries</span>
+ldd<span class="w"> </span>libumat_simcoon.so<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="s2">&quot;not found&quot;</span>
+</pre></div>
+</div>
+<p><strong>Symbol not found errors</strong></p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Verify umat_ symbol is exported</span>
+nm<span class="w"> </span>-D<span class="w"> </span>libumat_simcoon.so<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>umat_
+<span class="c1"># Should show: T umat_</span>
+</pre></div>
+</div>
+<p><strong>Convergence issues</strong></p>
+<ul class="simple">
+<li><p>Check that <code class="docutils literal notranslate"><span class="pre">*DEPVAR</span></code> matches <code class="docutils literal notranslate"><span class="pre">nstatev_smart</span> <span class="pre">+</span> <span class="pre">4</span></code></p></li>
+<li><p>Verify material properties are in correct units</p></li>
+<li><p>Start with small load increments</p></li>
+<li><p>Check the tangent modulus is properly computed (symmetric, positive definite for elastic)</p></li>
+</ul>
+<p><strong>Debugging</strong></p>
+<p>Add debug output in the bridge code:</p>
+<div class="highlight-cpp notranslate"><div class="highlight"><pre><span></span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;fstream&gt;</span>
+
+<span class="c1">// In umat_() function, after abaqus2smart_M():</span>
+<span class="n">std</span><span class="o">::</span><span class="n">ofstream</span><span class="w"> </span><span class="n">debug</span><span class="p">(</span><span class="s">&quot;umat_debug.log&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ios</span><span class="o">::</span><span class="n">app</span><span class="p">);</span>
+<span class="n">debug</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;=== Increment &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">kinc</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot; ===&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">debug</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Material: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">umat_name</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">debug</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;T = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rve_sv_M</span><span class="o">-&gt;</span><span class="n">T</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;, DT = &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rve_sv_M</span><span class="o">-&gt;</span><span class="n">DT</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="n">debug</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Etot: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rve_sv_M</span><span class="o">-&gt;</span><span class="n">Etot</span><span class="p">.</span><span class="n">t</span><span class="p">();</span>
+<span class="n">debug</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;DEtot: &quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">rve_sv_M</span><span class="o">-&gt;</span><span class="n">DEtot</span><span class="p">.</span><span class="n">t</span><span class="p">();</span>
+<span class="n">debug</span><span class="p">.</span><span class="n">close</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="complete-example">
+<h2>Complete Example<a class="headerlink" href="#complete-example" title="Link to this heading"></a></h2>
+<p>Here’s a complete example for a tensile test on a plasticity model:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>*HEADING
+Tensile test with simcoon EPICP model
+**
+*NODE
+1, 0.0, 0.0, 0.0
+2, 1.0, 0.0, 0.0
+3, 1.0, 1.0, 0.0
+4, 0.0, 1.0, 0.0
+5, 0.0, 0.0, 1.0
+6, 1.0, 0.0, 1.0
+7, 1.0, 1.0, 1.0
+8, 0.0, 1.0, 1.0
+**
+*ELEMENT, TYPE=C3D8, ELSET=ALL
+1, 1, 2, 3, 4, 5, 6, 7, 8
+**
+*SOLID SECTION, ELSET=ALL, MATERIAL=EPICP
+**
+*MATERIAL, NAME=EPICP
+*DEPVAR
+12
+*USER MATERIAL, CONSTANTS=5
+** E, nu, alpha, sigma_y, H
+210000., 0.3, 0., 200., 1000.
+**
+*BOUNDARY
+1, 1, 3
+2, 2, 3
+3, 3
+4, 1
+4, 3
+5, 1, 2
+6, 2
+8, 1
+**
+*STEP, NLGEOM=NO
+*STATIC
+0.1, 1.0, 1e-5, 0.1
+**
+*BOUNDARY
+5, 3, 3, 0.01
+6, 3, 3, 0.01
+7, 3, 3, 0.01
+8, 3, 3, 0.01
+**
+*OUTPUT, FIELD
+*NODE OUTPUT
+U, RF
+*ELEMENT OUTPUT
+S, E, SDV
+**
+*END STEP
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fea_integration.html" class="btn btn-neutral float-left" title="FEA Integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ansys.html" class="btn btn-neutral float-right" title="Ansys Integration" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

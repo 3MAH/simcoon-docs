@@ -1,0 +1,1082 @@
+:orphan:
+
+Examples
+========
+
+Below are examples illustrating Simcoon's main features. 
+These examples are designed to serve as tutorials. 
+In that sense, an effort is made to keep the scripts simple and executable with 
+a low computational cost.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Analysis and Processing Examples
+=================================
+
+This directory contains examples illustrating Simcoon's capabilities for simulating
+mechanical and thermomechanical responses and post-processing results.
+
+Examples
+--------
+
+**objective_rates.py** - Objective Stress Rates
+    Compares different objective stress rates (Jaumann, Green-Naghdi, Logarithmic)
+    for large deformation simulations. Demonstrates how the choice of corotational
+    rate affects stress predictions under simple shear loading.
+
+    Key concepts:
+
+    - Corotational stress rates
+    - Large strain formulation
+    - Simple shear deformation
+
+**directional_stiffness.py** - Directional Elastic Properties
+    Computes and visualizes the directional Young's modulus for anisotropic
+    materials. Shows how elastic stiffness varies with loading direction.
+
+    Key concepts:
+
+    - Stiffness tensor manipulation
+    - Directional properties
+    - 3D visualization of elastic anisotropy
+
+**eshelby_numerical_vs_analytical.py** - Eshelby Tensor Validation
+    Compares numerical and analytical Eshelby tensor calculations for various
+    inclusion shapes (sphere, prolate, oblate ellipsoids). Validates the
+    implementation against known analytical solutions.
+
+    Key concepts:
+
+    - Eshelby tensor computation
+    - Micromechanics fundamentals
+    - Numerical validation
+
+Quick Start
+-----------
+
+All examples use the new Python Solver API (v2.0):
+
+.. code-block:: python
+
+    import numpy as np
+    from simcoon.solver import Solver, Block, StepMeca
+
+    # Define material and loading
+    props = np.array([210000.0, 0.3, 1e-5])  # E, nu, alpha
+
+    step = StepMeca(
+        DEtot_end=np.array([0.1, 0, 0, 0, 0, 0]),
+        control=['strain', 'stress', 'stress', 'stress', 'stress', 'stress'],
+        Dn_init=100
+    )
+
+    block = Block(
+        steps=[step],
+        umat_name="ELISO",
+        props=props,
+        nstatev=1,
+        corate_type='logarithmic'  # Try 'jaumann' or 'green_naghdi'
+    )
+
+    solver = Solver(blocks=[block])
+    history = solver.solve()
+
+Running the Examples
+--------------------
+
+.. code-block:: bash
+
+    # From the repository root
+    cd examples/analysis
+    python objective_rates.py
+    python directional_stiffness.py
+    python eshelby_numerical_vs_analytical.py
+
+See Also
+--------
+
+- :doc:`../umats/README` - Constitutive law examples
+- :doc:`../continuum_mechanics/README` - Tensor operations and stress measures
+- `Migration Guide <../../docs/migration_guide.md>`_ - Upgrading from v1.x
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial studies the directional stiffness of a cubic material">
+
+.. only:: html
+
+  .. image:: /examples/analysis/images/thumb/sphx_glr_directional_stiffness_thumb.png
+    :alt:
+
+  :doc:`/examples/analysis/directional_stiffness`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Effective properties of a cubic material</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Numerical vs Analytical Eshelby Tensor Comparison">
+
+.. only:: html
+
+  .. image:: /examples/analysis/images/thumb/sphx_glr_eshelby_numerical_vs_analytical_thumb.png
+    :alt:
+
+  :doc:`/examples/analysis/eshelby_numerical_vs_analytical`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Numerical vs Analytical Eshelby Tensor Comparison</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows the well-known spurious oscillations that can occur in the Zaremba-Jaumann rate when simulating elastic responses under large transformations. The results are compared with the Green-Naghdi and logarithmic Xiao-Meyers-Bruhns rates, which do not exhibit such oscillations.">
+
+.. only:: html
+
+  .. image:: /examples/analysis/images/thumb/sphx_glr_objective_rates_thumb.png
+    :alt:
+
+  :doc:`/examples/analysis/objective_rates`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Comparison of objective rates</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/analysis/directional_stiffness
+   /examples/analysis/eshelby_numerical_vs_analytical
+   /examples/analysis/objective_rates
+
+Continuum Mechanics Examples
+============================
+
+This directory contains examples demonstrating Simcoon's continuum mechanics
+operations, including tensor manipulations, stress measures, rotations, and
+yield criteria.
+
+Examples
+--------
+
+**constitutive_relations.py** - Stiffness and Compliance Tensors
+    Demonstrates building stiffness (L) and compliance (M) tensors for various
+    material symmetries: isotropic, transversely isotropic, orthotropic, and
+    monoclinic.
+
+    Key functions:
+
+    - ``L_iso(E, nu)`` - Isotropic stiffness
+    - ``M_iso(E, nu)`` - Isotropic compliance
+    - ``L_isotrans(EL, ET, nuTL, nuTT, GLT, axis)`` - Transverse isotropy
+    - ``L_ortho(...)`` - Orthotropic stiffness
+
+**stress_measures.py** - Stress Tensor Conversions
+    Shows conversions between different stress measures used in finite
+    deformation mechanics:
+
+    - Cauchy stress (sigma)
+    - First Piola-Kirchhoff stress (PK1)
+    - Second Piola-Kirchhoff stress (PK2)
+    - Kirchhoff stress (tau)
+    - Mandel stress
+
+    Key functions:
+
+    - ``Cauchy_to_PKII(sigma, F)``
+    - ``PKII_to_Cauchy(PKII, F)``
+    - ``Cauchy_to_PKI(sigma, F)``
+
+**stress_transfer_helpers.py** - Push-Forward and Pull-Back Operations
+    Demonstrates tensor transformation operations between reference and
+    current configurations.
+
+    Key concepts:
+
+    - Covariant vs contravariant transformations
+    - Push-forward and pull-back of stress tensors
+    - Piola transformation
+
+**rotation.py** - Tensor Rotations
+    Shows how to rotate tensors using rotation matrices. Demonstrates rotation
+    of stiffness tensors for computing effective properties of rotated materials.
+
+    Key functions:
+
+    - ``rotate_strain(E, R)`` - Rotate strain tensor
+    - ``rotate_stress(sigma, R)`` - Rotate stress tensor
+    - ``rotate_L(L, R)`` - Rotate 4th-order stiffness tensor
+    - ``fillR_euler(psi, theta, phi)`` - Create rotation matrix from Euler angles
+
+**yield_criteria.py** - Yield Function Evaluation
+    Demonstrates evaluation of various yield criteria:
+
+    - von Mises (J2 plasticity)
+    - Tresca (maximum shear stress)
+    - Drucker (pressure-dependent)
+    - Hill (anisotropic)
+
+    Key functions:
+
+    - ``Mises_stress(sigma)`` - von Mises equivalent stress
+    - ``tr(sigma)`` - Trace (hydrostatic component)
+    - ``dev(sigma)`` - Deviatoric stress
+
+Quick Start
+-----------
+
+**Building stiffness tensors:**
+
+.. code-block:: python
+
+    import simcoon as sim
+    import numpy as np
+
+    # Isotropic material
+    E, nu = 210000.0, 0.3
+    L = sim.L_iso(E, nu)  # 6x6 stiffness matrix
+    M = sim.M_iso(E, nu)  # 6x6 compliance matrix
+
+    # Verify L and M are inverses
+    np.testing.assert_allclose(L @ M, np.eye(6), atol=1e-10)
+
+    # Transversely isotropic (fiber along axis 1)
+    EL, ET = 150000, 10000
+    nuTL, nuTT = 0.3, 0.4
+    GLT = 5000
+    L_trans = sim.L_isotrans(EL, ET, nuTL, nuTT, GLT, axis=1)
+
+**Stress conversions:**
+
+.. code-block:: python
+
+    import simcoon as sim
+    import numpy as np
+
+    # Cauchy stress (Voigt notation)
+    sigma = np.array([100, 50, 0, 25, 0, 0])
+
+    # Deformation gradient (simple extension)
+    F = np.array([
+        [1.1, 0, 0],
+        [0, 0.95, 0],
+        [0, 0, 0.95]
+    ])
+
+    # Convert to 2nd Piola-Kirchhoff
+    PKII = sim.Cauchy_to_PKII(sigma, F)
+
+    # Convert back
+    sigma_back = sim.PKII_to_Cauchy(PKII, F)
+    np.testing.assert_allclose(sigma, sigma_back, atol=1e-10)
+
+**Rotating tensors:**
+
+.. code-block:: python
+
+    import simcoon as sim
+    import numpy as np
+
+    # Create rotation matrix (45 degrees about z-axis)
+    psi, theta, phi = 45.0, 0.0, 0.0  # Euler angles in degrees
+    R = sim.fillR_euler(np.radians(psi), np.radians(theta), np.radians(phi))
+
+    # Rotate stiffness tensor
+    L = sim.L_iso(210000, 0.3)
+    L_rotated = sim.rotate_L(L, R)
+
+    # For isotropic material, rotation has no effect
+    np.testing.assert_allclose(L, L_rotated, atol=1e-10)
+
+**Yield criteria:**
+
+.. code-block:: python
+
+    import simcoon as sim
+    import numpy as np
+
+    # Uniaxial stress state
+    sigma = np.array([350, 0, 0, 0, 0, 0])  # MPa
+
+    # von Mises equivalent stress
+    sigma_eq = sim.Mises_stress(sigma)
+    print(f"von Mises stress: {sigma_eq:.1f} MPa")  # 350 MPa
+
+    # Deviatoric stress
+    s = sim.dev(sigma)
+    print(f"Deviatoric: {s}")
+
+Running the Examples
+--------------------
+
+.. code-block:: bash
+
+    # From the repository root
+    cd examples/continuum_mechanics
+    python constitutive_relations.py
+    python stress_measures.py
+    python rotation.py
+    python yield_criteria.py
+
+Voigt Notation Convention
+-------------------------
+
+Simcoon uses Voigt notation for symmetric tensors:
+
+- **Strain:** ``[e11, e22, e33, 2*e12, 2*e13, 2*e23]``
+- **Stress:** ``[s11, s22, s33, s12, s13, s23]``
+
+The factor of 2 on shear strains ensures energy consistency: ``W = sigma . epsilon``.
+
+See Also
+--------
+
+- :doc:`../umats/README` - Constitutive law examples
+- :doc:`../analysis/README` - Analysis and post-processing
+- `API Documentation <https://3mah.github.io/simcoon-docs/>`_
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Constitutive Library Examples">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_constitutive_relations_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/constitutive_relations`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Constitutive Library Examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Rotation library Examples">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_rotation_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/rotation`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Rotation library Examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example is an hands-on demo of the stress “transfer” helpers in simcoon to switch between different stress measures.">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_stress_measures_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/stress_measures`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the stress transfer helpers exposed in simcoon.">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_stress_transfer_helpers_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/stress_transfer_helpers`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Stress transfer library examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates different yield criteria available in Simcoon, including von Mises, Tresca, Drucker, and anisotropic Hill criteria.">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_yield_criteria_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/yield_criteria`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Yield Criteria Examples</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/continuum_mechanics/constitutive_relations
+   /examples/continuum_mechanics/rotation
+   /examples/continuum_mechanics/stress_measures
+   /examples/continuum_mechanics/stress_transfer_helpers
+   /examples/continuum_mechanics/yield_criteria
+
+Heterogeneous Materials Examples
+================================
+
+This directory contains examples demonstrating Simcoon's capabilities for simulating
+heterogeneous materials, including Eshelby tensor computations and micromechanical
+homogenization schemes for predicting effective properties of composite materials.
+
+Examples
+--------
+
+**effective_props.py** - Effective Properties vs Volume Fraction and Aspect Ratio
+    Studies the evolution of the mechanical properties of a 2-phase composite material
+    considering spherical and ellipsoidal reinforcements. Compares Mori-Tanaka and
+    Self-Consistent schemes, and explores the effect of inclusion aspect ratio on
+    effective stiffness.
+
+    Key concepts:
+
+    - Mori-Tanaka (MIMTN) and Self-Consistent (MISCN) schemes
+    - Effect of volume fraction on effective properties
+    - Effect of aspect ratio (prolate vs oblate inclusions)
+    - Comparison with experimental data
+
+**eshelby_tensors.py** - Eshelby Tensor Computations
+    Demonstrates Eshelby tensor computations for various inclusion shapes including
+    spheres, cylinders, prolate and oblate ellipsoids, and penny-shaped cracks.
+
+    Key concepts:
+
+    - Analytical Eshelby tensors for special cases
+    - Numerical integration for general ellipsoids
+    - Hill's interaction tensor
+    - Convergence of oblate ellipsoid to penny-shaped crack limit
+
+**homogenization.py** - Two-Phase Composite Homogenization
+    Tutorial studying the mechanical properties of a 2-phase composite material,
+    visualizing how Eshelby tensor components vary with aspect ratio.
+
+    Key concepts:
+
+    - Effective elastic properties computation
+    - Eshelby tensor component variation with aspect ratio
+    - Isotropic effective properties from isotropic phases
+
+Phase Configuration
+-------------------
+
+Phase configurations (ellipsoids, layers, cylinders) are defined using the
+Python ``simcoon.solver.micromechanics`` module with JSON format:
+
+.. code-block:: python
+
+    from simcoon.solver.micromechanics import (
+        Ellipsoid, load_ellipsoids_json, save_ellipsoids_json,
+    )
+
+    # Load phases from JSON
+    phases = load_ellipsoids_json('data/ellipsoids0.json')
+
+    # Modify programmatically
+    phases[1].a1 = 20.0  # Change aspect ratio
+    phases[1].concentration = 0.35
+
+    # Save back
+    save_ellipsoids_json('data/ellipsoids0.json', phases)
+
+Quick Start
+-----------
+
+**Computing effective properties:**
+
+.. code-block:: python
+
+    import numpy as np
+    import simcoon as sim
+
+    # Define micromechanics parameters
+    nstatev = 0
+    nphases = 2
+    num_file = 0  # Uses ellipsoids0.json, phases0.json
+    int1 = 50     # Integration points
+    int2 = 50
+    n_matrix = 0  # Matrix phase index
+
+    props = np.array([nphases, num_file, int1, int2, n_matrix], dtype='float')
+
+    # Euler angles for RVE orientation (z-x-z convention)
+    psi_rve, theta_rve, phi_rve = 0.0, 0.0, 0.0
+
+    # Compute effective stiffness using Mori-Tanaka scheme
+    L_eff = sim.L_eff('MIMTN', props, nstatev, psi_rve, theta_rve, phi_rve)
+
+    # Extract isotropic properties (E, nu) if applicable
+    E_nu = sim.L_iso_props(L_eff).flatten()
+    print(f"Effective E = {E_nu[0]:.1f} MPa, nu = {E_nu[1]:.4f}")
+
+**Computing Eshelby tensors:**
+
+.. code-block:: python
+
+    import numpy as np
+    import simcoon as sim
+
+    nu = 0.3  # Matrix Poisson ratio
+
+    # Analytical solutions for special shapes
+    S_sphere = sim.Eshelby_sphere(nu)
+    S_cylinder = sim.Eshelby_cylinder(nu)
+    S_prolate = sim.Eshelby_prolate(nu, ar=5.0)   # ar = a1/a3 > 1
+    S_oblate = sim.Eshelby_oblate(nu, ar=0.2)     # ar = a1/a3 < 1
+    S_penny = sim.Eshelby_penny(nu)               # Penny-shaped crack
+
+    # Numerical solution for general ellipsoid in anisotropic matrix
+    E = 70000.0  # Young's modulus (MPa)
+    L = sim.L_iso([E, nu], 'Enu')
+    a1, a2, a3 = 2.0, 1.0, 0.5  # Semi-axes
+    mp, np_int = 50, 50         # Integration points
+
+    S_general = sim.Eshelby(L, a1, a2, a3, mp, np_int)
+
+    # Hill's interaction tensor
+    T_II = sim.T_II(L, a1, a2, a3, mp, np_int)
+
+Running the Examples
+--------------------
+
+.. code-block:: bash
+
+    # From the repository root
+    cd examples/heterogeneous
+    python effective_props.py
+    python eshelby_tensors.py
+    python homogenization.py
+
+Data Files
+----------
+
+The ``data/`` directory contains:
+
+- ``ellipsoids0.json`` - Ellipsoid phase definitions (geometry, orientation, material)
+- ``phases0.json`` - Phase material properties
+- ``E_exp.txt`` - Experimental data for validation (Wang 2003)
+
+Micromechanical Schemes
+-----------------------
+
+Simcoon supports the following homogenization schemes:
+
+- **MIMTN** - Mori-Tanaka scheme (dilute to moderate concentrations)
+- **MISCN** - Self-Consistent scheme (higher concentrations, interpenetrating phases)
+
+The Mori-Tanaka scheme is generally more accurate for matrix-inclusion composites
+at low to moderate reinforcement volume fractions, while the Self-Consistent scheme
+is appropriate for interpenetrating microstructures or higher concentrations.
+
+See Also
+--------
+
+- :doc:`../analysis/README` - Eshelby tensor validation examples
+- :doc:`../continuum_mechanics/README` - Tensor operations and rotations
+- `API Documentation <https://3mah.github.io/simcoon-docs/>`_
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example studies the evolution of the mechanical properties of a composite material considering spherical reinforcement.">
+
+.. only:: html
+
+  .. image:: /examples/heterogeneous/images/thumb/sphx_glr_effective_props_thumb.png
+    :alt:
+
+  :doc:`/examples/heterogeneous/effective_props`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Micromechanics Examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Eshelby Tensor Examples">
+
+.. only:: html
+
+  .. image:: /examples/heterogeneous/images/thumb/sphx_glr_eshelby_tensors_thumb.png
+    :alt:
+
+  :doc:`/examples/heterogeneous/eshelby_tensors`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Eshelby Tensor Examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="2 phase composite homogenization example">
+
+.. only:: html
+
+  .. image:: /examples/heterogeneous/images/thumb/sphx_glr_homogenization_thumb.png
+    :alt:
+
+  :doc:`/examples/heterogeneous/homogenization`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">2 phase composite homogenization example</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/heterogeneous/effective_props
+   /examples/heterogeneous/eshelby_tensors
+   /examples/heterogeneous/homogenization
+
+Hyperelasticity 
+-----------------------------------------------
+
+Below are examples illustrating Simcoon's capabilities for simulating materials exhibiting hyperelasticity.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we compare three hyperelastic constitutive laws. Each model is run for uniaxial tension (UT), equibiaxial tension (ET), and pure shear (PS).">
+
+.. only:: html
+
+  .. image:: /examples/hyperelasticity/images/thumb/sphx_glr_HYPER_numerical_thumb.png
+    :alt:
+
+  :doc:`/examples/hyperelasticity/HYPER_numerical`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Hyperelastic models - use the API</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we compare five hyperelastic constitutive laws. Each model is run for uniaxial tension (UT), equibiaxial tension (ET), and pure shear (PS).">
+
+.. only:: html
+
+  .. image:: /examples/hyperelasticity/images/thumb/sphx_glr_HYPER_umat_thumb.png
+    :alt:
+
+  :doc:`/examples/hyperelasticity/HYPER_umat`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Hyperelastic models - use the umat</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/hyperelasticity/HYPER_numerical
+   /examples/hyperelasticity/HYPER_umat
+
+Constitutive Laws Examples
+==========================
+
+This directory contains examples demonstrating Simcoon's constitutive laws library
+using the Python Solver API (v2.0).
+
+Available Material Models
+-------------------------
+
+**Elastic Models:**
+
+- **ELISO** - Isotropic linear elasticity
+- **ELIST** - Transversely isotropic elasticity
+- **ELORT** - Orthotropic elasticity
+
+**Plasticity Models:**
+
+- **EPICP** - Plasticity with isotropic hardening (power-law)
+- **EPKCP** - Plasticity with combined isotropic and kinematic hardening
+- **EPCHA** - Plasticity with Chaboche hardening (cyclic plasticity)
+
+Examples
+--------
+
+**ELISO.py** - Isotropic Elasticity
+    Demonstrates uniaxial tension simulation with isotropic elastic material.
+    Shows basic usage of `Solver`, `Block`, and `StepMeca` classes.
+
+    Material parameters: ``[E, nu, alpha]``
+
+**ELIST.py** - Transversely Isotropic Elasticity
+    Simulates uniaxial tension for a fiber-reinforced composite material with
+    transverse isotropy. Compares loading parallel and perpendicular to fibers.
+
+    Material parameters: ``[EL, ET, nuTL, nuTT, GLT, alphaL, alphaT]``
+
+**ELORT.py** - Orthotropic Elasticity
+    Demonstrates fully orthotropic elastic behavior typical of wood or layered
+    composites. Shows directional dependence of elastic response.
+
+    Material parameters: ``[E1, E2, E3, nu12, nu13, nu23, G12, G13, G23, alpha1, alpha2, alpha3]``
+
+**EPICP.py** - Isotropic Plasticity
+    Simulates plastic deformation with power-law isotropic hardening.
+    Demonstrates elastic-plastic transition and hardening behavior.
+
+    Material parameters: ``[E, nu, alpha, sigma_Y, H, n]``
+
+**EPKCP.py** - Combined Hardening Plasticity
+    Shows combined isotropic and kinematic hardening behavior. Demonstrates
+    the Bauschinger effect under cyclic loading.
+
+    Material parameters: ``[E, nu, alpha, sigma_Y, H, n, C, gamma]``
+
+**EPCHA.py** - Chaboche Cyclic Plasticity
+    Advanced cyclic plasticity with multiple backstress tensors. Suitable for
+    predicting fatigue behavior and ratcheting.
+
+    Material parameters: ``[E, nu, alpha, sigma_Y, H, n, C1, gamma1, C2, gamma2]``
+
+Quick Start
+-----------
+
+.. code-block:: python
+
+    import numpy as np
+    from simcoon.solver import Solver, Block, StepMeca
+
+    # Define isotropic elastic material
+    props = np.array([210000.0, 0.3, 1e-5])  # E, nu, alpha
+
+    # Create uniaxial tension step
+    step = StepMeca(
+        DEtot_end=np.array([0.01, 0, 0, 0, 0, 0]),  # 1% axial strain
+        control=['strain', 'stress', 'stress', 'stress', 'stress', 'stress'],
+        Dn_init=50
+    )
+
+    # Create simulation block
+    block = Block(
+        steps=[step],
+        umat_name="ELISO",
+        props=props,
+        nstatev=1,
+        control_type='small_strain',
+        corate_type='logarithmic'
+    )
+
+    # Run simulation
+    solver = Solver(blocks=[block])
+    history = solver.solve()
+
+    # Extract results
+    strain = np.array([h.Etot[0] for h in history])
+    stress = np.array([h.sigma[0] for h in history])
+
+Cyclic Loading Example
+----------------------
+
+.. code-block:: python
+
+    import numpy as np
+    from simcoon.solver import Solver, Block, StepMeca
+
+    # Plasticity with kinematic hardening
+    props = np.array([200000, 0.3, 0, 350, 1000, 0.4, 50000, 200])
+
+    # Tension step
+    step1 = StepMeca(
+        DEtot_end=np.array([0.02, 0, 0, 0, 0, 0]),
+        control=['strain', 'stress', 'stress', 'stress', 'stress', 'stress'],
+        Dn_init=100
+    )
+
+    # Compression step (shows Bauschinger effect)
+    step2 = StepMeca(
+        DEtot_end=np.array([-0.02, 0, 0, 0, 0, 0]),
+        control=['strain', 'stress', 'stress', 'stress', 'stress', 'stress'],
+        Dn_init=100
+    )
+
+    block = Block(
+        steps=[step1, step2],
+        umat_name="EPKCP",
+        props=props,
+        nstatev=10
+    )
+
+    solver = Solver(blocks=[block])
+    history = solver.solve()
+
+Running the Examples
+--------------------
+
+.. code-block:: bash
+
+    # From the repository root
+    cd examples/umats
+    python ELISO.py
+    python EPICP.py
+    python EPCHA.py
+
+State Variables
+---------------
+
+Each history entry contains:
+
+- ``Etot`` - Total strain (Voigt: [e11, e22, e33, e12, e13, e23])
+- ``sigma`` - Cauchy stress (Voigt notation)
+- ``statev`` - Internal state variables (model-dependent)
+- ``F0``, ``F1`` - Deformation gradient (start/end of increment)
+- ``Lt`` - Tangent stiffness matrix (6x6)
+- ``Wm`` - Work measures [Wm, Wm_r, Wm_ir, Wm_d]
+
+See Also
+--------
+
+- :doc:`../analysis/README` - Analysis and post-processing examples
+- :doc:`../continuum_mechanics/README` - Tensor operations
+- `Migration Guide <../../docs/migration_guide.md>`_ - Upgrading from v1.x
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the isotropic elastic UMAT using the new Python Solver API.">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_ELISO_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/ELISO`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Isotropic elasticity examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the transversely isotropic elastic UMAT using the new Python Solver API.">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_ELIST_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/ELIST`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Transversely Isotropic Elasticity Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the orthotropic elastic UMAT using the new Python Solver API.">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_ELORT_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/ELORT`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Orthotropic Elasticity Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the Chaboche plasticity UMAT using the new Python Solver API.">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_EPCHA_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/EPCHA`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plasticity with Chaboche Hardening Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the elastic-plastic UMAT with isotropic hardening using the new Python Solver API.">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_EPICP_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/EPICP`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plasticity with isotropic hardening example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the combined isotropic-kinematic hardening UMAT using the new Python Solver API.">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_EPKCP_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/EPKCP`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plasticity with Isotropic and Kinematic Hardening Example</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/umats/ELISO
+   /examples/umats/ELIST
+   /examples/umats/ELORT
+   /examples/umats/EPCHA
+   /examples/umats/EPICP
+   /examples/umats/EPKCP
+
+
+.. only:: html
+
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
+
+    .. container:: sphx-glr-download sphx-glr-download-python
+
+      :download:`Download all examples in Python source code: examples_python.zip </examples/examples_python.zip>`
+
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip </examples/examples_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_
