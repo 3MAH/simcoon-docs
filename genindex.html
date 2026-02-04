@@ -1,0 +1,2007 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Index &mdash; Simcoon 1.9.7 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/genindex.html"/>
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=0f42b3e6"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="about.html" />
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Simcoon
+              <img src="_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api/index.html">C++ API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cpp_api/index.html#namespace-overview">Namespace Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="cpp_api/continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/continuum_mechanics/functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/continuum_mechanics/material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/continuum_mechanics/micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/continuum_mechanics/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpp_api/simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/simulation/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpp_api/homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="cpp_api/umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="cpp_api/umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Index</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#A"><strong>A</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#C"><strong>C</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
+ | <a href="#I"><strong>I</strong></a>
+ | <a href="#J"><strong>J</strong></a>
+ | <a href="#K"><strong>K</strong></a>
+ | <a href="#L"><strong>L</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#N"><strong>N</strong></a>
+ | <a href="#O"><strong>O</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#Q"><strong>Q</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#T"><strong>T</strong></a>
+ | <a href="#U"><strong>U</strong></a>
+ | <a href="#V"><strong>V</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="A">A</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv47a_coefsRKdRKdRKN4arma3vecE">a_coefs (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv414abaqus2smart_MPKdPKdPKdPKdPKdRKdRKdRKdRKiPKdRKiPdRKiRKiPKdRN4arma3vecERN4arma3matERN4arma3vecERN4arma3vecERdRdRdRdRN4arma3vecERN4arma3vecERN4arma3vecERN4arma3matERb">abaqus2smart_M (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv420abaqus2smart_M_lightPKdPKdRKiPdRKiRKiRN4arma3vecERN4arma3matERN4arma3vecERN4arma3vecE">abaqus2smart_M_light (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv414abaqus2smart_TPKdPKdPKdPKdRKdPKdPKdPKdRKdRKdRKdRKiPKdRKiPdRKiRKiPKdRN4arma3vecERN4arma3matERN4arma3matERN4arma3matERN4arma3matERN4arma3vecERN4arma3vecERdRdRdRdRN4arma3vecERN4arma3vecERN4arma3vecERN4arma3vecERN4arma3matERb">abaqus2smart_T (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv44aleaRKi">alea (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv45aleabRKiRKi">aleab (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv45aleadRKdRKd">alead (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv410Ani_stressRKN4arma3vecERKN4arma3vecE">Ani_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress">Ani_stress() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv413ansys2smart_MPKdPKdRKdRKdRKdPKdPKdRKdRKdRKdRKdRKiRKiRKiRN4arma3vecERN4arma3vecERN4arma3vecERN4arma3vecERN4arma3vecERdRd">ansys2smart_M (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv415apply_constantsRKNSt6vectorI9constantsEERKNSt6stringE">apply_constants (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv416apply_parametersRKNSt6vectorI10parametersEERKNSt6stringE">apply_parameters (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv411auto_dyadicRKN4arma3matE">auto_dyadic (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic">auto_dyadic() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv415auto_sym_dyadicRKN4arma3matE">auto_sym_dyadic (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic">auto_sym_dyadic() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv424auto_sym_dyadic_operatorRKN4arma3matE">auto_sym_dyadic_operator (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator">auto_sym_dyadic_operator() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv47b_coefsRKdRKdRKdRKdRKN4arma3vecE">b_coefs (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv410beta_coefsRKN4arma3vecERKN4arma3vecE">beta_coefs (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv49bound_maxRKiRKN4arma3vecERKNSt6vectorI10parametersEERKdRKd">bound_max (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv49bound_minRKiRKN4arma3vecERKNSt6vectorI10parametersEERKdRKd">bound_min (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="C">C</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv49calc_costRKN4arma3vecERN4arma3vecERKN4arma3vecERKNSt6vectorI9opti_dataEERKNSt6vectorI9opti_dataEERKiRKi">calc_cost (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv410calc_sensiRK10individualR10generationRKNSt6stringERKiRKiRNSt6vectorI10parametersEERNSt6vectorI9constantsEERN4arma3vecERNSt6vectorI9opti_dataEERNSt6vectorI9opti_dataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKiRKN4arma3vecERKNSt6stringE">calc_sensi (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv45calcCRKN4arma3vecERN4arma3vecERKN4arma3vecE">calcC (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv46calcDpRKN4arma3matERKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3vecERKNSt6vectorI10parametersEERKdRKdRKdRKiRN4arma3ColIiEE">calcDp (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv45calcSRN4arma3matERKN4arma3vecERKN4arma3vecERKiRKN4arma3vecE">calcS (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv45calcVRKNSt6vectorI9opti_dataEERKNSt6vectorI9opti_dataEERKiRKi">calcV (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv45calcWRKiRKiRKN4arma3ColIiEERKN4arma3vecERKNSt6vectorIN4arma3vecEEERKNSt6vectorI9opti_dataEERKNSt6vectorI9opti_dataEE">calcW (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv46CauchyRKN4arma3matE">Cauchy (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy">Cauchy() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv411Cauchy2BiotRKN4arma3matERKN4arma3matERKN4arma3matERKd">Cauchy2Biot (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv415Cauchy2KirchoffRKN4arma3matERKN4arma3matERKd">Cauchy2Kirchoff (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv415Cauchy2KirchoffRKN4arma3vecERKN4arma3matERKd">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv410Cauchy2PKIRKN4arma3matERKN4arma3matERKd">Cauchy2PKI (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv411Cauchy2PKIIRKN4arma3matERKN4arma3matERKd">Cauchy2PKII (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv417check_path_outputRKNSt6vectorI5blockEERK13solver_output">check_path_output (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv415check_symetriesRKN4arma3matERNSt6stringERiRN4arma3vecERiRKd">check_symetries (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries">check_symetries() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv46checkSRKN4arma3matE">checkS (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv414copy_constantsRKNSt6vectorI9constantsEERKNSt6stringERKNSt6stringE">copy_constants (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv415copy_parametersRKNSt6vectorI10parametersEERKNSt6stringERKNSt6stringE">copy_parameters (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv421cumul_distrib_weibullRKdRKdRKd">cumul_distrib_weibull (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv419curvature_ellipsoidRKdRKdRKdRKdRKd">curvature_ellipsoid (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid">curvature_ellipsoid() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412cx_quadraticRKN4arma9cx_doubleERKN4arma9cx_doubleERKN4arma9cx_doubleE">cx_quadratic (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv412cx_quadraticRKdRKdRKd">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv416d2lagrange_pow_1RKdRKdRKdRKdRKd">d2lagrange_pow_1 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/damage.html#_CPPv415damage_kachanovRKN4arma3vecERKN4arma3vecERKdRKdRKdRKNSt6stringE">damage_kachanov (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov">damage_kachanov() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/damage.html#_CPPv413damage_mansonRKdRKdRKd">damage_manson (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson">damage_manson() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/damage.html#_CPPv412damage_minerRKdRKdRKdRKdRKdRKdRKd">damage_miner (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner">damage_miner() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/damage.html#_CPPv414damage_weibullRKN4arma3vecERKdRKdRKdRKdRKNSt6stringE">damage_weibull (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull">damage_weibull() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv411dAni_stressRKN4arma3vecERKN4arma3vecE">dAni_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress">dAni_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv410dbound_maxRKiRKN4arma3vecERKNSt6vectorI10parametersEERKdRKd">dbound_max (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv410dbound_minRKiRKN4arma3vecERKNSt6vectorI10parametersEERKdRKd">dbound_min (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv411dDFA_stressRKN4arma3vecERKN4arma3vecE">dDFA_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress">dDFA_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv419dDrucker_ani_stressRKN4arma3vecERKN4arma3vecERKdRKd">dDrucker_ani_stress (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv415dDrucker_stressRKN4arma3vecERKdRKd">dDrucker_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress">dDrucker_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv416DE_Homogeneous_ER21phase_characteristics">DE_Homogeneous_E (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv414DE_Mori_TanakaR21phase_characteristicsRKi">DE_Mori_Tanaka (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv418DE_Mori_Tanaka_isoR21phase_characteristicsRKi">DE_Mori_Tanaka_iso (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv417dE_Periodic_LayerR21phase_characteristicsRKi">dE_Periodic_Layer (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv418DE_Self_ConsistentR21phase_characteristicsRKiRKbRKi">DE_Self_Consistent (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv411delta_coefsRKN4arma3vecERKN4arma3vecERKN4arma3matE">delta_coefs (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv410denom_FB_mRKN4arma3vecERKN4arma3matERKN4arma3vecE">denom_FB_m (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv410dEq_stressRKN4arma3vecERKNSt6stringERKN4arma3vecE">dEq_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress">dEq_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv412dEq_stress_PRKN4arma3vecERKN4arma3matE">dEq_stress_P (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv43devRKN4arma3matE">dev (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv43devRKN4arma3vecE">[1]</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.dev">dev() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv410DFA_stressRKN4arma3vecERKN4arma3vecE">DFA_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress">DFA_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv412dHill_stressRKN4arma3vecERKN4arma3vecE">dHill_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress">dHill_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv47diagJtJRKN4arma3matE">diagJtJ (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv414discretize_ODFRK21phase_characteristicsR3ODFRKiRKiRKi">discretize_ODF (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv414discretize_PDFRK21phase_characteristicsR3PDFRKiRKi">discretize_PDF (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv413dlagrange_expRKdRKdRKd">dlagrange_exp (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv415dlagrange_pow_0RKdRKdRKdRKdRKd">dlagrange_pow_0 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv415dlagrange_pow_1RKdRKdRKdRKdRKd">dlagrange_pow_1 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv410doe_randomRKiRKiRKNSt6vectorI10parametersEE">doe_random (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv411doe_uniformRKiRKiRKNSt6vectorI10parametersEE">doe_uniform (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv417doe_uniform_limitRKiRKiRKNSt6vectorI10parametersEE">doe_uniform_limit (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv418Drucker_ani_stressRKN4arma3vecERKN4arma3vecERKdRKd">Drucker_ani_stress (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv414Drucker_stressRKN4arma3vecERKdRKd">Drucker_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress">Drucker_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv414dTresca_stressRKN4arma3vecE">dTresca_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress">dTresca_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv46dyadicRKN4arma3matERKN4arma3matE">dyadic (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv419dyadic_4vectors_symRKN4arma3vecERKN4arma3vecERKNSt6stringE">dyadic_4vectors_sym (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym">dyadic_4vectors_sym() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv47el_predRKN4arma3matERKN4arma3vecERKi">el_pred (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv47el_predRKN4arma3vecERKN4arma3matERKN4arma3vecERKi">[1]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv49Eq_stressRKN4arma3vecERKNSt6stringERKN4arma3vecE">Eq_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress">Eq_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv411Eq_stress_PRKN4arma3vecERKN4arma3matE">Eq_stress_P (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv47ER_to_FRKN4arma3matERKN4arma3matE">ER_to_F (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv47eR_to_FRKN4arma3matERKN4arma3matE">eR_to_F (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F">ER_to_F() (in module simcoon)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F">eR_to_F() (in module simcoon)</a>
+</li>
+      <li><a href="homogenization/doc_eshelby.html#simcoon.Eshelby">Eshelby() (in module simcoon)</a>
+</li>
+      <li><a href="homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder">Eshelby_cylinder() (in module simcoon)</a>
+</li>
+      <li><a href="homogenization/doc_eshelby.html#simcoon.Eshelby_oblate">Eshelby_oblate() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="homogenization/doc_eshelby.html#simcoon.Eshelby_penny">Eshelby_penny() (in module simcoon)</a>
+</li>
+      <li><a href="homogenization/doc_eshelby.html#simcoon.Eshelby_prolate">Eshelby_prolate() (in module simcoon)</a>
+</li>
+      <li><a href="homogenization/doc_eshelby.html#simcoon.Eshelby_sphere">Eshelby_sphere() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv415eta_norm_strainRKN4arma3vecE">eta_norm_strain (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv415eta_norm_stressRKN4arma3vecE">eta_norm_stress (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv410eta_strainRKN4arma3vecE">eta_strain (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain">eta_strain() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv410eta_stressRKN4arma3vecE">eta_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress">eta_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv413Euler_AlmansiRKN4arma3matE">Euler_Almansi (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi">Euler_Almansi() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="F">F</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv44F_nmRKN4arma3vecE">F_nm (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv411fill_anglesRKdR21phase_characteristicsRK3ODFRKi">fill_angles (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv415fill_parametersRKdR21phase_characteristicsRK3PDF">fill_parameters (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv46fillQERKN4arma3matERKb">fillQE (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv46fillQERKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv46fillQSRKN4arma3matERKb">fillQS (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv46fillQSRKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv45fillRRKdRKdRKdRKbRKNSt6stringE">fillR (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv45fillRRKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv49find_bestR10generationR10generationRK10generationRK10generationRK10generationRKiRKiRi">find_best (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv48finite_DRKN4arma3matERKN4arma3matERKd">finite_D (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D">finite_D() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv49finite_DQRKN4arma3matERKN4arma3matERKd">finite_DQ (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ">finite_DQ() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv48finite_LRKN4arma3matERKN4arma3matERKd">finite_L (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L">finite_L() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv412finite_OmegaRKN4arma3matERKN4arma3matERKd">finite_Omega (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega">finite_Omega() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv48finite_WRKN4arma3matERKN4arma3matERKd">finite_W (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W">finite_W() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv418Fischer_BurmeisterRKN4arma3vecERKN4arma3vecERKN4arma3matERN4arma3vecERN4arma3vecERd">Fischer_Burmeister (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv425Fischer_Burmeister_limitsRKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3vecERd">Fischer_Burmeister_limits (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv420Fischer_Burmeister_mRKN4arma3vecERKN4arma3vecERKN4arma3matERN4arma3vecERN4arma3vecERd">Fischer_Burmeister_m (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv427Fischer_Burmeister_m_limitsRKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3vecERd">Fischer_Burmeister_m_limits (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv412FTensor1_vecRKN7FTensor7Tensor1IdXL3EEEE">FTensor1_vec (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv412FTensor2_matRKN7FTensor7Tensor2IdXL3EEXL3EEEE">FTensor2_mat (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv417FTensor2_v_strainRKN7FTensor7Tensor2IdXL3EEXL3EEEE">FTensor2_v_strain (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv417FTensor2_v_stressRKN7FTensor7Tensor2IdXL3EEXL3EEEE">FTensor2_v_stress (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv412FTensor4_matRKN7FTensor7Tensor4IdXL3EEXL3EEXL3EEXL3EEEE">FTensor4_mat (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv46G_costRKN4arma3matERKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3vecE">G_cost (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv45G_UdXRKN4arma3matE">G_UdX (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv45G_UdxRKN4arma3matE">G_Udx (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX">G_UdX() (in module simcoon)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx">G_Udx() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv411gamma_coefsRKN4arma3vecERKN4arma3matERKN4arma3vecE">gamma_coefs (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv48GaussianRKdRKdRKdRKd">Gaussian (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv414gen_initializeR10generationRiRiRiRKiRKiRKNSt6vectorI10parametersEERKd">gen_initialize (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv47geneticR10generationR10generationRiRKdRKdRKNSt6vectorI10parametersEE">genetic (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv417get_densities_ODFRKN4arma3vecERKNSt6stringERKNSt6stringERKb">get_densities_ODF (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv417get_densities_PDFRKN4arma3vecERKNSt6stringERKNSt6stringE">get_densities_PDF (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv413get_L_elasticR21phase_characteristics">get_L_elastic (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv414Green_LagrangeRKN4arma3matE">Green_Lagrange (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange">Green_Lagrange() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv45H_isoRKdRKd">H_iso (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso">H_iso() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv47HessianRKN4arma3matERKN4arma3vecE">Hessian (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv411Hill_stressRKN4arma3vecERKN4arma3vecE">Hill_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress">Hill_stress() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="I">I</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv413ident_controlRiRiRiRiRiRiRiRdRdRdRdRdRdRKNSt6stringERKNSt6stringE">ident_control (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv416ident_essentialsRiRiRiRKNSt6stringERKNSt6stringE">ident_essentials (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv44Idevv">Idev (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev">Idev() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv45Idev2v">Idev2 (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2">Idev2() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv45Inv_XRKN4arma3matE">Inv_X (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X">Inv_X() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv44Ir05v">Ir05 (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05">Ir05() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv43Ir2v">Ir2 (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2">Ir2() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv45Irealv">Ireal (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal">Ireal() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv46Ireal2v">Ireal2 (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2">Ireal2() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv420isochoric_invariantsRKN4arma3matERKd">isochoric_invariants (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv420isochoric_invariantsRKN4arma3vecERKd">[1]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv418isochoric_pstretchRKN4arma3matERKNSt6stringERKd">isochoric_pstretch (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv418isochoric_pstretchRN4arma3vecERN4arma3matERKN4arma3matERKNSt6stringERKd">[1]</a>, <a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv418isochoric_pstretchRN4arma3vecERN4arma3matERNSt6vectorIN4arma3matEEERKN4arma3matERKNSt6stringERKd">[2]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv425isochoric_pstretch_from_bRKN4arma3matERKd">isochoric_pstretch_from_b (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv425isochoric_pstretch_from_VRKN4arma3matERKd">isochoric_pstretch_from_V (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv410IsotropizeRKN4arma3matE">Isotropize (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv43Ithv">Ith (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith">Ith() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv44Ivolv">Ivol (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol">Ivol() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="J">J</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv49J2_strainRKN4arma3vecE">J2_strain (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain">J2_strain() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv49J2_stressRKN4arma3vecE">J2_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress">J2_stress() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv49J3_strainRKN4arma3vecE">J3_strain (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain">J3_strain() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv49J3_stressRKN4arma3vecE">J3_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress">J3_stress() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="K">K</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv415Kirchoff2CauchyRKN4arma3matERKN4arma3matERKd">Kirchoff2Cauchy (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv415Kirchoff2CauchyRKN4arma3vecERKN4arma3matERKd">[1]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv412Kirchoff2PKIRKN4arma3matERKN4arma3matERKd">Kirchoff2PKI (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv413Kirchoff2PKIIRKN4arma3matERKN4arma3matERKd">Kirchoff2PKII (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv413Kirchoff2PKIIRKN4arma3vecERKN4arma3matERKd">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="L">L</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv414L_Cauchy_GreenRKN4arma3matE">L_Cauchy_Green (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green">L_Cauchy_Green() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv47L_cubicRKdRKdRKdRKNSt6stringE">L_cubic (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic">L_cubic() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv413L_cubic_propsRKN4arma3matE">L_cubic_props (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props">L_cubic_props() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv45L_isoRKdRKdRKNSt6stringE">L_iso (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso">L_iso() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv422L_iso_hyper_invariantsRKdRKdRKdRKdRKdRKN4arma3matERKd">L_iso_hyper_invariants (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv420L_iso_hyper_pstretchRKN4arma3vecERKN4arma3matERKN4arma3matERKd">L_iso_hyper_pstretch (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv420L_iso_hyper_pstretchRKN4arma3vecERKN4arma3matERKN4arma3vecERKN4arma3matERKd">[1]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv411L_iso_propsRKN4arma3matE">L_iso_props (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props">L_iso_props() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv410L_isotransRKdRKdRKdRKdRKdRKi">L_isotrans (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans">L_isotrans() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv416L_isotrans_propsRKN4arma3matERKi">L_isotrans_props (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props">L_isotrans_props() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv47L_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE">L_ortho (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho">L_ortho() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv413L_ortho_propsRKN4arma3matE">L_ortho_props (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props">L_ortho_props() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv411L_vol_hyperRKdRKdRKN4arma3matERKd">L_vol_hyper (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412lagrange_expRKdRKdRKd">lagrange_exp (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv414lagrange_pow_0RKdRKdRKdRKdRKd">lagrange_pow_0 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv414lagrange_pow_1RKdRKdRKdRKdRKd">lagrange_pow_1 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv413launch_func_NRK10generationRKiRNSt6vectorI10parametersEERNSt6vectorI9constantsEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE">launch_func_N (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv410launch_odfRK10generationRNSt6vectorI10parametersEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE">launch_odf (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv413launch_solverRK10generationRKiRNSt6vectorI10parametersEERNSt6vectorI9constantsEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE">launch_solver (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv47LevMarqRKN4arma3matERKdRKN4arma3vecERKN4arma3vecE">LevMarq (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv415linearop_eigsymRKN4arma3vecERKN4arma3vecE">linearop_eigsym (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv410Log_strainRKN4arma3matE">Log_strain (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain">Log_strain() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv410LorentzianRKdRKdRKdRKd">Lorentzian (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv46Lt_2_KRKN4arma3matERN4arma3matERKN4arma3ColIiEERKd">Lt_2_K (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv416Lt_Homogeneous_ER21phase_characteristics">Lt_Homogeneous_E (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv414Lt_Mori_TanakaR21phase_characteristicsRKi">Lt_Mori_Tanaka (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv418Lt_Mori_Tanaka_isoR21phase_characteristicsRKi">Lt_Mori_Tanaka_iso (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv417Lt_Periodic_LayerR21phase_characteristics">Lt_Periodic_Layer (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv418Lt_Self_ConsistentR21phase_characteristicsRKiRKbRKi">Lt_Self_Consistent (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv47Lth_2_KRKN4arma3matERN4arma3matERN4arma3matERN4arma3matERN4arma3matERKN4arma3ColIiEERKiRKd">Lth_2_K (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv413M_aniso_propsRKN4arma3matE">M_aniso_props (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props">M_aniso_props() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv47M_cubicRKdRKdRKdRKNSt6stringE">M_cubic (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic">M_cubic() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv413M_cubic_propsRKN4arma3matE">M_cubic_props (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props">M_cubic_props() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv45M_isoRKdRKdRKNSt6stringE">M_iso (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso">M_iso() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv411M_iso_propsRKN4arma3matE">M_iso_props (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props">M_iso_props() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv410M_isotransRKdRKdRKdRKdRKdRKi">M_isotrans (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans">M_isotrans() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv416M_isotrans_propsRKN4arma3matERKi">M_isotrans_props (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props">M_isotrans_props() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/constitutive.html#_CPPv47M_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE">M_ortho (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho">M_ortho() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/recovery_props.html#_CPPv413M_ortho_propsRKN4arma3matE">M_ortho_props (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props">M_ortho_props() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv410Macaulay_nRKd">Macaulay_n (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n">Macaulay_n() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv410Macaulay_pRKd">Macaulay_p (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p">Macaulay_p() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv412mat_FTensor2RKN4arma3matE">mat_FTensor2 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv412mat_FTensor4RKN4arma3matE">mat_FTensor4 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv412Mises_strainRKN4arma3vecE">Mises_strain (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain">Mises_strain() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv412Mises_stressRKN4arma3vecE">Mises_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress">Mises_stress() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="N">N</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv413Newton_RaphonRKN4arma3vecERKN4arma3vecERKN4arma3matERN4arma3vecERN4arma3vecERd">Newton_Raphon (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv411norm_strainRKN4arma3vecE">norm_strain (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv411norm_stressRKN4arma3vecE">norm_stress (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv414normal_distribRKdRKdRKd">normal_distrib (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv416normal_ellipsoidRKdRKdRKdRKdRKd">normal_ellipsoid (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid">normal_ellipsoid() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="O">O</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv48ODF_hardRKdRKdRKdRKd">ODF_hard (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv46ODF_sdRKdRKdRKN4arma3vecE">ODF_sd (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv45P_AniRKN4arma3vecE">P_Ani (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani">P_Ani() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv45P_DFARKN4arma3vecE">P_DFA (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA">P_DFA() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv46P_HillRKN4arma3vecE">P_Hill (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill">P_Hill() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv46p_ikjlRKN4arma3vecE">p_ikjl (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl">p_ikjl() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv48Pearson7RKdRKdRKdRN4arma3vecE">Pearson7 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv410PKI2CauchyRKN4arma3matERKN4arma3matERKd">PKI2Cauchy (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv412PKI2KirchoffRKN4arma3matERKN4arma3matERKd">PKI2Kirchoff (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv411PKII2CauchyRKN4arma3matERKN4arma3matERKd">PKII2Cauchy (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/stress.html#_CPPv413PKII2KirchoffRKN4arma3matERKN4arma3matERKd">PKII2Kirchoff (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv421proba_distrib_weibullRKdRKdRKd">proba_distrib_weibull (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv411PseudoVoigtRKdRKdRKdRKdRKdRKN4arma3vecE">PseudoVoigt (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv48pstretchRN4arma3vecERN4arma3matERKN4arma3matERKNSt6stringERKd">pstretch (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv48pstretchRN4arma3vecERN4arma3matERNSt6vectorIN4arma3matEEERKN4arma3matERKNSt6stringERKd">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="Q">Q</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv44Q_nmRKN4arma3vecERKdRKd">Q_nm (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv49quadraticRKdRKdRKd">quadratic (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv414R_Cauchy_GreenRKN4arma3matE">R_Cauchy_Green (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green">R_Cauchy_Green() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv414read_constantsRKiRNSt6vectorI9constantsEERKi">read_constants (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv413read_data_expRKiRNSt6vectorI9opti_dataEE">read_data_exp (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv413read_data_numRKiRKNSt6vectorI9opti_dataEERNSt6vectorI9opti_dataEE">read_data_num (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv417read_data_weightsRKiRN4arma3ColIiEERN4arma3vecERNSt6vectorIN4arma3vecEEERNSt6vectorI9opti_dataEERKNSt6vectorI9opti_dataEE">read_data_weights (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv48read_genRiRN4arma3matERKi">read_gen (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv413read_matpropsRNSt6stringERjRN4arma3vecERjRdRdRdRKNSt6stringERKNSt6stringE">read_matprops (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv411read_outputR13solver_outputRKiRKiRKNSt6stringERKNSt6stringE">read_output (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv415read_parametersRKiRNSt6vectorI10parametersEE">read_parameters (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv49read_pathRNSt6vectorI5blockEERdRKNSt6stringERKNSt6stringE">read_path (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv49read_peakR3ODFRKNSt6stringERKNSt6stringE">read_peak (C++ function)</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv49read_peakR3PDFRKNSt6stringERKNSt6stringE">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv48reduce_SRKN4arma3matERKN4arma3ColIiEE">reduce_S (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412rotate_g2l_ARKN4arma3matERKdRKdRKd">rotate_g2l_A (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412rotate_g2l_BRKN4arma3matERKdRKdRKd">rotate_g2l_B (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412rotate_g2l_LRKN4arma3matERKdRKdRKd">rotate_g2l_L (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412rotate_g2l_MRKN4arma3matERKdRKdRKd">rotate_g2l_M (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv417rotate_g2l_strainRKN4arma3vecERKdRKdRKd">rotate_g2l_strain (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv417rotate_g2l_stressRKN4arma3vecERKdRKdRKd">rotate_g2l_stress (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412rotate_l2g_ARKN4arma3matERKdRKdRKd">rotate_l2g_A (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412rotate_l2g_BRKN4arma3matERKdRKdRKd">rotate_l2g_B (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412rotate_l2g_LRKN4arma3matERKdRKdRKd">rotate_l2g_L (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv412rotate_l2g_MRKN4arma3matERKdRKdRKd">rotate_l2g_M (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv417rotate_l2g_strainRKN4arma3vecERKdRKdRKd">rotate_l2g_strain (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv417rotate_l2g_stressRKN4arma3vecERKdRKdRKd">rotate_l2g_stress (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv410rotate_matRKN4arma3matERKN4arma3matE">rotate_mat (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv410rotate_matRKN4arma3matERKdRKi">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv413rotate_strainRKN4arma3vecERKN4arma3matERKb">rotate_strain (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv413rotate_strainRKN4arma3vecERKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv413rotate_stressRKN4arma3vecERKN4arma3matERKb">rotate_stress (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv413rotate_stressRKN4arma3vecERKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv410rotate_vecRKN4arma3vecERKN4arma3matE">rotate_vec (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv410rotate_vecRKN4arma3vecERKdRKi">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv47rotateARKN4arma3matERKN4arma3matERKb">rotateA (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv47rotateARKN4arma3matERKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv47rotateBRKN4arma3matERKN4arma3matERKb">rotateB (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv47rotateBRKN4arma3matERKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv47rotateLRKN4arma3matERKN4arma3matERKb">rotateL (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv47rotateLRKN4arma3matERKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv47rotateMRKN4arma3matERKN4arma3matERKb">rotateM (C++ function)</a>, <a href="cpp_api/simulation/maths.html#_CPPv47rotateMRKN4arma3matERKdRKiRKb">[1]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv416RU_decompositionRN4arma3matERN4arma3matERKN4arma3matE">RU_decomposition (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition">RU_decomposition() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv418run_identificationRKNSt6stringERKiRKiRKiRKiRKiRiRiRKiRKiRKiRKdRKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKdRKdRKdRKdRKd">run_identification (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv414run_simulationRKNSt6stringERK10individualRKiRNSt6vectorI10parametersEERNSt6vectorI9constantsEERNSt6vectorI9opti_dataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE">run_simulation (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv46SchmidRKN4arma3vecERKN4arma3vecE">Schmid (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv48Schmid_vRKN4arma3vecERKN4arma3vecE">Schmid_v (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv49sigma_intRKN4arma3vecERKdRKdRKdRKdRKd">sigma_int (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int">sigma_int() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv426sigma_iso_hyper_invariantsRKdRKdRKN4arma3matERKd">sigma_iso_hyper_invariants (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv424sigma_iso_hyper_pstretchRKN4arma3vecERKN4arma3matERKd">sigma_iso_hyper_pstretch (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv424sigma_iso_hyper_pstretchRKN4arma3vecERKN4arma3vecERKNSt6vectorIN4arma3matEEERKd">[1]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv415sigma_vol_hyperRKdRKN4arma3matERKd">sigma_vol_hyper (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv44signRKd">sign (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.sign">sign() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5blockE">simcoon::block (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block5blockERK5block">simcoon::block::block (C++ function)</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block5blockERKjRKjRKjRKjRKj">[1]</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block5blockERKjRKjRKjRKjRKjRKNSt6vectorINSt10shared_ptrI4stepEEEE">[2]</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block5blockEv">[3]</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block12control_typeE">simcoon::block::control_type (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block8generateEv">simcoon::block::generate (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block6ncycleE">simcoon::block::ncycle (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block5nstepE">simcoon::block::nstep (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block6numberE">simcoon::block::number (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5blocklsERNSt7ostreamERK5block">simcoon::block::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5blockaSERK5block">simcoon::block::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block5stepsE">simcoon::block::steps (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5block4typeE">simcoon::block::type (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon5blockD0Ev">simcoon::block::~block (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constantsE">simcoon::constants (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants9constantsERK9constants">simcoon::constants::constants (C++ function)</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants9constantsERKiRKdRKN4arma3vecERKNSt6stringERKiRKNSt6vectorINSt6stringEEE">[1]</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants9constantsERKiRKi">[2]</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants9constantsEv">[3]</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4NK7simcoon9constants8dimfilesEv">simcoon::constants::dimfiles (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants11input_filesE">simcoon::constants::input_files (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants12input_valuesE">simcoon::constants::input_values (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants3keyE">simcoon::constants::key (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants12ninput_filesE">simcoon::constants::ninput_files (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants6numberE">simcoon::constants::number (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constantslsERNSt7ostreamERK9constants">simcoon::constants::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constantsaSERK9constants">simcoon::constants::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants6resizeERKiRKi">simcoon::constants::resize (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants6updateERKi">simcoon::constants::update (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constants5valueE">simcoon::constants::value (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9constantsD0Ev">simcoon::constants::~constants (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multiE">simcoon::cylinder_multi (C++ class)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multi5A_locE">simcoon::cylinder_multi::A_loc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multi5B_locE">simcoon::cylinder_multi::B_loc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multi14cylinder_multiERK14cylinder_multi">simcoon::cylinder_multi::cylinder_multi (C++ function)</a>, <a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multi14cylinder_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE">[1]</a>, <a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multi14cylinder_multiEv">[2]</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multilsERNSt7ostreamERK14cylinder_multi">simcoon::cylinder_multi::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multiaSERK14cylinder_multi">simcoon::cylinder_multi::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multi1TE">simcoon::cylinder_multi::T (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multi5T_locE">simcoon::cylinder_multi::T_loc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon14cylinder_multiD0Ev">simcoon::cylinder_multi::~cylinder_multi (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multiE">simcoon::ellipsoid_multi (C++ class)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiERK15ellipsoid_multi">simcoon::ellipsoid_multi::ellipsoid_multi (C++ function)</a>, <a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE">[1]</a>, <a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiEv">[2]</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi9fillP_locERKN4arma3matERK9ellipsoid">simcoon::ellipsoid_multi::fillP_loc (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi9fillS_locERKN4arma3matERK9ellipsoid">simcoon::ellipsoid_multi::fillS_loc (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi5fillTERKN4arma3matERKN4arma3matERK9ellipsoid">simcoon::ellipsoid_multi::fillT (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi9fillT_isoERKN4arma3matERKN4arma3matERK9ellipsoid">simcoon::ellipsoid_multi::fillT_iso (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi12fillT_mec_inERKN4arma3matERKN4arma3matERK9ellipsoid">simcoon::ellipsoid_multi::fillT_mec_in (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi2mpE">simcoon::ellipsoid_multi::mp (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi2npE">simcoon::ellipsoid_multi::np (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multilsERNSt7ostreamERK15ellipsoid_multi">simcoon::ellipsoid_multi::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multiaSERK15ellipsoid_multi">simcoon::ellipsoid_multi::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi5P_locE">simcoon::ellipsoid_multi::P_loc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi5S_locE">simcoon::ellipsoid_multi::S_loc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi1TE">simcoon::ellipsoid_multi::T (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi4T_inE">simcoon::ellipsoid_multi::T_in (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi8T_in_locE">simcoon::ellipsoid_multi::T_in_loc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi5T_locE">simcoon::ellipsoid_multi::T_loc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi2wxE">simcoon::ellipsoid_multi::wx (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi2wyE">simcoon::ellipsoid_multi::wy (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi1xE">simcoon::ellipsoid_multi::x (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multi1yE">simcoon::ellipsoid_multi::y (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon15ellipsoid_multiD0Ev">simcoon::ellipsoid_multi::~ellipsoid_multi (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generationE">simcoon::generation (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generation8classifyEv">simcoon::generation::classify (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generation9constructERKiRKiRiRKd">simcoon::generation::construct (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generation8destructEv">simcoon::generation::destruct (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generation10generationERK10generation">simcoon::generation::generation (C++ function)</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generation10generationERKiRKiRiRKd">[1]</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generation10generationEv">[2]</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generation5newidERi">simcoon::generation::newid (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generationlsERNSt7ostreamERK10generation">simcoon::generation::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generationaSERK10generation">simcoon::generation::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generation3popE">simcoon::generation::pop (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4NK7simcoon10generation4sizeEv">simcoon::generation::size (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10generationD0Ev">simcoon::generation::~generation (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individualE">simcoon::individual (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual9constructEv">simcoon::individual::construct (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual4coutE">simcoon::individual::cout (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual2idE">simcoon::individual::id (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual10individualERK10individual">simcoon::individual::individual (C++ function)</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual10individualERKiRKiRKd">[1]</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual10individualEv">[2]</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual6lambdaE">simcoon::individual::lambda (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual2npE">simcoon::individual::np (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individuallsERNSt7ostreamERK10individual">simcoon::individual::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individualaSERK10individual">simcoon::individual::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual1pE">simcoon::individual::p (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individual4rankE">simcoon::individual::rank (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10individualD0Ev">simcoon::individual::~individual (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multiE">simcoon::layer_multi (C++ class)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi3DnnE">simcoon::layer_multi::Dnn (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi3DntE">simcoon::layer_multi::Dnt (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi3dXnE">simcoon::layer_multi::dXn (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi3dXtE">simcoon::layer_multi::dXt (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi5dzdx1E">simcoon::layer_multi::dzdx1 (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi11layer_multiERK11layer_multi">simcoon::layer_multi::layer_multi (C++ function)</a>, <a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi11layer_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3vecE">[1]</a>, <a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi11layer_multiEv">[2]</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multilsERNSt7ostreamERK11layer_multi">simcoon::layer_multi::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multiaSERK11layer_multi">simcoon::layer_multi::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multi9sigma_hatE">simcoon::layer_multi::sigma_hat (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11layer_multiD0Ev">simcoon::layer_multi::~layer_multi (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODFE">simcoon::ODF (C++ class)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF5AngleE">simcoon::ODF::Angle (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF9constructERKi">simcoon::ODF::construct (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF9densitiesE">simcoon::ODF::densities (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF7densityERKd">simcoon::ODF::density (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF6limitsE">simcoon::ODF::limits (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF11n_densitiesE">simcoon::ODF::n_densities (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF4normE">simcoon::ODF::norm (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF7NphasesE">simcoon::ODF::Nphases (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF3ODFERK3ODF">simcoon::ODF::ODF (C++ function)</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF3ODFERKiRKbRKdRKd">[1]</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF3ODFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecERKb">[2]</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF3ODFEv">[3]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODFlsERNSt7ostreamERK3ODF">simcoon::ODF::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODFaSERK3ODF">simcoon::ODF::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF5peaksE">simcoon::ODF::peaks (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODF6radianE">simcoon::ODF::radian (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3ODFD0Ev">simcoon::ODF::~ODF (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_dataE">simcoon::opti_data (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data6c_dataE">simcoon::opti_data::c_data (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data15constructc_dataEv">simcoon::opti_data::constructc_data (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data13constructdataEv">simcoon::opti_data::constructdata (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data4dataE">simcoon::opti_data::data (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4NK7simcoon9opti_data7dimdataEv">simcoon::opti_data::dimdata (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4NK7simcoon9opti_data7diminfoEv">simcoon::opti_data::diminfo (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data6importENSt6stringEi">simcoon::opti_data::import (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data4nameE">simcoon::opti_data::name (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data8ncolumnsE">simcoon::opti_data::ncolumns (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data5ndataE">simcoon::opti_data::ndata (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data5ninfoE">simcoon::opti_data::ninfo (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data6numberE">simcoon::opti_data::number (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_datalsERNSt7ostreamERK9opti_data">simcoon::opti_data::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_dataaSERK9opti_data">simcoon::opti_data::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data9opti_dataENSt6stringEiiiii">simcoon::opti_data::opti_data (C++ function)</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data9opti_dataERK9opti_data">[1]</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data9opti_dataEii">[2]</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data9opti_dataEv">[3]</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_data9skiplinesE">simcoon::opti_data::skiplines (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon9opti_dataD0Ev">simcoon::opti_data::~opti_data (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parametersE">simcoon::parameters (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4NK7simcoon10parameters8dimfilesEv">simcoon::parameters::dimfiles (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters11input_filesE">simcoon::parameters::input_files (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters3keyE">simcoon::parameters::key (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters9max_valueE">simcoon::parameters::max_value (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters9min_valueE">simcoon::parameters::min_value (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters12ninput_filesE">simcoon::parameters::ninput_files (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters6numberE">simcoon::parameters::number (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameterslsERNSt7ostreamERK10parameters">simcoon::parameters::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parametersaSERK10parameters">simcoon::parameters::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters10parametersERK10parameters">simcoon::parameters::parameters (C++ function)</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters10parametersERKiRKdRKd">[1]</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters10parametersERKiRKdRKdRKNSt6stringERKiRKNSt6vectorINSt6stringEEE">[2]</a>, <a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters10parametersEv">[3]</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters6resizeERKi">simcoon::parameters::resize (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters6updateERKd">simcoon::parameters::update (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parameters5valueE">simcoon::parameters::value (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv4N7simcoon10parametersD0Ev">simcoon::parameters::~parameters (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDFE">simcoon::PDF (C++ class)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF9constructERKi">simcoon::PDF::construct (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF9densitiesE">simcoon::PDF::densities (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF7densityERKd">simcoon::PDF::density (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF6limitsE">simcoon::PDF::limits (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF11n_densitiesE">simcoon::PDF::n_densities (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF4normE">simcoon::PDF::norm (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF7NphasesE">simcoon::PDF::Nphases (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDFlsERNSt7ostreamERK3PDF">simcoon::PDF::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDFaSERK3PDF">simcoon::PDF::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF9ParameterE">simcoon::PDF::Parameter (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF3PDFERK3PDF">simcoon::PDF::PDF (C++ function)</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF3PDFERKiRKdRKd">[1]</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF3PDFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecE">[2]</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF3PDFEv">[3]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDF5peaksE">simcoon::PDF::peaks (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon3PDFD0Ev">simcoon::PDF::~PDF (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peakE">simcoon::peak (C++ class)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak4amplE">simcoon::peak::ampl (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak9densitiesE">simcoon::peak::densities (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak15get_density_ODFERKd">simcoon::peak::get_density_ODF (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak15get_density_PDFERKd">simcoon::peak::get_density_PDF (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak4meanE">simcoon::peak::mean (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak6methodE">simcoon::peak::method (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak6numberE">simcoon::peak::number (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peaklsERNSt7ostreamERK4peak">simcoon::peak::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peakaSERK4peak">simcoon::peak::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak6paramsE">simcoon::peak::params (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak4peakERK4peak">simcoon::peak::peak (C++ function)</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak4peakERKiRKiRKdRKdRKdRKdRKN4arma3vecERKN4arma3vecE">[1]</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak4peakEv">[2]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak5s_devE">simcoon::peak::s_dev (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peak5widthE">simcoon::peak::width (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon4peakD0Ev">simcoon::peak::~peak (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multiE">simcoon::phase_multi (C++ class)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi1AE">simcoon::phase_multi::A (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi4A_inE">simcoon::phase_multi::A_in (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi7A_startE">simcoon::phase_multi::A_start (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi1BE">simcoon::phase_multi::B (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi7B_startE">simcoon::phase_multi::B_start (C++ member)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multilsERNSt7ostreamERK11phase_multi">simcoon::phase_multi::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multiaSERK11phase_multi">simcoon::phase_multi::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi11phase_multiERK11phase_multi">simcoon::phase_multi::phase_multi (C++ function)</a>, <a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi11phase_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecE">[1]</a>, <a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi11phase_multiEv">[2]</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi9set_startEv">simcoon::phase_multi::set_start (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multi8to_startEv">simcoon::phase_multi::to_start (C++ function)</a>
+</li>
+      <li><a href="cpp_api/homogenization/index.html#_CPPv4N7simcoon11phase_multiD0Ev">simcoon::phase_multi::~phase_multi (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_outputE">simcoon::solver_output (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output11o_nb_strainE">simcoon::solver_output::o_nb_strain (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output11o_nb_stressE">simcoon::solver_output::o_nb_stress (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output6o_nb_TE">simcoon::solver_output::o_nb_T (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output7o_nfreqE">simcoon::solver_output::o_nfreq (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output11o_nw_statevE">simcoon::solver_output::o_nw_statev (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output14o_range_statevE">simcoon::solver_output::o_range_statev (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output15o_rotation_typeE">simcoon::solver_output::o_rotation_type (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output8o_strainE">simcoon::solver_output::o_strain (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output13o_strain_typeE">simcoon::solver_output::o_strain_type (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output8o_stressE">simcoon::solver_output::o_stress (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output13o_stress_typeE">simcoon::solver_output::o_stress_type (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output17o_tangent_modulusE">simcoon::solver_output::o_tangent_modulus (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output7o_tfreqE">simcoon::solver_output::o_tfreq (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output6o_typeE">simcoon::solver_output::o_type (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output15o_wanted_statevE">simcoon::solver_output::o_wanted_statev (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_outputlsERNSt7ostreamERK13solver_output">simcoon::solver_output::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_outputaSERK13solver_output">simcoon::solver_output::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output13solver_outputERK13solver_output">simcoon::solver_output::solver_output (C++ function)</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output13solver_outputERKi">[1]</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_output13solver_outputEv">[2]</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon13solver_outputD0Ev">simcoon::solver_output::~solver_output (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4stepE">simcoon::step (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step7BC_TimeE">simcoon::step::BC_Time (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step11compute_incERdRKiRdRdRdRKi">simcoon::step::compute_inc (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step12control_typeE">simcoon::step::control_type (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step6Dn_incE">simcoon::step::Dn_inc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step7Dn_initE">simcoon::step::Dn_init (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step7Dn_miniE">simcoon::step::Dn_mini (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step4fileE">simcoon::step::file (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step8generateEv">simcoon::step::generate (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step4modeE">simcoon::step::mode (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step4nincE">simcoon::step::ninc (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step6numberE">simcoon::step::number (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4steplsERNSt7ostreamERK4step">simcoon::step::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4stepaSERK4step">simcoon::step::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step4stepERK4step">simcoon::step::step (C++ function)</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step4stepERKiRKdRKdRKdRKiRKj">[1]</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step4stepEv">[2]</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4step5timesE">simcoon::step::times (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon4stepD0Ev">simcoon::step::~step (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_mecaE">simcoon::step_meca (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca10assess_incERKdRdRKdR21phase_characteristicsRdRKdRKN4arma3matERKi">simcoon::step_meca::assess_inc (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca7BC_mecaE">simcoon::step_meca::BC_meca (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca8BC_mecasE">simcoon::step_meca::BC_mecas (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca4BC_RE">simcoon::step_meca::BC_R (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca4BC_TE">simcoon::step_meca::BC_T (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca5BC_TsE">simcoon::step_meca::BC_Ts (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca4BC_wE">simcoon::step_meca::BC_w (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca8cBC_mecaE">simcoon::step_meca::cBC_meca (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca5cBC_TE">simcoon::step_meca::cBC_T (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca8generateERKdRKN4arma3vecERKN4arma3vecERKd">simcoon::step_meca::generate (C++ function)</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca8generateEv">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca12generate_kinERKdRKN4arma3matERKd">simcoon::step_meca::generate_kin (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca5mecasE">simcoon::step_meca::mecas (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_mecalsERNSt7ostreamERK9step_meca">simcoon::step_meca::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_mecaaSERK9step_meca">simcoon::step_meca::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca9step_mecaERK9step_meca">simcoon::step_meca::step_meca (C++ function)</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca9step_mecaERKiRKdRKdRKdRKiRKjRKN4arma3ColIiEERKN4arma3vecERKN4arma3matERKN4arma3matERKdRKiRKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matE">[1]</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca9step_mecaERKj">[2]</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca9step_mecaEv">[3]</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_meca2TsE">simcoon::step_meca::Ts (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon9step_mecaD0Ev">simcoon::step_meca::~step_meca (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomecaE">simcoon::step_thermomeca (C++ class)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca10assess_incERKdRdRKdR21phase_characteristicsRdRKdRKN4arma3matERKi">simcoon::step_thermomeca::assess_inc (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca7BC_mecaE">simcoon::step_thermomeca::BC_meca (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca8BC_mecasE">simcoon::step_thermomeca::BC_mecas (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca4BC_RE">simcoon::step_thermomeca::BC_R (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca4BC_TE">simcoon::step_thermomeca::BC_T (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca5BC_TsE">simcoon::step_thermomeca::BC_Ts (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca4BC_wE">simcoon::step_thermomeca::BC_w (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca8cBC_mecaE">simcoon::step_thermomeca::cBC_meca (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca5cBC_TE">simcoon::step_thermomeca::cBC_T (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca8generateERKdRKN4arma3vecERKN4arma3vecERKd">simcoon::step_thermomeca::generate (C++ function)</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca8generateEv">[1]</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca12generate_kinERKdRKN4arma3matERKd">simcoon::step_thermomeca::generate_kin (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca5mecasE">simcoon::step_thermomeca::mecas (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomecalsERNSt7ostreamERK15step_thermomeca">simcoon::step_thermomeca::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomecaaSERK15step_thermomeca">simcoon::step_thermomeca::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca15step_thermomecaERK15step_thermomeca">simcoon::step_thermomeca::step_thermomeca (C++ function)</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca15step_thermomecaERKiRKdRKdRKdRKiRKjRKN4arma3ColIiEERKN4arma3vecERKN4arma3matERKN4arma3matERKdRKiRKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matE">[1]</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca15step_thermomecaERKj">[2]</a>, <a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca15step_thermomecaEv">[3]</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomeca2TsE">simcoon::step_thermomeca::Ts (C++ member)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv4N7simcoon15step_thermomecaD0Ev">simcoon::step_thermomeca::~step_thermomeca (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variantE">simcoon::variant (C++ class)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant5buildERKd">simcoon::variant::build (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant3ETnE">simcoon::variant::ETn (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant1gE">simcoon::variant::g (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant1mE">simcoon::variant::m (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant1nE">simcoon::variant::n (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variantlsERNSt7ostreamERK7variant">simcoon::variant::operator&lt;&lt; (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variantaSERK7variant">simcoon::variant::operator= (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant1RE">simcoon::variant::R (C++ member)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant7variantEN4arma3vecEN4arma3vecEd">simcoon::variant::variant (C++ function)</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant7variantERK7variant">[1]</a>, <a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variant7variantEv">[2]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/material.html#_CPPv4N7simcoon7variantD0Ev">simcoon::variant::~variant (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv414smart2abaqus_MPdPdPdRKiRKiRKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3matE">smart2abaqus_M (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv419smart2abaqus_M_fullPdPdPdPdPdRdRdRdRiPdRiPdRKiRKiPdRKN4arma3vecERKN4arma3matERKN4arma3vecERKN4arma3vecERKdRKdRKdRKdRKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3matERb">smart2abaqus_M_full (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv414smart2abaqus_TPdPdPdPdRdRdPdRKiRKiRKN4arma3vecERKN4arma3vecERKdRKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE">smart2abaqus_T (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv413smart2ansys_MPdPdRdRdPdRKiRKN4arma3vecERKN4arma3matERKN4arma3vecERKN4arma3vecE">smart2ansys_M (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv46solverRKNSt6stringERKN4arma3vecERKjRKdRKdRKdRKiRKiRKdRKdRKiRKiRKiRKdRKdRKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE">solver (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv414solver_controlRdRdRiRiRiRdRdRKNSt6stringERKNSt6stringE">solver_control (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv417solver_essentialsRiRiRKNSt6stringERKNSt6stringE">solver_essentials (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv43sphRKN4arma3matE">sph (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.sph">sph() (in module simcoon)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert">stress_convert() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/solver.html#_CPPv411subdiag2vecv">subdiag2vec (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv410sym_dyadicRKN4arma3matERKN4arma3matE">sym_dyadic (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic">sym_dyadic() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv419sym_dyadic_operatorRKN4arma3matERKN4arma3matE">sym_dyadic_operator (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator">sym_dyadic_operator() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="T">T</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv410t2v_strainRKN4arma3matE">t2v_strain (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain">t2v_strain() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv410t2v_stressRKN4arma3matE">t2v_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress">t2v_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv47t2v_symRKN4arma3matE">t2v_sym (C++ function)</a>
+</li>
+      <li><a href="homogenization/doc_eshelby.html#simcoon.T_II">T_II() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv424tau_iso_hyper_invariantsRKdRKdRKN4arma3matERKd">tau_iso_hyper_invariants (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv422tau_iso_hyper_pstretchRKN4arma3vecERKN4arma3matERKd">tau_iso_hyper_pstretch (C++ function)</a>, <a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv422tau_iso_hyper_pstretchRKN4arma3vecERN4arma3vecERNSt6vectorIN4arma3matEEE">[1]</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/hyperelastic.html#_CPPv413tau_vol_hyperRKdRKN4arma3matERKd">tau_vol_hyper (C++ function)</a>
+</li>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv46to_runR10generationR10generationR10generationRKdRKNSt6vectorI10parametersEE">to_run (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/contimech.html#_CPPv42trRKN4arma3vecE">tr (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_contimech.html#simcoon.tr">tr() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/criteria.html#_CPPv413Tresca_stressRKN4arma3vecE">Tresca_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress">Tresca_stress() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/simulation/maths.html#_CPPv47tri_sumRKiRKi">tri_sum (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv421umat_ani_chaboche_CCPRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_ani_chaboche_CCP (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv417umat_damage_LLD_0RKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_damage_LLD_0 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv419umat_damage_weibullRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_damage_weibull (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv421umat_dfa_chaboche_CCPRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_dfa_chaboche_CCP (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv419umat_elasticity_isoRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_elasticity_iso (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/thermomechanical.html#_CPPv421umat_elasticity_iso_TRKN4arma3vecERKN4arma3vecERN4arma3vecERdRN4arma3matERN4arma3matERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRdRdRdRKiRKiRKbRd">umat_elasticity_iso_T (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv421umat_elasticity_orthoRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_elasticity_ortho (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/thermomechanical.html#_CPPv423umat_elasticity_ortho_TRKN4arma3vecERKN4arma3vecERN4arma3vecERdRN4arma3matERN4arma3matERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRdRdRdRKiRKiRKbRd">umat_elasticity_ortho_T (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv425umat_elasticity_trans_isoRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_elasticity_trans_iso (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/thermomechanical.html#_CPPv427umat_elasticity_trans_iso_TRKN4arma3vecERKN4arma3vecERN4arma3vecERdRN4arma3matERN4arma3matERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRdRdRdRKiRKiRKbRd">umat_elasticity_trans_iso_T (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv425umat_generic_chaboche_CCPRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_generic_chaboche_CCP (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/finite.html#_CPPv429umat_generic_hyper_invariantsRKNSt6stringERKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_generic_hyper_invariants (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/finite.html#_CPPv427umat_generic_hyper_pstretchRKNSt6stringERKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_generic_hyper_pstretch (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv422umat_hill_chaboche_CCPRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_hill_chaboche_CCP (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/finite.html#_CPPv425umat_hypoelasticity_orthoRKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_hypoelasticity_ortho (C++ function)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/umat/finite.html#_CPPv418umat_mooney_rivlinRKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_mooney_rivlin (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/micromechanics.html#_CPPv410umat_multiR21phase_characteristicsRKN4arma3matERKdRKdRKiRKiRbRKjRdRKi">umat_multi (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/finite.html#_CPPv421umat_neo_hookean_compRKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_neo_hookean_comp (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/finite.html#_CPPv423umat_neo_hookean_incompRKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_neo_hookean_incomp (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv428umat_plasticity_chaboche_CCPRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_plasticity_chaboche_CCP (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv429umat_plasticity_hill_isoh_CCPRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_plasticity_hill_isoh_CCP (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv431umat_plasticity_hill_isoh_CCP_NRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_plasticity_hill_isoh_CCP_N (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv423umat_plasticity_iso_CCPRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_plasticity_iso_CCP (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/thermomechanical.html#_CPPv425umat_plasticity_iso_CCP_TRKN4arma3vecERKN4arma3vecERN4arma3vecERdRN4arma3matERN4arma3matERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRdRdRdRKiRKiRKbRd">umat_plasticity_iso_CCP_T (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv427umat_plasticity_kin_iso_CCPRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_plasticity_kin_iso_CCP (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/thermomechanical.html#_CPPv429umat_plasticity_kin_iso_CCP_TRKN4arma3vecERKN4arma3vecERN4arma3vecERdRN4arma3matERN4arma3matERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRdRdRdRKiRKiRKbRd">umat_plasticity_kin_iso_CCP_T (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv416umat_prony_NfastRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_prony_Nfast (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/finite.html#_CPPv417umat_saint_venantRKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3matERN4arma3matERN4arma3vecERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRKiRd">umat_saint_venant (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv413umat_sma_monoRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_sma_mono (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv415umat_zener_fastRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_zener_fast (C++ function)</a>
+</li>
+      <li><a href="cpp_api/umat/mechanical.html#_CPPv416umat_zener_NfastRKN4arma3vecERKN4arma3vecERN4arma3vecERN4arma3matERKN4arma3matERKiRKN4arma3vecERKiRN4arma3vecERKdRKdRKdRKdRdRdRdRdRKiRKiRKbRd">umat_zener_Nfast (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="V">V</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv43v2tRKN4arma3vecE">v2t (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv411v2t_skewsymRKN4arma3vecE">v2t_skewsym (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv410v2t_strainRKN4arma3vecE">v2t_strain (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain">v2t_strain() (in module simcoon)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv410v2t_stressRKN4arma3vecE">v2t_stress (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress">v2t_stress() (in module simcoon)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv47v2t_symRKN4arma3vecE">v2t_sym (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv417v_FTensor2_strainRKN4arma3vecE">v_FTensor2_strain (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv417v_FTensor2_stressRKN4arma3vecE">v_FTensor2_stress (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/transfer.html#_CPPv412vec_FTensor1RKN4arma3vecE">vec_FTensor1 (C++ function)</a>
+</li>
+      <li><a href="cpp_api/continuum_mechanics/functions/kinematics.html#_CPPv416VR_decompositionRN4arma3matERN4arma3matERKN4arma3matE">VR_decomposition (C++ function)</a>
+</li>
+      <li><a href="continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition">VR_decomposition() (in module simcoon)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="cpp_api/simulation/identification.html#_CPPv413write_resultsRNSt8ofstreamERKNSt6stringERK10generationRKiRKiRKi">write_results (C++ function)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
