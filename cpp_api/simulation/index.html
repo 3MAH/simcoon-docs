@@ -1,0 +1,610 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulation &mdash; Simcoon 1.10.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/cpp_api/simulation/index.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=1d24b1d9"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Mathematical Functions" href="maths.html" />
+    <link rel="prev" title="Micromechanics" href="../continuum_mechanics/micromechanics.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#namespace-overview">Namespace Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">C++ API Reference</a></li>
+      <li class="breadcrumb-item active">Simulation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cpp_api/simulation/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="simulation">
+<h1>Simulation<a class="headerlink" href="#simulation" title="Link to this heading"></a></h1>
+<p>The Simulation module provides tools for running simulations, including solvers,
+identification algorithms, and mathematical utilities.</p>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Submodules:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="maths.html">Mathematical Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412lagrange_expRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">lagrange_exp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv413dlagrange_expRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">dlagrange_exp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv414lagrange_pow_0RKdRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">lagrange_pow_0()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv415dlagrange_pow_0RKdRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">dlagrange_pow_0()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv414lagrange_pow_1RKdRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">lagrange_pow_1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv415dlagrange_pow_1RKdRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">dlagrange_pow_1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv416d2lagrange_pow_1RKdRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">d2lagrange_pow_1()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv413Newton_RaphonRKN4arma3vecERKN4arma3vecERKN4arma3matERN4arma3vecERN4arma3vecERd"><code class="docutils literal notranslate"><span class="pre">Newton_Raphon()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv418Fischer_BurmeisterRKN4arma3vecERKN4arma3vecERKN4arma3matERN4arma3vecERN4arma3vecERd"><code class="docutils literal notranslate"><span class="pre">Fischer_Burmeister()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv425Fischer_Burmeister_limitsRKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3vecERd"><code class="docutils literal notranslate"><span class="pre">Fischer_Burmeister_limits()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv420Fischer_Burmeister_mRKN4arma3vecERKN4arma3vecERKN4arma3matERN4arma3vecERN4arma3vecERd"><code class="docutils literal notranslate"><span class="pre">Fischer_Burmeister_m()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv427Fischer_Burmeister_m_limitsRKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3matERKN4arma3matERN4arma3vecERN4arma3vecERd"><code class="docutils literal notranslate"><span class="pre">Fischer_Burmeister_m_limits()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv410denom_FB_mRKN4arma3vecERKN4arma3matERKN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">denom_FB_m()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv44aleaRKi"><code class="docutils literal notranslate"><span class="pre">alea()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv45aleabRKiRKi"><code class="docutils literal notranslate"><span class="pre">aleab()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv45aleadRKdRKd"><code class="docutils literal notranslate"><span class="pre">alead()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv410rotate_vecRKN4arma3vecERKN4arma3matE"><code class="docutils literal notranslate"><span class="pre">rotate_vec()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv410rotate_vecRKN4arma3vecERKdRKi"><code class="docutils literal notranslate"><span class="pre">rotate_vec()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv410rotate_matRKN4arma3matERKN4arma3matE"><code class="docutils literal notranslate"><span class="pre">rotate_mat()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv410rotate_matRKN4arma3matERKdRKi"><code class="docutils literal notranslate"><span class="pre">rotate_mat()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv45fillRRKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">fillR()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv45fillRRKdRKdRKdRKbRKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">fillR()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv46fillQSRKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">fillQS()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv46fillQSRKN4arma3matERKb"><code class="docutils literal notranslate"><span class="pre">fillQS()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv46fillQERKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">fillQE()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv46fillQERKN4arma3matERKb"><code class="docutils literal notranslate"><span class="pre">fillQE()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47rotateLRKN4arma3matERKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">rotateL()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47rotateLRKN4arma3matERKN4arma3matERKb"><code class="docutils literal notranslate"><span class="pre">rotateL()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47rotateMRKN4arma3matERKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">rotateM()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47rotateMRKN4arma3matERKN4arma3matERKb"><code class="docutils literal notranslate"><span class="pre">rotateM()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47rotateARKN4arma3matERKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">rotateA()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47rotateARKN4arma3matERKN4arma3matERKb"><code class="docutils literal notranslate"><span class="pre">rotateA()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47rotateBRKN4arma3matERKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">rotateB()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47rotateBRKN4arma3matERKN4arma3matERKb"><code class="docutils literal notranslate"><span class="pre">rotateB()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv413rotate_stressRKN4arma3vecERKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">rotate_stress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv413rotate_stressRKN4arma3vecERKN4arma3matERKb"><code class="docutils literal notranslate"><span class="pre">rotate_stress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv413rotate_strainRKN4arma3vecERKdRKiRKb"><code class="docutils literal notranslate"><span class="pre">rotate_strain()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv413rotate_strainRKN4arma3vecERKN4arma3matERKb"><code class="docutils literal notranslate"><span class="pre">rotate_strain()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv417rotate_l2g_strainRKN4arma3vecERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_l2g_strain()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv417rotate_g2l_strainRKN4arma3vecERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_g2l_strain()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv417rotate_l2g_stressRKN4arma3vecERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_l2g_stress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv417rotate_g2l_stressRKN4arma3vecERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_g2l_stress()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412rotate_l2g_LRKN4arma3matERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_l2g_L()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412rotate_g2l_LRKN4arma3matERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_g2l_L()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412rotate_l2g_ARKN4arma3matERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_l2g_A()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412rotate_g2l_ARKN4arma3matERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_g2l_A()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412rotate_l2g_BRKN4arma3matERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_l2g_B()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412rotate_g2l_BRKN4arma3matERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_g2l_B()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412rotate_l2g_MRKN4arma3matERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_l2g_M()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412rotate_g2l_MRKN4arma3matERKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">rotate_g2l_M()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv49quadraticRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">quadratic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412cx_quadraticRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">cx_quadratic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv412cx_quadraticRKN4arma9cx_doubleERKN4arma9cx_doubleERKN4arma9cx_doubleE"><code class="docutils literal notranslate"><span class="pre">cx_quadratic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv414normal_distribRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">normal_distrib()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv421proba_distrib_weibullRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">proba_distrib_weibull()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv421cumul_distrib_weibullRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">cumul_distrib_weibull()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv47tri_sumRKiRKi"><code class="docutils literal notranslate"><span class="pre">tri_sum()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv46ODF_sdRKdRKdRKN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">ODF_sd()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv48ODF_hardRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">ODF_hard()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv48GaussianRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">Gaussian()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv410LorentzianRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">Lorentzian()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv411PseudoVoigtRKdRKdRKdRKdRKdRKN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">PseudoVoigt()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="maths.html#_CPPv48Pearson7RKdRKdRKdRN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">Pearson7()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="solver.html">Solver Functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv411subdiag2vecv"><code class="docutils literal notranslate"><span class="pre">subdiag2vec()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv46Lt_2_KRKN4arma3matERN4arma3matERKN4arma3ColIiEERKd"><code class="docutils literal notranslate"><span class="pre">Lt_2_K()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv47Lth_2_KRKN4arma3matERN4arma3matERN4arma3matERN4arma3matERN4arma3matERKN4arma3ColIiEERKiRKd"><code class="docutils literal notranslate"><span class="pre">Lth_2_K()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv417solver_essentialsRiRiRKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">solver_essentials()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv414solver_controlRdRdRiRiRiRdRdRKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">solver_control()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv413read_matpropsRNSt6stringERjRN4arma3vecERjRdRdRdRKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">read_matprops()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv411read_outputR13solver_outputRKiRKiRKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">read_output()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv417check_path_outputRKNSt6vectorI5blockEERK13solver_output"><code class="docutils literal notranslate"><span class="pre">check_path_output()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv49read_pathRNSt6vectorI5blockEERdRKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">read_path()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv46solverRKNSt6stringERKN4arma3vecERKjRKdRKdRKdRKiRKiRKdRKdRKiRKiRKiRKdRKdRKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">solver()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv4N7simcoon5blockE"><code class="docutils literal notranslate"><span class="pre">simcoon::block</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv4N7simcoon13solver_outputE"><code class="docutils literal notranslate"><span class="pre">simcoon::solver_output</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv4N7simcoon4stepE"><code class="docutils literal notranslate"><span class="pre">simcoon::step</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv4N7simcoon9step_mecaE"><code class="docutils literal notranslate"><span class="pre">simcoon::step_meca</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver.html#_CPPv4N7simcoon15step_thermomecaE"><code class="docutils literal notranslate"><span class="pre">simcoon::step_thermomeca</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="identification.html">Identification</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv411doe_uniformRKiRKiRKNSt6vectorI10parametersEE"><code class="docutils literal notranslate"><span class="pre">doe_uniform()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv417doe_uniform_limitRKiRKiRKNSt6vectorI10parametersEE"><code class="docutils literal notranslate"><span class="pre">doe_uniform_limit()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv410doe_randomRKiRKiRKNSt6vectorI10parametersEE"><code class="docutils literal notranslate"><span class="pre">doe_random()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv414gen_initializeR10generationRiRiRiRKiRKiRKNSt6vectorI10parametersEERKd"><code class="docutils literal notranslate"><span class="pre">gen_initialize()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv418run_identificationRKNSt6stringERKiRKiRKiRKiRKiRiRiRKiRKiRKiRKdRKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKdRKdRKdRKdRKd"><code class="docutils literal notranslate"><span class="pre">run_identification()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv47geneticR10generationR10generationRiRKdRKdRKNSt6vectorI10parametersEE"><code class="docutils literal notranslate"><span class="pre">genetic()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv46to_runR10generationR10generationR10generationRKdRKNSt6vectorI10parametersEE"><code class="docutils literal notranslate"><span class="pre">to_run()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv49find_bestR10generationR10generationRK10generationRK10generationRK10generationRKiRKiRi"><code class="docutils literal notranslate"><span class="pre">find_best()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv413write_resultsRNSt8ofstreamERKNSt6stringERK10generationRKiRKiRKi"><code class="docutils literal notranslate"><span class="pre">write_results()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv45calcVRKNSt6vectorI9opti_dataEERKNSt6vectorI9opti_dataEERKiRKi"><code class="docutils literal notranslate"><span class="pre">calcV()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv45calcSRN4arma3matERKN4arma3vecERKN4arma3vecERKiRKN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">calcS()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv46checkSRKN4arma3matE"><code class="docutils literal notranslate"><span class="pre">checkS()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv48reduce_SRKN4arma3matERKN4arma3ColIiEE"><code class="docutils literal notranslate"><span class="pre">reduce_S()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv45calcCRKN4arma3vecERN4arma3vecERKN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">calcC()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv47HessianRKN4arma3matERKN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">Hessian()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv47diagJtJRKN4arma3matE"><code class="docutils literal notranslate"><span class="pre">diagJtJ()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv49bound_minRKiRKN4arma3vecERKNSt6vectorI10parametersEERKdRKd"><code class="docutils literal notranslate"><span class="pre">bound_min()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv49bound_maxRKiRKN4arma3vecERKNSt6vectorI10parametersEERKdRKd"><code class="docutils literal notranslate"><span class="pre">bound_max()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv410dbound_minRKiRKN4arma3vecERKNSt6vectorI10parametersEERKdRKd"><code class="docutils literal notranslate"><span class="pre">dbound_min()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv410dbound_maxRKiRKN4arma3vecERKNSt6vectorI10parametersEERKdRKd"><code class="docutils literal notranslate"><span class="pre">dbound_max()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv45calcWRKiRKiRKN4arma3ColIiEERKN4arma3vecERKNSt6vectorIN4arma3vecEEERKNSt6vectorI9opti_dataEERKNSt6vectorI9opti_dataEE"><code class="docutils literal notranslate"><span class="pre">calcW()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv46G_costRKN4arma3matERKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">G_cost()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv47LevMarqRKN4arma3matERKdRKN4arma3vecERKN4arma3vecE"><code class="docutils literal notranslate"><span class="pre">LevMarq()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv46calcDpRKN4arma3matERKN4arma3vecERKN4arma3vecERKN4arma3vecERKN4arma3vecERKNSt6vectorI10parametersEERKdRKdRKdRKiRN4arma3ColIiEE"><code class="docutils literal notranslate"><span class="pre">calcDp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv415read_parametersRKiRNSt6vectorI10parametersEE"><code class="docutils literal notranslate"><span class="pre">read_parameters()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv414read_constantsRKiRNSt6vectorI9constantsEERKi"><code class="docutils literal notranslate"><span class="pre">read_constants()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv413read_data_expRKiRNSt6vectorI9opti_dataEE"><code class="docutils literal notranslate"><span class="pre">read_data_exp()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv417read_data_weightsRKiRN4arma3ColIiEERN4arma3vecERNSt6vectorIN4arma3vecEEERNSt6vectorI9opti_dataEERKNSt6vectorI9opti_dataEE"><code class="docutils literal notranslate"><span class="pre">read_data_weights()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv413read_data_numRKiRKNSt6vectorI9opti_dataEERNSt6vectorI9opti_dataEE"><code class="docutils literal notranslate"><span class="pre">read_data_num()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv416ident_essentialsRiRiRiRKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">ident_essentials()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv413ident_controlRiRiRiRiRiRiRiRdRdRdRdRdRdRKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">ident_control()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv48read_genRiRN4arma3matERKi"><code class="docutils literal notranslate"><span class="pre">read_gen()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv415copy_parametersRKNSt6vectorI10parametersEERKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">copy_parameters()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv414copy_constantsRKNSt6vectorI9constantsEERKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">copy_constants()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv416apply_parametersRKNSt6vectorI10parametersEERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">apply_parameters()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv415apply_constantsRKNSt6vectorI9constantsEERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">apply_constants()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv413launch_solverRK10generationRKiRNSt6vectorI10parametersEERNSt6vectorI9constantsEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">launch_solver()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv410launch_odfRK10generationRNSt6vectorI10parametersEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">launch_odf()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv413launch_func_NRK10generationRKiRNSt6vectorI10parametersEERNSt6vectorI9constantsEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">launch_func_N()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv414run_simulationRKNSt6stringERK10individualRKiRNSt6vectorI10parametersEERNSt6vectorI9constantsEERNSt6vectorI9opti_dataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">run_simulation()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv49calc_costRKN4arma3vecERN4arma3vecERKN4arma3vecERKNSt6vectorI9opti_dataEERKNSt6vectorI9opti_dataEERKiRKi"><code class="docutils literal notranslate"><span class="pre">calc_cost()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv410calc_sensiRK10individualR10generationRKNSt6stringERKiRKiRNSt6vectorI10parametersEERNSt6vectorI9constantsEERN4arma3vecERNSt6vectorI9opti_dataEERNSt6vectorI9opti_dataEERKNSt6stringERKNSt6stringERKNSt6stringERKNSt6stringERKiRKN4arma3vecERKNSt6stringE"><code class="docutils literal notranslate"><span class="pre">calc_sensi()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv4N7simcoon9constantsE"><code class="docutils literal notranslate"><span class="pre">simcoon::constants</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv4N7simcoon10generationE"><code class="docutils literal notranslate"><span class="pre">simcoon::generation</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv4N7simcoon10individualE"><code class="docutils literal notranslate"><span class="pre">simcoon::individual</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv4N7simcoon9opti_dataE"><code class="docutils literal notranslate"><span class="pre">simcoon::opti_data</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="identification.html#_CPPv4N7simcoon10parametersE"><code class="docutils literal notranslate"><span class="pre">simcoon::parameters</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="phase.html">Phase</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="phase.html#phase-characteristics">Phase Characteristics</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>This module contains simulation and numerical tools:</p>
+<ul class="simple">
+<li><p><strong>Maths</strong>: Mathematical utilities (rotation, random numbers, solvers)</p></li>
+<li><p><strong>Solver</strong>: Material point simulation solvers</p></li>
+<li><p><strong>Identification</strong>: Parameter identification algorithms</p></li>
+<li><p><strong>Phase</strong>: Phase management and properties</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../continuum_mechanics/micromechanics.html" class="btn btn-neutral float-left" title="Micromechanics" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="maths.html" class="btn btn-neutral float-right" title="Mathematical Functions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
