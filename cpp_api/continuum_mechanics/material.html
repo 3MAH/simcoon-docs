@@ -1,0 +1,897 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Material Properties &mdash; Simcoon 1.10.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/cpp_api/continuum_mechanics/material.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=1d24b1d9"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Micromechanics" href="micromechanics.html" />
+    <link rel="prev" title="transfer.hpp" href="functions/transfer.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_rotation.html">The Rotation Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_rotation.html#the-rotation-class">The Rotation Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_rotation.html#euler-angle-conventions">Euler Angle Conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_rotation.html#practical-examples">Practical Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_rotation.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#namespace-overview">Namespace Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Continuum Mechanics</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/rotation.html">The Rotation Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/index.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/index.html#what-s-new-in-simcoon-2-0">What’s New in Simcoon 2.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">C++ API Reference</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Continuum Mechanics</a></li>
+      <li class="breadcrumb-item active">Material Properties</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cpp_api/continuum_mechanics/material.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="material-properties">
+<h1>Material Properties<a class="headerlink" href="#material-properties" title="Link to this heading"></a></h1>
+<p>This module provides functions and classes for material property management,
+including ODF/PDF processing and crystallography.</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46SchmidRKN4arma3vecERKN4arma3vecE">
+<span id="_CPPv36SchmidRKN4arma3vecERKN4arma3vecE"></span><span id="_CPPv26SchmidRKN4arma3vecERKN4arma3vecE"></span><span id="Schmid__arma::vecCR.arma::vecCR"></span><span class="target" id="group__material_1gae0a31070e855dd3e2005a83844bbf888"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Schmid</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46SchmidRKN4arma3vecERKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv48Schmid_vRKN4arma3vecERKN4arma3vecE">
+<span id="_CPPv38Schmid_vRKN4arma3vecERKN4arma3vecE"></span><span id="_CPPv28Schmid_vRKN4arma3vecERKN4arma3vecE"></span><span id="Schmid_v__arma::vecCR.arma::vecCR"></span><span class="target" id="group__material_1gad5649003a0c28d3c6aaf304df270f7c2"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Schmid_v</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv48Schmid_vRKN4arma3vecERKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44F_nmRKN4arma3vecE">
+<span id="_CPPv34F_nmRKN4arma3vecE"></span><span id="_CPPv24F_nmRKN4arma3vecE"></span><span id="F_nm__arma::vecCR"></span><span class="target" id="group__material_1gaec57cb944cfefd67dda4c61cea1b32d7"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">F_nm</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">N</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44F_nmRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44Q_nmRKN4arma3vecERKdRKd">
+<span id="_CPPv34Q_nmRKN4arma3vecERKdRKd"></span><span id="_CPPv24Q_nmRKN4arma3vecERKdRKd"></span><span id="Q_nm__arma::vecCR.doubleCR.doubleCR"></span><span class="target" id="group__material_1gab7f1aa61c3ef44d12cb18be71618f0ed"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Q_nm</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">N</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">mu</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">lambda</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44Q_nmRKN4arma3vecERKdRKd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417get_densities_ODFRKN4arma3vecERKNSt6stringERKNSt6stringERKb">
+<span id="_CPPv317get_densities_ODFRKN4arma3vecERKNSt6stringERKNSt6stringERKb"></span><span id="_CPPv217get_densities_ODFRKN4arma3vecERKNSt6stringERKNSt6stringERKb"></span><span id="get_densities_ODF__arma::vecCR.ssCR.ssCR.bCR"></span><span class="target" id="group__material_1ga00c4c589176f5fd8943a9ca6f1f1ad71"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_densities_ODF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417get_densities_ODFRKN4arma3vecERKNSt6stringERKNSt6stringERKb" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411fill_anglesRKdR21phase_characteristicsRK3ODFRKi">
+<span id="_CPPv311fill_anglesRKdR21phase_characteristicsRK3ODFRKi"></span><span id="_CPPv211fill_anglesRKdR21phase_characteristicsRK3ODFRKi"></span><span id="fill_angles__doubleCR.phase_characteristicsR.ODFCR.iCR"></span><span class="target" id="group__material_1gadd0dc145bfcc65e0ea3757466dedecab"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fill_angles</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="n"><span class="pre">phase_characteristics</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ODF</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411fill_anglesRKdR21phase_characteristicsRK3ODFRKi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414discretize_ODFRK21phase_characteristicsR3ODFRKiRKiRKi">
+<span id="_CPPv314discretize_ODFRK21phase_characteristicsR3ODFRKiRKiRKi"></span><span id="_CPPv214discretize_ODFRK21phase_characteristicsR3ODFRKiRKiRKi"></span><span id="discretize_ODF__phase_characteristicsCR.ODFR.iCR.iCR.iCR"></span><span class="target" id="group__material_1gab04bc396a12face0c703e28afc67e48c"></span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">discretize_ODF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">phase_characteristics</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="n"><span class="pre">ODF</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414discretize_ODFRK21phase_characteristicsR3ODFRKiRKiRKi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417get_densities_PDFRKN4arma3vecERKNSt6stringERKNSt6stringE">
+<span id="_CPPv317get_densities_PDFRKN4arma3vecERKNSt6stringERKNSt6stringE"></span><span id="_CPPv217get_densities_PDFRKN4arma3vecERKNSt6stringERKNSt6stringE"></span><span id="get_densities_PDF__arma::vecCR.ssCR.ssCR"></span><span class="target" id="group__material_1ga4d1887c91fe8f0d5f2f319837f7199e9"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_densities_PDF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417get_densities_PDFRKN4arma3vecERKNSt6stringERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415fill_parametersRKdR21phase_characteristicsRK3PDF">
+<span id="_CPPv315fill_parametersRKdR21phase_characteristicsRK3PDF"></span><span id="_CPPv215fill_parametersRKdR21phase_characteristicsRK3PDF"></span><span id="fill_parameters__doubleCR.phase_characteristicsR.PDFCR"></span><span class="target" id="group__material_1ga25e49989f3d04fac0ad358ed6709ac9a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fill_parameters</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="n"><span class="pre">phase_characteristics</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">PDF</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415fill_parametersRKdR21phase_characteristicsRK3PDF" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414discretize_PDFRK21phase_characteristicsR3PDFRKiRKi">
+<span id="_CPPv314discretize_PDFRK21phase_characteristicsR3PDFRKiRKi"></span><span id="_CPPv214discretize_PDFRK21phase_characteristicsR3PDFRKiRKi"></span><span id="discretize_PDF__phase_characteristicsCR.PDFR.iCR.iCR"></span><span class="target" id="group__material_1ga081de2e80cca2413ebb0e6be440ddd10"></span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">discretize_PDF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">phase_characteristics</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="n"><span class="pre">PDF</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414discretize_PDFRK21phase_characteristicsR3PDFRKiRKi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49read_peakR3ODFRKNSt6stringERKNSt6stringE">
+<span id="_CPPv39read_peakR3ODFRKNSt6stringERKNSt6stringE"></span><span id="_CPPv29read_peakR3ODFRKNSt6stringERKNSt6stringE"></span><span id="read_peak__ODFR.ssCR.ssCR"></span><span class="target" id="group__material_1gae6469b9484f0d8df34ed214cf6b85c22"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">read_peak</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">ODF</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49read_peakR3ODFRKNSt6stringERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Function that reads the output parameters. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49read_peakR3PDFRKNSt6stringERKNSt6stringE">
+<span id="_CPPv39read_peakR3PDFRKNSt6stringERKNSt6stringE"></span><span id="_CPPv29read_peakR3PDFRKNSt6stringERKNSt6stringE"></span><span id="read_peak__PDFR.ssCR.ssCR"></span><span class="target" id="group__material_1gaa4b976608ae8b5f8900fccb46e29cd05"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">read_peak</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">PDF</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49read_peakR3PDFRKNSt6stringERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODFE">
+<span id="_CPPv3N7simcoon3ODFE"></span><span id="_CPPv2N7simcoon3ODFE"></span><span id="simcoon::ODF"></span><span class="target" id="classsimcoon_1_1ODF"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ODF</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODFE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;ODF.hpp&gt;</em></div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF3ODFEv">
+<span id="_CPPv3N7simcoon3ODF3ODFEv"></span><span id="_CPPv2N7simcoon3ODF3ODFEv"></span><span id="simcoon::ODF::ODF"></span><span class="target" id="classsimcoon_1_1ODF_1a98d79f425a546520192448ffe63ea83b"></span><span class="sig-name descname"><span class="n"><span class="pre">ODF</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODF3ODFEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF3ODFERKiRKbRKdRKd">
+<span id="_CPPv3N7simcoon3ODF3ODFERKiRKbRKdRKd"></span><span id="_CPPv2N7simcoon3ODF3ODFERKiRKbRKdRKd"></span><span id="simcoon::ODF::ODF__iCR.bCR.doubleCR.doubleCR"></span><span class="target" id="classsimcoon_1_1ODF_1a56932e759776b15697bc5b84eac62afa"></span><span class="sig-name descname"><span class="n"><span class="pre">ODF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&amp;</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">0.</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="n"><span class="pre">simcoon</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">pi</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODF3ODFERKiRKbRKdRKd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF3ODFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecERKb">
+<span id="_CPPv3N7simcoon3ODF3ODFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecERKb"></span><span id="_CPPv2N7simcoon3ODF3ODFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecERKb"></span><span id="simcoon::ODF::ODF__iCR.iCR.iCR.std::vector:peak:CR.doubleCR.arma::vecCR.arma::vecCR.bCR"></span><span class="target" id="classsimcoon_1_1ODF_1a942e98ff133db9fa3bde82f0f82c5c49"></span><span class="sig-name descname"><span class="n"><span class="pre">ODF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N7simcoon4peakE" title="simcoon::peak"><span class="n"><span class="pre">peak</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="p"><span class="pre">&amp;</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="k"><span class="pre">false</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODF3ODFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecERKb" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF3ODFERK3ODF">
+<span id="_CPPv3N7simcoon3ODF3ODFERK3ODF"></span><span id="_CPPv2N7simcoon3ODF3ODFERK3ODF"></span><span id="simcoon::ODF::ODF__ODFCR"></span><span class="target" id="classsimcoon_1_1ODF_1ae9a60abc1816db4590cfe9aae1f7ad01"></span><span class="sig-name descname"><span class="n"><span class="pre">ODF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon3ODF3ODFERK3ODF" title="simcoon::ODF::ODF"><span class="n"><span class="pre">ODF</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODF3ODFERK3ODF" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODFD0Ev">
+<span id="_CPPv3N7simcoon3ODFD0Ev"></span><span id="_CPPv2N7simcoon3ODFD0Ev"></span><span id="simcoon::ODF::~ODF"></span><span class="target" id="classsimcoon_1_1ODF_1a6e4e156070147ac1499bff5f710e4799"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~ODF</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODFD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF9constructERKi">
+<span id="_CPPv3N7simcoon3ODF9constructERKi"></span><span id="_CPPv2N7simcoon3ODF9constructERKi"></span><span id="simcoon::ODF::construct__iCR"></span><span class="target" id="classsimcoon_1_1ODF_1ac69f5388291b2b516303c5fac0b50524"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">construct</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODF9constructERKi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF7densityERKd">
+<span id="_CPPv3N7simcoon3ODF7densityERKd"></span><span id="_CPPv2N7simcoon3ODF7densityERKd"></span><span id="simcoon::ODF::density__doubleCR"></span><span class="target" id="classsimcoon_1_1ODF_1a9109dc003a58aece0dca5cf92bdb602c"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">density</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODF7densityERKd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODFaSERK3ODF">
+<span id="_CPPv3N7simcoon3ODFaSERK3ODF"></span><span id="_CPPv2N7simcoon3ODFaSERK3ODF"></span><span id="simcoon::ODF::assign-operator__ODFCR"></span><span class="target" id="classsimcoon_1_1ODF_1a6685b8c7440f41177fec650b4668351f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon3ODFE" title="simcoon::ODF"><span class="n"><span class="pre">ODF</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon3ODFE" title="simcoon::ODF"><span class="n"><span class="pre">ODF</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODFaSERK3ODF" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF7NphasesE">
+<span id="_CPPv3N7simcoon3ODF7NphasesE"></span><span id="_CPPv2N7simcoon3ODF7NphasesE"></span><span id="simcoon::ODF::Nphases__i"></span><span class="target" id="classsimcoon_1_1ODF_1ab2e4565cae8efdad46471c27ad68681f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Nphases</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODF7NphasesE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF5AngleE">
+<span id="_CPPv3N7simcoon3ODF5AngleE"></span><span id="_CPPv2N7simcoon3ODF5AngleE"></span><span id="simcoon::ODF::Angle__i"></span><span class="target" id="classsimcoon_1_1ODF_1a84af5ea73fabfa559142683cce7afc16"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Angle</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODF5AngleE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF6radianE">
+<span id="_CPPv3N7simcoon3ODF6radianE"></span><span id="_CPPv2N7simcoon3ODF6radianE"></span><span id="simcoon::ODF::radian__b"></span><span class="target" id="classsimcoon_1_1ODF_1a35fe39be110db8e87622ebd9fac613c7"></span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">radian</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODF6radianE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF11n_densitiesE">
+<span id="_CPPv3N7simcoon3ODF11n_densitiesE"></span><span id="_CPPv2N7simcoon3ODF11n_densitiesE"></span><span id="simcoon::ODF::n_densities__i"></span><span class="target" id="classsimcoon_1_1ODF_1ac87d408c0842326dcaaf16eddb95d77a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_densities</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODF11n_densitiesE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF5peaksE">
+<span id="_CPPv3N7simcoon3ODF5peaksE"></span><span id="_CPPv2N7simcoon3ODF5peaksE"></span><span id="simcoon::ODF::peaks__std::vector:peak:"></span><span class="target" id="classsimcoon_1_1ODF_1a6228a9817ae1b5deceb0e044357455a7"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N7simcoon4peakE" title="simcoon::peak"><span class="n"><span class="pre">peak</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">peaks</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODF5peaksE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF4normE">
+<span id="_CPPv3N7simcoon3ODF4normE"></span><span id="_CPPv2N7simcoon3ODF4normE"></span><span id="simcoon::ODF::norm__double"></span><span class="target" id="classsimcoon_1_1ODF_1a7e8f00a437ef8fd856bc83c9a763d6cc"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">norm</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODF4normE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF9densitiesE">
+<span id="_CPPv3N7simcoon3ODF9densitiesE"></span><span id="_CPPv2N7simcoon3ODF9densitiesE"></span><span id="simcoon::ODF::densities__arma::vec"></span><span class="target" id="classsimcoon_1_1ODF_1aac82b53215307dd77df5a2543e4f11a7"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">densities</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODF9densitiesE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODF6limitsE">
+<span id="_CPPv3N7simcoon3ODF6limitsE"></span><span id="_CPPv2N7simcoon3ODF6limitsE"></span><span id="simcoon::ODF::limits__arma::vec"></span><span class="target" id="classsimcoon_1_1ODF_1a1f8f6ce4548df2b68515af75d3deb35e"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">limits</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3ODF6limitsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3ODFlsERNSt7ostreamERK3ODF">
+<span id="_CPPv3N7simcoon3ODFlsERNSt7ostreamERK3ODF"></span><span id="_CPPv2N7simcoon3ODFlsERNSt7ostreamERK3ODF"></span><span id="simcoon::ODF::lshift-operator__osR.ODFCR"></span><span class="target" id="classsimcoon_1_1ODF_1aff3cdd7e33aefd661cf7ffcc4d829936"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon3ODFE" title="simcoon::ODF"><span class="n"><span class="pre">ODF</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3ODFlsERNSt7ostreamERK3ODF" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDFE">
+<span id="_CPPv3N7simcoon3PDFE"></span><span id="_CPPv2N7simcoon3PDFE"></span><span id="simcoon::PDF"></span><span class="target" id="classsimcoon_1_1PDF"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">PDF</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3PDFE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;PDF.hpp&gt;</em></div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF3PDFEv">
+<span id="_CPPv3N7simcoon3PDF3PDFEv"></span><span id="_CPPv2N7simcoon3PDF3PDFEv"></span><span id="simcoon::PDF::PDF"></span><span class="target" id="classsimcoon_1_1PDF_1a9cdcfda72c49e50546090002968e5dde"></span><span class="sig-name descname"><span class="n"><span class="pre">PDF</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDF3PDFEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF3PDFERKiRKdRKd">
+<span id="_CPPv3N7simcoon3PDF3PDFERKiRKdRKd"></span><span id="_CPPv2N7simcoon3PDF3PDFERKiRKdRKd"></span><span id="simcoon::PDF::PDF__iCR.doubleCR.doubleCR"></span><span class="target" id="classsimcoon_1_1PDF_1a215fcdd8af3dc045845b67cc17b79bcd"></span><span class="sig-name descname"><span class="n"><span class="pre">PDF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDF3PDFERKiRKdRKd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF3PDFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecE">
+<span id="_CPPv3N7simcoon3PDF3PDFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecE"></span><span id="_CPPv2N7simcoon3PDF3PDFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecE"></span><span id="simcoon::PDF::PDF__iCR.iCR.iCR.std::vector:peak:CR.doubleCR.arma::vecCR.arma::vecCR"></span><span class="target" id="classsimcoon_1_1PDF_1a4696dbe39c8a1fb8edfebe8a33003b53"></span><span class="sig-name descname"><span class="n"><span class="pre">PDF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N7simcoon4peakE" title="simcoon::peak"><span class="n"><span class="pre">peak</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDF3PDFERKiRKiRKiRKNSt6vectorI4peakEERKdRKN4arma3vecERKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF3PDFERK3PDF">
+<span id="_CPPv3N7simcoon3PDF3PDFERK3PDF"></span><span id="_CPPv2N7simcoon3PDF3PDFERK3PDF"></span><span id="simcoon::PDF::PDF__PDFCR"></span><span class="target" id="classsimcoon_1_1PDF_1a95b1fde888cfbaad31941dd807991adb"></span><span class="sig-name descname"><span class="n"><span class="pre">PDF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon3PDF3PDFERK3PDF" title="simcoon::PDF::PDF"><span class="n"><span class="pre">PDF</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDF3PDFERK3PDF" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDFD0Ev">
+<span id="_CPPv3N7simcoon3PDFD0Ev"></span><span id="_CPPv2N7simcoon3PDFD0Ev"></span><span id="simcoon::PDF::~PDF"></span><span class="target" id="classsimcoon_1_1PDF_1a12cba30ac796c04e43ed7af5b37bb332"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~PDF</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDFD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF9constructERKi">
+<span id="_CPPv3N7simcoon3PDF9constructERKi"></span><span id="_CPPv2N7simcoon3PDF9constructERKi"></span><span id="simcoon::PDF::construct__iCR"></span><span class="target" id="classsimcoon_1_1PDF_1ac69f5388291b2b516303c5fac0b50524"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">construct</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDF9constructERKi" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF7densityERKd">
+<span id="_CPPv3N7simcoon3PDF7densityERKd"></span><span id="_CPPv2N7simcoon3PDF7densityERKd"></span><span id="simcoon::PDF::density__doubleCR"></span><span class="target" id="classsimcoon_1_1PDF_1a9109dc003a58aece0dca5cf92bdb602c"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">density</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDF7densityERKd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDFaSERK3PDF">
+<span id="_CPPv3N7simcoon3PDFaSERK3PDF"></span><span id="_CPPv2N7simcoon3PDFaSERK3PDF"></span><span id="simcoon::PDF::assign-operator__PDFCR"></span><span class="target" id="classsimcoon_1_1PDF_1ab94faf665b66c04c222b4c01193f51ab"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon3PDFE" title="simcoon::PDF"><span class="n"><span class="pre">PDF</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon3PDFE" title="simcoon::PDF"><span class="n"><span class="pre">PDF</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDFaSERK3PDF" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF7NphasesE">
+<span id="_CPPv3N7simcoon3PDF7NphasesE"></span><span id="_CPPv2N7simcoon3PDF7NphasesE"></span><span id="simcoon::PDF::Nphases__i"></span><span class="target" id="classsimcoon_1_1PDF_1ab2e4565cae8efdad46471c27ad68681f"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Nphases</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3PDF7NphasesE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF9ParameterE">
+<span id="_CPPv3N7simcoon3PDF9ParameterE"></span><span id="_CPPv2N7simcoon3PDF9ParameterE"></span><span id="simcoon::PDF::Parameter__i"></span><span class="target" id="classsimcoon_1_1PDF_1a61b5178c3bf0f77cfcd5f9e67b5e285b"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Parameter</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3PDF9ParameterE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF11n_densitiesE">
+<span id="_CPPv3N7simcoon3PDF11n_densitiesE"></span><span id="_CPPv2N7simcoon3PDF11n_densitiesE"></span><span id="simcoon::PDF::n_densities__i"></span><span class="target" id="classsimcoon_1_1PDF_1ac87d408c0842326dcaaf16eddb95d77a"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n_densities</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3PDF11n_densitiesE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF5peaksE">
+<span id="_CPPv3N7simcoon3PDF5peaksE"></span><span id="_CPPv2N7simcoon3PDF5peaksE"></span><span id="simcoon::PDF::peaks__std::vector:peak:"></span><span class="target" id="classsimcoon_1_1PDF_1a6228a9817ae1b5deceb0e044357455a7"></span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vector</span></span><span class="p"><span class="pre">&lt;</span></span><a class="reference internal" href="#_CPPv4N7simcoon4peakE" title="simcoon::peak"><span class="n"><span class="pre">peak</span></span></a><span class="p"><span class="pre">&gt;</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">peaks</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3PDF5peaksE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF4normE">
+<span id="_CPPv3N7simcoon3PDF4normE"></span><span id="_CPPv2N7simcoon3PDF4normE"></span><span id="simcoon::PDF::norm__double"></span><span class="target" id="classsimcoon_1_1PDF_1a7e8f00a437ef8fd856bc83c9a763d6cc"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">norm</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3PDF4normE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF9densitiesE">
+<span id="_CPPv3N7simcoon3PDF9densitiesE"></span><span id="_CPPv2N7simcoon3PDF9densitiesE"></span><span id="simcoon::PDF::densities__arma::vec"></span><span class="target" id="classsimcoon_1_1PDF_1aac82b53215307dd77df5a2543e4f11a7"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">densities</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3PDF9densitiesE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDF6limitsE">
+<span id="_CPPv3N7simcoon3PDF6limitsE"></span><span id="_CPPv2N7simcoon3PDF6limitsE"></span><span id="simcoon::PDF::limits__arma::vec"></span><span class="target" id="classsimcoon_1_1PDF_1a1f8f6ce4548df2b68515af75d3deb35e"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">limits</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon3PDF6limitsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon3PDFlsERNSt7ostreamERK3PDF">
+<span id="_CPPv3N7simcoon3PDFlsERNSt7ostreamERK3PDF"></span><span id="_CPPv2N7simcoon3PDFlsERNSt7ostreamERK3PDF"></span><span id="simcoon::PDF::lshift-operator__osR.PDFCR"></span><span class="target" id="classsimcoon_1_1PDF_1a48ba0b2840e6bbde02676d300747cae5"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon3PDFE" title="simcoon::PDF"><span class="n"><span class="pre">PDF</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon3PDFlsERNSt7ostreamERK3PDF" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peakE">
+<span id="_CPPv3N7simcoon4peakE"></span><span id="_CPPv2N7simcoon4peakE"></span><span id="simcoon::peak"></span><span class="target" id="classsimcoon_1_1peak"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">peak</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peakE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;peak.hpp&gt;</em></div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak4peakEv">
+<span id="_CPPv3N7simcoon4peak4peakEv"></span><span id="_CPPv2N7simcoon4peak4peakEv"></span><span id="simcoon::peak::peak"></span><span class="target" id="classsimcoon_1_1peak_1a14273ed9ca3dc757bfd6806e79974c6c"></span><span class="sig-name descname"><span class="n"><span class="pre">peak</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon4peak4peakEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak4peakERKiRKiRKdRKdRKdRKdRKN4arma3vecERKN4arma3vecE">
+<span id="_CPPv3N7simcoon4peak4peakERKiRKiRKdRKdRKdRKdRKN4arma3vecERKN4arma3vecE"></span><span id="_CPPv2N7simcoon4peak4peakERKiRKiRKdRKdRKdRKdRKN4arma3vecERKN4arma3vecE"></span><span id="simcoon::peak::peak__iCR.iCR.doubleCR.doubleCR.doubleCR.doubleCR.arma::vecCR.arma::vecCR"></span><span class="target" id="classsimcoon_1_1peak_1afae8c8b248d204f8598e9d866530afd8"></span><span class="sig-name descname"><span class="n"><span class="pre">peak</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon4peak4peakERKiRKiRKdRKdRKdRKdRKN4arma3vecERKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak4peakERK4peak">
+<span id="_CPPv3N7simcoon4peak4peakERK4peak"></span><span id="_CPPv2N7simcoon4peak4peakERK4peak"></span><span id="simcoon::peak::peak__peakCR"></span><span class="target" id="classsimcoon_1_1peak_1a436443a2dabdd067d10a0b650e3a73ea"></span><span class="sig-name descname"><span class="n"><span class="pre">peak</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon4peak4peakERK4peak" title="simcoon::peak::peak"><span class="n"><span class="pre">peak</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon4peak4peakERK4peak" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peakD0Ev">
+<span id="_CPPv3N7simcoon4peakD0Ev"></span><span id="_CPPv2N7simcoon4peakD0Ev"></span><span id="simcoon::peak::~peak"></span><span class="target" id="classsimcoon_1_1peak_1a6f9e9dce6045a2a780de7db73c467a61"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~peak</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon4peakD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak15get_density_ODFERKd">
+<span id="_CPPv3N7simcoon4peak15get_density_ODFERKd"></span><span id="_CPPv2N7simcoon4peak15get_density_ODFERKd"></span><span id="simcoon::peak::get_density_ODF__doubleCR"></span><span class="target" id="classsimcoon_1_1peak_1aaee4ccf5b793e3f40b9ead80fbb056c0"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_density_ODF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon4peak15get_density_ODFERKd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak15get_density_PDFERKd">
+<span id="_CPPv3N7simcoon4peak15get_density_PDFERKd"></span><span id="_CPPv2N7simcoon4peak15get_density_PDFERKd"></span><span id="simcoon::peak::get_density_PDF__doubleCR"></span><span class="target" id="classsimcoon_1_1peak_1aa1d2647f19a13bcdb0340676c348ec10"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">get_density_PDF</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon4peak15get_density_PDFERKd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peakaSERK4peak">
+<span id="_CPPv3N7simcoon4peakaSERK4peak"></span><span id="_CPPv2N7simcoon4peakaSERK4peak"></span><span id="simcoon::peak::assign-operator__peakCR"></span><span class="target" id="classsimcoon_1_1peak_1a822e21d4b7d81f02dacd85ce9c85886e"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon4peakE" title="simcoon::peak"><span class="n"><span class="pre">peak</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon4peakE" title="simcoon::peak"><span class="n"><span class="pre">peak</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon4peakaSERK4peak" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak6numberE">
+<span id="_CPPv3N7simcoon4peak6numberE"></span><span id="_CPPv2N7simcoon4peak6numberE"></span><span id="simcoon::peak::number__i"></span><span class="target" id="classsimcoon_1_1peak_1a7106e2abc437ad981830d14176d15f09"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">number</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peak6numberE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak6methodE">
+<span id="_CPPv3N7simcoon4peak6methodE"></span><span id="_CPPv2N7simcoon4peak6methodE"></span><span id="simcoon::peak::method__i"></span><span class="target" id="classsimcoon_1_1peak_1adcc9a19ad3119f823a658f6a49a24e64"></span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">method</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peak6methodE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak4meanE">
+<span id="_CPPv3N7simcoon4peak4meanE"></span><span id="_CPPv2N7simcoon4peak4meanE"></span><span id="simcoon::peak::mean__double"></span><span class="target" id="classsimcoon_1_1peak_1abb40a2ee28b839fb572e161c68141faf"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mean</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peak4meanE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak5s_devE">
+<span id="_CPPv3N7simcoon4peak5s_devE"></span><span id="_CPPv2N7simcoon4peak5s_devE"></span><span id="simcoon::peak::s_dev__double"></span><span class="target" id="classsimcoon_1_1peak_1a5fbc7f8842322028ffa2db2a747ad17d"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">s_dev</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peak5s_devE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak5widthE">
+<span id="_CPPv3N7simcoon4peak5widthE"></span><span id="_CPPv2N7simcoon4peak5widthE"></span><span id="simcoon::peak::width__double"></span><span class="target" id="classsimcoon_1_1peak_1a9df23e056f5d1a0388cd8190431c0e03"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">width</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peak5widthE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak4amplE">
+<span id="_CPPv3N7simcoon4peak4amplE"></span><span id="_CPPv2N7simcoon4peak4amplE"></span><span id="simcoon::peak::ampl__double"></span><span class="target" id="classsimcoon_1_1peak_1aa9c3e3544dba7f2eef99033073b3d22a"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ampl</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peak4amplE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak6paramsE">
+<span id="_CPPv3N7simcoon4peak6paramsE"></span><span id="_CPPv2N7simcoon4peak6paramsE"></span><span id="simcoon::peak::params__arma::vec"></span><span class="target" id="classsimcoon_1_1peak_1ace4411e5c328e39be7965a5dabed9b22"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">params</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peak6paramsE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peak9densitiesE">
+<span id="_CPPv3N7simcoon4peak9densitiesE"></span><span id="_CPPv2N7simcoon4peak9densitiesE"></span><span id="simcoon::peak::densities__arma::vec"></span><span class="target" id="classsimcoon_1_1peak_1aac82b53215307dd77df5a2543e4f11a7"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">densities</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon4peak9densitiesE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon4peaklsERNSt7ostreamERK4peak">
+<span id="_CPPv3N7simcoon4peaklsERNSt7ostreamERK4peak"></span><span id="_CPPv2N7simcoon4peaklsERNSt7ostreamERK4peak"></span><span id="simcoon::peak::lshift-operator__osR.peakCR"></span><span class="target" id="classsimcoon_1_1peak_1aa8caf105174eefce46d20a3f37dc32e8"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon4peakE" title="simcoon::peak"><span class="n"><span class="pre">peak</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon4peaklsERNSt7ostreamERK4peak" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variantE">
+<span id="_CPPv3N7simcoon7variantE"></span><span id="_CPPv2N7simcoon7variantE"></span><span id="simcoon::variant"></span><span class="target" id="classsimcoon_1_1variant"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">variant</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon7variantE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;variant.hpp&gt;</em></div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant7variantEv">
+<span id="_CPPv3N7simcoon7variant7variantEv"></span><span id="_CPPv2N7simcoon7variant7variantEv"></span><span id="simcoon::variant::variant"></span><span class="target" id="classsimcoon_1_1variant_1a5ce7f74ce871428f27063606a978a386"></span><span class="sig-name descname"><span class="n"><span class="pre">variant</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon7variant7variantEv" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant7variantEN4arma3vecEN4arma3vecEd">
+<span id="_CPPv3N7simcoon7variant7variantEN4arma3vecEN4arma3vecEd"></span><span id="_CPPv2N7simcoon7variant7variantEN4arma3vecEN4arma3vecEd"></span><span id="simcoon::variant::variant__arma::vec.arma::vec.double"></span><span class="target" id="classsimcoon_1_1variant_1a94ea101dc36ab835537c14edae0e6145"></span><span class="sig-name descname"><span class="n"><span class="pre">variant</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span>, <span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span>, <span class="kt"><span class="pre">double</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon7variant7variantEN4arma3vecEN4arma3vecEd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant7variantERK7variant">
+<span id="_CPPv3N7simcoon7variant7variantERK7variant"></span><span id="_CPPv2N7simcoon7variant7variantERK7variant"></span><span id="simcoon::variant::variant__variantCR"></span><span class="target" id="classsimcoon_1_1variant_1ad580316deb4fd9880e2b098fcaf7cc75"></span><span class="sig-name descname"><span class="n"><span class="pre">variant</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon7variant7variantERK7variant" title="simcoon::variant::variant"><span class="n"><span class="pre">variant</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon7variant7variantERK7variant" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variantD0Ev">
+<span id="_CPPv3N7simcoon7variantD0Ev"></span><span id="_CPPv2N7simcoon7variantD0Ev"></span><span id="simcoon::variant::~variant"></span><span class="target" id="classsimcoon_1_1variant_1ad83474f7d0bdb191817f170a1376a978"></span><span class="sig-name descname"><span class="n"><span class="pre">~variant</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon7variantD0Ev" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant5buildERKd">
+<span id="_CPPv3N7simcoon7variant5buildERKd"></span><span id="_CPPv2N7simcoon7variant5buildERKd"></span><span id="simcoon::variant::build__doubleCR"></span><span class="target" id="classsimcoon_1_1variant_1a77802e180d6ab4b92bcd0f828144ca6b"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">build</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon7variant5buildERKd" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variantaSERK7variant">
+<span id="_CPPv3N7simcoon7variantaSERK7variant"></span><span id="_CPPv2N7simcoon7variantaSERK7variant"></span><span id="simcoon::variant::assign-operator__variantCR"></span><span class="target" id="classsimcoon_1_1variant_1a797253aad45d22cb2ad96e1ba5e275fe"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon7variantE" title="simcoon::variant"><span class="n"><span class="pre">variant</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon7variantE" title="simcoon::variant"><span class="n"><span class="pre">variant</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon7variantaSERK7variant" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant1nE">
+<span id="_CPPv3N7simcoon7variant1nE"></span><span id="_CPPv2N7simcoon7variant1nE"></span><span id="simcoon::variant::n__arma::vec"></span><span class="target" id="classsimcoon_1_1variant_1aed4687a4c308787377454e45e0e8a36f"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">n</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon7variant1nE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant1mE">
+<span id="_CPPv3N7simcoon7variant1mE"></span><span id="_CPPv2N7simcoon7variant1mE"></span><span id="simcoon::variant::m__arma::vec"></span><span class="target" id="classsimcoon_1_1variant_1adcc0fc68dfcc917312b366b4fd1c96ff"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">m</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon7variant1mE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant1RE">
+<span id="_CPPv3N7simcoon7variant1RE"></span><span id="_CPPv2N7simcoon7variant1RE"></span><span id="simcoon::variant::R__arma::mat"></span><span class="target" id="classsimcoon_1_1variant_1af7cab2946d43d775ad30a49a148f6dd3"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">R</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon7variant1RE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant1gE">
+<span id="_CPPv3N7simcoon7variant1gE"></span><span id="_CPPv2N7simcoon7variant1gE"></span><span id="simcoon::variant::g__double"></span><span class="target" id="classsimcoon_1_1variant_1ab30c765b9be1b7776c97c899a12a66bb"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">g</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon7variant1gE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variant3ETnE">
+<span id="_CPPv3N7simcoon7variant3ETnE"></span><span id="_CPPv2N7simcoon7variant3ETnE"></span><span id="simcoon::variant::ETn__arma::vec"></span><span class="target" id="classsimcoon_1_1variant_1acc5985b85334d793cdbefb2d9e0b497e"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ETn</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon7variant3ETnE" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon7variantlsERNSt7ostreamERK7variant">
+<span id="_CPPv3N7simcoon7variantlsERNSt7ostreamERK7variant"></span><span id="_CPPv2N7simcoon7variantlsERNSt7ostreamERK7variant"></span><span id="simcoon::variant::lshift-operator__osR.variantCR"></span><span class="target" id="classsimcoon_1_1variant_1a8f0bdbfcaa964f309dda4f0d626590af"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon7variantE" title="simcoon::variant"><span class="n"><span class="pre">variant</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon7variantlsERNSt7ostreamERK7variant" title="Link to this definition"></a><br /></dt>
+<dd></dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="functions/transfer.html" class="btn btn-neutral float-left" title="transfer.hpp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="micromechanics.html" class="btn btn-neutral float-right" title="Micromechanics" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

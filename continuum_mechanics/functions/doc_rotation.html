@@ -1,0 +1,841 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Rotation Library &mdash; Simcoon 1.10.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/continuum_mechanics/functions/doc_rotation.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=1d24b1d9"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Contimech Library" href="doc_contimech.html" />
+    <link rel="prev" title="The Constitutive Library" href="doc_constitutive.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Continuum Mechanics</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Continuum Mechanics generic functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">The Rotation Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-rotation-class">The Rotation Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#euler-angle-conventions">Euler Angle Conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#practical-examples">Practical Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/index.html">C++ API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp_api/index.html#namespace-overview">Namespace Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/rotation.html">The Rotation Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/index.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/index.html#what-s-new-in-simcoon-2-0">What’s New in Simcoon 2.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Continuum Mechanics</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Continuum Mechanics generic functions</a></li>
+      <li class="breadcrumb-item active">The Rotation Library</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/continuum_mechanics/functions/doc_rotation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="the-rotation-library">
+<h1>The Rotation Library<a class="headerlink" href="#the-rotation-library" title="Link to this heading"></a></h1>
+<p>The rotation library provides comprehensive tools for 3D rotations in continuum mechanics.
+The <code class="docutils literal notranslate"><span class="pre">Rotation</span></code> class provides a powerful object-oriented interface for all rotation operations.</p>
+<nav class="contents local" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-rotation-class" id="id1">The Rotation Class</a></p>
+<ul>
+<li><p><a class="reference internal" href="#creating-rotations" id="id2">Creating Rotations</a></p></li>
+<li><p><a class="reference internal" href="#converting-between-representations" id="id3">Converting Between Representations</a></p></li>
+<li><p><a class="reference internal" href="#applying-rotations" id="id4">Applying Rotations</a></p></li>
+<li><p><a class="reference internal" href="#composing-rotations" id="id5">Composing Rotations</a></p></li>
+<li><p><a class="reference internal" href="#interpolating-rotations" id="id6">Interpolating Rotations</a></p></li>
+<li><p><a class="reference internal" href="#utility-methods" id="id7">Utility Methods</a></p></li>
+<li><p><a class="reference internal" href="#scipy-interoperability" id="id8">Scipy Interoperability</a></p></li>
+<li><p><a class="reference internal" href="#active-vs-passive-rotations" id="id9">Active vs Passive Rotations</a></p></li>
+<li><p><a class="reference internal" href="#input-validation" id="id10">Input Validation</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#euler-angle-conventions" id="id11">Euler Angle Conventions</a></p></li>
+<li><p><a class="reference internal" href="#practical-examples" id="id12">Practical Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#example-1-rotating-orthotropic-material-properties" id="id13">Example 1: Rotating Orthotropic Material Properties</a></p></li>
+<li><p><a class="reference internal" href="#example-2-stress-transformation-in-a-rotated-element" id="id14">Example 2: Stress Transformation in a Rotated Element</a></p></li>
+<li><p><a class="reference internal" href="#example-3-averaging-orientations" id="id15">Example 3: Averaging Orientations</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#see-also" id="id16">See Also</a></p></li>
+</ul>
+</nav>
+<section id="the-rotation-class">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">The Rotation Class</a><a class="headerlink" href="#the-rotation-class" title="Link to this heading"></a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Rotation</span></code> class provides an object-oriented interface for working with 3D rotations.
+It uses unit quaternions internally for numerical stability and efficient composition.</p>
+<section id="creating-rotations">
+<h3><a class="toc-backref" href="#id2" role="doc-backlink">Creating Rotations</a><a class="headerlink" href="#creating-rotations" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Identity rotation (no rotation)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">identity</span><span class="p">()</span>
+
+<span class="c1"># From Euler angles (convention must be specified)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="s2">&quot;zxz&quot;</span><span class="p">)</span>
+
+<span class="c1"># From Euler angles with options</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="n">conv</span><span class="o">=</span><span class="s2">&quot;xyz&quot;</span><span class="p">,</span> <span class="n">intrinsic</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># From rotation matrix</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]])</span>  <span class="c1"># 90° around x</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_matrix</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+
+<span class="c1"># From quaternion [qx, qy, qz, qw] (scalar-last)</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">)])</span>  <span class="c1"># 90° around z</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_quat</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+
+<span class="c1"># From rotation vector (axis × angle)</span>
+<span class="n">rotvec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># 90° around z</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_rotvec</span><span class="p">(</span><span class="n">rotvec</span><span class="p">)</span>
+
+<span class="c1"># From axis and angle</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_angle</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 90° around z (axis 3)</span>
+
+<span class="c1"># Random rotation (uniform distribution)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">random</span><span class="p">()</span>
+
+<span class="c1"># From a scipy.spatial.transform.Rotation (requires scipy)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rotation</span> <span class="k">as</span> <span class="n">R</span>
+<span class="n">scipy_rot</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_scipy</span><span class="p">(</span><span class="n">scipy_rot</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="converting-between-representations">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Converting Between Representations</a><a class="headerlink" href="#converting-between-representations" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;zxz&quot;</span><span class="p">)</span>
+
+<span class="c1"># To rotation matrix</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_matrix</span><span class="p">()</span>  <span class="c1"># 3×3 numpy array</span>
+
+<span class="c1"># To quaternion</span>
+<span class="n">q</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_quat</span><span class="p">()</span>  <span class="c1"># [qx, qy, qz, qw]</span>
+
+<span class="c1"># To Euler angles</span>
+<span class="n">angles</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_euler</span><span class="p">(</span><span class="s2">&quot;zxz&quot;</span><span class="p">)</span>  <span class="c1"># [psi, theta, phi]</span>
+<span class="n">angles_deg</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_euler</span><span class="p">(</span><span class="s2">&quot;zxz&quot;</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># To rotation vector</span>
+<span class="n">rotvec</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_rotvec</span><span class="p">()</span>
+<span class="n">rotvec_deg</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_rotvec</span><span class="p">(</span><span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># To Voigt rotation matrices</span>
+<span class="n">QS</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_voigt_stress_rotation</span><span class="p">()</span>  <span class="c1"># 6×6 for stress</span>
+<span class="n">QE</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">as_voigt_strain_rotation</span><span class="p">()</span>  <span class="c1"># 6×6 for strain</span>
+
+<span class="c1"># To scipy.spatial.transform.Rotation (requires scipy)</span>
+<span class="n">scipy_rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">to_scipy</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="applying-rotations">
+<h3><a class="toc-backref" href="#id4" role="doc-backlink">Applying Rotations</a><a class="headerlink" href="#applying-rotations" title="Link to this heading"></a></h3>
+<p><strong>To 3D vectors:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_angle</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">v_rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>  <span class="c1"># [0, 1, 0]</span>
+
+<span class="c1"># Inverse rotation</span>
+<span class="n">v_back</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">v_rot</span><span class="p">,</span> <span class="n">inverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># [1, 0, 0]</span>
+</pre></div>
+</div>
+<p><strong>To 3×3 tensors:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Rotate a tensor: R · T · R^T</span>
+<span class="n">T</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">T_rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_tensor</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>To Voigt notation tensors:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Stress vector [σ11, σ22, σ33, σ12, σ13, σ23]</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">,</span> <span class="mf">10.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">])</span>
+<span class="n">sigma_rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_stress</span><span class="p">(</span><span class="n">sigma</span><span class="p">)</span>
+
+<span class="c1"># Strain vector [ε11, ε22, ε33, 2ε12, 2ε13, 2ε23]</span>
+<span class="n">epsilon</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.005</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.002</span><span class="p">,</span> <span class="mf">0.001</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">epsilon_rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_strain</span><span class="p">(</span><span class="n">epsilon</span><span class="p">)</span>
+
+<span class="c1"># Stiffness matrix (6×6)</span>
+<span class="n">L</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">L_iso</span><span class="p">([</span><span class="mf">210e9</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="s2">&quot;Enu&quot;</span><span class="p">)</span>
+<span class="n">L_rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_stiffness</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+
+<span class="c1"># Compliance matrix (6×6)</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">M_iso</span><span class="p">([</span><span class="mf">210e9</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="s2">&quot;Enu&quot;</span><span class="p">)</span>
+<span class="n">M_rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_compliance</span><span class="p">(</span><span class="n">M</span><span class="p">)</span>
+
+<span class="c1"># Strain concentration tensor (6×6): A&#39; = QE * A * QS^T</span>
+<span class="n">A_global</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_strain_concentration</span><span class="p">(</span><span class="n">A_local</span><span class="p">)</span>
+
+<span class="c1"># Stress concentration tensor (6×6): B&#39; = QS * B * QE^T</span>
+<span class="n">B_global</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_stress_concentration</span><span class="p">(</span><span class="n">B_local</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="composing-rotations">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Composing Rotations</a><a class="headerlink" href="#composing-rotations" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r1</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_angle</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>  <span class="c1"># 45° around z</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_angle</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">6</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1"># 30° around x</span>
+
+<span class="c1"># Compose: apply r1 first, then r2</span>
+<span class="n">r_combined</span> <span class="o">=</span> <span class="n">r2</span> <span class="o">*</span> <span class="n">r1</span>
+
+<span class="c1"># This is equivalent to:</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>
+<span class="n">v1</span> <span class="o">=</span> <span class="n">r2</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">r1</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+<span class="n">v2</span> <span class="o">=</span> <span class="n">r_combined</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="c1"># v1 == v2</span>
+
+<span class="c1"># Inverse</span>
+<span class="n">r_inv</span> <span class="o">=</span> <span class="n">r1</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span>
+<span class="n">r_identity</span> <span class="o">=</span> <span class="n">r1</span> <span class="o">*</span> <span class="n">r_inv</span>  <span class="c1"># Should be identity</span>
+</pre></div>
+</div>
+</section>
+<section id="interpolating-rotations">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Interpolating Rotations</a><a class="headerlink" href="#interpolating-rotations" title="Link to this heading"></a></h3>
+<p>SLERP (Spherical Linear Interpolation) provides smooth interpolation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r_start</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">identity</span><span class="p">()</span>
+<span class="n">r_end</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;zxz&quot;</span><span class="p">)</span>
+
+<span class="c1"># Interpolate at t=0.5 (halfway)</span>
+<span class="n">r_mid</span> <span class="o">=</span> <span class="n">r_start</span><span class="o">.</span><span class="n">slerp</span><span class="p">(</span><span class="n">r_end</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+
+<span class="c1"># Interpolate along path</span>
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="n">r_t</span> <span class="o">=</span> <span class="n">r_start</span><span class="o">.</span><span class="n">slerp</span><span class="p">(</span><span class="n">r_end</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;t=</span><span class="si">{</span><span class="n">t</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">: angle=</span><span class="si">{</span><span class="n">r_t</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(</span><span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2">°&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="utility-methods">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Utility Methods</a><a class="headerlink" href="#utility-methods" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;zxz&quot;</span><span class="p">)</span>
+
+<span class="c1"># Get rotation magnitude (angle)</span>
+<span class="n">angle</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">magnitude</span><span class="p">()</span>  <span class="c1"># radians</span>
+<span class="n">angle_deg</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(</span><span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Check if identity</span>
+<span class="n">is_id</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">is_identity</span><span class="p">()</span>
+
+<span class="c1"># Check equality</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.7</span><span class="p">,</span> <span class="s2">&quot;zxz&quot;</span><span class="p">)</span>
+<span class="n">are_equal</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">equals</span><span class="p">(</span><span class="n">r2</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="scipy-interoperability">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Scipy Interoperability</a><a class="headerlink" href="#scipy-interoperability" title="Link to this heading"></a></h3>
+<p>Both simcoon and scipy use the scalar-last quaternion convention <code class="docutils literal notranslate"><span class="pre">[qx,</span> <span class="pre">qy,</span> <span class="pre">qz,</span> <span class="pre">qw]</span></code>,
+so conversion between the two is done via quaternion transfer with no trigonometric
+or matrix computation overhead. Scipy is an <strong>optional</strong> dependency — it is only
+imported when <code class="docutils literal notranslate"><span class="pre">to_scipy()</span></code> is called.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rotation</span> <span class="k">as</span> <span class="n">R</span>
+
+<span class="c1"># scipy → simcoon</span>
+<span class="n">scipy_rot</span> <span class="o">=</span> <span class="n">R</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_scipy</span><span class="p">(</span><span class="n">scipy_rot</span><span class="p">)</span>
+
+<span class="c1"># simcoon → scipy</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_angle</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">scipy_rot</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">to_scipy</span><span class="p">()</span>
+
+<span class="c1"># Round-trip is lossless</span>
+<span class="n">q_original</span> <span class="o">=</span> <span class="n">scipy_rot</span><span class="o">.</span><span class="n">as_quat</span><span class="p">()</span>
+<span class="n">q_roundtrip</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_scipy</span><span class="p">(</span><span class="n">scipy_rot</span><span class="p">)</span><span class="o">.</span><span class="n">to_scipy</span><span class="p">()</span><span class="o">.</span><span class="n">as_quat</span><span class="p">()</span>
+<span class="c1"># q_original == q_roundtrip</span>
+</pre></div>
+</div>
+</section>
+<section id="active-vs-passive-rotations">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Active vs Passive Rotations</a><a class="headerlink" href="#active-vs-passive-rotations" title="Link to this heading"></a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">active</span></code> parameter on Voigt methods (<code class="docutils literal notranslate"><span class="pre">apply_stress</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_strain</span></code>,
+<code class="docutils literal notranslate"><span class="pre">apply_stiffness</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_compliance</span></code>, <code class="docutils literal notranslate"><span class="pre">as_voigt_stress_rotation</span></code>, <code class="docutils literal notranslate"><span class="pre">as_voigt_strain_rotation</span></code>) controls the
+rotation convention:</p>
+<ul class="simple">
+<li><p><strong>active=True</strong> (default): <strong>Alibi</strong> rotation — rotates the physical object
+while the coordinate system stays fixed.</p></li>
+<li><p><strong>active=False</strong>: <strong>Alias</strong> rotation — rotates the coordinate system while the
+object stays fixed. This is equivalent to the inverse active rotation.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_angle</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Active: rotate the stress tensor itself</span>
+<span class="n">sigma_active</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_stress</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Passive: express the same stress in a rotated coordinate system</span>
+<span class="n">sigma_passive</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_stress</span><span class="p">(</span><span class="n">sigma</span><span class="p">,</span> <span class="n">active</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="input-validation">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Input Validation</a><a class="headerlink" href="#input-validation" title="Link to this heading"></a></h3>
+<p>All methods that accept NumPy arrays validate the input shape and raise
+<code class="docutils literal notranslate"><span class="pre">ValueError</span></code> with a descriptive message if the dimensions are wrong:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_angle</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="n">r</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">]))</span>
+<span class="c1"># ValueError: v must have 3 elements, got 2</span>
+
+<span class="n">r</span><span class="o">.</span><span class="n">apply_stress</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">]))</span>
+<span class="c1"># ValueError: sigma must have 6 elements, got 3</span>
+
+<span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_matrix</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="c1"># ValueError: R must have shape (3, 3), got (4, 4)</span>
+
+<span class="n">r</span><span class="o">.</span><span class="n">apply_stiffness</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1"># ValueError: L must have shape (6, 6), got (3, 3)</span>
+</pre></div>
+</div>
+<p>Expected input shapes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">from_quat</span></code>: 1D array, 4 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from_matrix</span></code>: 2D array, shape (3, 3)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">from_rotvec</span></code>: 1D array, 3 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply</span></code>: 1D array, 3 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_tensor</span></code>: 2D array, shape (3, 3)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_stress</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_strain</span></code>: 1D array, 6 elements</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">apply_stiffness</span></code>, <code class="docutils literal notranslate"><span class="pre">apply_compliance</span></code>: 2D array, shape (6, 6)</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Quaternions <code class="docutils literal notranslate"><span class="pre">q</span></code> and <code class="docutils literal notranslate"><span class="pre">-q</span></code> represent the same rotation. The <code class="docutils literal notranslate"><span class="pre">equals()</span></code>
+method accounts for this antipodal equivalence.</p>
+</div>
+</section>
+</section>
+<section id="euler-angle-conventions">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Euler Angle Conventions</a><a class="headerlink" href="#euler-angle-conventions" title="Link to this heading"></a></h2>
+<p>Simcoon supports multiple Euler angle conventions:</p>
+<p><strong>Proper Euler angles</strong> (axis sequence where first = last):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">zxz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">zyz</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xyx</span></code>, <code class="docutils literal notranslate"><span class="pre">xzx</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">yxy</span></code>, <code class="docutils literal notranslate"><span class="pre">yzy</span></code></p></li>
+</ul>
+<p><strong>Tait-Bryan angles</strong> (all axes different):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xyz</span></code> (roll-pitch-yaw)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xzy</span></code>, <code class="docutils literal notranslate"><span class="pre">yxz</span></code>, <code class="docutils literal notranslate"><span class="pre">yzx</span></code>, <code class="docutils literal notranslate"><span class="pre">zxy</span></code>, <code class="docutils literal notranslate"><span class="pre">zyx</span></code></p></li>
+</ul>
+<p><strong>Intrinsic vs Extrinsic:</strong></p>
+<ul class="simple">
+<li><p><strong>Intrinsic</strong> (default): rotations about axes of the rotating frame</p></li>
+<li><p><strong>Extrinsic</strong>: rotations about fixed world axes</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Intrinsic ZXZ</span>
+<span class="n">r1</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="s2">&quot;zxz&quot;</span><span class="p">,</span> <span class="n">intrinsic</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+<span class="c1"># Extrinsic XYZ (aerospace convention)</span>
+<span class="n">r2</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="n">roll</span><span class="p">,</span> <span class="n">pitch</span><span class="p">,</span> <span class="n">yaw</span><span class="p">,</span> <span class="s2">&quot;xyz&quot;</span><span class="p">,</span> <span class="n">intrinsic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="practical-examples">
+<h2><a class="toc-backref" href="#id12" role="doc-backlink">Practical Examples</a><a class="headerlink" href="#practical-examples" title="Link to this heading"></a></h2>
+<section id="example-1-rotating-orthotropic-material-properties">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">Example 1: Rotating Orthotropic Material Properties</a><a class="headerlink" href="#example-1-rotating-orthotropic-material-properties" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Define orthotropic material in local coordinates</span>
+<span class="c1"># [E1, E2, E3, nu12, nu13, nu23, G12, G13, G23]</span>
+<span class="n">props</span> <span class="o">=</span> <span class="p">[</span><span class="mf">150e9</span><span class="p">,</span> <span class="mf">10e9</span><span class="p">,</span> <span class="mf">10e9</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span> <span class="mf">0.45</span><span class="p">,</span> <span class="mf">5e9</span><span class="p">,</span> <span class="mf">5e9</span><span class="p">,</span> <span class="mf">3.5e9</span><span class="p">]</span>
+<span class="n">L_local</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">L_ortho</span><span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="s2">&quot;EnuG&quot;</span><span class="p">)</span>
+
+<span class="c1"># Fiber orientation: 45° rotation around z-axis</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_axis_angle</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Rotate stiffness to global coordinates</span>
+<span class="n">L_global</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">apply_stiffness</span><span class="p">(</span><span class="n">L_local</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Local stiffness L11:&quot;</span><span class="p">,</span> <span class="n">L_local</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">,</span> <span class="s2">&quot;GPa&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Global stiffness L11:&quot;</span><span class="p">,</span> <span class="n">L_global</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="mf">1e9</span><span class="p">,</span> <span class="s2">&quot;GPa&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-2-stress-transformation-in-a-rotated-element">
+<h3><a class="toc-backref" href="#id14" role="doc-backlink">Example 2: Stress Transformation in a Rotated Element</a><a class="headerlink" href="#example-2-stress-transformation-in-a-rotated-element" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Stress in global coordinates (Voigt notation)</span>
+<span class="n">sigma_global</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">25.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">])</span>  <span class="c1"># MPa</span>
+
+<span class="c1"># Element orientation (Euler angles)</span>
+<span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">([</span><span class="mi">30</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">60</span><span class="p">])</span>
+
+<span class="c1"># Create rotation</span>
+<span class="n">r</span> <span class="o">=</span> <span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="n">psi</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">phi</span><span class="p">,</span> <span class="s2">&quot;zxz&quot;</span><span class="p">)</span>
+
+<span class="c1"># Transform stress to local element coordinates</span>
+<span class="n">sigma_local</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">inv</span><span class="p">()</span><span class="o">.</span><span class="n">apply_stress</span><span class="p">(</span><span class="n">sigma_global</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Global stress:&quot;</span><span class="p">,</span> <span class="n">sigma_global</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Local stress:&quot;</span><span class="p">,</span> <span class="n">sigma_local</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="example-3-averaging-orientations">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Example 3: Averaging Orientations</a><a class="headerlink" href="#example-3-averaging-orientations" title="Link to this heading"></a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">smc</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Generate random orientations</span>
+<span class="n">rotations</span> <span class="o">=</span> <span class="p">[</span><span class="n">smc</span><span class="o">.</span><span class="n">Rotation</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">)]</span>
+
+<span class="c1"># Approximate mean using iterative SLERP</span>
+<span class="n">r_mean</span> <span class="o">=</span> <span class="n">rotations</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">rotations</span><span class="p">[</span><span class="mi">1</span><span class="p">:],</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">i</span>  <span class="c1"># Weight for new rotation</span>
+    <span class="n">r_mean</span> <span class="o">=</span> <span class="n">r_mean</span><span class="o">.</span><span class="n">slerp</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean rotation angle:&quot;</span><span class="p">,</span> <span class="n">r_mean</span><span class="o">.</span><span class="n">magnitude</span><span class="p">(</span><span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span> <span class="s2">&quot;degrees&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="see-also">
+<h2><a class="toc-backref" href="#id16" role="doc-backlink">See Also</a><a class="headerlink" href="#see-also" title="Link to this heading"></a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="doc_constitutive.html"><span class="doc">The Constitutive Library</span></a> - Constitutive matrices (L_iso, L_ortho, etc.)</p></li>
+<li><p><a class="reference internal" href="doc_transfer.html"><span class="doc">Transfer helpers (Voigt &lt;-&gt; matrix)</span></a> - Voigt notation conversions</p></li>
+<li><p><a class="reference internal" href="doc_kinematics.html"><span class="doc">The Kinematics Library</span></a> - Finite strain kinematics</p></li>
+<li><p><a class="reference internal" href="../../cpp_api/simulation/rotation.html"><span class="doc">The Rotation Module</span></a> - Full C++ API reference</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="doc_constitutive.html" class="btn btn-neutral float-left" title="The Constitutive Library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="doc_contimech.html" class="btn btn-neutral float-right" title="The Contimech Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
