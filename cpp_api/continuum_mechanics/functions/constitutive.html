@@ -1,0 +1,996 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>constitutive.hpp &mdash; Simcoon 1.10.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/cpp_api/continuum_mechanics/functions/constitutive.html"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=b95c35c0"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="contimech.hpp" href="contimech.html" />
+    <link rel="prev" title="Mechanical Functions" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">C++ API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#namespace-overview">Namespace Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Continuum Mechanics</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">C++ API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Continuum Mechanics</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Mechanical Functions</a></li>
+      <li class="breadcrumb-item active">constitutive.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/cpp_api/continuum_mechanics/functions/constitutive.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="constitutive-hpp">
+<h1>constitutive.hpp<a class="headerlink" href="#constitutive-hpp" title="Link to this heading"></a></h1>
+<nav class="contents local" id="on-this-page">
+<p class="topic-title">On this page</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#api-reference" id="id2">API Reference</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>Utility functions for constitutive modeling, including Voigt notation conversions,
+identity tensors, and stiffness/compliance tensor construction for various
+material symmetries (isotropic, cubic, orthotropic, transversely isotropic).</p>
+</section>
+<section id="api-reference">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">API Reference</a><a class="headerlink" href="#api-reference" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45Irealv">
+<span id="_CPPv35Irealv"></span><span id="_CPPv25Irealv"></span><span id="Ireal"></span><span class="target" id="group__constitutive_1gab975804a7c284e385822dd6658c84587"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ireal</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45Irealv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the fourth order identity tensor Ireal written in Voigt notation. </p>
+<p>
+Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">Ir</span> <span class="o">=</span> <span class="n">Ireal</span><span class="p">();</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The following 6x6 mat (arma::mat)         <div class="math notranslate nohighlight">
+\[\begin{split}    I_{real} = \left( \begin{array}{cccccc}
+        1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44Ivolv">
+<span id="_CPPv34Ivolv"></span><span id="_CPPv24Ivolv"></span><span id="Ivol"></span><span class="target" id="group__constitutive_1ga26aa9d2e852a11d4de1edc0574468218"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ivol</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44Ivolv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the volumic of the identity tensor Ivol written in Voigt notation. </p>
+<p>
+Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">Iv</span> <span class="o">=</span> <span class="n">Ivol</span><span class="p">();</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The following 6x6 mat (arma::mat)         <div class="math notranslate nohighlight">
+\[\begin{split}    I_{vol} = \left( \begin{array}{cccccc}
+        1/3 &amp; 1/3 &amp; 1/3 &amp; 0 &amp; 0 &amp; 0 \\
+        1/3 &amp; 1/3 &amp; 1/3 &amp; 0 &amp; 0 &amp; 0 \\
+        1/3 &amp; 1/3 &amp; 1/3 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44Idevv">
+<span id="_CPPv34Idevv"></span><span id="_CPPv24Idevv"></span><span id="Idev"></span><span class="target" id="group__constitutive_1ga8d4770913e5c1d521a6aaf9ae3d2bb8d"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Idev</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44Idevv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the deviatoric of the identity tensor Idev written in Voigt notation. </p>
+<p>
+Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">Id</span> <span class="o">=</span> <span class="n">Idev</span><span class="p">();</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The following 6x6 mat (arma::mat)         <div class="math notranslate nohighlight">
+\[\begin{split}    I_{dev} = I_{real} - I_{vol} = \left( \begin{array}{cccccc}
+        2/3 &amp; -1/3 &amp; -1/3 &amp; 0 &amp; 0 &amp; 0 \\
+        -1/3 &amp; 2/3 &amp; -1/3 &amp; 0 &amp; 0 &amp; 0 \\
+        -1/3 &amp; -1/3 &amp; 2/3 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46Ireal2v">
+<span id="_CPPv36Ireal2v"></span><span id="_CPPv26Ireal2v"></span><span id="Ireal2"></span><span class="target" id="group__constitutive_1gabf7c070cc9472cd0b9c5e6f84397c236"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ireal2</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46Ireal2v" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the fourth order identity tensor <span class="math notranslate nohighlight">\( \widehat{I} \)</span> written in Voigt notation. </p>
+<p>
+For example, this tensor allows to obtain : <span class="math notranslate nohighlight">\( L*\widehat{M}=I \)</span> or <span class="math notranslate nohighlight">\( \widehat{L}*M=I \)</span>, where a matrix <span class="math notranslate nohighlight">\( \widehat{A} \)</span> is set by <span class="math notranslate nohighlight">\( \widehat{A}=\widehat{I}\,A\,\widehat{I} \)</span> <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">Ir2</span> <span class="o">=</span> <span class="n">Ireal2</span><span class="p">();</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The following 6x6 mat (arma::mat)         <div class="math notranslate nohighlight">
+\[\begin{split}    \widehat{I} = \left( \begin{array}{cccccc}
+        1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45Idev2v">
+<span id="_CPPv35Idev2v"></span><span id="_CPPv25Idev2v"></span><span id="Idev2"></span><span class="target" id="group__constitutive_1gaff436fa31bb7d32a66a0150093b1eda0"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Idev2</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45Idev2v" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the deviatoric part of the identity tensor, in the form of <span class="math notranslate nohighlight">\( \widehat{I} \)</span> considering the Voigt notation. </p>
+<p>
+Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">Id2</span> <span class="o">=</span> <span class="n">Idev2</span><span class="p">();</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The following 6x6 mat (arma::mat)         <div class="math notranslate nohighlight">
+\[\begin{split}    I_{dev2} = \left( \begin{array}{cccccc}
+        2/3 &amp; -1/3 &amp; -1/3 &amp; 0 &amp; 0 &amp; 0 \\
+        -1/3 &amp; 2/3 &amp; -1/3 &amp; 0 &amp; 0 &amp; 0 \\
+        -1/3 &amp; -1/3 &amp; 2/3 &amp; 0 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 \\
+        0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv43Ithv">
+<span id="_CPPv33Ithv"></span><span id="_CPPv23Ithv"></span><span id="Ith"></span><span class="target" id="group__constitutive_1ga6fbc336c70448cf768ecb12305f8b684"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ith</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv43Ithv" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the expansion vector. </p>
+<p>
+Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">It</span> <span class="o">=</span> <span class="n">Ith</span><span class="p">();</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The following 6 vec (arma::vec)         <div class="math notranslate nohighlight">
+\[\begin{split}    I_{th} = \left( \begin{array}{c}
+        1 \\
+        1 \\
+        1 \\
+        0 \\
+        0 \\
+        0 \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv43Ir2v">
+<span id="_CPPv33Ir2v"></span><span id="_CPPv23Ir2v"></span><span id="Ir2"></span><span class="target" id="group__constitutive_1gab3ee39251ce6ddce871e95694aa0cb5f"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ir2</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv43Ir2v" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the operator from a stress to strain Voigt convention. </p>
+<p>
+Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">I2</span> <span class="o">=</span> <span class="n">Ir2</span><span class="p">();</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The following 6 vec (arma::vec)         <div class="math notranslate nohighlight">
+\[\begin{split}    I_{r2} = \left( \begin{array}{ccc}
+        1 \\
+        1 \\
+        1 \\
+        2 \\
+        2 \\
+        2 \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44Ir05v">
+<span id="_CPPv34Ir05v"></span><span id="_CPPv24Ir05v"></span><span id="Ir05"></span><span class="target" id="group__constitutive_1ga0082f9aff08cf31f375158744bc17f17"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Ir05</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44Ir05v" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the operator from a strain to stress Voigt convention. </p>
+<p>
+Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">I05</span> <span class="o">=</span> <span class="n">Ir05</span><span class="p">();</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The following 6 vec (arma::vec)         <div class="math notranslate nohighlight">
+\[\begin{split}    I_{r05} = \left( \begin{array}{ccc}
+        1 \\
+        1 \\
+        1 \\
+        0.5 \\
+        0.5 \\
+        0.5 \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45L_isoRKdRKdRKNSt6stringE">
+<span id="_CPPv35L_isoRKdRKdRKNSt6stringE"></span><span id="_CPPv25L_isoRKdRKdRKNSt6stringE"></span><span id="L_iso__doubleCR.doubleCR.ssCR"></span><span class="target" id="group__constitutive_1gaf485036362aaf2d53d4057c64b16cba8"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L_iso</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conv</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;Enu&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45L_isoRKdRKdRKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the elastic stiffness tensor for an isotropic material. </p>
+<p><p>The two first arguments are a couple of Lamé coefficients. The third argument specify which couple has been provided and the order of coefficients. Exhaustive list of possible third argument : ‘Enu’,’nuE,’Kmu’,’muK’, ‘KG’, ‘GK’, ‘lambdamu’, ‘mulambda’, ‘lambdaG’, ‘Glambda’.</p>
+<p>Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">E</span> <span class="o">=</span> <span class="mi">210000</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+<span class="n">mat</span> <span class="n">Liso</span> <span class="o">=</span> <span class="n">L_iso</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="s2">&quot;Enu&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>C1, C2, conv</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 stiffness matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45M_isoRKdRKdRKNSt6stringE">
+<span id="_CPPv35M_isoRKdRKdRKNSt6stringE"></span><span id="_CPPv25M_isoRKdRKdRKNSt6stringE"></span><span id="M_iso__doubleCR.doubleCR.ssCR"></span><span class="target" id="group__constitutive_1gaa1c02355d7e81a82918a2e7badee527d"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">M_iso</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conv</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;Enu&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45M_isoRKdRKdRKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the elastic compliance tensor for an isotropic material. </p>
+<p>
+The two first arguments are a couple of Lamé coefficients. The third argument specify which couple has been provided and the order of coefficients. Exhaustive list of possible third argument : ‘Enu’,’nuE,’Kmu’,’muK’, ‘KG’, ‘GK’, ‘lambdamu’, ‘mulambda’, ‘lambdaG’, ‘Glambda’. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">E</span> <span class="o">=</span> <span class="mi">210000</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">nu</span> <span class="o">=</span> <span class="mf">0.3</span><span class="p">;</span>
+<span class="n">mat</span> <span class="n">Miso</span> <span class="o">=</span> <span class="n">M_iso</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">nu</span><span class="p">,</span> <span class="s2">&quot;Enu&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>C1, C2, conv</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 compliance matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv47L_cubicRKdRKdRKdRKNSt6stringE">
+<span id="_CPPv37L_cubicRKdRKdRKdRKNSt6stringE"></span><span id="_CPPv27L_cubicRKdRKdRKdRKNSt6stringE"></span><span id="L_cubic__doubleCR.doubleCR.doubleCR.ssCR"></span><span class="target" id="group__constitutive_1ga4b20e095cd997a45810d1daf554661d9"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L_cubic</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C3</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conv</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;EnuG&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47L_cubicRKdRKdRKdRKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the elastic stiffness tensor for a cubic material. </p>
+<p>
+Arguments are the stiffness coefficients C11, C12 and C44 or E, nu and G. The fourth argument specify which couple has been provided and the order of coefficients: ‘EnuG’ or ’Cii’. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">C11</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C12</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C44</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">Lcubic</span> <span class="o">=</span> <span class="n">L_cubic</span><span class="p">(</span><span class="n">C11</span><span class="p">,</span> <span class="n">C12</span><span class="p">,</span> <span class="n">C44</span><span class="p">,</span> <span class="s2">&quot;Cii&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>C1, C2, C3, conv</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 stiffness matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv47M_cubicRKdRKdRKdRKNSt6stringE">
+<span id="_CPPv37M_cubicRKdRKdRKdRKNSt6stringE"></span><span id="_CPPv27M_cubicRKdRKdRKdRKNSt6stringE"></span><span id="M_cubic__doubleCR.doubleCR.doubleCR.ssCR"></span><span class="target" id="group__constitutive_1gaefc54f61121ce2719d3d714196bd61e5"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">M_cubic</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C3</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conv</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;EnuG&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47M_cubicRKdRKdRKdRKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the elastic compliance tensor for a cubic material. </p>
+<p>
+Arguments are the stiffness coefficients C11, C12 and C44 or E, nu and G. The fourth argument specify which couple has been provided and the order of coefficients: ‘EnuG’ or ’Cii’. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">C11</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C12</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C44</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">Mcubic</span> <span class="o">=</span> <span class="n">M_cubic</span><span class="p">(</span><span class="n">C11</span><span class="p">,</span><span class="n">C12</span><span class="p">,</span><span class="n">C44</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>C1, C2, C3, conv</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 compliance matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv47L_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE">
+<span id="_CPPv37L_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE"></span><span id="_CPPv27L_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE"></span><span id="L_ortho__doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.ssCR"></span><span class="target" id="group__constitutive_1ga51b51b65975e05c770b20305e2fa2200"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L_ortho</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C11</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C12</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C13</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C22</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C23</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C33</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C44</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C55</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C66</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conv</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;EnuG&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47L_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the elastic stiffness tensor for an orthotropic material. </p>
+<p>
+Arguments could be all the stiffness coefficients ( <span class="math notranslate nohighlight">\( C_{ij} \)</span>) or the material parameter. In this last case for an orthotropic material the material parameters should be : <span class="math notranslate nohighlight">\( E_x, E_y, E_z, \nu_{xy}, \nu_{yz}, \nu_{xz}, G_{xy}, G_{yz}, G_{xz} \)</span>. The last argument must be set to “Cii” if the inputs are the stiffness coefficients or to “EnuG” if the inputs are the material parameters. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">C11</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C12</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C13</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C22</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C23</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C33</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C44</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C55</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C66</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">Lortho</span> <span class="o">=</span> <span class="n">L_ortho</span><span class="p">(</span><span class="n">C11</span><span class="p">,</span> <span class="n">C12</span><span class="p">,</span> <span class="n">C13</span><span class="p">,</span> <span class="n">C22</span><span class="p">,</span> <span class="n">C23</span><span class="p">,</span> <span class="n">C33</span><span class="p">,</span> <span class="n">C44</span><span class="p">,</span> <span class="n">C55</span><span class="p">,</span> <span class="n">C66</span><span class="p">,</span><span class="s2">&quot;Cii&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C11</strong> – first stiffness coefficient (or Ex) </p></li>
+<li><p><strong>C12</strong> – second stiffness coefficient (or Ey) </p></li>
+<li><p><strong>C13</strong> – third stiffness coefficient (or Ez) </p></li>
+<li><p><strong>C22</strong> – fourth stiffness coefficient (or nu_xy) </p></li>
+<li><p><strong>C23</strong> – fifth stiffness coefficient (or nu_yz) </p></li>
+<li><p><strong>C33</strong> – sixth stiffness coefficient (or nu_xz) </p></li>
+<li><p><strong>C44</strong> – seventh stiffness coefficient (or G_xy) </p></li>
+<li><p><strong>C55</strong> – eighth stiffness coefficient (or G_yz) </p></li>
+<li><p><strong>C66</strong> – ninth stiffness coefficient (or G_xz) </p></li>
+<li><p><strong>conv</strong> – convention string: “Cii” for stiffness coefficients or “EnuG” for material parameters </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 stiffness matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv47M_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE">
+<span id="_CPPv37M_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE"></span><span id="_CPPv27M_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE"></span><span id="M_ortho__doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.ssCR"></span><span class="target" id="group__constitutive_1gae896ec05692b6fe65d2fc61942392504"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">M_ortho</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C11</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C12</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C13</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C22</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C23</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C33</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C44</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C55</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">C66</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conv</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="s"><span class="pre">&quot;EnuG&quot;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47M_orthoRKdRKdRKdRKdRKdRKdRKdRKdRKdRKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the elastic compliance tensor for an orthotropic material. </p>
+<p>
+Arguments could be all the stiffness coefficients ( <span class="math notranslate nohighlight">\( C_{ij} \)</span>) or the material parameter. In this last case for an orthotropic material the material parameters should be : <span class="math notranslate nohighlight">\( E_x, E_y, E_z, \nu_{xy}, \nu_{yz}, \nu_{xz}, G_{xy}, G_{yz}, G_{xz} \)</span>. The last argument must be set to “Cii” if the inputs are the stiffness coefficients or to “EnuG” if the inputs are the material parameters. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">C11</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C12</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C13</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C22</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C23</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C33</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C44</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C55</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">C66</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">Mortho</span> <span class="o">=</span> <span class="n">M_ortho</span><span class="p">(</span><span class="n">C11</span><span class="p">,</span> <span class="n">C12</span><span class="p">,</span> <span class="n">C13</span><span class="p">,</span> <span class="n">C22</span><span class="p">,</span> <span class="n">C23</span><span class="p">,</span> <span class="n">C33</span><span class="p">,</span> <span class="n">C44</span><span class="p">,</span> <span class="n">C55</span><span class="p">,</span> <span class="n">C66</span><span class="p">,</span><span class="s2">&quot;Cii&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>C11</strong> – first stiffness coefficient (or Ex) </p></li>
+<li><p><strong>C12</strong> – second stiffness coefficient (or Ey) </p></li>
+<li><p><strong>C13</strong> – third stiffness coefficient (or Ez) </p></li>
+<li><p><strong>C22</strong> – fourth stiffness coefficient (or nu_xy) </p></li>
+<li><p><strong>C23</strong> – fifth stiffness coefficient (or nu_yz) </p></li>
+<li><p><strong>C33</strong> – sixth stiffness coefficient (or nu_xz) </p></li>
+<li><p><strong>C44</strong> – seventh stiffness coefficient (or G_xy) </p></li>
+<li><p><strong>C55</strong> – eighth stiffness coefficient (or G_yz) </p></li>
+<li><p><strong>C66</strong> – ninth stiffness coefficient (or G_xz) </p></li>
+<li><p><strong>conv</strong> – convention string: “Cii” for stiffness coefficients or “EnuG” for material parameters </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 compliance matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410L_isotransRKdRKdRKdRKdRKdRKi">
+<span id="_CPPv310L_isotransRKdRKdRKdRKdRKdRKi"></span><span id="_CPPv210L_isotransRKdRKdRKdRKdRKdRKi"></span><span id="L_isotrans__doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.iCR"></span><span class="target" id="group__constitutive_1gaa951d85ed1016abbf57eccc0685bb4ff"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">L_isotrans</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">EL</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ET</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">nuTL</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">nuTT</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">GLT</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">axis</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410L_isotransRKdRKdRKdRKdRKdRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the elastic stiffness tensor for an isotropic transverse material. </p>
+<p>
+Arguments are longitudinal Young modulus <span class="math notranslate nohighlight">\( E_L \)</span> (EL), transverse Young modulus <span class="math notranslate nohighlight">\( E_T \)</span> (ET), Poisson’s ratio for loading along the longitudinal axis <span class="math notranslate nohighlight">\( \nu_{TL} \)</span> (nuTL), Poisson’s ratio for loading along the transverse axis <span class="math notranslate nohighlight">\( \nu_{TT} \)</span> (nuTT), shear modulus <span class="math notranslate nohighlight">\( G_{LT} \)</span> (GLT) and the axis of symmetry. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">EL</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">ET</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">nuTL</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">nuTT</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">GLT</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">mat</span> <span class="n">Lisotrans</span> <span class="o">=</span> <span class="n">L_isotrans</span><span class="p">(</span><span class="n">EL</span><span class="p">,</span> <span class="n">ET</span><span class="p">,</span> <span class="n">nuTL</span><span class="p">,</span> <span class="n">nuTT</span><span class="p">,</span> <span class="n">GLT</span><span class="p">,</span> <span class="n">axis</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>EL, ET, nuTL, nuTT, GLT, axis</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 stiffness matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410M_isotransRKdRKdRKdRKdRKdRKi">
+<span id="_CPPv310M_isotransRKdRKdRKdRKdRKdRKi"></span><span id="_CPPv210M_isotransRKdRKdRKdRKdRKdRKi"></span><span id="M_isotrans__doubleCR.doubleCR.doubleCR.doubleCR.doubleCR.iCR"></span><span class="target" id="group__constitutive_1ga38b9c0b28b70fd3c552df34d946963dd"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">M_isotrans</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">EL</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ET</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">nuTL</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">nuTT</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">GLT</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">axis</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410M_isotransRKdRKdRKdRKdRKdRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the elastic compliance tensor for an isotropic transverse material. </p>
+<p>
+Arguments are longitudinal Young modulus <span class="math notranslate nohighlight">\( E_L \)</span> (EL), transverse Young modulus <span class="math notranslate nohighlight">\( E_T \)</span> (ET), Poisson’s ratio for loading along the longitudinal axis <span class="math notranslate nohighlight">\( \nu_{TL} \)</span> (nuTL), Poisson’s ratio for loading along the transverse axis <span class="math notranslate nohighlight">\( \nu_{TT} \)</span> (nuTT), shear modulus <span class="math notranslate nohighlight">\( G_{LT} \)</span> (GLT) and the axis of symmetry. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">EL</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">ET</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">nuTL</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">nuTT</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">GLT</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">10000.</span><span class="p">,</span> <span class="mf">100000.</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">mat</span> <span class="n">Misotrans</span> <span class="o">=</span> <span class="n">M_isotrans</span><span class="p">(</span><span class="n">EL</span><span class="p">,</span> <span class="n">ET</span><span class="p">,</span> <span class="n">nuTL</span><span class="p">,</span> <span class="n">nuTT</span><span class="p">,</span> <span class="n">GLT</span><span class="p">,</span> <span class="n">axis</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>EL, ET, nuTL, nuTT, GLT, axis</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 compliance matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv45H_isoRKdRKd">
+<span id="_CPPv35H_isoRKdRKd"></span><span id="_CPPv25H_isoRKdRKd"></span><span id="H_iso__doubleCR.doubleCR"></span><span class="target" id="group__constitutive_1ga8d0ba60226733e6b33f19caa06081a77"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">H_iso</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">etaB</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">etaS</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv45H_isoRKdRKd" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the viscous tensor H for an isotropic material. </p>
+<p>
+Arguments are the Bulk viscosity <span class="math notranslate nohighlight">\( \eta_B \)</span> (etaB) and shear viscosity <span class="math notranslate nohighlight">\( \eta_S \)</span> (etaS). <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">etaB</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">etaS</span> <span class="o">=</span> <span class="n">alead</span><span class="p">(</span><span class="mf">0.</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">Hiso</span> <span class="o">=</span> <span class="n">H_iso</span><span class="p">(</span><span class="n">etaB</span><span class="p">,</span> <span class="n">etaS</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>etaB</strong> – Bulk viscosity <span class="math notranslate nohighlight">\( \eta_B \)</span></p></li>
+<li><p><strong>etaS</strong> – Shear viscosity <span class="math notranslate nohighlight">\( \eta_S \)</span></p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 viscous matrix considering a Voigt notation (arma::mat)         <div class="math notranslate nohighlight">
+\[\begin{split}    H_{iso} = \left( \begin{array}{cccccc}
+    \eta_B + \frac{4}{3} \eta_S &amp; \eta_B - \frac{2}{3} \eta_S &amp; \eta_B - \frac{2}{3} \eta_S &amp; 0 &amp; 0 &amp; 0 \\
+    \eta_B - \frac{2}{3} \eta_S &amp; \eta_B + \frac{4}{3} \eta_S &amp; \eta_B - \frac{2}{3} \eta_S &amp; 0 &amp; 0 &amp; 0 \\
+    \eta_B - \frac{2}{3} \eta_S &amp; \eta_B - \frac{2}{3} \eta_S &amp; \eta_B + \frac{4}{3} \eta_S &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; \eta_S &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; \eta_S &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \eta_S \end{array} \right)
+\end{split}\]</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv47el_predRKN4arma3vecERKN4arma3matERKN4arma3vecERKi">
+<span id="_CPPv37el_predRKN4arma3vecERKN4arma3matERKN4arma3vecERKi"></span><span id="_CPPv27el_predRKN4arma3vecERKN4arma3matERKN4arma3vecERKi"></span><span id="el_pred__arma::vecCR.arma::matCR.arma::vecCR.iCR"></span><span class="target" id="group__constitutive_1gae54ec8e411bc6a54c98622f5e2a9f0ec"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">el_pred</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sigma_start</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">L</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Eel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ndi</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47el_predRKN4arma3vecERKN4arma3matERKN4arma3vecERKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the stress tensor (elastic prediction), from the previous stress increment, providing the elastic stiffness tensor and the trial elastic strain increment: </p>
+<p>
+The input parameters are : sigma_start: The previous stress, L : Stiffness matrix; Eel : elastic strain vector, ndi (optional, default = 3): number of dimensions <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">sigma_start</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">sigma_start</span><span class="o">.</span><span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">L</span> <span class="o">=</span> <span class="n">L_iso</span><span class="p">(</span><span class="mi">70000</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span><span class="s2">&quot;Enu&quot;</span><span class="p">);</span>
+<span class="n">vec</span> <span class="n">Eel</span><span class="p">;</span>
+<span class="n">Eel</span><span class="o">.</span><span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="nb">int</span> <span class="n">ndi</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">vec</span> <span class="n">sigma</span> <span class="o">=</span>  <span class="n">el_pred</span><span class="p">(</span><span class="n">sigma_start</span><span class="p">,</span><span class="n">L</span><span class="p">,</span> <span class="n">Eel</span><span class="p">,</span> <span class="n">ndi</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>sigma_start, L, Eel, ndi</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The predicted 6 vec stress vector (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv47el_predRKN4arma3matERKN4arma3vecERKi">
+<span id="_CPPv37el_predRKN4arma3matERKN4arma3vecERKi"></span><span id="_CPPv27el_predRKN4arma3matERKN4arma3vecERKi"></span><span id="el_pred__arma::matCR.arma::vecCR.iCR"></span><span class="target" id="group__constitutive_1ga1e903914da56967276465cde1aea053e"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">el_pred</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">L</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Eel</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ndi</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv47el_predRKN4arma3matERKN4arma3vecERKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the stress tensor (elastic prediction), from the elastic stiffness tensor and the trial elastic strain: </p>
+<p>
+The input parameters are : L : Stiffness matrix; Eel ; elastic strain vector, ndi (optional, default = 3): number of dimensions <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">L</span> <span class="o">=</span> <span class="n">L_iso</span><span class="p">(</span><span class="mi">70000</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">,</span><span class="s2">&quot;Enu&quot;</span><span class="p">);</span>
+<span class="n">vec</span> <span class="n">Eel</span><span class="p">;</span>
+<span class="n">Eel</span><span class="o">.</span><span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="nb">int</span> <span class="n">ndi</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+<span class="n">vec</span> <span class="n">sigma</span> <span class="o">=</span>  <span class="n">el_pred</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">Eel</span><span class="p">,</span> <span class="n">ndi</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>L, Eel, ndi</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The predicted 6 vec stress vector (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410IsotropizeRKN4arma3matE">
+<span id="_CPPv310IsotropizeRKN4arma3matE"></span><span id="_CPPv210IsotropizeRKN4arma3matE"></span><span id="Isotropize__arma::matCR"></span><span class="target" id="group__constitutive_1ga2881f25f193cdbdee4c80513a1775004"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Isotropize</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Lt</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410IsotropizeRKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the isotropized tangent modulus from the spectral decomposition (Bornet et al., 2001) </p>
+<p>
+The returned isotropic tensor is called consistent since for any given strain it return the same stress as the anisotropic version. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">double</span> <span class="n">EL</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">ET</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">nuTL</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">nuTT</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">GLT</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="n">mat</span> <span class="n">L_isotrans</span> <span class="o">=</span> <span class="n">L_isotrans</span><span class="p">(</span><span class="n">EL</span><span class="p">,</span> <span class="n">ET</span><span class="p">,</span> <span class="n">nuTL</span><span class="p">,</span> <span class="n">nuTT</span><span class="p">,</span> <span class="n">GLT</span><span class="p">,</span> <span class="n">axis</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">L_iso</span> <span class="o">=</span> <span class="n">Isotropize</span><span class="p">(</span><span class="n">Lisotrans</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>Lt</strong> – </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 isotropic matrix considering a Voigt notation (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Mechanical Functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="contimech.html" class="btn btn-neutral float-right" title="contimech.hpp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

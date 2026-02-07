@@ -1,0 +1,1232 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Homogenization &mdash; Simcoon 1.10.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/cpp_api/homogenization/index.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b95c35c0"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="User Material Subroutines" href="../umat/index.html" />
+    <link rel="prev" title="Phase" href="../simulation/phase.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#namespace-overview">Namespace Overview</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">C++ API Reference</a></li>
+      <li class="breadcrumb-item active">Homogenization</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cpp_api/homogenization/index.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="homogenization">
+<h1>Homogenization<a class="headerlink" href="#homogenization" title="Link to this heading"></a></h1>
+<p>This module provides mean-field homogenization methods for predicting
+effective properties of composite materials.</p>
+<section id="eshelby-tensor">
+<h2>Eshelby Tensor<a class="headerlink" href="#eshelby-tensor" title="Link to this heading"></a></h2>
+<p>The foundation of mean-field homogenization is the Eshelby tensor, which
+describes the strain field inside an ellipsoidal inclusion embedded in an
+infinite matrix.</p>
+</section>
+<section id="homogenization-schemes">
+<h2>Homogenization Schemes<a class="headerlink" href="#homogenization-schemes" title="Link to this heading"></a></h2>
+<p>Functions for computing effective properties using Mori-Tanaka,
+self-consistent, and other mean-field schemes.</p>
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multiE">
+<span id="_CPPv3N7simcoon14cylinder_multiE"></span><span id="_CPPv2N7simcoon14cylinder_multiE"></span><span id="simcoon::cylinder_multi"></span><span class="target" id="classsimcoon_1_1cylinder__multi"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">cylinder_multi</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11phase_multiE" title="simcoon::phase_multi"><span class="n"><span class="pre">phase_multi</span></span></a><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multiE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;cylinder_multi.hpp&gt;</em></div>
+<p>Cylindrical inclusion class for fiber-reinforced composite homogenization. </p>
+<p>This class implements the mechanics of cylindrical (fiber) inclusions for mean-field homogenization of fiber-reinforced composites. Cylindrical inclusions are a limiting case of ellipsoids with one infinite axis.</p>
+<p><strong>Applications:</strong><ul class="simple">
+<li><p>Unidirectional fiber composites</p></li>
+<li><p>Long fiber reinforced polymers</p></li>
+<li><p>Carbon fiber composites</p></li>
+</ul>
+</p>
+<p><strong>Coordinate System:</strong><ul class="simple">
+<li><p>The cylinder axis is aligned with the local x₃ direction</p></li>
+<li><p>The cross-section is circular in the x₁-x₂ plane</p></li>
+</ul>
+</p>
+<p><strong>Concentration Tensors:</strong></p>
+<p>The strain concentration relates macroscopic to local strain:   <div class="math notranslate nohighlight">
+\[\boldsymbol{\varepsilon}^{fiber} = \mathbf{A} : \bar{\boldsymbol{\varepsilon}}
+\]</div>
+</p>
+<p>Local and global concentration tensors are related by rotation:   <div class="math notranslate nohighlight">
+\[\mathbf{A} = \mathbf{R}^T : \mathbf{A}_{loc} : \mathbf{R}
+\]</div>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classsimcoon_1_1phase__multi"><span class="std std-ref">phase_multi</span></a> for base class documentation </p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classsimcoon_1_1ellipsoid__multi"><span class="std std-ref">ellipsoid_multi</span></a> for general ellipsoidal inclusions </p>
+</div>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multi14cylinder_multiEv">
+<span id="_CPPv3N7simcoon14cylinder_multi14cylinder_multiEv"></span><span id="_CPPv2N7simcoon14cylinder_multi14cylinder_multiEv"></span><span id="simcoon::cylinder_multi::cylinder_multi"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1a9c22d6ba0881f1e2e817422ab102e2d4"></span><span class="sig-name descname"><span class="n"><span class="pre">cylinder_multi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multi14cylinder_multiEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Default constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multi14cylinder_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE">
+<span id="_CPPv3N7simcoon14cylinder_multi14cylinder_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE"></span><span id="_CPPv2N7simcoon14cylinder_multi14cylinder_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE"></span><span id="simcoon::cylinder_multi::cylinder_multi__arma::matCR.arma::matCR.arma::matCR.arma::matCR.arma::vecCR.arma::matCR.arma::matCR.arma::matCR.arma::matCR"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1a73d085956607a4b412f78db9192008ed"></span><span class="sig-name descname"><span class="n"><span class="pre">cylinder_multi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multi14cylinder_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Full constructor with all parameters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – Strain concentration tensor (global) </p></li>
+<li><p><strong>A_start</strong> – Initial strain concentration tensor </p></li>
+<li><p><strong>B</strong> – Stress concentration tensor (global) </p></li>
+<li><p><strong>B_start</strong> – Initial stress concentration tensor </p></li>
+<li><p><strong>A_in</strong> – Inelastic concentration vector </p></li>
+<li><p><strong>T_loc</strong> – Local interaction tensor </p></li>
+<li><p><strong>T</strong> – Global interaction tensor </p></li>
+<li><p><strong>A_loc</strong> – Local strain concentration tensor </p></li>
+<li><p><strong>B_loc</strong> – Local stress concentration tensor </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multi14cylinder_multiERK14cylinder_multi">
+<span id="_CPPv3N7simcoon14cylinder_multi14cylinder_multiERK14cylinder_multi"></span><span id="_CPPv2N7simcoon14cylinder_multi14cylinder_multiERK14cylinder_multi"></span><span id="simcoon::cylinder_multi::cylinder_multi__cylinder_multiCR"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1a29faaafde5fd286140ef0e714cb5813c"></span><span class="sig-name descname"><span class="n"><span class="pre">cylinder_multi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon14cylinder_multi14cylinder_multiERK14cylinder_multi" title="simcoon::cylinder_multi::cylinder_multi"><span class="n"><span class="pre">cylinder_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multi14cylinder_multiERK14cylinder_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Copy constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cm</strong> – <a class="reference internal" href="#classsimcoon_1_1cylinder__multi"><span class="std std-ref">cylinder_multi</span></a> object to copy </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multiD0Ev">
+<span id="_CPPv3N7simcoon14cylinder_multiD0Ev"></span><span id="_CPPv2N7simcoon14cylinder_multiD0Ev"></span><span id="simcoon::cylinder_multi::~cylinder_multi"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1a81cdd423a2baad64f110456eda00448a"></span><span class="sig-name descname"><span class="n"><span class="pre">~cylinder_multi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multiD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>Destructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multiaSERK14cylinder_multi">
+<span id="_CPPv3N7simcoon14cylinder_multiaSERK14cylinder_multi"></span><span id="_CPPv2N7simcoon14cylinder_multiaSERK14cylinder_multi"></span><span id="simcoon::cylinder_multi::assign-operator__cylinder_multiCR"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1a6214f2e469bf00b7873622a8a8c9f182"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon14cylinder_multiE" title="simcoon::cylinder_multi"><span class="n"><span class="pre">cylinder_multi</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon14cylinder_multiE" title="simcoon::cylinder_multi"><span class="n"><span class="pre">cylinder_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multiaSERK14cylinder_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Assignment operator. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cm</strong> – <a class="reference internal" href="#classsimcoon_1_1cylinder__multi"><span class="std std-ref">cylinder_multi</span></a> object to assign from </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to this object </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multi5T_locE">
+<span id="_CPPv3N7simcoon14cylinder_multi5T_locE"></span><span id="_CPPv2N7simcoon14cylinder_multi5T_locE"></span><span id="simcoon::cylinder_multi::T_loc__arma::mat"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1ab53a7d3f3c59d2ed4141e998f7e40b79"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_loc</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multi5T_locE" title="Link to this definition"></a><br /></dt>
+<dd><p>Interaction tensor in local coordinates (6×6) </p>
+<p>Computed for cylinder geometry in the local frame where the cylinder axis is aligned with x₃. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multi1TE">
+<span id="_CPPv3N7simcoon14cylinder_multi1TE"></span><span id="_CPPv2N7simcoon14cylinder_multi1TE"></span><span id="simcoon::cylinder_multi::T__arma::mat"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1a2b0dac617e5365a4570b35d6dfc2faae"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multi1TE" title="Link to this definition"></a><br /></dt>
+<dd><p>Interaction tensor in global coordinates (6×6) </p>
+<p>Rotated from local to global using cylinder orientation </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multi5A_locE">
+<span id="_CPPv3N7simcoon14cylinder_multi5A_locE"></span><span id="_CPPv2N7simcoon14cylinder_multi5A_locE"></span><span id="simcoon::cylinder_multi::A_loc__arma::mat"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1a2f98671d34797cea1633036228cf0cac"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A_loc</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multi5A_locE" title="Link to this definition"></a><br /></dt>
+<dd><p>Strain concentration tensor in local coordinates (6×6) </p>
+<p>Local frame concentration tensor before rotation to global frame </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multi5B_locE">
+<span id="_CPPv3N7simcoon14cylinder_multi5B_locE"></span><span id="_CPPv2N7simcoon14cylinder_multi5B_locE"></span><span id="simcoon::cylinder_multi::B_loc__arma::mat"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1af623bb16d3066f49bb35feb57115156f"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">B_loc</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multi5B_locE" title="Link to this definition"></a><br /></dt>
+<dd><p>Stress concentration tensor in local coordinates (6×6) </p>
+<p>Local frame concentration tensor before rotation to global frame </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon14cylinder_multilsERNSt7ostreamERK14cylinder_multi">
+<span id="_CPPv3N7simcoon14cylinder_multilsERNSt7ostreamERK14cylinder_multi"></span><span id="_CPPv2N7simcoon14cylinder_multilsERNSt7ostreamERK14cylinder_multi"></span><span id="simcoon::cylinder_multi::lshift-operator__osR.cylinder_multiCR"></span><span class="target" id="classsimcoon_1_1cylinder__multi_1aa2f5c8be794c8935f08705613dd48b55"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon14cylinder_multiE" title="simcoon::cylinder_multi"><span class="n"><span class="pre">cylinder_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon14cylinder_multilsERNSt7ostreamERK14cylinder_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Output stream operator for debugging. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>os</strong> – Output stream </p></li>
+<li><p><strong>cm</strong> – <a class="reference internal" href="#classsimcoon_1_1cylinder__multi"><span class="std std-ref">cylinder_multi</span></a> object to output </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to output stream </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multiE">
+<span id="_CPPv3N7simcoon15ellipsoid_multiE"></span><span id="_CPPv2N7simcoon15ellipsoid_multiE"></span><span id="simcoon::ellipsoid_multi"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ellipsoid_multi</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11phase_multiE" title="simcoon::phase_multi"><span class="n"><span class="pre">phase_multi</span></span></a><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multiE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;ellipsoid_multi.hpp&gt;</em></div>
+<p>Ellipsoidal inclusion class for Eshelby-based homogenization. </p>
+<p>This class implements the mechanics of ellipsoidal inclusions embedded in an infinite matrix, based on Eshelby’s classical solution (1957). It is used in mean-field homogenization methods such as:<ul class="simple">
+<li><p>Mori-Tanaka scheme</p></li>
+<li><p>Self-consistent scheme</p></li>
+<li><p>Differential scheme</p></li>
+</ul>
+</p>
+<p><strong>Key Tensors:</strong></p>
+<p>The Eshelby tensor <span class="math notranslate nohighlight">\( \mathbf{S} \)</span> relates the constrained strain in an inclusion to its eigenstrain:   <div class="math notranslate nohighlight">
+\[\boldsymbol{\varepsilon}^c = \mathbf{S} : \boldsymbol{\varepsilon}^*
+\]</div>
+</p>
+<p>Hill’s polarization tensor <span class="math notranslate nohighlight">\( \mathbf{P} \)</span> is related to the Eshelby tensor by:   <div class="math notranslate nohighlight">
+\[\mathbf{P} = \mathbf{S} : \mathbf{L}_0^{-1}
+\]</div>
+</p>
+<p>The interaction tensor <span class="math notranslate nohighlight">\( \mathbf{T} \)</span> (Wu’s tensor) relates inclusion stress to the strain difference:   <div class="math notranslate nohighlight">
+\[\mathbf{T} = \mathbf{L}_0 : (\mathbf{I} - \mathbf{S})
+\]</div>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classsimcoon_1_1phase__multi"><span class="std std-ref">phase_multi</span></a> for base class documentation </p>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Eshelby, J.D. (1957). The determination of the elastic field of an ellipsoidal inclusion, and related problems. Proc. R. Soc. Lond. <a class="reference internal" href="#classsimcoon_1_1phase__multi_1ad4191de892f9af2abd1ce7acfe89e0c0"><span class="std std-ref">A</span></a> 241, 376-396. </p>
+</div>
+</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>All tensors are computed in the local coordinate system of the ellipsoid and can be rotated to global coordinates using the ellipsoid orientation.</p>
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiEv">
+<span id="_CPPv3N7simcoon15ellipsoid_multi15ellipsoid_multiEv"></span><span id="_CPPv2N7simcoon15ellipsoid_multi15ellipsoid_multiEv"></span><span id="simcoon::ellipsoid_multi::ellipsoid_multi"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a50a5667ac5a63e0cd157f46ad319e816"></span><span class="sig-name descname"><span class="n"><span class="pre">ellipsoid_multi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Default constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi15ellipsoid_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi15ellipsoid_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE"></span><span id="simcoon::ellipsoid_multi::ellipsoid_multi__arma::matCR.arma::matCR.arma::matCR.arma::matCR.arma::vecCR.arma::matCR.arma::matCR.arma::matCR.arma::matCR.arma::matCR.arma::matCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a4d9537579a74264d40830dac8aeedf0d"></span><span class="sig-name descname"><span class="n"><span class="pre">ellipsoid_multi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Full constructor with all parameters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – Strain concentration tensor </p></li>
+<li><p><strong>A_start</strong> – Initial strain concentration tensor </p></li>
+<li><p><strong>B</strong> – Stress concentration tensor </p></li>
+<li><p><strong>B_start</strong> – Initial stress concentration tensor </p></li>
+<li><p><strong>A_in</strong> – Inelastic concentration vector </p></li>
+<li><p><strong>S_loc</strong> – Local Eshelby tensor </p></li>
+<li><p><strong>P_loc</strong> – Local polarization tensor </p></li>
+<li><p><strong>T_loc</strong> – Local interaction tensor </p></li>
+<li><p><strong>T</strong> – Global interaction tensor </p></li>
+<li><p><strong>T_in_loc</strong> – Local inelastic interaction tensor </p></li>
+<li><p><strong>T_in</strong> – Global inelastic interaction tensor </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiERK15ellipsoid_multi">
+<span id="_CPPv3N7simcoon15ellipsoid_multi15ellipsoid_multiERK15ellipsoid_multi"></span><span id="_CPPv2N7simcoon15ellipsoid_multi15ellipsoid_multiERK15ellipsoid_multi"></span><span id="simcoon::ellipsoid_multi::ellipsoid_multi__ellipsoid_multiCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a70f69e75c95e1e805ed7ec9f184adc7a"></span><span class="sig-name descname"><span class="n"><span class="pre">ellipsoid_multi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiERK15ellipsoid_multi" title="simcoon::ellipsoid_multi::ellipsoid_multi"><span class="n"><span class="pre">ellipsoid_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi15ellipsoid_multiERK15ellipsoid_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Copy constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>em</strong> – <a class="reference internal" href="#classsimcoon_1_1ellipsoid__multi"><span class="std std-ref">ellipsoid_multi</span></a> object to copy </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multiD0Ev">
+<span id="_CPPv3N7simcoon15ellipsoid_multiD0Ev"></span><span id="_CPPv2N7simcoon15ellipsoid_multiD0Ev"></span><span id="simcoon::ellipsoid_multi::~ellipsoid_multi"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a304a5f10500596f6eaca2516de99b14c"></span><span class="sig-name descname"><span class="n"><span class="pre">~ellipsoid_multi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multiD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>Destructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi9fillS_locERKN4arma3matERK9ellipsoid">
+<span id="_CPPv3N7simcoon15ellipsoid_multi9fillS_locERKN4arma3matERK9ellipsoid"></span><span id="_CPPv2N7simcoon15ellipsoid_multi9fillS_locERKN4arma3matERK9ellipsoid"></span><span id="simcoon::ellipsoid_multi::fillS_loc__arma::matCR.ellipsoidCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a417b2ed868e0d5426fefecbe74bb3f76"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fillS_loc</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ellipsoid</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi9fillS_locERKN4arma3matERK9ellipsoid" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute the Eshelby tensor in local coordinates. </p>
+<p>Computes <span class="math notranslate nohighlight">\( \mathbf{S} \)</span> based on the matrix stiffness and ellipsoid geometry using numerical integration over the unit sphere.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L0</strong> – Matrix (reference medium) stiffness tensor (6×6) </p></li>
+<li><p><strong>ell</strong> – Ellipsoid geometry (aspect ratios and orientation) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi9fillP_locERKN4arma3matERK9ellipsoid">
+<span id="_CPPv3N7simcoon15ellipsoid_multi9fillP_locERKN4arma3matERK9ellipsoid"></span><span id="_CPPv2N7simcoon15ellipsoid_multi9fillP_locERKN4arma3matERK9ellipsoid"></span><span id="simcoon::ellipsoid_multi::fillP_loc__arma::matCR.ellipsoidCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1afdf923a29c04f02efca9496de878455f"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fillP_loc</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ellipsoid</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi9fillP_locERKN4arma3matERK9ellipsoid" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute Hill’s polarization tensor in local coordinates. </p>
+<p>Computes <span class="math notranslate nohighlight">\( \mathbf{P} = \mathbf{S} : \mathbf{L}_0^{-1} \)</span></p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L0</strong> – Matrix stiffness tensor (6×6) </p></li>
+<li><p><strong>ell</strong> – Ellipsoid geometry </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi5fillTERKN4arma3matERKN4arma3matERK9ellipsoid">
+<span id="_CPPv3N7simcoon15ellipsoid_multi5fillTERKN4arma3matERKN4arma3matERK9ellipsoid"></span><span id="_CPPv2N7simcoon15ellipsoid_multi5fillTERKN4arma3matERKN4arma3matERK9ellipsoid"></span><span id="simcoon::ellipsoid_multi::fillT__arma::matCR.arma::matCR.ellipsoidCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a460f379db1832c015ae8ca6d1e682a63"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fillT</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ellipsoid</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi5fillTERKN4arma3matERKN4arma3matERK9ellipsoid" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute the interaction tensor. </p>
+<p>Computes the interaction tensor <span class="math notranslate nohighlight">\( \mathbf{T} \)</span> that relates the stress in the inclusion to the strain mismatch with the matrix.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L0</strong> – Matrix stiffness tensor (6×6) </p></li>
+<li><p><strong>Lt</strong> – Inclusion tangent stiffness tensor (6×6) </p></li>
+<li><p><strong>ell</strong> – Ellipsoid geometry </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi9fillT_isoERKN4arma3matERKN4arma3matERK9ellipsoid">
+<span id="_CPPv3N7simcoon15ellipsoid_multi9fillT_isoERKN4arma3matERKN4arma3matERK9ellipsoid"></span><span id="_CPPv2N7simcoon15ellipsoid_multi9fillT_isoERKN4arma3matERKN4arma3matERK9ellipsoid"></span><span id="simcoon::ellipsoid_multi::fillT_iso__arma::matCR.arma::matCR.ellipsoidCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1aee179a3a1d57f692f90485b6d65110da"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fillT_iso</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ellipsoid</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi9fillT_isoERKN4arma3matERKN4arma3matERK9ellipsoid" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute the interaction tensor for isotropic matrix. </p>
+<p>Optimized computation when the matrix is isotropic, using analytical expressions for the Eshelby tensor.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L0</strong> – Isotropic matrix stiffness tensor (6×6) </p></li>
+<li><p><strong>Lt</strong> – Inclusion tangent stiffness tensor (6×6) </p></li>
+<li><p><strong>ell</strong> – Ellipsoid geometry </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi12fillT_mec_inERKN4arma3matERKN4arma3matERK9ellipsoid">
+<span id="_CPPv3N7simcoon15ellipsoid_multi12fillT_mec_inERKN4arma3matERKN4arma3matERK9ellipsoid"></span><span id="_CPPv2N7simcoon15ellipsoid_multi12fillT_mec_inERKN4arma3matERKN4arma3matERK9ellipsoid"></span><span id="simcoon::ellipsoid_multi::fillT_mec_in__arma::matCR.arma::matCR.ellipsoidCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a252506d098085b4d618156b5dead0d45"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">fillT_mec_in</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">ellipsoid</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi12fillT_mec_inERKN4arma3matERKN4arma3matERK9ellipsoid" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute the inelastic interaction tensor. </p>
+<p>Computes the tensor relating eigenstrain/transformation strain to the resulting stress perturbation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>L0</strong> – Matrix stiffness tensor (6×6) </p></li>
+<li><p><strong>Lt</strong> – Inclusion tangent stiffness tensor (6×6) </p></li>
+<li><p><strong>ell</strong> – Ellipsoid geometry </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multiaSERK15ellipsoid_multi">
+<span id="_CPPv3N7simcoon15ellipsoid_multiaSERK15ellipsoid_multi"></span><span id="_CPPv2N7simcoon15ellipsoid_multiaSERK15ellipsoid_multi"></span><span id="simcoon::ellipsoid_multi::assign-operator__ellipsoid_multiCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a5d77558e5ac723019b474aad901eb59a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon15ellipsoid_multiE" title="simcoon::ellipsoid_multi"><span class="n"><span class="pre">ellipsoid_multi</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon15ellipsoid_multiE" title="simcoon::ellipsoid_multi"><span class="n"><span class="pre">ellipsoid_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multiaSERK15ellipsoid_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Assignment operator. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>em</strong> – <a class="reference internal" href="#classsimcoon_1_1ellipsoid__multi"><span class="std std-ref">ellipsoid_multi</span></a> object to assign from </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to this object </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi5S_locE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi5S_locE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi5S_locE"></span><span id="simcoon::ellipsoid_multi::S_loc__arma::mat"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a9fd7444bd5e7df5b3bcd52482fc091a1"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">S_loc</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi5S_locE" title="Link to this definition"></a><br /></dt>
+<dd><p>Eshelby tensor in local coordinates (6×6 in Voigt notation) </p>
+<p>The Eshelby tensor depends only on the ellipsoid aspect ratios and the matrix Poisson ratio (for isotropic matrix). </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi5P_locE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi5P_locE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi5P_locE"></span><span id="simcoon::ellipsoid_multi::P_loc__arma::mat"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a9f2ebd757aeb559657e614a296c96ed4"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">P_loc</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi5P_locE" title="Link to this definition"></a><br /></dt>
+<dd><p>Hill’s polarization tensor in local coordinates (6×6 in Voigt notation) </p>
+<p>Related to Eshelby tensor: <span class="math notranslate nohighlight">\( \mathbf{P} = \mathbf{S} : \mathbf{L}_0^{-1} \)</span></p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi5T_locE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi5T_locE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi5T_locE"></span><span id="simcoon::ellipsoid_multi::T_loc__arma::mat"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1ab53a7d3f3c59d2ed4141e998f7e40b79"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_loc</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi5T_locE" title="Link to this definition"></a><br /></dt>
+<dd><p>Interaction tensor (Wu’s tensor) in local coordinates (6×6) </p>
+<p><span class="math notranslate nohighlight">\( \mathbf{T}_{loc} = \mathbf{L}_0 : (\mathbf{I} - \mathbf{S}) \)</span></p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi1TE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi1TE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi1TE"></span><span id="simcoon::ellipsoid_multi::T__arma::mat"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a2b0dac617e5365a4570b35d6dfc2faae"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi1TE" title="Link to this definition"></a><br /></dt>
+<dd><p>Interaction tensor in global coordinates (6×6) </p>
+<p>Rotated from local to global using ellipsoid orientation </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi8T_in_locE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi8T_in_locE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi8T_in_locE"></span><span id="simcoon::ellipsoid_multi::T_in_loc__arma::mat"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1aa43b34d5ea677f8669b5b2f69905cbec"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_in_loc</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi8T_in_locE" title="Link to this definition"></a><br /></dt>
+<dd><p>Inelastic interaction tensor in local coordinates (6×6) </p>
+<p>Used for eigenstrain/transformation strain contributions </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi4T_inE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi4T_inE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi4T_inE"></span><span id="simcoon::ellipsoid_multi::T_in__arma::mat"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1aaabba17e863cc8e67fc5fd35793e8276"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">T_in</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi4T_inE" title="Link to this definition"></a><br /></dt>
+<dd><p>Inelastic interaction tensor in global coordinates (6×6) </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-static-attributes">Public Static Attributes</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi2mpE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi2mpE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi2mpE"></span><span id="simcoon::ellipsoid_multi::mp__i"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a4b5efeeced2b749191f71afc3bc8bebd"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mp</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi2mpE" title="Link to this definition"></a><br /></dt>
+<dd><p>Number of integration points in polar direction for numerical integration. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi2npE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi2npE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi2npE"></span><span id="simcoon::ellipsoid_multi::np__i"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a928495140935d9d6ce0a100550473140"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">np</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi2npE" title="Link to this definition"></a><br /></dt>
+<dd><p>Number of integration points in azimuthal direction. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi1xE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi1xE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi1xE"></span><span id="simcoon::ellipsoid_multi::x__arma::vec"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1ae9d41b32c4679e68d26852796e2b785c"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">x</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi1xE" title="Link to this definition"></a><br /></dt>
+<dd><p>Gauss points for polar integration. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi2wxE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi2wxE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi2wxE"></span><span id="simcoon::ellipsoid_multi::wx__arma::vec"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a9bcb3027a9bb4aa964110a0677dd0336"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">wx</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi2wxE" title="Link to this definition"></a><br /></dt>
+<dd><p>Gauss weights for polar integration. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi1yE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi1yE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi1yE"></span><span id="simcoon::ellipsoid_multi::y__arma::vec"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1afff0e9cb0615eb2d2de00af317dc29bf"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">y</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi1yE" title="Link to this definition"></a><br /></dt>
+<dd><p>Gauss points for azimuthal integration. </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multi2wyE">
+<span id="_CPPv3N7simcoon15ellipsoid_multi2wyE"></span><span id="_CPPv2N7simcoon15ellipsoid_multi2wyE"></span><span id="simcoon::ellipsoid_multi::wy__arma::vec"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a616eb1454ffa71a91427b1d91cc09d8d"></span><span class="k"><span class="pre">static</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">wy</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multi2wyE" title="Link to this definition"></a><br /></dt>
+<dd><p>Gauss weights for azimuthal integration. </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon15ellipsoid_multilsERNSt7ostreamERK15ellipsoid_multi">
+<span id="_CPPv3N7simcoon15ellipsoid_multilsERNSt7ostreamERK15ellipsoid_multi"></span><span id="_CPPv2N7simcoon15ellipsoid_multilsERNSt7ostreamERK15ellipsoid_multi"></span><span id="simcoon::ellipsoid_multi::lshift-operator__osR.ellipsoid_multiCR"></span><span class="target" id="classsimcoon_1_1ellipsoid__multi_1a1dafa45ed29440f5febd30d20a3cec86"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon15ellipsoid_multiE" title="simcoon::ellipsoid_multi"><span class="n"><span class="pre">ellipsoid_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon15ellipsoid_multilsERNSt7ostreamERK15ellipsoid_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Output stream operator for debugging. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>os</strong> – Output stream </p></li>
+<li><p><strong>em</strong> – <a class="reference internal" href="#classsimcoon_1_1ellipsoid__multi"><span class="std std-ref">ellipsoid_multi</span></a> object to output </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to output stream </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multiE">
+<span id="_CPPv3N7simcoon11layer_multiE"></span><span id="_CPPv2N7simcoon11layer_multiE"></span><span id="simcoon::layer_multi"></span><span class="target" id="classsimcoon_1_1layer__multi"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">layer_multi</span></span></span><span class="w"> </span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="k"><span class="pre">public</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11phase_multiE" title="simcoon::phase_multi"><span class="n"><span class="pre">phase_multi</span></span></a><a class="headerlink" href="#_CPPv4N7simcoon11layer_multiE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;layer_multi.hpp&gt;</em></div>
+<p>Layer class for laminated composite homogenization. </p>
+<p>This class implements the mechanics of layered composites for mean-field homogenization. It is used for materials with a stratified microstructure where layers are stacked in a specific direction.</p>
+<p><strong>Applications:</strong><ul class="simple">
+<li><p>Laminated composites (e.g., carbon fiber laminates)</p></li>
+<li><p>Layered geological media</p></li>
+<li><p>Multilayer coatings</p></li>
+<li><p>Sandwich structures</p></li>
+</ul>
+</p>
+<p><strong>Coordinate System:</strong><ul class="simple">
+<li><p>The stacking direction is aligned with the normal direction (n)</p></li>
+<li><p>The in-plane directions are tangential (t)</p></li>
+</ul>
+</p>
+<p><strong>Stress/Strain Decomposition:</strong></p>
+<p>For layered media, it is convenient to decompose stress and strain into normal (n) and tangential (t) components:<ul class="simple">
+<li><p>Normal stress components: <span class="math notranslate nohighlight">\( \sigma_{nn}, \sigma_{nt} \)</span></p></li>
+<li><p>Tangential strain components: <span class="math notranslate nohighlight">\( \varepsilon_{tt} \)</span></p></li>
+</ul>
+</p>
+<p>The continuity conditions at layer interfaces impose:<ul class="simple">
+<li><p>Continuous normal stress: <span class="math notranslate nohighlight">\( \sigma_n^{(1)} = \sigma_n^{(2)} \)</span></p></li>
+<li><p>Continuous tangential strain: <span class="math notranslate nohighlight">\( \varepsilon_t^{(1)} = \varepsilon_t^{(2)} \)</span></p></li>
+</ul>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classsimcoon_1_1phase__multi"><span class="std std-ref">phase_multi</span></a> for base class documentation </p>
+</div>
+</p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi11layer_multiEv">
+<span id="_CPPv3N7simcoon11layer_multi11layer_multiEv"></span><span id="_CPPv2N7simcoon11layer_multi11layer_multiEv"></span><span id="simcoon::layer_multi::layer_multi"></span><span class="target" id="classsimcoon_1_1layer__multi_1ad62f3d7d0c76e5d3ff0d34c82ae3883e"></span><span class="sig-name descname"><span class="n"><span class="pre">layer_multi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi11layer_multiEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Default constructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi11layer_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3vecE">
+<span id="_CPPv3N7simcoon11layer_multi11layer_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3vecE"></span><span id="_CPPv2N7simcoon11layer_multi11layer_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3vecE"></span><span id="simcoon::layer_multi::layer_multi__arma::matCR.arma::matCR.arma::matCR.arma::matCR.arma::vecCR.arma::matCR.arma::matCR.arma::matCR.arma::matCR.arma::vecCR.arma::vecCR"></span><span class="target" id="classsimcoon_1_1layer__multi_1a9ce60329ba74a2bfa0e6468cc1cad605"></span><span class="sig-name descname"><span class="n"><span class="pre">layer_multi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi11layer_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecERKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Full constructor with all parameters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A</strong> – Strain concentration tensor </p></li>
+<li><p><strong>A_start</strong> – Initial strain concentration tensor </p></li>
+<li><p><strong>B</strong> – Stress concentration tensor </p></li>
+<li><p><strong>B_start</strong> – Initial stress concentration tensor </p></li>
+<li><p><strong>A_in</strong> – Inelastic concentration vector </p></li>
+<li><p><strong>Dnn</strong> – Normal-normal stiffness block </p></li>
+<li><p><strong>Dnt</strong> – Normal-tangential stiffness block </p></li>
+<li><p><strong>dXn</strong> – Deformation gradient derivative (normal) </p></li>
+<li><p><strong>dXt</strong> – Deformation gradient derivative (tangential) </p></li>
+<li><p><strong>sigma_hat</strong> – Interface stress variable </p></li>
+<li><p><strong>dzdx1</strong> – Field gradient through thickness </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi11layer_multiERK11layer_multi">
+<span id="_CPPv3N7simcoon11layer_multi11layer_multiERK11layer_multi"></span><span id="_CPPv2N7simcoon11layer_multi11layer_multiERK11layer_multi"></span><span id="simcoon::layer_multi::layer_multi__layer_multiCR"></span><span class="target" id="classsimcoon_1_1layer__multi_1a52b577e985724edace10b2ff57ed7ec5"></span><span class="sig-name descname"><span class="n"><span class="pre">layer_multi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11layer_multi11layer_multiERK11layer_multi" title="simcoon::layer_multi::layer_multi"><span class="n"><span class="pre">layer_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi11layer_multiERK11layer_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Copy constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lm</strong> – <a class="reference internal" href="#classsimcoon_1_1layer__multi"><span class="std std-ref">layer_multi</span></a> object to copy </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multiD0Ev">
+<span id="_CPPv3N7simcoon11layer_multiD0Ev"></span><span id="_CPPv2N7simcoon11layer_multiD0Ev"></span><span id="simcoon::layer_multi::~layer_multi"></span><span class="target" id="classsimcoon_1_1layer__multi_1ac06c23649ac11353f696c5dfad2749ab"></span><span class="sig-name descname"><span class="n"><span class="pre">~layer_multi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multiD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>Destructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multiaSERK11layer_multi">
+<span id="_CPPv3N7simcoon11layer_multiaSERK11layer_multi"></span><span id="_CPPv2N7simcoon11layer_multiaSERK11layer_multi"></span><span id="simcoon::layer_multi::assign-operator__layer_multiCR"></span><span class="target" id="classsimcoon_1_1layer__multi_1a83d7b6b7f02c6231b8ff54212a0f7351"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11layer_multiE" title="simcoon::layer_multi"><span class="n"><span class="pre">layer_multi</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11layer_multiE" title="simcoon::layer_multi"><span class="n"><span class="pre">layer_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multiaSERK11layer_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Assignment operator. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>lm</strong> – <a class="reference internal" href="#classsimcoon_1_1layer__multi"><span class="std std-ref">layer_multi</span></a> object to assign from </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to this object </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi3DnnE">
+<span id="_CPPv3N7simcoon11layer_multi3DnnE"></span><span id="_CPPv2N7simcoon11layer_multi3DnnE"></span><span id="simcoon::layer_multi::Dnn__arma::mat"></span><span class="target" id="classsimcoon_1_1layer__multi_1a2ec05a4fac3d98fb5f1d3f8c4aececd8"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Dnn</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi3DnnE" title="Link to this definition"></a><br /></dt>
+<dd><p>Normal-normal block of the tangent modulus (3×3) </p>
+<p>Submatrix of the stiffness tensor relating normal stress to normal strain: <span class="math notranslate nohighlight">\( \mathbf{D}_{nn} = \frac{\partial \boldsymbol{\sigma}_n}{\partial \boldsymbol{\varepsilon}_n} \)</span></p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi3DntE">
+<span id="_CPPv3N7simcoon11layer_multi3DntE"></span><span id="_CPPv2N7simcoon11layer_multi3DntE"></span><span id="simcoon::layer_multi::Dnt__arma::mat"></span><span class="target" id="classsimcoon_1_1layer__multi_1a320685307b9258b73d1af6187f1a2a08"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Dnt</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi3DntE" title="Link to this definition"></a><br /></dt>
+<dd><p>Normal-tangential block of the tangent modulus (3×3) </p>
+<p>Submatrix coupling normal stress to tangential strain: <span class="math notranslate nohighlight">\( \mathbf{D}_{nt} = \frac{\partial \boldsymbol{\sigma}_n}{\partial \boldsymbol{\varepsilon}_t} \)</span></p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi3dXnE">
+<span id="_CPPv3N7simcoon11layer_multi3dXnE"></span><span id="_CPPv2N7simcoon11layer_multi3dXnE"></span><span id="simcoon::layer_multi::dXn__arma::mat"></span><span class="target" id="classsimcoon_1_1layer__multi_1a5f77e59da4bd2b93d194019f97929759"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dXn</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi3dXnE" title="Link to this definition"></a><br /></dt>
+<dd><p>Derivative of deformation gradient with respect to normal position (3×3) </p>
+<p>Used in incremental formulations for geometric nonlinearity </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi3dXtE">
+<span id="_CPPv3N7simcoon11layer_multi3dXtE"></span><span id="_CPPv2N7simcoon11layer_multi3dXtE"></span><span id="simcoon::layer_multi::dXt__arma::mat"></span><span class="target" id="classsimcoon_1_1layer__multi_1a0b365f663965a8a6a5fbc1da99683232"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dXt</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi3dXtE" title="Link to this definition"></a><br /></dt>
+<dd><p>Derivative of deformation gradient with respect to tangential position (3×3) </p>
+<p>Used in incremental formulations for geometric nonlinearity </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi9sigma_hatE">
+<span id="_CPPv3N7simcoon11layer_multi9sigma_hatE"></span><span id="_CPPv2N7simcoon11layer_multi9sigma_hatE"></span><span id="simcoon::layer_multi::sigma_hat__arma::vec"></span><span class="target" id="classsimcoon_1_1layer__multi_1a6385a9fa3812e9c83c5c311dd4b8dc20"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sigma_hat</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi9sigma_hatE" title="Link to this definition"></a><br /></dt>
+<dd><p>Stress-like quantity for interface conditions (6×1) </p>
+<p>Intermediate variable used in the layer homogenization algorithm </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multi5dzdx1E">
+<span id="_CPPv3N7simcoon11layer_multi5dzdx1E"></span><span id="_CPPv2N7simcoon11layer_multi5dzdx1E"></span><span id="simcoon::layer_multi::dzdx1__arma::vec"></span><span class="target" id="classsimcoon_1_1layer__multi_1a8b413a016b47e99d7412abbdb5629209"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dzdx1</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multi5dzdx1E" title="Link to this definition"></a><br /></dt>
+<dd><p>Derivative of local field with respect to layer position (6×1) </p>
+<p>Used for computing gradients through the layer thickness </p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11layer_multilsERNSt7ostreamERK11layer_multi">
+<span id="_CPPv3N7simcoon11layer_multilsERNSt7ostreamERK11layer_multi"></span><span id="_CPPv2N7simcoon11layer_multilsERNSt7ostreamERK11layer_multi"></span><span id="simcoon::layer_multi::lshift-operator__osR.layer_multiCR"></span><span class="target" id="classsimcoon_1_1layer__multi_1a6e2e1cd11b1198d5be30502bb0338136"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="p"><span class="pre">&amp;</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11layer_multiE" title="simcoon::layer_multi"><span class="n"><span class="pre">layer_multi</span></span></a><span class="p"><span class="pre">&amp;</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11layer_multilsERNSt7ostreamERK11layer_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Output stream operator for debugging. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>os</strong> – Output stream </p></li>
+<li><p><strong>lm</strong> – <a class="reference internal" href="#classsimcoon_1_1layer__multi"><span class="std std-ref">layer_multi</span></a> object to output </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to output stream </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+<dl class="cpp class">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multiE">
+<span id="_CPPv3N7simcoon11phase_multiE"></span><span id="_CPPv2N7simcoon11phase_multiE"></span><span id="simcoon::phase_multi"></span><span class="target" id="classsimcoon_1_1phase__multi"></span><span class="k"><span class="pre">class</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">phase_multi</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multiE" title="Link to this definition"></a><br /></dt>
+<dd><div class="docutils container">
+<em>#include &lt;phase_multi.hpp&gt;</em></div>
+<p>Base class for phases in multiphase homogenization schemes. </p>
+<p>The <a class="reference internal" href="#classsimcoon_1_1phase__multi"><span class="std std-ref">phase_multi</span></a> class serves as the base class for all phase types used in mean-field homogenization methods. It stores the concentration tensors that relate macroscopic strain/stress to local phase-level quantities.</p>
+<p><strong>Concentration Tensor Relationships:</strong></p>
+<p>The strain concentration tensor <span class="math notranslate nohighlight">\( \mathbf{A} \)</span> relates macroscopic strain to local strain:   <div class="math notranslate nohighlight">
+\[\boldsymbol{\varepsilon}^{(r)} = \mathbf{A}^{(r)} : \bar{\boldsymbol{\varepsilon}}
+\]</div>
+</p>
+<p>The stress concentration tensor <span class="math notranslate nohighlight">\( \mathbf{B} \)</span> relates macroscopic stress to local stress:   <div class="math notranslate nohighlight">
+\[\boldsymbol{\sigma}^{(r)} = \mathbf{B}^{(r)} : \bar{\boldsymbol{\sigma}}
+\]</div>
+</p>
+<p>For inelastic behavior, an additional concentration vector handles eigenstrain contributions:   <div class="math notranslate nohighlight">
+\[\boldsymbol{\varepsilon}^{(r)} = \mathbf{A}^{(r)} : \bar{\boldsymbol{\varepsilon}} + \mathbf{A}_{in}^{(r)}
+\]</div>
+</p>
+<p><strong>Derived Classes:</strong><ul class="simple">
+<li><p><a class="reference internal" href="#classsimcoon_1_1ellipsoid__multi"><span class="std std-ref">ellipsoid_multi</span></a>: Ellipsoidal inclusions (Eshelby-based methods)</p></li>
+<li><p><a class="reference internal" href="#classsimcoon_1_1cylinder__multi"><span class="std std-ref">cylinder_multi</span></a>: Cylindrical inclusions</p></li>
+<li><p><a class="reference internal" href="#classsimcoon_1_1layer__multi"><span class="std std-ref">layer_multi</span></a>: Layered composites</p></li>
+</ul>
+</p>
+<p><div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p><a class="reference internal" href="#classsimcoon_1_1ellipsoid__multi"><span class="std std-ref">ellipsoid_multi</span></a>, <a class="reference internal" href="#classsimcoon_1_1cylinder__multi"><span class="std std-ref">cylinder_multi</span></a>, <a class="reference internal" href="#classsimcoon_1_1layer__multi"><span class="std std-ref">layer_multi</span></a></p>
+</div>
+</p>
+<p>Subclassed by <a class="reference internal" href="#classsimcoon_1_1cylinder__multi"><span class="std std-ref">cylinder_multi</span></a>, <a class="reference internal" href="#classsimcoon_1_1ellipsoid__multi"><span class="std std-ref">ellipsoid_multi</span></a>, <a class="reference internal" href="#classsimcoon_1_1layer__multi"><span class="std std-ref">layer_multi</span></a></p>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-functions">Public Functions</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi11phase_multiEv">
+<span id="_CPPv3N7simcoon11phase_multi11phase_multiEv"></span><span id="_CPPv2N7simcoon11phase_multi11phase_multiEv"></span><span id="simcoon::phase_multi::phase_multi"></span><span class="target" id="classsimcoon_1_1phase__multi_1a4999a763806f597d2300bade818b9683"></span><span class="sig-name descname"><span class="n"><span class="pre">phase_multi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi11phase_multiEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Default constructor. </p>
+<p>Initializes concentration tensors to zero matrices/vectors of appropriate size </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi11phase_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecE">
+<span id="_CPPv3N7simcoon11phase_multi11phase_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecE"></span><span id="_CPPv2N7simcoon11phase_multi11phase_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecE"></span><span id="simcoon::phase_multi::phase_multi__arma::matCR.arma::matCR.arma::matCR.arma::matCR.arma::vecCR"></span><span class="target" id="classsimcoon_1_1phase__multi_1a68524b8fd534bf7dc151c3e1a4c43f2d"></span><span class="sig-name descname"><span class="n"><span class="pre">phase_multi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A_init</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A_start_init</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">B_init</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">B_start_init</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">A_in_init</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi11phase_multiERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3matERKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Constructor with parameters. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>A_init</strong> – Initial strain concentration tensor (6×6) </p></li>
+<li><p><strong>A_start_init</strong> – Initial strain concentration tensor for start state (6×6) </p></li>
+<li><p><strong>B_init</strong> – Initial stress concentration tensor (6×6) </p></li>
+<li><p><strong>B_start_init</strong> – Initial stress concentration tensor for start state (6×6) </p></li>
+<li><p><strong>A_in_init</strong> – Initial inelastic concentration vector (6×1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi11phase_multiERK11phase_multi">
+<span id="_CPPv3N7simcoon11phase_multi11phase_multiERK11phase_multi"></span><span id="_CPPv2N7simcoon11phase_multi11phase_multiERK11phase_multi"></span><span id="simcoon::phase_multi::phase_multi__phase_multiCR"></span><span class="target" id="classsimcoon_1_1phase__multi_1a251e3c329b503fa2e0f331d541b1c1ff"></span><span class="sig-name descname"><span class="n"><span class="pre">phase_multi</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11phase_multi11phase_multiERK11phase_multi" title="simcoon::phase_multi::phase_multi"><span class="n"><span class="pre">phase_multi</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi11phase_multiERK11phase_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Copy constructor. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pm</strong> – <a class="reference internal" href="#classsimcoon_1_1phase__multi"><span class="std std-ref">phase_multi</span></a> object to copy </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multiD0Ev">
+<span id="_CPPv3N7simcoon11phase_multiD0Ev"></span><span id="_CPPv2N7simcoon11phase_multiD0Ev"></span><span id="simcoon::phase_multi::~phase_multi"></span><span class="target" id="classsimcoon_1_1phase__multi_1a2bed4199add1668c561c8ed336edb3f4"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">~phase_multi</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multiD0Ev" title="Link to this definition"></a><br /></dt>
+<dd><p>Virtual destructor. </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi8to_startEv">
+<span id="_CPPv3N7simcoon11phase_multi8to_startEv"></span><span id="_CPPv2N7simcoon11phase_multi8to_startEv"></span><span id="simcoon::phase_multi::to_start"></span><span class="target" id="classsimcoon_1_1phase__multi_1a408747ef6cdecd13f73fd7460e47addc"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">to_start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi8to_startEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Reset current tensors to start-of-increment values. </p>
+<p>Sets A = A_start and B = B_start for iterative schemes </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi9set_startEv">
+<span id="_CPPv3N7simcoon11phase_multi9set_startEv"></span><span id="_CPPv2N7simcoon11phase_multi9set_startEv"></span><span id="simcoon::phase_multi::set_start"></span><span class="target" id="classsimcoon_1_1phase__multi_1a3f3d1e2e1f834fc69d4cbd2f062adad1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">set_start</span></span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi9set_startEv" title="Link to this definition"></a><br /></dt>
+<dd><p>Store current tensors as start-of-increment values. </p>
+<p>Sets A_start = A and B_start = B after convergence </p>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multiaSERK11phase_multi">
+<span id="_CPPv3N7simcoon11phase_multiaSERK11phase_multi"></span><span id="_CPPv2N7simcoon11phase_multiaSERK11phase_multi"></span><span id="simcoon::phase_multi::assign-operator__phase_multiCR"></span><span class="target" id="classsimcoon_1_1phase__multi_1a141fb1bd0dc4a91284afa354a22b187a"></span><span class="k"><span class="pre">virtual</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11phase_multiE" title="simcoon::phase_multi"><span class="n"><span class="pre">phase_multi</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">=</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11phase_multiE" title="simcoon::phase_multi"><span class="n"><span class="pre">phase_multi</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multiaSERK11phase_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Assignment operator. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>pm</strong> – <a class="reference internal" href="#classsimcoon_1_1phase__multi"><span class="std std-ref">phase_multi</span></a> object to assign from </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to this object </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-public-members">Public Members</p>
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi1AE">
+<span id="_CPPv3N7simcoon11phase_multi1AE"></span><span id="_CPPv2N7simcoon11phase_multi1AE"></span><span id="simcoon::phase_multi::A__arma::mat"></span><span class="target" id="classsimcoon_1_1phase__multi_1ad4191de892f9af2abd1ce7acfe89e0c0"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi1AE" title="Link to this definition"></a><br /></dt>
+<dd><p>Strain concentration tensor (6×6 matrix in Voigt notation) </p>
+<p>Relates macroscopic strain to local phase strain: <span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon}^{local} = \mathbf{A} : \bar{\boldsymbol{\varepsilon}} \)</span></p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi7A_startE">
+<span id="_CPPv3N7simcoon11phase_multi7A_startE"></span><span id="_CPPv2N7simcoon11phase_multi7A_startE"></span><span id="simcoon::phase_multi::A_start__arma::mat"></span><span class="target" id="classsimcoon_1_1phase__multi_1a33aa20f7af2da5afd633343ded8748b9"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A_start</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi7A_startE" title="Link to this definition"></a><br /></dt>
+<dd><p>Strain concentration tensor at the start of increment. </p>
+<p>Stored for incremental schemes and convergence checks </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi1BE">
+<span id="_CPPv3N7simcoon11phase_multi1BE"></span><span id="_CPPv2N7simcoon11phase_multi1BE"></span><span id="simcoon::phase_multi::B__arma::mat"></span><span class="target" id="classsimcoon_1_1phase__multi_1a245105519d44bb9c582187f93b014cf1"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">B</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi1BE" title="Link to this definition"></a><br /></dt>
+<dd><p>Stress concentration tensor (6×6 matrix in Voigt notation) </p>
+<p>Relates macroscopic stress to local phase stress: <span class="math notranslate nohighlight">\( \boldsymbol{\sigma}^{local} = \mathbf{B} : \bar{\boldsymbol{\sigma}} \)</span></p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi7B_startE">
+<span id="_CPPv3N7simcoon11phase_multi7B_startE"></span><span id="_CPPv2N7simcoon11phase_multi7B_startE"></span><span id="simcoon::phase_multi::B_start__arma::mat"></span><span class="target" id="classsimcoon_1_1phase__multi_1a5d9b6f0bb3aa7025d7870c3191dfa685"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">B_start</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi7B_startE" title="Link to this definition"></a><br /></dt>
+<dd><p>Stress concentration tensor at the start of increment. </p>
+<p>Stored for incremental schemes and convergence checks </p>
+</dd></dl>
+
+<dl class="cpp var">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multi4A_inE">
+<span id="_CPPv3N7simcoon11phase_multi4A_inE"></span><span id="_CPPv2N7simcoon11phase_multi4A_inE"></span><span id="simcoon::phase_multi::A_in__arma::vec"></span><span class="target" id="classsimcoon_1_1phase__multi_1a62a6f437bbebc8d9e4679165440181b3"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">A_in</span></span></span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multi4A_inE" title="Link to this definition"></a><br /></dt>
+<dd><p>Inelastic strain concentration vector (6×1 in Voigt notation) </p>
+<p>Accounts for eigenstrain/transformation strain contributions: <span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon}^{local} = \mathbf{A} : \bar{\boldsymbol{\varepsilon}} + \mathbf{A}_{in} \)</span></p>
+</dd></dl>
+
+</div>
+<div class="breathe-sectiondef docutils container">
+<p class="breathe-sectiondef-title rubric" id="breathe-section-title-friends">Friends</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv4N7simcoon11phase_multilsERNSt7ostreamERK11phase_multi">
+<span id="_CPPv3N7simcoon11phase_multilsERNSt7ostreamERK11phase_multi"></span><span id="_CPPv2N7simcoon11phase_multilsERNSt7ostreamERK11phase_multi"></span><span id="simcoon::phase_multi::lshift-operator__osR.phase_multiCR"></span><span class="target" id="classsimcoon_1_1phase__multi_1aebdc165fc2ab86e14c316a3af133a27f"></span><span class="k"><span class="pre">friend</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="sig-name descname"><span class="k"><span class="pre">operator</span></span><span class="o"><span class="pre">&lt;&lt;</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">ostream</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">os</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><a class="reference internal" href="#_CPPv4N7simcoon11phase_multiE" title="simcoon::phase_multi"><span class="n"><span class="pre">phase_multi</span></span></a><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">pm</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv4N7simcoon11phase_multilsERNSt7ostreamERK11phase_multi" title="Link to this definition"></a><br /></dt>
+<dd><p>Output stream operator for debugging. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>os</strong> – Output stream </p></li>
+<li><p><strong>pm</strong> – <a class="reference internal" href="#classsimcoon_1_1phase__multi"><span class="std std-ref">phase_multi</span></a> object to output </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reference to output stream </p>
+</dd>
+</dl>
+</dd></dl>
+
+</div>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../simulation/phase.html" class="btn btn-neutral float-left" title="Phase" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../umat/index.html" class="btn btn-neutral float-right" title="User Material Subroutines" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
