@@ -1,0 +1,657 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Micromechanics &mdash; Simcoon 1.10.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/cpp_api/continuum_mechanics/micromechanics.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=b95c35c0"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Simulation" href="../simulation/index.html" />
+    <link rel="prev" title="Material Properties" href="material.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">C++ API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#namespace-overview">Namespace Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">Continuum Mechanics</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="material.html">Material Properties</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../simulation/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">C++ API Reference</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Continuum Mechanics</a></li>
+      <li class="breadcrumb-item active">Micromechanics</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/cpp_api/continuum_mechanics/micromechanics.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="micromechanics">
+<h1>Micromechanics<a class="headerlink" href="#micromechanics" title="Link to this heading"></a></h1>
+<p>This module provides functions for multiphase material modeling
+and micromechanical homogenization schemes.</p>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410umat_multiR21phase_characteristicsRKN4arma3matERKdRKdRKiRKiRbRKjRdRKi">
+<span id="_CPPv310umat_multiR21phase_characteristicsRKN4arma3matERKdRKdRKiRKiRbRKjRdRKi"></span><span id="_CPPv210umat_multiR21phase_characteristicsRKN4arma3matERKdRKdRKiRKiRbRKjRdRKi"></span><span id="umat_multi__phase_characteristicsR.arma::matCR.doubleCR.doubleCR.iCR.iCR.bR.unsigned-iCR.doubleR.iCR"></span><span class="target" id="group__micromechanics_1ga8d8a5f15973d90278d9d34e6c1ccad15"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">umat_multi</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">DR</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">Time</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">DTime</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">ndi</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">nshr</span></span>, <span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">start</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">unsigned</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">solver_type</span></span>, <span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">tnew_dt</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">control</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410umat_multiR21phase_characteristicsRKN4arma3matERKdRKdRKiRKiRbRKjRdRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>props[0] : Number of phases </p>
+<p>props[1] : Number of the file NPhase[i].dat utilized</p>
+<p>props[2] : Number of integration points in the 1 direction</p>
+<p>props[3] : Number of integration points in the 2 direction</p>
+<p>User material subroutine for non-linear N-phases heterogeneous materials.</p>
+<p>
+This function performs the constitutive update for a multi-phase material using a specified homogenization scheme. It handles:<ul class="simple">
+<li><p>Localization of macroscopic strain to each phase</p></li>
+<li><p>Call to constituent UMATs for each phase</p></li>
+<li><p>Homogenization of phase responses to macroscopic level</p></li>
+</ul>
+</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">phase_characteristics</span> <span class="n">rve</span><span class="p">;</span>
+<span class="o">//</span> <span class="o">...</span> <span class="n">initialize</span> <span class="n">rve</span> <span class="k">with</span> <span class="n">sub</span><span class="o">-</span><span class="n">phases</span> <span class="o">...</span>
+<span class="n">mat</span> <span class="n">DR</span> <span class="o">=</span> <span class="n">eye</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">Time</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">,</span> <span class="n">DTime</span> <span class="o">=</span> <span class="mf">0.01</span><span class="p">;</span>
+<span class="nb">bool</span> <span class="n">start</span> <span class="o">=</span> <span class="n">true</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">tnew_dt</span> <span class="o">=</span> <span class="mf">1.0</span><span class="p">;</span>
+<span class="n">umat_multi</span><span class="p">(</span><span class="n">rve</span><span class="p">,</span> <span class="n">DR</span><span class="p">,</span> <span class="n">Time</span><span class="p">,</span> <span class="n">DTime</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">start</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">tnew_dt</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rve</strong> – Phase characteristics of the RVE containing sub-phases </p></li>
+<li><p><strong>DR</strong> – Rotation increment tensor </p></li>
+<li><p><strong>Time</strong> – Current simulation time </p></li>
+<li><p><strong>DTime</strong> – Time increment </p></li>
+<li><p><strong>ndi</strong> – Number of direct stress components </p></li>
+<li><p><strong>nshr</strong> – Number of shear stress components </p></li>
+<li><p><strong>start</strong> – Flag indicating if this is the first call (updated on output) </p></li>
+<li><p><strong>solver_type</strong> – Type of solver algorithm </p></li>
+<li><p><strong>tnew_dt</strong> – Suggested new time increment ratio </p></li>
+<li><p><strong>control</strong> – Control flag for time stepping</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416Lt_Homogeneous_ER21phase_characteristics">
+<span id="_CPPv316Lt_Homogeneous_ER21phase_characteristics"></span><span id="_CPPv216Lt_Homogeneous_ER21phase_characteristics"></span><span id="Lt_Homogeneous_E__phase_characteristicsR"></span><span class="target" id="group__micromechanics_1ga40e69f21a06a432e67c4d7994eeea6d8"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Lt_Homogeneous_E</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416Lt_Homogeneous_ER21phase_characteristics" title="Link to this definition"></a><br /></dt>
+<dd><p>props[0] : Number of phases </p>
+<p>props[1] : Number of the file NPhase[i].dat utilized</p>
+<p>props[2] : Number of integration points in the 1 direction</p>
+<p>props[3] : Number of integration points in the 2 direction</p>
+<p><p>Compute tangent stiffness using the homogeneous (Voigt) scheme.</p>
+<p>This scheme assumes uniform strain in all phases (Voigt hypothesis):</p>
+<div class="math notranslate nohighlight">
+\[    \mathbf{L}^{eff} = \sum_i f_i \mathbf{L}_i
+\]</div>
+ where <span class="math notranslate nohighlight">\( f_i \)</span> is the volume fraction and <span class="math notranslate nohighlight">\( \mathbf{L}_i \)</span> the stiffness of phase <span class="math notranslate nohighlight">\( i \)</span>. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rve</strong> – Phase characteristics of the RVE</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416DE_Homogeneous_ER21phase_characteristics">
+<span id="_CPPv316DE_Homogeneous_ER21phase_characteristics"></span><span id="_CPPv216DE_Homogeneous_ER21phase_characteristics"></span><span id="DE_Homogeneous_E__phase_characteristicsR"></span><span class="target" id="group__micromechanics_1ga0546c462b4c9bde3dfd2132348caa1ea"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DE_Homogeneous_E</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416DE_Homogeneous_ER21phase_characteristics" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute strain increment using the homogeneous (Voigt) scheme. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rve</strong> – Phase characteristics of the RVE </p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414Lt_Mori_TanakaR21phase_characteristicsRKi">
+<span id="_CPPv314Lt_Mori_TanakaR21phase_characteristicsRKi"></span><span id="_CPPv214Lt_Mori_TanakaR21phase_characteristicsRKi"></span><span id="Lt_Mori_Tanaka__phase_characteristicsR.iCR"></span><span class="target" id="group__micromechanics_1gae01d4b8a5a7d45d8e77777c3ee63045e"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Lt_Mori_Tanaka</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_matrix</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414Lt_Mori_TanakaR21phase_characteristicsRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute tangent stiffness using the Mori-Tanaka scheme. </p>
+<p>
+The Mori-Tanaka scheme accounts for inclusion interactions through the matrix strain field. The effective stiffness is:   <div class="math notranslate nohighlight">
+\[    \mathbf{L}^{MT} = \mathbf{L}_0 + \sum_i f_i (\mathbf{L}_i - \mathbf{L}_0) : \mathbf{A}_i^{MT}
+\]</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rve</strong> – Phase characteristics of the RVE </p></li>
+<li><p><strong>n_matrix</strong> – Index of the matrix phase</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv414DE_Mori_TanakaR21phase_characteristicsRKi">
+<span id="_CPPv314DE_Mori_TanakaR21phase_characteristicsRKi"></span><span id="_CPPv214DE_Mori_TanakaR21phase_characteristicsRKi"></span><span id="DE_Mori_Tanaka__phase_characteristicsR.iCR"></span><span class="target" id="group__micromechanics_1gaccc1bb9e98eaaf55daf0f844bfacd421"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DE_Mori_Tanaka</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_matrix</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv414DE_Mori_TanakaR21phase_characteristicsRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute strain increment using the Mori-Tanaka scheme. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rve</strong> – Phase characteristics of the RVE </p></li>
+<li><p><strong>n_matrix</strong> – Index of the matrix phase </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418Lt_Mori_Tanaka_isoR21phase_characteristicsRKi">
+<span id="_CPPv318Lt_Mori_Tanaka_isoR21phase_characteristicsRKi"></span><span id="_CPPv218Lt_Mori_Tanaka_isoR21phase_characteristicsRKi"></span><span id="Lt_Mori_Tanaka_iso__phase_characteristicsR.iCR"></span><span class="target" id="group__micromechanics_1ga1296e2d3e338a059fb5ad3fc30a0a7e1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Lt_Mori_Tanaka_iso</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_matrix</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418Lt_Mori_Tanaka_isoR21phase_characteristicsRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute tangent stiffness using the isotropized Mori-Tanaka scheme. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rve</strong> – Phase characteristics of the RVE </p></li>
+<li><p><strong>n_matrix</strong> – Index of the matrix phase </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418DE_Mori_Tanaka_isoR21phase_characteristicsRKi">
+<span id="_CPPv318DE_Mori_Tanaka_isoR21phase_characteristicsRKi"></span><span id="_CPPv218DE_Mori_Tanaka_isoR21phase_characteristicsRKi"></span><span id="DE_Mori_Tanaka_iso__phase_characteristicsR.iCR"></span><span class="target" id="group__micromechanics_1gae9d84a65f7be6f4e3aeb3b6464fe6cc4"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DE_Mori_Tanaka_iso</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_matrix</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DE_Mori_Tanaka_isoR21phase_characteristicsRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute strain increment using the isotropized Mori-Tanaka scheme. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rve</strong> – Phase characteristics of the RVE </p></li>
+<li><p><strong>n_matrix</strong> – Index of the matrix phase </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418Lt_Self_ConsistentR21phase_characteristicsRKiRKbRKi">
+<span id="_CPPv318Lt_Self_ConsistentR21phase_characteristicsRKiRKbRKi"></span><span id="_CPPv218Lt_Self_ConsistentR21phase_characteristicsRKiRKbRKi"></span><span id="Lt_Self_Consistent__phase_characteristicsR.iCR.bCR.iCR"></span><span class="target" id="group__micromechanics_1gaf17b53c598cb70e22c43fcd87583ccc9"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Lt_Self_Consistent</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_matrix</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">start</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max_iter</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418Lt_Self_ConsistentR21phase_characteristicsRKiRKbRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute tangent stiffness using the Self-Consistent scheme. </p>
+<p>
+The Self-Consistent scheme determines the effective medium iteratively:   <div class="math notranslate nohighlight">
+\[    \mathbf{L}^{SC} = \sum_i f_i \mathbf{L}_i : \mathbf{A}_i^{SC}
+\]</div>
+ where the localization tensors depend on the (unknown) effective medium. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rve</strong> – Phase characteristics of the RVE </p></li>
+<li><p><strong>n_matrix</strong> – Index of the matrix phase </p></li>
+<li><p><strong>start</strong> – Flag indicating if this is the first iteration </p></li>
+<li><p><strong>max_iter</strong> – Maximum number of iterations (default: 1)</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv418DE_Self_ConsistentR21phase_characteristicsRKiRKbRKi">
+<span id="_CPPv318DE_Self_ConsistentR21phase_characteristicsRKiRKbRKi"></span><span id="_CPPv218DE_Self_ConsistentR21phase_characteristicsRKiRKbRKi"></span><span id="DE_Self_Consistent__phase_characteristicsR.iCR.bCR.iCR"></span><span class="target" id="group__micromechanics_1ga29c7cb254be2fe1feceac0ace9bd235a"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">DE_Self_Consistent</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_matrix</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">start</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">max_iter</span></span><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="m"><span class="pre">1</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv418DE_Self_ConsistentR21phase_characteristicsRKiRKbRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute strain increment using the Self-Consistent scheme. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rve</strong> – Phase characteristics of the RVE </p></li>
+<li><p><strong>n_matrix</strong> – Index of the matrix phase </p></li>
+<li><p><strong>start</strong> – Flag indicating if this is the first iteration </p></li>
+<li><p><strong>max_iter</strong> – Maximum number of iterations (default: 1) </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417Lt_Periodic_LayerR21phase_characteristics">
+<span id="_CPPv317Lt_Periodic_LayerR21phase_characteristics"></span><span id="_CPPv217Lt_Periodic_LayerR21phase_characteristics"></span><span id="Lt_Periodic_Layer__phase_characteristicsR"></span><span class="target" id="group__micromechanics_1gad763d34dd1f73d155607e6260317d9b1"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Lt_Periodic_Layer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417Lt_Periodic_LayerR21phase_characteristics" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute tangent stiffness using the Periodic Layer scheme. </p>
+<p>
+This scheme is used for periodic laminate composites where layers are stacked in the direction 1. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>rve</strong> – Phase characteristics of the RVE</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv417dE_Periodic_LayerR21phase_characteristicsRKi">
+<span id="_CPPv317dE_Periodic_LayerR21phase_characteristicsRKi"></span><span id="_CPPv217dE_Periodic_LayerR21phase_characteristicsRKi"></span><span id="dE_Periodic_Layer__phase_characteristicsR.iCR"></span><span class="target" id="group__micromechanics_1ga8ab68e180bbd7839c9bebd5d16b502ec"></span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dE_Periodic_Layer</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">phase_characteristics</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">rve</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">int</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_matrix</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv417dE_Periodic_LayerR21phase_characteristicsRKi" title="Link to this definition"></a><br /></dt>
+<dd><p>Compute strain increment using the Periodic Layer scheme. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>rve</strong> – Phase characteristics of the RVE </p></li>
+<li><p><strong>n_matrix</strong> – Index of the matrix phase </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="material.html" class="btn btn-neutral float-left" title="Material Properties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../simulation/index.html" class="btn btn-neutral float-right" title="Simulation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
