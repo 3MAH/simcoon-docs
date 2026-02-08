@@ -1,0 +1,91 @@
+
+:orphan:
+
+.. _sphx_glr_sg_execution_times:
+
+
+Computation times
+=================
+**00:23.958** total execution time for 19 files **from all galleries**:
+
+.. container::
+
+  .. raw:: html
+
+    <style scoped>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" rel="stylesheet" />
+    </style>
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <script type="text/javascript" class="init">
+    $(document).ready( function () {
+        $('table.sg-datatable').DataTable({order: [[1, 'desc']]});
+    } );
+    </script>
+
+  .. list-table::
+   :header-rows: 1
+   :class: table table-striped sg-datatable
+
+   * - Example
+     - Time
+     - Mem (MB)
+   * - :ref:`sphx_glr_examples_umats_EPICP.py` (``../examples/umats/EPICP.py``)
+     - 00:08.462
+     - 0.0
+   * - :ref:`sphx_glr_examples_analysis_objective_rates.py` (``../examples/analysis/objective_rates.py``)
+     - 00:05.894
+     - 0.0
+   * - :ref:`sphx_glr_examples_analysis_directional_stiffness.py` (``../examples/analysis/directional_stiffness.py``)
+     - 00:02.137
+     - 0.0
+   * - :ref:`sphx_glr_examples_hyperelasticity_HYPER_umat.py` (``../examples/hyperelasticity/HYPER_umat.py``)
+     - 00:01.988
+     - 0.0
+   * - :ref:`sphx_glr_examples_hyperelasticity_HYPER_numerical.py` (``../examples/hyperelasticity/HYPER_numerical.py``)
+     - 00:01.242
+     - 0.0
+   * - :ref:`sphx_glr_examples_analysis_eshelby_numerical_vs_analytical.py` (``../examples/analysis/eshelby_numerical_vs_analytical.py``)
+     - 00:01.188
+     - 0.0
+   * - :ref:`sphx_glr_examples_heterogeneous_effective_props.py` (``../examples/heterogeneous/effective_props.py``)
+     - 00:01.054
+     - 0.0
+   * - :ref:`sphx_glr_examples_continuum_mechanics_yield_criteria.py` (``../examples/continuum_mechanics/yield_criteria.py``)
+     - 00:00.976
+     - 0.0
+   * - :ref:`sphx_glr_examples_umats_EPKCP.py` (``../examples/umats/EPKCP.py``)
+     - 00:00.253
+     - 0.0
+   * - :ref:`sphx_glr_examples_umats_EPCHA.py` (``../examples/umats/EPCHA.py``)
+     - 00:00.160
+     - 0.0
+   * - :ref:`sphx_glr_examples_continuum_mechanics_rotation.py` (``../examples/continuum_mechanics/rotation.py``)
+     - 00:00.152
+     - 0.0
+   * - :ref:`sphx_glr_examples_heterogeneous_homogenization.py` (``../examples/heterogeneous/homogenization.py``)
+     - 00:00.151
+     - 0.0
+   * - :ref:`sphx_glr_examples_continuum_mechanics_stress_measures.py` (``../examples/continuum_mechanics/stress_measures.py``)
+     - 00:00.128
+     - 0.0
+   * - :ref:`sphx_glr_examples_umats_ELIST.py` (``../examples/umats/ELIST.py``)
+     - 00:00.053
+     - 0.0
+   * - :ref:`sphx_glr_examples_umats_ELORT.py` (``../examples/umats/ELORT.py``)
+     - 00:00.053
+     - 0.0
+   * - :ref:`sphx_glr_examples_umats_ELISO.py` (``../examples/umats/ELISO.py``)
+     - 00:00.049
+     - 0.0
+   * - :ref:`sphx_glr_examples_continuum_mechanics_constitutive_relations.py` (``../examples/continuum_mechanics/constitutive_relations.py``)
+     - 00:00.008
+     - 0.0
+   * - :ref:`sphx_glr_examples_heterogeneous_eshelby_tensors.py` (``../examples/heterogeneous/eshelby_tensors.py``)
+     - 00:00.006
+     - 0.0
+   * - :ref:`sphx_glr_examples_continuum_mechanics_stress_transfer_helpers.py` (``../examples/continuum_mechanics/stress_transfer_helpers.py``)
+     - 00:00.005
+     - 0.0
