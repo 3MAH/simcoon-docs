@@ -1,0 +1,1337 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>contimech.hpp &mdash; Simcoon 1.10.1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/cpp_api/continuum_mechanics/functions/contimech.html"/>
+      <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../../_static/documentation_options.js?v=b95c35c0"></script>
+      <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../../about.html" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="next" title="kinematics.hpp" href="kinematics.html" />
+    <link rel="prev" title="constitutive.hpp" href="constitutive.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#ashby-material-selection-examples">Ashby Material Selection Examples</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../examples/index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../examples/umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../examples/umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../ashby/index.html">The Ashby Module</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../ashby/index.html#highlights">Highlights</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ashby/index.html#installation">Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ashby/index.html#quick-start">Quick start</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../ashby/index.html#package-structure">Package structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../ashby/material.html">Material Data Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/material.html#symmetrytype">SymmetryType</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/material.html#material">Material</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/material.html#materialcollection">MaterialCollection</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ashby/data.html">Dataset Loaders</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/data.html#simcoon.ashby.data.load_builtin"><code class="docutils literal notranslate"><span class="pre">load_builtin()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/data.html#simcoon.ashby.data.load_csv"><code class="docutils literal notranslate"><span class="pre">load_csv()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/data.html#built-in-dataset">Built-in dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/data.html#loading-a-csv-file">Loading a CSV file</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ashby/plotting.html">Plotting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/plotting.html#ashby-plot">ashby_plot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/plotting.html#category-colours">Category colours</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/plotting.html#legacy-functions">Legacy functions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ashby/bridge.html">Simcoon Bridge</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/bridge.html#simcoon.ashby.bridge.to_stiffness"><code class="docutils literal notranslate"><span class="pre">to_stiffness()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/bridge.html#simcoon.ashby.bridge.to_compliance"><code class="docutils literal notranslate"><span class="pre">to_compliance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/bridge.html#simcoon.ashby.bridge.to_solver_props"><code class="docutils literal notranslate"><span class="pre">to_solver_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/bridge.html#unit-conversion">Unit conversion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/bridge.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/bridge.html#supported-symmetries">Supported symmetries</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../ashby/database.html">Database Integration</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/database.html#simcoon.ashby.database.fetch_materials"><code class="docutils literal notranslate"><span class="pre">fetch_materials()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/database.html#requirements">Requirements</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/database.html#example">Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/database.html#combining-with-the-built-in-dataset">Combining with the built-in dataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../ashby/database.html#symmetry-detection">Symmetry detection</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../index.html">C++ API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../../index.html#namespace-overview">Namespace Overview</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="../index.html">Continuum Mechanics</a><ul class="current">
+<li class="toctree-l4 current"><a class="reference internal" href="index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">C++ API Reference</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Continuum Mechanics</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Mechanical Functions</a></li>
+      <li class="breadcrumb-item active">contimech.hpp</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/cpp_api/continuum_mechanics/functions/contimech.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="contimech-hpp">
+<h1>contimech.hpp<a class="headerlink" href="#contimech-hpp" title="Link to this heading"></a></h1>
+<nav class="contents local" id="on-this-page">
+<p class="topic-title">On this page</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id1">Overview</a></p></li>
+<li><p><a class="reference internal" href="#api-reference" id="id2">API Reference</a></p></li>
+</ul>
+</nav>
+<section id="overview">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Overview</a><a class="headerlink" href="#overview" title="Link to this heading"></a></h2>
+<p>General continuum mechanics functions for tensor operations, transformations,
+and common mechanical quantities (deviatoric parts, traces, invariants, etc.).</p>
+</section>
+<section id="api-reference">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">API Reference</a><a class="headerlink" href="#api-reference" title="Link to this heading"></a></h2>
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv43devRKN4arma3matE">
+<span id="_CPPv33devRKN4arma3matE"></span><span id="_CPPv23devRKN4arma3matE"></span><span id="dev__arma::matCR"></span><span class="target" id="group__contimech_1ga2c183c6a4609220a7aa603f7f66e44af"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dev</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv43devRKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the deviatoric part of a 3x3 matrix. </p>
+<p>
+The deviatoric part of a tensor <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> is defined as:   <div class="math notranslate nohighlight">
+\[    \mathbf{m}' = \mathbf{m} - \frac{1}{3} \textrm{tr}(\mathbf{m}) \mathbf{I}
+\]</div>
+ where <span class="math notranslate nohighlight">\( \textrm{tr}(\mathbf{m}) = m_{11} + m_{22} + m_{33} \)</span> is the trace and <span class="math notranslate nohighlight">\( \mathbf{I} \)</span> is the identity tensor. Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">m</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">m_dev</span> <span class="o">=</span> <span class="n">dev</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>m</strong> – The input 3x3 matrix (arma::mat) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 3x3 deviatoric part of the matrix input (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv43sphRKN4arma3matE">
+<span id="_CPPv33sphRKN4arma3matE"></span><span id="_CPPv23sphRKN4arma3matE"></span><span id="sph__arma::matCR"></span><span class="target" id="group__contimech_1ga1ce78829ee9b8ca6ea84823fbb68d308"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sph</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">m</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv43sphRKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the spherical part of a 3x3 matrix. </p>
+<p>
+The spherical (or hydrostatic) part of a tensor <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> is defined as:   <div class="math notranslate nohighlight">
+\[    \mathbf{m}^{sph} = \frac{1}{3} \textrm{tr}(\mathbf{m}) \mathbf{I}
+\]</div>
+ where <span class="math notranslate nohighlight">\( \textrm{tr}(\mathbf{m}) = m_{11} + m_{22} + m_{33} \)</span> is the trace and <span class="math notranslate nohighlight">\( \mathbf{I} \)</span> is the identity tensor. Note that <span class="math notranslate nohighlight">\( \mathbf{m} = \mathbf{m}' + \mathbf{m}^{sph} \)</span>. Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">m</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">m_sph</span> <span class="o">=</span> <span class="n">sph</span><span class="p">(</span><span class="n">m</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>m</strong> – The input 3x3 matrix (arma::mat) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 3x3 spherical part of the matrix input (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv42trRKN4arma3vecE">
+<span id="_CPPv32trRKN4arma3vecE"></span><span id="_CPPv22trRKN4arma3vecE"></span><span id="tr__arma::vecCR"></span><span class="target" id="group__contimech_1ga8c222b43d8a6da5282a088fdd58b13d0"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">tr</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv42trRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the trace of a tensor v expressed in Voigt notation. </p>
+<p>
+The trace of a second-order tensor <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> written in Voigt notation as <span class="math notranslate nohighlight">\( \mathbf{v} = (v_1, v_2, v_3, v_4, v_5, v_6)^T \)</span> is:   <div class="math notranslate nohighlight">
+\[    \textrm{tr}(\mathbf{m}) = v_1 + v_2 + v_3 = m_{11} + m_{22} + m_{33}
+\]</div>
+ Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">trace</span> <span class="o">=</span> <span class="n">tr</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The trace of the input tensor (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv43devRKN4arma3vecE">
+<span id="_CPPv33devRKN4arma3vecE"></span><span id="_CPPv23devRKN4arma3vecE"></span><span id="dev__arma::vecCR"></span><span class="target" id="group__contimech_1gac1dec53c173b533503591b9e7703103f"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dev</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv43devRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Returns the deviatoric part of a tensor v expressed in Voigt notation. </p>
+<p>
+The deviatoric part of a tensor <span class="math notranslate nohighlight">\( \mathbf{m} \)</span> expressed in Voigt notation is:   <div class="math notranslate nohighlight">
+\[    \mathbf{v}' = \mathbf{v} - \frac{1}{3} \textrm{tr}(\mathbf{v}) \mathbf{I}_{th}
+\]</div>
+ where <span class="math notranslate nohighlight">\( \mathbf{I}_{th} = (1, 1, 1, 0, 0, 0)^T \)</span> is the expansion vector. This gives <span class="math notranslate nohighlight">\( v'_i = v_i - \frac{1}{3}(v_1 + v_2 + v_3) \)</span> for <span class="math notranslate nohighlight">\( i = 1,2,3 \)</span> and <span class="math notranslate nohighlight">\( v'_i = v_i \)</span> for <span class="math notranslate nohighlight">\( i = 4,5,6 \)</span>. Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">vec</span> <span class="n">v_dev</span> <span class="o">=</span> <span class="n">dev</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6 vector, deviatoric part (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412Mises_stressRKN4arma3vecE">
+<span id="_CPPv312Mises_stressRKN4arma3vecE"></span><span id="_CPPv212Mises_stressRKN4arma3vecE"></span><span id="Mises_stress__arma::vecCR"></span><span class="target" id="group__contimech_1ga6812630785b15b44deb83ec3907680d5"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Mises_stress</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412Mises_stressRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the Von Mises stress <span class="math notranslate nohighlight">\( \sigma^{Mises} \)</span> of a second order stress tensor written as a vector v in Voigt notation. </p>
+<p>
+The Von Mises equivalent stress is defined as:   <div class="math notranslate nohighlight">
+\[    \sigma^{Mises} = \sqrt{ \frac{3}{2} \mathbf{\sigma}' : \mathbf{\sigma}' } = \sqrt{3 \, J_2}
+\]</div>
+ where <span class="math notranslate nohighlight">\( \mathbf{\sigma}' = \textrm{dev}(\mathbf{\sigma}) \)</span> is the deviatoric stress tensor and <span class="math notranslate nohighlight">\( J_2 \)</span> is the second deviatoric invariant. Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">Mises_sig</span> <span class="o">=</span> <span class="n">Mises_stress</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input stress tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Mises equivalent (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410eta_stressRKN4arma3vecE">
+<span id="_CPPv310eta_stressRKN4arma3vecE"></span><span id="_CPPv210eta_stressRKN4arma3vecE"></span><span id="eta_stress__arma::vecCR"></span><span class="target" id="group__contimech_1gaa38aadc3258e1defdc465b6d49f1e9d6"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eta_stress</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410eta_stressRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the stress flow <span class="math notranslate nohighlight">\( \boldsymbol{\eta}_{stress} \)</span> of a second order stress tensor written as a vector v in Voigt notation. </p>
+<p>
+The stress flow direction is defined as:   <div class="math notranslate nohighlight">
+\[    \boldsymbol{\eta}_{stress} = \frac{\frac{3}{2} \mathbf{\sigma}'}{\sigma^{Mises}} = \frac{\frac{3}{2} \textrm{dev}(\mathbf{\sigma})}{\sigma^{Mises}}
+\]</div>
+ This corresponds to the normal to the Von Mises yield surface and is used in associated flow rules. Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">vec</span> <span class="n">v_flow</span> <span class="o">=</span> <span class="n">eta_stress</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input stress tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6 vector, flow (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415eta_norm_stressRKN4arma3vecE">
+<span id="_CPPv315eta_norm_stressRKN4arma3vecE"></span><span id="_CPPv215eta_norm_stressRKN4arma3vecE"></span><span id="eta_norm_stress__arma::vecCR"></span><span class="target" id="group__contimech_1gac405765d52be3cca151bcaefc2906c65"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eta_norm_stress</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415eta_norm_stressRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the strain flow (direction) from a stress tensor (Euclidian norm), according to the Voigt convention for strains. </p>
+<p>
+The normalized flow direction based on the Euclidian norm is:   <div class="math notranslate nohighlight">
+\[    \boldsymbol{\eta}_{norm} = \frac{\mathbf{\sigma}}{\|\mathbf{\sigma}\|} = \frac{\mathbf{\sigma}}{\sqrt{\mathbf{\sigma}:\mathbf{\sigma}}}
+\]</div>
+ Note that the Euclidian norm is expressed as <span class="math notranslate nohighlight">\( \|\mathbf{m}\| = \sqrt{\mathbf{m}:\mathbf{m}} \)</span>, considering that v is the vector representation of a stress matrix m. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">vec</span> <span class="n">v_flow</span> <span class="o">=</span> <span class="n">eta_norm_stress</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input stress tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6 vector, flow (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415eta_norm_strainRKN4arma3vecE">
+<span id="_CPPv315eta_norm_strainRKN4arma3vecE"></span><span id="_CPPv215eta_norm_strainRKN4arma3vecE"></span><span id="eta_norm_strain__arma::vecCR"></span><span class="target" id="group__contimech_1gaa10dad2e6bea57713470c794b5cfbafd"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eta_norm_strain</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415eta_norm_strainRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the strain flow (direction) from a strain tensor (Euclidian norm), according to the Voigt convention for strains. </p>
+<p>
+The normalized flow direction based on the Euclidian norm is:   <div class="math notranslate nohighlight">
+\[    \boldsymbol{\eta}_{norm} = \frac{\boldsymbol{\varepsilon}}{\|\boldsymbol{\varepsilon}\|} = \frac{\boldsymbol{\varepsilon}}{\sqrt{\boldsymbol{\varepsilon}:\boldsymbol{\varepsilon}}}
+\]</div>
+ Note that the Euclidian norm is expressed as <span class="math notranslate nohighlight">\( \|\mathbf{m}\| = \sqrt{\mathbf{m}:\mathbf{m}} \)</span>, considering that v is the vector representation of a strain matrix m. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">vec</span> <span class="n">v_flow</span> <span class="o">=</span> <span class="n">eta_norm_strain</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input strain tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6 vector, flow (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411norm_stressRKN4arma3vecE">
+<span id="_CPPv311norm_stressRKN4arma3vecE"></span><span id="_CPPv211norm_stressRKN4arma3vecE"></span><span id="norm_stress__arma::vecCR"></span><span class="target" id="group__contimech_1ga308d4b277ed7dd8776ce41c972176f59"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">norm_stress</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411norm_stressRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the Euclidian norm of a stress tensor. </p>
+<p>
+The Euclidian (Frobenius) norm of a stress tensor is:   <div class="math notranslate nohighlight">
+\[    \|\mathbf{\sigma}\| = \sqrt{\mathbf{\sigma}:\mathbf{\sigma}} = \sqrt{\sigma_{ij}\,\sigma_{ij}}
+\]</div>
+ In Voigt notation: <span class="math notranslate nohighlight">\( \|\mathbf{\sigma}\| = \sqrt{v_1^2 + v_2^2 + v_3^2 + 2(v_4^2 + v_5^2 + v_6^2)} \)</span> <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm_stress</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input stress tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The norm (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411norm_strainRKN4arma3vecE">
+<span id="_CPPv311norm_strainRKN4arma3vecE"></span><span id="_CPPv211norm_strainRKN4arma3vecE"></span><span id="norm_strain__arma::vecCR"></span><span class="target" id="group__contimech_1ga499231ef51629c14c56cf9dfc033bd33"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">norm_strain</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411norm_strainRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the Euclidian norm of a strain tensor. </p>
+<p>
+The Euclidian (Frobenius) norm of a strain tensor is:   <div class="math notranslate nohighlight">
+\[    \|\boldsymbol{\varepsilon}\| = \sqrt{\boldsymbol{\varepsilon}:\boldsymbol{\varepsilon}} = \sqrt{\varepsilon_{ij}\,\varepsilon_{ij}}
+\]</div>
+ In Voigt notation: <span class="math notranslate nohighlight">\( \|\boldsymbol{\varepsilon}\| = \sqrt{v_1^2 + v_2^2 + v_3^2 + \frac{1}{2}(v_4^2 + v_5^2 + v_6^2)} \)</span> <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">norm</span><span class="o">=</span><span class="n">norm_strain</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input strain tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The norm (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv412Mises_strainRKN4arma3vecE">
+<span id="_CPPv312Mises_strainRKN4arma3vecE"></span><span id="_CPPv212Mises_strainRKN4arma3vecE"></span><span id="Mises_strain__arma::vecCR"></span><span class="target" id="group__contimech_1ga18fd22564831714cb234e6405a74979c"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Mises_strain</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv412Mises_strainRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the Von Mises strain <span class="math notranslate nohighlight">\( \varepsilon^{Mises} \)</span> of a second order strain tensor. </p>
+<p>
+The Von Mises equivalent strain is defined as:   <div class="math notranslate nohighlight">
+\[    \varepsilon^{Mises} = \sqrt{ \frac{2}{3} \boldsymbol{\varepsilon}' : \boldsymbol{\varepsilon}' }
+\]</div>
+ where <span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon}' = \textrm{dev}(\boldsymbol{\varepsilon}) \)</span> is the deviatoric strain tensor. This definition is conjugate to the Von Mises stress such that <span class="math notranslate nohighlight">\( \sigma^{Mises} \cdot \varepsilon^{Mises} = \mathbf{\sigma}' : \boldsymbol{\varepsilon}' \)</span>. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">Mises_eps</span> <span class="o">=</span> <span class="n">Mises_strain</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input strain tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The Mises norm (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410eta_strainRKN4arma3vecE">
+<span id="_CPPv310eta_strainRKN4arma3vecE"></span><span id="_CPPv210eta_strainRKN4arma3vecE"></span><span id="eta_strain__arma::vecCR"></span><span class="target" id="group__contimech_1ga04b29dbc380b2903eae926395f8593e6"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">eta_strain</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410eta_strainRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the strain flow <span class="math notranslate nohighlight">\( \boldsymbol{\eta}_{strain} \)</span> of a second order strain tensor written as a vector v in Voigt notation. </p>
+<p>
+The strain flow direction is defined as:   <div class="math notranslate nohighlight">
+\[    \boldsymbol{\eta}_{strain} = \frac{\frac{2}{3} \boldsymbol{\varepsilon}'}{\varepsilon^{Mises}} = \frac{\frac{2}{3} \textrm{dev}(\boldsymbol{\varepsilon})}{\varepsilon^{Mises}}
+\]</div>
+ This is conjugate to the stress flow <span class="math notranslate nohighlight">\( \boldsymbol{\eta}_{stress} \)</span> used in plasticity. Example: <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">vec</span> <span class="n">eps_f</span> <span class="o">=</span> <span class="n">eta_strain</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input strain tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6 vector, flow (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49J2_stressRKN4arma3vecE">
+<span id="_CPPv39J2_stressRKN4arma3vecE"></span><span id="_CPPv29J2_stressRKN4arma3vecE"></span><span id="J2_stress__arma::vecCR"></span><span class="target" id="group__contimech_1ga3e4b19735ba6ff87c588a2f252c7365e"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">J2_stress</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49J2_stressRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the second invariant of the deviatoric part of a second order stress tensor, written as a vector v in Voigt notation. </p>
+<p>
+The second deviatoric stress invariant <span class="math notranslate nohighlight">\( J_2 \)</span> is defined as:   <div class="math notranslate nohighlight">
+\[    J_2 = \frac{1}{2} \mathbf{\sigma}' : \mathbf{\sigma}' = \frac{1}{2} \sigma'_{ij} \, \sigma'_{ij}
+\]</div>
+ It is related to the Von Mises stress by <span class="math notranslate nohighlight">\( \sigma^{Mises} = \sqrt{3 \, J_2} \)</span>. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">J2</span> <span class="o">=</span> <span class="n">J2_stress</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input stress tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The second invariant (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49J2_strainRKN4arma3vecE">
+<span id="_CPPv39J2_strainRKN4arma3vecE"></span><span id="_CPPv29J2_strainRKN4arma3vecE"></span><span id="J2_strain__arma::vecCR"></span><span class="target" id="group__contimech_1ga334a8251291fed19a8fc0e88e6c23c57"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">J2_strain</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49J2_strainRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the second invariant of the deviatoric part of a second order strain tensor, written as a vector v in Voigt notation. </p>
+<p>
+The second deviatoric strain invariant <span class="math notranslate nohighlight">\( J_2 \)</span> is defined as:   <div class="math notranslate nohighlight">
+\[    J_2 = \frac{1}{2} \boldsymbol{\varepsilon}' : \boldsymbol{\varepsilon}' = \frac{1}{2} \varepsilon'_{ij} \, \varepsilon'_{ij}
+\]</div>
+ where <span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon}' = \textrm{dev}(\boldsymbol{\varepsilon}) \)</span> is the deviatoric strain tensor. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">J2</span> <span class="o">=</span> <span class="n">J2_strain</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input strain tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The second invariant (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49J3_stressRKN4arma3vecE">
+<span id="_CPPv39J3_stressRKN4arma3vecE"></span><span id="_CPPv29J3_stressRKN4arma3vecE"></span><span id="J3_stress__arma::vecCR"></span><span class="target" id="group__contimech_1ga6501d6387de6b537a0ce4da173fc569a"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">J3_stress</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49J3_stressRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the third invariant of the deviatoric part of a second order stress tensor, written as a vector v in Voigt notation. </p>
+<p>
+The third deviatoric stress invariant <span class="math notranslate nohighlight">\( J_3 \)</span> is defined as:   <div class="math notranslate nohighlight">
+\[    J_3 = \det(\mathbf{\sigma}') = \frac{1}{3} \sigma'_{ij} \, \sigma'_{jk} \, \sigma'_{ki}
+\]</div>
+ This invariant characterizes the Lode angle and is used in pressure-dependent yield criteria. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">J3</span> <span class="o">=</span> <span class="n">J3_stress</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input stress tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The third invariant (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49J3_strainRKN4arma3vecE">
+<span id="_CPPv39J3_strainRKN4arma3vecE"></span><span id="_CPPv29J3_strainRKN4arma3vecE"></span><span id="J3_strain__arma::vecCR"></span><span class="target" id="group__contimech_1gae5a19f561556929e5401be962dac45f5"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">J3_strain</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49J3_strainRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the third invariant of the deviatoric part of a second order strain tensor, written as a vector v in Voigt notation. </p>
+<p>
+The third deviatoric strain invariant <span class="math notranslate nohighlight">\( J_3 \)</span> is defined as:   <div class="math notranslate nohighlight">
+\[    J_3 = \det(\boldsymbol{\varepsilon}') = \frac{1}{3} \varepsilon'_{ij} \, \varepsilon'_{jk} \, \varepsilon'_{ki}
+\]</div>
+ where <span class="math notranslate nohighlight">\( \boldsymbol{\varepsilon}' = \textrm{dev}(\boldsymbol{\varepsilon}) \)</span> is the deviatoric strain tensor. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">v</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">J3</span> <span class="o">=</span> <span class="n">J3_strain</span><span class="p">(</span><span class="n">v</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>v</strong> – The input strain tensor (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The third invariant (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410Macaulay_pRKd">
+<span id="_CPPv310Macaulay_pRKd"></span><span id="_CPPv210Macaulay_pRKd"></span><span id="Macaulay_p__doubleCR"></span><span class="target" id="group__contimech_1ga76d5f2a5409d4789ea4db106f71831ba"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Macaulay_p</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">d</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410Macaulay_pRKd" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the results of the MacCaulay brackets operator <span class="math notranslate nohighlight">\(\langle d \rangle^+\)</span>. </p>
+<p>
+The positive Macaulay bracket (ramp function) is defined as:   <div class="math notranslate nohighlight">
+\[\begin{split}    \langle d \rangle^+ = \begin{cases} d &amp; \text{if } d &gt; 0 \\ 0 &amp; \text{if } d \leq 0 \end{cases} = \frac{d + |d|}{2}
+\end{split}\]</div>
+ <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="nb">int</span> <span class="n">MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="p">;</span>
+<span class="n">constexpr</span> <span class="nb">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">MIN</span> <span class="o">+</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">rand</span><span class="p">())</span> <span class="o">/</span> <span class="p">((</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="o">/</span><span class="p">(</span><span class="n">MAX</span> <span class="o">-</span> <span class="n">MIN</span><span class="p">)));</span>
+<span class="n">double</span> <span class="n">d_MC</span> <span class="o">=</span> <span class="n">Macaulay_p</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>d</strong> – The input value (double) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of <span class="math notranslate nohighlight">\(\langle d \rangle^+\)</span> (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410Macaulay_nRKd">
+<span id="_CPPv310Macaulay_nRKd"></span><span id="_CPPv210Macaulay_nRKd"></span><span id="Macaulay_n__doubleCR"></span><span class="target" id="group__contimech_1gabe2e5b534ebffea9b73b490d70f6dfc6"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">Macaulay_n</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">d</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410Macaulay_nRKd" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the results of the MacCaulay brackets operator <span class="math notranslate nohighlight">\(\langle d \rangle^-\)</span>. </p>
+<p>
+The negative Macaulay bracket is defined as:   <div class="math notranslate nohighlight">
+\[\begin{split}    \langle d \rangle^- = \begin{cases} 0 &amp; \text{if } d \geq 0 \\ d &amp; \text{if } d &lt; 0 \end{cases} = \frac{d - |d|}{2}
+\end{split}\]</div>
+ Note that <span class="math notranslate nohighlight">\( d = \langle d \rangle^+ + \langle d \rangle^- \)</span>. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="nb">int</span> <span class="n">MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="p">;</span>
+<span class="n">constexpr</span> <span class="nb">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">MIN</span> <span class="o">+</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">rand</span><span class="p">())</span> <span class="o">/</span> <span class="p">((</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="o">/</span><span class="p">(</span><span class="n">MAX</span> <span class="o">-</span> <span class="n">MIN</span><span class="p">)));</span>
+<span class="n">double</span> <span class="n">d_MC</span> <span class="o">=</span> <span class="n">Macaulay_n</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>d</strong> – The input value (double) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The value of <span class="math notranslate nohighlight">\(\langle d \rangle^-\)</span> (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv44signRKd">
+<span id="_CPPv34signRKd"></span><span id="_CPPv24signRKd"></span><span id="sign__doubleCR"></span><span class="target" id="group__contimech_1ga5fd6493a977e51bebf1a2a2649faeac8"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sign</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">d</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv44signRKd" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the results of the sign operator. </p>
+<p>
+The sign (signum) function is defined as:   <div class="math notranslate nohighlight">
+\[\begin{split}    \textrm{sign}(d) = \begin{cases} +1 &amp; \text{if } d &gt; \iota \\ 0 &amp; \text{if } |d| \leq \iota \\ -1 &amp; \text{if } d &lt; -\iota \end{cases}
+\end{split}\]</div>
+ where <span class="math notranslate nohighlight">\( \iota \)</span> is a small tolerance (set in the simcoon parameters, by default <span class="math notranslate nohighlight">\( 10^{-12} \)</span>). <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constexpr</span> <span class="nb">int</span> <span class="n">MIN</span> <span class="o">=</span> <span class="o">-</span><span class="mi">10</span><span class="p">;</span>
+<span class="n">constexpr</span> <span class="nb">int</span> <span class="n">MAX</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">d</span> <span class="o">=</span> <span class="n">MIN</span> <span class="o">+</span> <span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">rand</span><span class="p">())</span> <span class="o">/</span> <span class="p">((</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="o">/</span><span class="p">(</span><span class="n">MAX</span> <span class="o">-</span> <span class="n">MIN</span><span class="p">)));</span>
+<span class="n">double</span> <span class="n">d_sign</span> <span class="o">=</span> <span class="n">sign</span><span class="p">(</span><span class="n">d</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>d</strong> – The input value (double) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The sign of the input value (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv416normal_ellipsoidRKdRKdRKdRKdRKd">
+<span id="_CPPv316normal_ellipsoidRKdRKdRKdRKdRKd"></span><span id="_CPPv216normal_ellipsoidRKdRKdRKdRKdRKd"></span><span id="normal_ellipsoid__doubleCR.doubleCR.doubleCR.doubleCR.doubleCR"></span><span class="target" id="group__contimech_1ga4253d6df4f2e3097d8f3a09eb0c930f1"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">normal_ellipsoid</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv416normal_ellipsoidRKdRKdRKdRKdRKd" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the normalized vector normal to an ellipsoid with semi-principal axes of length a1, a2, a3. The direction of the normalized vector is set by angles u and v. </p>
+<p>
+Provides the normalized vector to an ellipsoid with semi-principal axes of length a1, a2, a3. The direction of the normalized vector is set by angles u and v. These 2 angles correspond to the rotations in the plan defined by the center of the ellipsoid, a1 and a2 directions for u, a1 and a3 ones for v. u = 0 corresponds to a1 direction and v = 0 correspond to a3 one. So the normal vector is set at the parametrized position :       <div class="math notranslate nohighlight">
+\[\begin{split}    \begin{align}
+    x &amp; = a_{1} \cos(u) \sin(v) \\
+    y &amp; = a_{2} \sin(u) \sin(v) \\
+    z &amp; = a_{3} \cos(v)
+    \end{align}
+\end{split}\]</div>
+ <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">double</span> <span class="n">Pi</span> <span class="o">=</span> <span class="mf">3.14159265358979323846</span><span class="p">;</span>
+
+<span class="n">double</span> <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Pi</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Pi</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="p">)</span> <span class="o">%</span> <span class="n">Pi</span> <span class="o">-</span> <span class="n">Pi</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">a1</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">a2</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">a3</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">vec</span> <span class="n">normal</span> <span class="o">=</span> <span class="n">normal_ellipsoid</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – The angle in the plane defined by the center of the ellipsoid, a1 and a2 directions (double) </p></li>
+<li><p><strong>v</strong> – The angle in the plane defined by the center of the ellipsoid, a1 and a3 directions (double) </p></li>
+<li><p><strong>a1</strong> – The length of the semi-principal axis a1 (double) </p></li>
+<li><p><strong>a2</strong> – The length of the semi-principal axis a2 (double) </p></li>
+<li><p><strong>a3</strong> – The length of the semi-principal axis a3 (double) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normal vector (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419curvature_ellipsoidRKdRKdRKdRKdRKd">
+<span id="_CPPv319curvature_ellipsoidRKdRKdRKdRKdRKd"></span><span id="_CPPv219curvature_ellipsoidRKdRKdRKdRKdRKd"></span><span id="curvature_ellipsoid__doubleCR.doubleCR.doubleCR.doubleCR.doubleCR"></span><span class="target" id="group__contimech_1gaca797b9ba25a551febfcff6a2e0bcade"></span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">curvature_ellipsoid</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419curvature_ellipsoidRKdRKdRKdRKdRKd" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the curvature of an ellipsoid with semi-principal axes of length a1, a2, a3 at the angle u,v. </p>
+<p>
+Provides the normalized curvature of an ellipsoid with semi-principal axes of length a1, a2, a3. The position of the evaluated curvature is set by angles u and v. These 2 angles correspond to the rotations in the plan defined by the center of the ellipsoid, a1 and a2 directions for u, a1 and a3 ones for v. u = 0 corresponds to a1 direction and v = 0 correspond to a3 one. So the curvature is set at the parametrized position :        <div class="math notranslate nohighlight">
+\[\begin{split}    \begin{align}
+    x &amp; = a_{1} \cos(u) \sin(v) \\
+    y &amp; = a_{2} \sin(u) \sin(v) \\
+    z &amp; = a_{3} \cos(v)
+    \end{align}
+    \Xi = \frac{a_1^2\,a_2^2\,a_3^2}{\left(a_1^2\,a_2^2\,\cos^2 v + a_3^2\,\sin^2 v +  a_2^2\,\cos^2 v + a_1^2\,\sin u \right)^2 }
+\end{split}\]</div>
+ <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">double</span> <span class="n">Pi</span> <span class="o">=</span> <span class="mf">3.14159265358979323846</span><span class="p">;</span>
+
+<span class="n">double</span> <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Pi</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Pi</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="p">)</span> <span class="o">%</span> <span class="n">Pi</span> <span class="o">-</span> <span class="n">Pi</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">a1</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">a2</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">a3</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">curvature</span> <span class="o">=</span> <span class="n">curvature_ellipsoid</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>u</strong> – The angle in the plane defined by the center of the ellipsoid, a1 and a2 directions (double) </p></li>
+<li><p><strong>v</strong> – The angle in the plane defined by the center of the ellipsoid, a1 and a3 directions (double) </p></li>
+<li><p><strong>a1</strong> – The length of the semi-principal axis a1 (double) </p></li>
+<li><p><strong>a2</strong> – The length of the semi-principal axis a2 (double) </p></li>
+<li><p><strong>a3</strong> – The length of the semi-principal axis a3 (double) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The curvature (double)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv49sigma_intRKN4arma3vecERKdRKdRKdRKdRKd">
+<span id="_CPPv39sigma_intRKN4arma3vecERKdRKdRKdRKdRKd"></span><span id="_CPPv29sigma_intRKN4arma3vecERKdRKdRKdRKdRKd"></span><span id="sigma_int__arma::vecCR.doubleCR.doubleCR.doubleCR.doubleCR.doubleCR"></span><span class="target" id="group__contimech_1gab5de705594947186541d7b72dbd53d74"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sigma_int</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">sigma_in</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">u</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">v</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a1</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a2</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">double</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a3</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv49sigma_intRKN4arma3vecERKdRKdRKdRKdRKd" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the normal and tangent components of the traction vector in the normal direction n to an ellipsoid with axes a1, a2, a3 from an input inside stress <span class="math notranslate nohighlight">\( \sigma \)</span>. The direction of the normalized vector is set by angles u and v. </p>
+<p>
+Provides the normal and tangent components of a stress vector σin in accordance with the normal direction n to an ellipsoid with axes a1, a2, a3. The normal vector is set at the parametrized position :       <div class="math notranslate nohighlight">
+\[\begin{split}    \begin{align}
+    x &amp; = a_{1} \cos(u) \sin(v) \\
+    y &amp; = a_{2} \sin(u) \sin(v) \\
+    z &amp; = a_{3} \cos(v)
+    \end{align}
+\end{split}\]</div>
+ <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">double</span> <span class="n">Pi</span> <span class="o">=</span> <span class="mf">3.14159265358979323846</span><span class="p">;</span>
+
+<span class="n">vec</span> <span class="n">sigma_in</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">6</span><span class="p">);</span>
+<span class="n">double</span> <span class="n">u</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="p">)</span> <span class="o">%</span> <span class="n">Pi</span> <span class="o">-</span> <span class="n">Pi</span><span class="o">/</span><span class="mi">2</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">v</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">()</span><span class="o">/</span><span class="p">(</span><span class="n">double</span><span class="p">)(</span><span class="n">RAND_MAX</span><span class="p">)</span> <span class="o">%</span> <span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">Pi</span><span class="p">)</span> <span class="o">-</span> <span class="n">Pi</span><span class="p">;</span>
+<span class="n">double</span> <span class="n">a1</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">a2</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">double</span> <span class="n">a3</span> <span class="o">=</span> <span class="p">(</span><span class="n">double</span><span class="p">)</span><span class="n">rand</span><span class="p">();</span>
+<span class="n">vec</span> <span class="n">sigma_i</span> <span class="o">=</span> <span class="n">sigma_int</span><span class="p">(</span><span class="n">sigma_in</span><span class="p">,</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">a1</span><span class="p">,</span> <span class="n">a2</span><span class="p">,</span> <span class="n">a3</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>sigma_in</strong> – The input stress tensor (arma::vec) </p></li>
+<li><p><strong>u</strong> – The angle in the plane defined by the center of the ellipsoid, a1 and a2 directions (double) </p></li>
+<li><p><strong>v</strong> – The angle in the plane defined by the center of the ellipsoid, a1 and a3 directions (double) </p></li>
+<li><p><strong>a1</strong> – The length of the semi-principal axis a1 (double) </p></li>
+<li><p><strong>a2</strong> – The length of the semi-principal axis a2 (double) </p></li>
+<li><p><strong>a3</strong> – The length of the semi-principal axis a3 (double) </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The normal and tangent components of the traction vector (arma::vec)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46p_ikjlRKN4arma3vecE">
+<span id="_CPPv36p_ikjlRKN4arma3vecE"></span><span id="_CPPv26p_ikjlRKN4arma3vecE"></span><span id="p_ikjl__arma::vecCR"></span><span class="target" id="group__contimech_1ga0985ecf0a888aea66c9fb161436d5c4e"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">p_ikjl</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46p_ikjlRKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the Hill interfacial operator according to a normal a (see papers of Siredey and Entemeyer phD dissertation) </p>
+<p>
+The Hill interfacial operator <span class="math notranslate nohighlight">\( \mathbf{P} \)</span> is defined in index notation as:   <div class="math notranslate nohighlight">
+\[    P_{ikjl} = \frac{1}{2} \left( a_i \, \delta_{kj} \, a_l + a_j \, \delta_{ik} \, a_l + a_i \, \delta_{lj} \, a_k + a_j \, \delta_{il} \, a_k \right)
+\]</div>
+ where <span class="math notranslate nohighlight">\( \mathbf{a} \)</span> is the normal vector and <span class="math notranslate nohighlight">\( \delta_{ij} \)</span> is the Kronecker delta. <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">a</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">H</span> <span class="o">=</span> <span class="n">p_ikjl</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</pre></div>
+</div>
+ </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – The input normal vector (arma::vec) </p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Hill interfacial operator 6x6 matrix (arma::mat)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415auto_sym_dyadicRKN4arma3matE">
+<span id="_CPPv315auto_sym_dyadicRKN4arma3matE"></span><span id="_CPPv215auto_sym_dyadicRKN4arma3matE"></span><span id="auto_sym_dyadic__arma::matCR"></span><span class="target" id="group__contimech_1ga62acfa1a6f3a9041e8892ba7e6c73b8b"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">auto_sym_dyadic</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415auto_sym_dyadicRKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the dyadic product of a symmetric tensor with itself (auto dyadic product) </p>
+<p>
+This function returns the dyadic (tensor) product of a symmetric tensor with itself:   <div class="math notranslate nohighlight">
+\[    \mathbf{C} = \mathbf{a} \otimes \mathbf{a}, \quad C_{ijkl} = a_{ij} \, a_{kl}
+\]</div>
+ The function returns a 6x6 matrix that corresponds to a 4th order tensor in Voigt notation (such as stiffness matrices). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – The input symmetric tensor (arma::mat)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 matrix that represent the dyadic product (arma::mat) <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">a</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">sym_a</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">t</span><span class="p">());</span>
+<span class="n">mat</span> <span class="n">c</span> <span class="o">=</span> <span class="n">auto_sym_dyadic</span><span class="p">(</span><span class="n">sym_a</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv410sym_dyadicRKN4arma3matERKN4arma3matE">
+<span id="_CPPv310sym_dyadicRKN4arma3matERKN4arma3matE"></span><span id="_CPPv210sym_dyadicRKN4arma3matERKN4arma3matE"></span><span id="sym_dyadic__arma::matCR.arma::matCR"></span><span class="target" id="group__contimech_1ga123b51864e1d21e18636ca9157bdbb9a"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sym_dyadic</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv410sym_dyadicRKN4arma3matERKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the dyadic product of two symmetric tensors. </p>
+<p>
+This function returns the dyadic (tensor) product of two symmetric tensors:   <div class="math notranslate nohighlight">
+\[    \mathbf{C} = \mathbf{a} \otimes \mathbf{b}, \quad C_{ijkl} = a_{ij} \, b_{kl}
+\]</div>
+ The function returns a 6x6 matrix that corresponds to a 4th order tensor in Voigt notation (such as stiffness matrices). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – The first input symmetric tensor (arma::mat) </p></li>
+<li><p><strong>b</strong> – The second input symmetric tensor (arma::mat)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 matrix that represent the dyadic product (arma::mat) <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">a</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">sym_a</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">t</span><span class="p">());</span>
+<span class="n">mat</span> <span class="n">b</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">sym_b</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="n">t</span><span class="p">());</span>
+<span class="n">mat</span> <span class="n">c</span> <span class="o">=</span> <span class="n">sym_dyadic</span><span class="p">(</span><span class="n">sym_a</span><span class="p">,</span><span class="n">sym_b</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv411auto_dyadicRKN4arma3matE">
+<span id="_CPPv311auto_dyadicRKN4arma3matE"></span><span id="_CPPv211auto_dyadicRKN4arma3matE"></span><span id="auto_dyadic__arma::matCR"></span><span class="target" id="group__contimech_1gab49d30d247d98312d87a66d189b64f54"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">auto_dyadic</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv411auto_dyadicRKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the dyadic product of a tensor with itself (auto dyadic product) </p>
+<p>
+This function returns the dyadic (tensor) product of a tensor with itself:   <div class="math notranslate nohighlight">
+\[    \mathbf{C} = \mathbf{a} \otimes \mathbf{a}, \quad C_{ijkl} = a_{ij} \, a_{kl}
+\]</div>
+ The function returns a 6x6 matrix that corresponds to a 4th order tensor in Voigt notation. Unlike auto_sym_dyadic, this function does not assume the input tensor is symmetric. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – The input tensor (arma::mat)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 matrix that represent the dyadic product (arma::mat) <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">a</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">c</span> <span class="o">=</span> <span class="n">auto_dyadic</span><span class="p">(</span><span class="n">a</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419dyadic_4vectors_symRKN4arma3vecERKN4arma3vecERKNSt6stringE">
+<span id="_CPPv319dyadic_4vectors_symRKN4arma3vecERKN4arma3vecERKNSt6stringE"></span><span id="_CPPv219dyadic_4vectors_symRKN4arma3vecERKN4arma3vecERKNSt6stringE"></span><span id="dyadic_4vectors_sym__arma::vecCR.arma::vecCR.ssCR"></span><span class="target" id="group__contimech_1gaca1442783dcf848ff06ae47deaa2b42c"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dyadic_4vectors_sym</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">n_b</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">std</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">string</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">conv</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419dyadic_4vectors_symRKN4arma3vecERKN4arma3vecERKNSt6stringE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the dyadic product of four vectors to provide a symmetric 4th order tensor (minor symmetry) </p>
+<p>
+This function returns a 4th order tensor from two vectors with minor symmetry. For convention “aabb”:   <div class="math notranslate nohighlight">
+\[    C_{ijkl} = (n_a)_i \, (n_a)_j \, (n_b)_k \, (n_b)_l
+\]</div>
+ For convention “abab”:   <div class="math notranslate nohighlight">
+\[    C_{ijkl} = \frac{1}{2} \left( (n_a)_i \, (n_b)_j \, (n_a)_k \, (n_b)_l + (n_a)_i \, (n_b)_j \, (n_b)_k \, (n_a)_l \right)
+\]</div>
+ The function returns a 6x6 matrix corresponding to a 4th order tensor in Voigt notation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>n_a</strong> – The first input vector (arma::vec) </p></li>
+<li><p><strong>n_b</strong> – The second input vector (arma::vec) </p></li>
+<li><p><strong>conv</strong> – The convention for the dyadic product (“aabb” or “abab”) (std::string)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 matrix that represent the dyadic product (arma::mat) <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">vec</span> <span class="n">n_a</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">vec</span> <span class="n">n_b</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">c</span> <span class="o">=</span> <span class="n">dyadic_4vectors_sym</span><span class="p">(</span><span class="n">n_a</span><span class="p">,</span> <span class="n">n_b</span><span class="p">,</span> <span class="s2">&quot;aabb&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv46dyadicRKN4arma3matERKN4arma3matE">
+<span id="_CPPv36dyadicRKN4arma3matERKN4arma3matE"></span><span id="_CPPv26dyadicRKN4arma3matERKN4arma3matE"></span><span id="dyadic__arma::matCR.arma::matCR"></span><span class="target" id="group__contimech_1ga45b90c4bf7d5d8f2d1014c276caee2d6"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">dyadic</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv46dyadicRKN4arma3matERKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the dyadic product of two tensors. </p>
+<p>
+This function returns the dyadic (tensor) product of two tensors:   <div class="math notranslate nohighlight">
+\[    \mathbf{C} = \mathbf{a} \otimes \mathbf{b}, \quad C_{ijkl} = a_{ij} \, b_{kl}
+\]</div>
+ The function returns a 6x6 matrix corresponding to a 4th order tensor in Voigt notation (such as stiffness matrices). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – The first input tensor (arma::mat) </p></li>
+<li><p><strong>b</strong> – The second input tensor (arma::mat)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 matrix that represent the dyadic product (arma::mat) <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">a</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">b</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">c</span> <span class="o">=</span> <span class="n">dyadic</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv424auto_sym_dyadic_operatorRKN4arma3matE">
+<span id="_CPPv324auto_sym_dyadic_operatorRKN4arma3matE"></span><span id="_CPPv224auto_sym_dyadic_operatorRKN4arma3matE"></span><span id="auto_sym_dyadic_operator__arma::matCR"></span><span class="target" id="group__contimech_1ga819f2f27f98458d9bb9e04881f34e80c"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">auto_sym_dyadic_operator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv424auto_sym_dyadic_operatorRKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the symmetric 4th-order dyadic product of a symmetric tensor with itself. </p>
+<p>
+This function returns the symmetric dyadic product <span class="math notranslate nohighlight">\( \mathbf{C} = \mathbf{a} \odot \mathbf{a} \)</span>, defined as:   <div class="math notranslate nohighlight">
+\[    \left(\mathbf{a} \odot \mathbf{a} \right)_{ijkl} = \frac{1}{2} \left( a_{ik} \, a_{jl} + a_{il} \, a_{jk} \right)
+\]</div>
+ The function returns a 6x6 matrix corresponding to a 4th order tensor in Voigt notation (possessing both major and minor symmetries). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>a</strong> – The input symmetric tensor (arma::mat)</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 matrix that represent the symmetric dyadic product (arma::mat) <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">a</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">sym_a</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">t</span><span class="p">());</span>
+<span class="n">mat</span> <span class="n">c</span> <span class="o">=</span> <span class="n">auto_sym_dyadic_operator</span><span class="p">(</span><span class="n">sym_a</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv419sym_dyadic_operatorRKN4arma3matERKN4arma3matE">
+<span id="_CPPv319sym_dyadic_operatorRKN4arma3matERKN4arma3matE"></span><span id="_CPPv219sym_dyadic_operatorRKN4arma3matERKN4arma3matE"></span><span id="sym_dyadic_operator__arma::matCR.arma::matCR"></span><span class="target" id="group__contimech_1gac4825be989050d7b25d40a1c336c4ed6"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">sym_dyadic_operator</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">a</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv419sym_dyadic_operatorRKN4arma3matERKN4arma3matE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides the symmetric 4th-order dyadic product of two symmetric tensors. </p>
+<p>
+This function returns the symmetric dyadic product <span class="math notranslate nohighlight">\( \mathbf{C} = \mathbf{a} \odot \mathbf{b} \)</span>, defined as:   <div class="math notranslate nohighlight">
+\[    \left(\mathbf{a} \odot \mathbf{b} \right)_{ijkl} = \frac{1}{2} \left( a_{ik} \, b_{jl} + a_{il} \, b_{jk} \right)
+\]</div>
+ The function returns a 6x6 matrix corresponding to a 4th order tensor in Voigt notation (possessing minor symmetry). </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> – The first input symmetric tensor (arma::mat) </p></li>
+<li><p><strong>b</strong> – The second input symmetric tensor (arma::mat)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 matrix that represent the symmetric dyadic product (arma::mat) <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">a</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">sym_a</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">a</span><span class="o">.</span><span class="n">t</span><span class="p">());</span>
+<span class="n">mat</span> <span class="n">b</span> <span class="o">=</span> <span class="n">randu</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">sym_b</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">b</span> <span class="o">+</span> <span class="n">b</span><span class="o">.</span><span class="n">t</span><span class="p">());</span>
+<span class="n">mat</span> <span class="n">c</span> <span class="o">=</span> <span class="n">sym_dyadic_operator</span><span class="p">(</span><span class="n">sym_a</span><span class="p">,</span><span class="n">sym_b</span><span class="p">);</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="cpp function">
+<dt class="sig sig-object cpp" id="_CPPv415linearop_eigsymRKN4arma3vecERKN4arma3vecE">
+<span id="_CPPv315linearop_eigsymRKN4arma3vecERKN4arma3vecE"></span><span id="_CPPv215linearop_eigsymRKN4arma3vecERKN4arma3vecE"></span><span id="linearop_eigsym__arma::vecCR.arma::vecCR"></span><span class="target" id="group__contimech_1ga97b14f1c6fec137e6ecd55a426e43628"></span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">mat</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">linearop_eigsym</span></span></span><span class="sig-paren">(</span><span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b_i</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="n"><span class="pre">arma</span></span><span class="p"><span class="pre">::</span></span><span class="n"><span class="pre">vec</span></span><span class="w"> </span><span class="p"><span class="pre">&amp;</span></span><span class="n sig-param"><span class="pre">b_j</span></span><span class="sig-paren">)</span><a class="headerlink" href="#_CPPv415linearop_eigsymRKN4arma3vecERKN4arma3vecE" title="Link to this definition"></a><br /></dt>
+<dd><p>Provides a symmetric 4th-order tensor <span class="math notranslate nohighlight">\( \mathbb{G}^{ij} \)</span>, defined such that <span class="math notranslate nohighlight">\( \mathbf{B}_i : \mathbf{D} : \mathbf{B}_j = \mathbb{G}^{ij} : \mathbf{D} \)</span>, where <span class="math notranslate nohighlight">\( \mathbf{B}_i \)</span> and <span class="math notranslate nohighlight">\( \mathbf{B}_j \)</span> are eigenprojection tensors. </p>
+<p>
+The 4th-order tensor <span class="math notranslate nohighlight">\( \mathbb{G}^{ij} \)</span> is constructed from eigenvectors <span class="math notranslate nohighlight">\( \mathbf{n}^i \)</span> and <span class="math notranslate nohighlight">\( \mathbf{n}^j \)</span>. It is defined such that the triple product can be expressed as a single double contraction:   <div class="math notranslate nohighlight">
+\[    \mathbf{B}_i : \mathbf{D} : \mathbf{B}_j = \mathbb{G}^{ij} : \mathbf{D}
+\]</div>
+ where <span class="math notranslate nohighlight">\( \mathbf{B}_i = \mathbf{n}^i \otimes \mathbf{n}^i \)</span> and <span class="math notranslate nohighlight">\( \mathbf{B}_j = \mathbf{n}^j \otimes \mathbf{n}^j \)</span> are the eigenprojection tensors. Defining <span class="math notranslate nohighlight">\( \mathbf{N} = \mathbf{n}^i \otimes \mathbf{n}^j \)</span>, the tensor components are:   <div class="math notranslate nohighlight">
+\[    \mathbb{G}^{ij}_{klmn} = \frac{1}{2} N_{kl} \left( N_{mn} + N_{nm} \right)
+\]</div>
+ This tensor is useful in logarithmic strain computations, particularly for the derivative of the Hencky strain with respect to the Cauchy-Green tensor (see Xiao, Bruhns &amp; Meyers, 1997). The function returns a 6x6 matrix corresponding to a 4th order tensor in Voigt notation. </p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>b_i</strong> – The first eigenvector (arma::vec) </p></li>
+<li><p><strong>b_j</strong> – The second eigenvector (arma::vec)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>The 6x6 matrix that represents the 4th-order tensor <span class="math notranslate nohighlight">\( \mathbb{G}^{ij} \)</span> <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mat</span> <span class="n">B</span> <span class="o">=</span> <span class="n">L_Cauchy_Green</span><span class="p">(</span><span class="n">F1</span><span class="p">);</span>
+
+<span class="n">vec</span> <span class="n">bi</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">Bi</span><span class="p">;</span>
+<span class="n">eig_sym</span><span class="p">(</span><span class="n">bi</span><span class="p">,</span> <span class="n">Bi</span><span class="p">,</span> <span class="n">B</span><span class="p">);</span>
+<span class="n">mat</span> <span class="n">BBBB</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">6</span><span class="p">);</span>
+
+<span class="n">double</span> <span class="n">f_z</span> <span class="o">=</span> <span class="mf">0.</span><span class="p">;</span>
+<span class="k">for</span> <span class="p">(</span><span class="n">unsigned</span> <span class="nb">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">unsigned</span> <span class="nb">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">j</span><span class="o">&lt;</span><span class="mi">3</span><span class="p">;</span> <span class="n">j</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">((</span><span class="n">i</span><span class="o">!=</span><span class="n">j</span><span class="p">)</span><span class="o">&amp;&amp;</span><span class="p">(</span><span class="n">fabs</span><span class="p">(</span><span class="n">bi</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">-</span><span class="n">bi</span><span class="p">(</span><span class="n">j</span><span class="p">))</span><span class="o">&gt;</span><span class="n">simcoon</span><span class="p">::</span><span class="n">iota</span><span class="p">))</span> <span class="p">{</span>
+            <span class="n">f_z</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.</span><span class="o">+</span><span class="p">(</span><span class="n">bi</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">bi</span><span class="p">(</span><span class="n">j</span><span class="p">)))</span><span class="o">/</span><span class="p">(</span><span class="mf">1.</span><span class="o">-</span><span class="p">(</span><span class="n">bi</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">bi</span><span class="p">(</span><span class="n">j</span><span class="p">)))</span><span class="o">+</span><span class="mf">2.</span><span class="o">/</span><span class="n">log</span><span class="p">(</span><span class="n">bi</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="o">/</span><span class="n">bi</span><span class="p">(</span><span class="n">j</span><span class="p">));</span>
+            <span class="n">BBBB</span> <span class="o">=</span> <span class="n">BBBB</span> <span class="o">+</span> <span class="n">f_z</span><span class="o">*</span><span class="n">B_klmn</span><span class="p">(</span><span class="n">Bi</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">Bi</span><span class="o">.</span><span class="n">col</span><span class="p">(</span><span class="n">j</span><span class="p">));</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="constitutive.html" class="btn btn-neutral float-left" title="constitutive.hpp" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="kinematics.html" class="btn btn-neutral float-right" title="kinematics.hpp" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
