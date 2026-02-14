@@ -1,0 +1,549 @@
+:orphan:
+
+Examples
+========
+
+Below are examples illustrating Simcoon's main features. 
+These examples are designed to serve as tutorials. 
+In that sense, an effort is made to keep the scripts simple and executable with 
+a low computational cost.
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+Analysis and processing examples
+-----------------------------------
+
+Below are examples illustrating Simcoon's capabilities for simulating mechanical and thermomechanical
+responses and post-processing results.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This tutorial studies the directional stiffness of a cubic material">
+
+.. only:: html
+
+  .. image:: /examples/analysis/images/thumb/sphx_glr_directional_stiffness_thumb.png
+    :alt:
+
+  :doc:`/examples/analysis/directional_stiffness`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Effective properties of a cubic material</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Numerical vs Analytical Eshelby Tensor Comparison">
+
+.. only:: html
+
+  .. image:: /examples/analysis/images/thumb/sphx_glr_eshelby_numerical_vs_analytical_thumb.png
+    :alt:
+
+  :doc:`/examples/analysis/eshelby_numerical_vs_analytical`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Numerical vs Analytical Eshelby Tensor Comparison</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates inverse parameter identification for hyperelastic materials using experimental stress-strain data. We identify the Mooney-Rivlin model parameters from Treloar&#x27;s classical rubber elasticity experiments.">
+
+.. only:: html
+
+  .. image:: /examples/analysis/images/thumb/sphx_glr_hyperelastic_parameter_identification_thumb.png
+    :alt:
+
+  :doc:`/examples/analysis/hyperelastic_parameter_identification`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Parameter Identification for Mooney-Rivlin Hyperelastic Material</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Comparison of objective rates">
+
+.. only:: html
+
+  .. image:: /examples/analysis/images/thumb/sphx_glr_objective_rates_thumb.png
+    :alt:
+
+  :doc:`/examples/analysis/objective_rates`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Comparison of objective rates</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/analysis/directional_stiffness
+   /examples/analysis/eshelby_numerical_vs_analytical
+   /examples/analysis/hyperelastic_parameter_identification
+   /examples/analysis/objective_rates
+
+Continuum Mechanics Examples
+-----------------------------------------------
+
+Below are examples illustrating Simcoon's main features. 
+These examples are designed to serve as tutorials. 
+In that sense, an effort is made to keep the scripts simple and executable with 
+a low computational cost.
+
+This gallery contains examples demonstrating:
+
+- **Constitutive relations** - Building stiffness and compliance tensors for various material symmetries
+- **Stress measures** - Converting between different stress measures (Cauchy, PK1, PK2, etc.)
+- **Rotation operations** - Rotating tensors and vectors
+- **Yield criteria** - von Mises, Tresca, Drucker, and Hill anisotropic criteria
+
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Constitutive Library Examples">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_constitutive_relations_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/constitutive_relations`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Constitutive Library Examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Rotation library Examples">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_rotation_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/rotation`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Rotation library Examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example is an hands-on demo of the stress “transfer” helpers in simcoon to switch between different stress measures.">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_stress_measures_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/stress_measures`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the stress transfer helpers exposed in simcoon.">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_stress_transfer_helpers_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/stress_transfer_helpers`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Stress transfer library examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates different yield criteria available in Simcoon, including von Mises, Tresca, Drucker, and anisotropic Hill criteria.">
+
+.. only:: html
+
+  .. image:: /examples/continuum_mechanics/images/thumb/sphx_glr_yield_criteria_thumb.png
+    :alt:
+
+  :doc:`/examples/continuum_mechanics/yield_criteria`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Yield Criteria Examples</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/continuum_mechanics/constitutive_relations
+   /examples/continuum_mechanics/rotation
+   /examples/continuum_mechanics/stress_measures
+   /examples/continuum_mechanics/stress_transfer_helpers
+   /examples/continuum_mechanics/yield_criteria
+
+Heterogeneous materials simulation
+-----------------------------------------------
+
+Below are examples illustrating Simcoon's capabilities for simulating heterogeneous materials.
+
+This gallery contains examples demonstrating:
+
+- **Eshelby tensors** - Computing Eshelby and Hill interaction tensors for various inclusion shapes
+- **Micromechanics** - Effective properties using Mori-Tanaka and self-consistent schemes, effect of volume fraction and aspect ratio
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example studies the evolution of the mechanical properties of a composite material considering spherical reinforcement.">
+
+.. only:: html
+
+  .. image:: /examples/heterogeneous/images/thumb/sphx_glr_effective_props_thumb.png
+    :alt:
+
+  :doc:`/examples/heterogeneous/effective_props`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Micromechanics Examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Eshelby Tensor Examples">
+
+.. only:: html
+
+  .. image:: /examples/heterogeneous/images/thumb/sphx_glr_eshelby_tensors_thumb.png
+    :alt:
+
+  :doc:`/examples/heterogeneous/eshelby_tensors`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Eshelby Tensor Examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="2 phase composite homogenization example">
+
+.. only:: html
+
+  .. image:: /examples/heterogeneous/images/thumb/sphx_glr_homogenization_thumb.png
+    :alt:
+
+  :doc:`/examples/heterogeneous/homogenization`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">2 phase composite homogenization example</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/heterogeneous/effective_props
+   /examples/heterogeneous/eshelby_tensors
+   /examples/heterogeneous/homogenization
+
+Hyperelasticity 
+-----------------------------------------------
+
+Below are examples illustrating Simcoon's capabilities for simulating materials exhibiting hyperelasticity.
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we compare three hyperelastic constitutive laws. Each model is run for uniaxial tension (UT), equibiaxial tension (ET), and pure shear (PS).">
+
+.. only:: html
+
+  .. image:: /examples/hyperelasticity/images/thumb/sphx_glr_HYPER_numerical_thumb.png
+    :alt:
+
+  :doc:`/examples/hyperelasticity/HYPER_numerical`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Hyperelastic models - use the API</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="In this example, we compare five hyperelastic constitutive laws. Each model is run for uniaxial tension (UT), equibiaxial tension (ET), and pure shear (PS).">
+
+.. only:: html
+
+  .. image:: /examples/hyperelasticity/images/thumb/sphx_glr_HYPER_umat_thumb.png
+    :alt:
+
+  :doc:`/examples/hyperelasticity/HYPER_umat`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Hyperelastic models - use the umat</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/hyperelasticity/HYPER_numerical
+   /examples/hyperelasticity/HYPER_umat
+
+Constitutive Laws Examples
+-----------------------------------------------
+
+Below are examples illustrating Simcoon's constitutive laws library.
+
+This gallery contains examples demonstrating the following material models:
+
+**Elastic Models:**
+
+- **ELISO** - Isotropic elasticity
+- **ELIST** - Transversely isotropic elasticity
+- **ELORT** - Orthotropic elasticity
+
+**Plasticity Models:**
+
+- **EPICP** - Plasticity with isotropic hardening (power-law)
+- **EPKCP** - Plasticity with combined isotropic and kinematic hardening
+- **EPCHA** - Plasticity with Chaboche hardening (cyclic plasticity)
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbnails">
+
+.. thumbnail-parent-div-open
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Isotropic elasticity examples">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_ELISO_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/ELISO`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Isotropic elasticity examples</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Transversely Isotropic Elasticity Example">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_ELIST_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/ELIST`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Transversely Isotropic Elasticity Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Orthotropic Elasticity Example">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_ELORT_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/ELORT`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Orthotropic Elasticity Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plasticity with Chaboche Hardening Example">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_EPCHA_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/EPCHA`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plasticity with Chaboche Hardening Example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plasticity with isotropic hardening example">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_EPICP_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/EPICP`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plasticity with isotropic hardening example</div>
+    </div>
+
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Plasticity with Isotropic and Kinematic Hardening Example">
+
+.. only:: html
+
+  .. image:: /examples/umats/images/thumb/sphx_glr_EPKCP_thumb.png
+    :alt:
+
+  :doc:`/examples/umats/EPKCP`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Plasticity with Isotropic and Kinematic Hardening Example</div>
+    </div>
+
+
+.. thumbnail-parent-div-close
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /examples/umats/ELISO
+   /examples/umats/ELIST
+   /examples/umats/ELORT
+   /examples/umats/EPCHA
+   /examples/umats/EPICP
+   /examples/umats/EPKCP
+
+
+.. only:: html
+
+  .. container:: sphx-glr-footer sphx-glr-footer-gallery
+
+    .. container:: sphx-glr-download sphx-glr-download-python
+
+      :download:`Download all examples in Python source code: examples_python.zip </examples/examples_python.zip>`
+
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
+
+      :download:`Download all examples in Jupyter notebooks: examples_jupyter.zip </examples/examples_jupyter.zip>`
+
+
+.. only:: html
+
+ .. rst-class:: sphx-glr-signature
+
+    `Gallery generated by Sphinx-Gallery <https://sphinx-gallery.github.io>`_

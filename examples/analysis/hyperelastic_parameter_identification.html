@@ -1,0 +1,1509 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Parameter Identification for Mooney-Rivlin Hyperelastic Material &mdash; Simcoon 2.0.0.dev0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://microgen.readthedocs.io/en/latest/examples/analysis/hyperelastic_parameter_identification.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=25d36582"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Comparison of objective rates" href="objective_rates.html" />
+    <link rel="prev" title="Numerical vs Analytical Eshelby Tensor Comparison" href="eshelby_numerical_vs_analytical.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer Installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-using-conda">Prerequisites (using conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-without-conda">Prerequisites (without conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#simcoon-installation">Simcoon Installation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#running-tests-all-platforms">Running Tests (All Platforms)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#additional-information">Additional Information</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Parameter Identification for Mooney-Rivlin Hyperelastic Material</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#methodology-overview">Methodology Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mooney-rivlin-constitutive-model">Mooney-Rivlin Constitutive Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#experimental-data-treloar-s-rubber-experiments">Experimental Data: Treloar’s Rubber Experiments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#forward-model-stress-prediction-using-simcoon">Forward Model: Stress Prediction using simcoon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cost-function-stress-based-mean-squared-error">Cost Function: Stress-Based Mean Squared Error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#parameter-identification-using-differential-evolution">Parameter Identification using Differential Evolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#visualization-functions">Visualization Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#main-execution">Main Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#constitutive-laws-examples">Constitutive Laws Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../umats/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../umats/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../umats/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../umats/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../umats/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../umats/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../umats/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../umats/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../umats/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../umats/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../continuum_mechanics/functions/index.html">Continuum Mechanics generic functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../continuum_mechanics/functions/doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/index.html">C++ API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp_api/index.html#namespace-overview">Namespace Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/identification.html">Identification</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Examples</a></li>
+      <li class="breadcrumb-item active">Parameter Identification for Mooney-Rivlin Hyperelastic Material</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/examples/analysis/hyperelastic_parameter_identification.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-examples-analysis-hyperelastic-parameter-identification-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="parameter-identification-for-mooney-rivlin-hyperelastic-material">
+<span id="sphx-glr-examples-analysis-hyperelastic-parameter-identification-py"></span><h1>Parameter Identification for Mooney-Rivlin Hyperelastic Material<a class="headerlink" href="#parameter-identification-for-mooney-rivlin-hyperelastic-material" title="Link to this heading"></a></h1>
+<p>This example demonstrates inverse parameter identification for hyperelastic
+materials using experimental stress-strain data. We identify the Mooney-Rivlin
+model parameters from Treloar’s classical rubber elasticity experiments.</p>
+<p><strong>Optimization</strong>: scipy.optimize.differential_evolution (global optimizer)
+<strong>Cost function</strong>: Mean Squared Error on stress (sklearn.metrics.mean_squared_error)
+<strong>Forward model</strong>: simcoon hyperelastic stress functions</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.optimize</span><span class="w"> </span><span class="kn">import</span> <span class="n">differential_evolution</span><span class="p">,</span> <span class="n">fsolve</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.metrics</span><span class="w"> </span><span class="kn">import</span> <span class="n">mean_squared_error</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="kn">import</span> <span class="n">simmit</span> <span class="k">as</span> <span class="n">sim</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+</pre></div>
+</div>
+<section id="methodology-overview">
+<h2>Methodology Overview<a class="headerlink" href="#methodology-overview" title="Link to this heading"></a></h2>
+<p><strong>Inverse Problem Formulation</strong></p>
+<p>Parameter identification is an inverse problem: given experimental observations
+(stress-strain data), we seek the material parameters that minimize the
+discrepancy between model predictions and experiments.</p>
+<p>The optimization problem is:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\theta}^* = \arg\min_{\boldsymbol{\theta}} \mathcal{L}(\boldsymbol{\theta})\]</div>
+<p>where <span class="math notranslate nohighlight">\(\boldsymbol{\theta}\)</span> are the material parameters and
+<span class="math notranslate nohighlight">\(\mathcal{L}\)</span> is the cost function.</p>
+<p><strong>Cost Function: Stress-Based MSE</strong></p>
+<p>We use the Mean Squared Error (MSE) computed on the first Piola-Kirchhoff
+stress <span class="math notranslate nohighlight">\(P_{11}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\text{MSE} = \frac{1}{N} \sum_{i=1}^{N} \left( P_{11}^{\text{model}}(\lambda_i; \boldsymbol{\theta}) - P_{11}^{\text{exp}}(\lambda_i) \right)^2\]</div>
+<p>This stress-based metric directly measures the model’s ability to predict
+mechanical response, which is the primary quantity of interest in constitutive
+modeling.</p>
+<p><strong>Why Differential Evolution?</strong></p>
+<p>We use <code class="docutils literal notranslate"><span class="pre">scipy.optimize.differential_evolution</span></code> because:</p>
+<ol class="arabic simple">
+<li><p><strong>Global optimization</strong>: Unlike gradient-based methods, it explores the
+entire parameter space and avoids local minima</p></li>
+<li><p><strong>Derivative-free</strong>: No gradients required, robust for non-smooth objectives</p></li>
+<li><p><strong>Bounded search</strong>: Natural handling of physical parameter constraints</p></li>
+<li><p><strong>Robustness</strong>: Less sensitive to initial guess compared to local methods</p></li>
+</ol>
+<p>For hyperelastic models, the cost function landscape can be non-convex,
+making global optimization essential for reliable parameter identification.</p>
+</section>
+<section id="mooney-rivlin-constitutive-model">
+<h2>Mooney-Rivlin Constitutive Model<a class="headerlink" href="#mooney-rivlin-constitutive-model" title="Link to this heading"></a></h2>
+<p>The Mooney-Rivlin model is a phenomenological hyperelastic model widely used
+for rubber-like materials. The strain energy function is:</p>
+<div class="math notranslate nohighlight">
+\[W = C_{10}(\bar{I}_1 - 3) + C_{01}(\bar{I}_2 - 3) + U(J)\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\bar{I}_1, \bar{I}_2\)</span> are the first and second isochoric invariants
+of the left Cauchy-Green tensor <span class="math notranslate nohighlight">\(\mathbf{b} = \mathbf{F}\mathbf{F}^T\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(C_{10}, C_{01}\)</span> are the material parameters to identify</p></li>
+<li><p><span class="math notranslate nohighlight">\(U(J) = \kappa(J \ln J - J + 1)\)</span> is the volumetric contribution</p></li>
+<li><p><span class="math notranslate nohighlight">\(\kappa\)</span> is the bulk modulus (fixed, assuming near-incompressibility)</p></li>
+</ul>
+<p>The Cauchy stress is computed as:</p>
+<div class="math notranslate nohighlight">
+\[\boldsymbol{\sigma} = \boldsymbol{\sigma}_{\text{iso}} + \boldsymbol{\sigma}_{\text{vol}}\]</div>
+<p>where simcoon provides <code class="docutils literal notranslate"><span class="pre">sigma_iso_hyper_invariants</span></code> and <code class="docutils literal notranslate"><span class="pre">sigma_vol_hyper</span></code>
+to compute these contributions from the strain energy derivatives:</p>
+<div class="math notranslate nohighlight">
+\[\frac{\partial W}{\partial \bar{I}_1} = C_{10}, \quad
+\frac{\partial W}{\partial \bar{I}_2} = C_{01}, \quad
+\frac{\partial U}{\partial J} = \kappa \ln J\]</div>
+</section>
+<section id="experimental-data-treloar-s-rubber-experiments">
+<h2>Experimental Data: Treloar’s Rubber Experiments<a class="headerlink" href="#experimental-data-treloar-s-rubber-experiments" title="Link to this heading"></a></h2>
+<p>L.R.G. Treloar (1944) performed classical experiments on vulcanized rubber
+under three loading conditions:</p>
+<ol class="arabic simple">
+<li><p><strong>Uniaxial Tension (UT)</strong>: <span class="math notranslate nohighlight">\(\lambda_1 = \lambda, \lambda_2 = \lambda_3 = \lambda_t\)</span></p></li>
+<li><p><strong>Pure Shear (PS)</strong>: <span class="math notranslate nohighlight">\(\lambda_1 = \lambda, \lambda_2 = \lambda_t, \lambda_3 = 1\)</span></p></li>
+<li><p><strong>Equibiaxial Tension (ET)</strong>: <span class="math notranslate nohighlight">\(\lambda_1 = \lambda_2 = \lambda, \lambda_3 = \lambda_t\)</span></p></li>
+</ol>
+<p>where <span class="math notranslate nohighlight">\(\lambda_t\)</span> is the transverse stretch determined by equilibrium
+(zero transverse stress). The data provides stretch <span class="math notranslate nohighlight">\(\lambda\)</span> and the
+corresponding first Piola-Kirchhoff stress <span class="math notranslate nohighlight">\(P_{11}\)</span> [MPa].</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">load_treloar_data</span><span class="p">(</span><span class="n">filepath</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Load Treloar experimental data.</span>
+
+<span class="sd">    The file contains columns for three loading cases:</span>
+<span class="sd">    - lambda_1, P1_MPa: Uniaxial tension</span>
+<span class="sd">    - lambda_2, P2_MPa: Pure shear</span>
+<span class="sd">    - lambda_3, P3_MPa: Equibiaxial tension</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    filepath : str</span>
+<span class="sd">        Path to Treloar.txt data file</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    pd.DataFrame</span>
+<span class="sd">        Experimental data with columns for each loading case</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span>
+        <span class="n">filepath</span><span class="p">,</span>
+        <span class="n">sep</span><span class="o">=</span><span class="sa">r</span><span class="s2">&quot;\s+&quot;</span><span class="p">,</span>
+        <span class="n">engine</span><span class="o">=</span><span class="s2">&quot;python&quot;</span><span class="p">,</span>
+        <span class="n">names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lambda_1&quot;</span><span class="p">,</span> <span class="s2">&quot;P1_MPa&quot;</span><span class="p">,</span> <span class="s2">&quot;lambda_2&quot;</span><span class="p">,</span> <span class="s2">&quot;P2_MPa&quot;</span><span class="p">,</span> <span class="s2">&quot;lambda_3&quot;</span><span class="p">,</span> <span class="s2">&quot;P3_MPa&quot;</span><span class="p">],</span>
+        <span class="n">header</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span>
+</pre></div>
+</div>
+</section>
+<section id="forward-model-stress-prediction-using-simcoon">
+<h2>Forward Model: Stress Prediction using simcoon<a class="headerlink" href="#forward-model-stress-prediction-using-simcoon" title="Link to this heading"></a></h2>
+<p>The forward model computes the first Piola-Kirchhoff stress for given
+material parameters and stretch values. This is the core function that
+will be called repeatedly during optimization.</p>
+<p><strong>Key steps:</strong></p>
+<ol class="arabic simple">
+<li><p>For each stretch <span class="math notranslate nohighlight">\(\lambda_1\)</span>, solve for the transverse stretch
+<span class="math notranslate nohighlight">\(\lambda_t\)</span> that satisfies equilibrium (zero transverse stress)</p></li>
+<li><p>Construct the deformation gradient <span class="math notranslate nohighlight">\(\mathbf{F}\)</span></p></li>
+<li><p>Compute the left Cauchy-Green tensor <span class="math notranslate nohighlight">\(\mathbf{b} = \mathbf{F}\mathbf{F}^T\)</span>
+using <code class="docutils literal notranslate"><span class="pre">sim.L_Cauchy_Green(F)</span></code></p></li>
+<li><p>Compute strain energy derivatives for Mooney-Rivlin</p></li>
+<li><p>Compute Cauchy stress using <code class="docutils literal notranslate"><span class="pre">sim.sigma_iso_hyper_invariants</span></code> and
+<code class="docutils literal notranslate"><span class="pre">sim.sigma_vol_hyper</span></code></p></li>
+<li><p>Convert to first Piola-Kirchhoff stress: <span class="math notranslate nohighlight">\(P_{11} = \sigma_{11}/\lambda_1\)</span></p></li>
+</ol>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">mooney_rivlin_pk1_stress</span><span class="p">(</span>
+    <span class="n">C10</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">C01</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">lambda_array</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">loading_case</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;UT&quot;</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute first Piola-Kirchhoff stress for Mooney-Rivlin material.</span>
+
+<span class="sd">    Uses simcoon&#39;s hyperelastic stress functions to compute the Cauchy stress</span>
+<span class="sd">    from the strain energy derivatives, then converts to PK1 stress.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    C10 : float</span>
+<span class="sd">        First Mooney-Rivlin parameter [MPa]</span>
+<span class="sd">    C01 : float</span>
+<span class="sd">        Second Mooney-Rivlin parameter [MPa]</span>
+<span class="sd">    kappa : float</span>
+<span class="sd">        Bulk modulus for volumetric response [MPa]</span>
+<span class="sd">    lambda_array : np.ndarray</span>
+<span class="sd">        Array of principal stretch values in the loading direction</span>
+<span class="sd">    loading_case : str</span>
+<span class="sd">        Type of loading: &quot;UT&quot; (uniaxial tension), &quot;PS&quot; (pure shear),</span>
+<span class="sd">        or &quot;ET&quot; (equibiaxial tension)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    np.ndarray</span>
+<span class="sd">        First Piola-Kirchhoff stress P_11 [MPa]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">PK1_stress</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">lambda_t_guess</span> <span class="o">=</span> <span class="mf">1.0</span>  <span class="c1"># Initial guess for transverse stretch</span>
+
+    <span class="k">for</span> <span class="n">lam</span> <span class="ow">in</span> <span class="n">lambda_array</span><span class="p">:</span>
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="c1"># Step 1: Find transverse stretch satisfying equilibrium</span>
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">equilibrium_residual</span><span class="p">(</span><span class="n">lambda_t_vec</span><span class="p">):</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Residual function for finding equilibrium transverse stretch.&quot;&quot;&quot;</span>
+            <span class="n">lt</span> <span class="o">=</span> <span class="n">lambda_t_vec</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="c1"># Construct deformation gradient based on loading case</span>
+            <span class="k">if</span> <span class="n">loading_case</span> <span class="o">==</span> <span class="s2">&quot;UT&quot;</span><span class="p">:</span>
+                <span class="c1"># Uniaxial: F = diag(lambda, lambda_t, lambda_t)</span>
+                <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">lam</span><span class="p">,</span> <span class="n">lt</span><span class="p">,</span> <span class="n">lt</span><span class="p">])</span>
+                <span class="n">J</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">lt</span><span class="o">**</span><span class="mi">2</span>
+            <span class="k">elif</span> <span class="n">loading_case</span> <span class="o">==</span> <span class="s2">&quot;PS&quot;</span><span class="p">:</span>
+                <span class="c1"># Pure shear: F = diag(lambda, lambda_t, 1)</span>
+                <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">lam</span><span class="p">,</span> <span class="n">lt</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+                <span class="n">J</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">lt</span>
+            <span class="k">elif</span> <span class="n">loading_case</span> <span class="o">==</span> <span class="s2">&quot;ET&quot;</span><span class="p">:</span>
+                <span class="c1"># Equibiaxial: F = diag(lambda, lambda, lambda_t)</span>
+                <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">lam</span><span class="p">,</span> <span class="n">lam</span><span class="p">,</span> <span class="n">lt</span><span class="p">])</span>
+                <span class="n">J</span> <span class="o">=</span> <span class="n">lam</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">lt</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unknown loading case: </span><span class="si">{</span><span class="n">loading_case</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+            <span class="c1"># Compute left Cauchy-Green tensor using simcoon</span>
+            <span class="n">b</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">L_Cauchy_Green</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+
+            <span class="c1"># Mooney-Rivlin strain energy derivatives</span>
+            <span class="n">dW_dI1_bar</span> <span class="o">=</span> <span class="n">C10</span>
+            <span class="n">dW_dI2_bar</span> <span class="o">=</span> <span class="n">C01</span>
+            <span class="n">dU_dJ</span> <span class="o">=</span> <span class="n">kappa</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+
+            <span class="c1"># Compute Cauchy stress using simcoon functions</span>
+            <span class="n">sigma_iso</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">sigma_iso_hyper_invariants</span><span class="p">(</span>
+                <span class="nb">float</span><span class="p">(</span><span class="n">dW_dI1_bar</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">dW_dI2_bar</span><span class="p">),</span> <span class="n">b</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="kc">False</span>
+            <span class="p">)</span>
+            <span class="n">sigma_vol</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">sigma_vol_hyper</span><span class="p">(</span><span class="n">dU_dJ</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+            <span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma_iso</span> <span class="o">+</span> <span class="n">sigma_vol</span>
+
+            <span class="c1"># Return stress component that should be zero at equilibrium</span>
+            <span class="k">if</span> <span class="n">loading_case</span> <span class="o">==</span> <span class="s2">&quot;UT&quot;</span><span class="p">:</span>
+                <span class="c1"># sigma_22 = sigma_33 = 0</span>
+                <span class="k">return</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">sigma</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+            <span class="k">elif</span> <span class="n">loading_case</span> <span class="o">==</span> <span class="s2">&quot;PS&quot;</span><span class="p">:</span>
+                <span class="c1"># sigma_22 = 0</span>
+                <span class="k">return</span> <span class="n">sigma</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="k">else</span><span class="p">:</span>  <span class="c1"># ET</span>
+                <span class="c1"># sigma_33 = 0</span>
+                <span class="k">return</span> <span class="n">sigma</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+
+        <span class="c1"># Solve for equilibrium transverse stretch</span>
+        <span class="n">lambda_t</span> <span class="o">=</span> <span class="n">fsolve</span><span class="p">(</span><span class="n">equilibrium_residual</span><span class="p">,</span> <span class="n">lambda_t_guess</span><span class="p">,</span> <span class="n">full_output</span><span class="o">=</span><span class="kc">False</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">lambda_t_guess</span> <span class="o">=</span> <span class="n">lambda_t</span>  <span class="c1"># Use as starting point for next iteration</span>
+
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="c1"># Step 2: Compute final stress state at equilibrium</span>
+        <span class="c1"># -----------------------------------------------------------------</span>
+        <span class="k">if</span> <span class="n">loading_case</span> <span class="o">==</span> <span class="s2">&quot;UT&quot;</span><span class="p">:</span>
+            <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">lam</span><span class="p">,</span> <span class="n">lambda_t</span><span class="p">,</span> <span class="n">lambda_t</span><span class="p">])</span>
+            <span class="n">J</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">lambda_t</span><span class="o">**</span><span class="mi">2</span>
+        <span class="k">elif</span> <span class="n">loading_case</span> <span class="o">==</span> <span class="s2">&quot;PS&quot;</span><span class="p">:</span>
+            <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">lam</span><span class="p">,</span> <span class="n">lambda_t</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">])</span>
+            <span class="n">J</span> <span class="o">=</span> <span class="n">lam</span> <span class="o">*</span> <span class="n">lambda_t</span>
+        <span class="k">else</span><span class="p">:</span>  <span class="c1"># ET</span>
+            <span class="n">F</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">([</span><span class="n">lam</span><span class="p">,</span> <span class="n">lam</span><span class="p">,</span> <span class="n">lambda_t</span><span class="p">])</span>
+            <span class="n">J</span> <span class="o">=</span> <span class="n">lam</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">lambda_t</span>
+
+        <span class="n">b</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">L_Cauchy_Green</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+
+        <span class="c1"># Strain energy derivatives</span>
+        <span class="n">dW_dI1_bar</span> <span class="o">=</span> <span class="n">C10</span>
+        <span class="n">dW_dI2_bar</span> <span class="o">=</span> <span class="n">C01</span>
+        <span class="n">dU_dJ</span> <span class="o">=</span> <span class="n">kappa</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">J</span><span class="p">)</span>
+
+        <span class="c1"># Compute Cauchy stress</span>
+        <span class="n">sigma_iso</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">sigma_iso_hyper_invariants</span><span class="p">(</span>
+            <span class="nb">float</span><span class="p">(</span><span class="n">dW_dI1_bar</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">dW_dI2_bar</span><span class="p">),</span> <span class="n">b</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="kc">False</span>
+        <span class="p">)</span>
+        <span class="n">sigma_vol</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">sigma_vol_hyper</span><span class="p">(</span><span class="n">dU_dJ</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">J</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+        <span class="n">sigma</span> <span class="o">=</span> <span class="n">sigma_iso</span> <span class="o">+</span> <span class="n">sigma_vol</span>
+
+        <span class="c1"># Convert Cauchy stress to PK1: P = J * sigma * F^{-T}</span>
+        <span class="c1"># For diagonal F: P_11 = sigma_11 / lambda_1</span>
+        <span class="n">PK1_stress</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sigma</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">lam</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">PK1_stress</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="cost-function-stress-based-mean-squared-error">
+<h2>Cost Function: Stress-Based Mean Squared Error<a class="headerlink" href="#cost-function-stress-based-mean-squared-error" title="Link to this heading"></a></h2>
+<p>The cost function quantifies the discrepancy between model predictions and
+experimental data. We use MSE computed on the PK1 stress values.</p>
+<p><strong>Normalized MSE (NMSE)</strong>:</p>
+<p>When combining multiple loading cases with different stress magnitudes,
+we can normalize by the variance to ensure balanced weighting:</p>
+<div class="math notranslate nohighlight">
+\[\text{NMSE} = \frac{\text{MSE}}{\text{Var}(P^{\text{exp}})}\]</div>
+<p>This ensures that loading cases with smaller stress magnitudes are not
+dominated by cases with larger stresses during combined fitting.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">cost_function_mse</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">lambda_exp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">P_exp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span>
+    <span class="n">loading_case</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compute MSE cost between model prediction and experimental stress data.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    params : np.ndarray</span>
+<span class="sd">        Material parameters [C10, C01]</span>
+<span class="sd">    lambda_exp : np.ndarray</span>
+<span class="sd">        Experimental stretch values</span>
+<span class="sd">    P_exp : np.ndarray</span>
+<span class="sd">        Experimental PK1 stress values [MPa]</span>
+<span class="sd">    kappa : float</span>
+<span class="sd">        Fixed bulk modulus [MPa]</span>
+<span class="sd">    loading_case : str</span>
+<span class="sd">        Loading type (&quot;UT&quot;, &quot;PS&quot;, or &quot;ET&quot;)</span>
+<span class="sd">    normalize : bool</span>
+<span class="sd">        If True, divide MSE by variance of experimental data</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        MSE or NMSE value</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">C10</span><span class="p">,</span> <span class="n">C01</span> <span class="o">=</span> <span class="n">params</span>
+
+    <span class="k">try</span><span class="p">:</span>
+        <span class="c1"># Predict stress using forward model</span>
+        <span class="n">P_model</span> <span class="o">=</span> <span class="n">mooney_rivlin_pk1_stress</span><span class="p">(</span><span class="n">C10</span><span class="p">,</span> <span class="n">C01</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="n">lambda_exp</span><span class="p">,</span> <span class="n">loading_case</span><span class="p">)</span>
+
+        <span class="c1"># Compute MSE using sklearn</span>
+        <span class="n">mse</span> <span class="o">=</span> <span class="n">mean_squared_error</span><span class="p">(</span><span class="n">P_exp</span><span class="p">,</span> <span class="n">P_model</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">normalize</span><span class="p">:</span>
+            <span class="n">variance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">P_exp</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">mse</span> <span class="o">/</span> <span class="n">variance</span> <span class="k">if</span> <span class="n">variance</span> <span class="o">&gt;</span> <span class="mf">1e-12</span> <span class="k">else</span> <span class="n">mse</span>
+        <span class="k">return</span> <span class="n">mse</span>
+
+    <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+        <span class="c1"># Return large cost if computation fails (e.g., numerical issues)</span>
+        <span class="k">return</span> <span class="mf">1e10</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">cost_function_combined</span><span class="p">(</span>
+    <span class="n">params</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span> <span class="n">data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span><span class="p">,</span> <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Combined cost function for simultaneous fitting to multiple loading cases.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    params : np.ndarray</span>
+<span class="sd">        Material parameters [C10, C01]</span>
+<span class="sd">    data_dict : dict</span>
+<span class="sd">        Dictionary mapping loading case names to (lambda, P) tuples</span>
+<span class="sd">    kappa : float</span>
+<span class="sd">        Fixed bulk modulus [MPa]</span>
+<span class="sd">    normalize : bool</span>
+<span class="sd">        If True, use NMSE for balanced weighting across cases</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Sum of (N)MSE values over all loading cases</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">total_cost</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">case_name</span><span class="p">,</span> <span class="p">(</span><span class="n">lambda_exp</span><span class="p">,</span> <span class="n">P_exp</span><span class="p">)</span> <span class="ow">in</span> <span class="n">data_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">cost</span> <span class="o">=</span> <span class="n">cost_function_mse</span><span class="p">(</span><span class="n">params</span><span class="p">,</span> <span class="n">lambda_exp</span><span class="p">,</span> <span class="n">P_exp</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="n">case_name</span><span class="p">,</span> <span class="n">normalize</span><span class="p">)</span>
+        <span class="n">total_cost</span> <span class="o">+=</span> <span class="n">cost</span>
+    <span class="k">return</span> <span class="n">total_cost</span>
+</pre></div>
+</div>
+</section>
+<section id="parameter-identification-using-differential-evolution">
+<h2>Parameter Identification using Differential Evolution<a class="headerlink" href="#parameter-identification-using-differential-evolution" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">scipy.optimize.differential_evolution</span></code> is a stochastic global optimizer
+based on evolutionary algorithms. Key parameters:</p>
+<ul class="simple">
+<li><p><strong>bounds</strong>: Search space for each parameter</p></li>
+<li><p><strong>strategy</strong>: Mutation strategy (‘best1bin’ works well for most problems)</p></li>
+<li><p><strong>popsize</strong>: Population size (larger = more thorough search)</p></li>
+<li><p><strong>mutation</strong>: Mutation constant (controls exploration vs exploitation)</p></li>
+<li><p><strong>recombination</strong>: Crossover probability</p></li>
+<li><p><strong>polish</strong>: If True, refines result with L-BFGS-B (local optimizer)</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">identify_parameters</span><span class="p">(</span>
+    <span class="n">lambda_exp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">P_exp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">4000.0</span><span class="p">,</span>
+    <span class="n">loading_case</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;UT&quot;</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identify Mooney-Rivlin parameters using differential evolution.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lambda_exp : np.ndarray</span>
+<span class="sd">        Experimental stretch values</span>
+<span class="sd">    P_exp : np.ndarray</span>
+<span class="sd">        Experimental PK1 stress values [MPa]</span>
+<span class="sd">    kappa : float</span>
+<span class="sd">        Fixed bulk modulus [MPa] (default: 4000 for near-incompressibility)</span>
+<span class="sd">    loading_case : str</span>
+<span class="sd">        Loading type (&quot;UT&quot;, &quot;PS&quot;, or &quot;ET&quot;)</span>
+<span class="sd">    bounds : list</span>
+<span class="sd">        Parameter bounds [(C10_min, C10_max), (C01_min, C01_max)]</span>
+<span class="sd">    normalize : bool</span>
+<span class="sd">        If True, use normalized MSE</span>
+<span class="sd">    seed : int</span>
+<span class="sd">        Random seed for reproducibility</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        Print optimization progress</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Optimized parameters and optimization results</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimizing for </span><span class="si">{</span><span class="n">loading_case</span><span class="si">}</span><span class="s2"> loading case&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter bounds: C10 in </span><span class="si">{</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, C01 in </span><span class="si">{</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bulk modulus (fixed): kappa = </span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2"> MPa&quot;</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">differential_evolution</span><span class="p">(</span>
+        <span class="n">cost_function_mse</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">lambda_exp</span><span class="p">,</span> <span class="n">P_exp</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="n">loading_case</span><span class="p">,</span> <span class="n">normalize</span><span class="p">),</span>
+        <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;best1bin&quot;</span><span class="p">,</span>
+        <span class="n">maxiter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">popsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+        <span class="n">mutation</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+        <span class="n">recombination</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+        <span class="n">polish</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># Refine with L-BFGS-B</span>
+        <span class="n">disp</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">C10_opt</span><span class="p">,</span> <span class="n">C01_opt</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimization completed!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  C10 = </span><span class="si">{</span><span class="n">C10_opt</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> MPa&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  C01 = </span><span class="si">{</span><span class="n">C01_opt</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> MPa&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final MSE = </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="si">:</span><span class="s2">.6e</span><span class="si">}</span><span class="s2"> MPa^2&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;C10&quot;</span><span class="p">:</span> <span class="n">C10_opt</span><span class="p">,</span>
+        <span class="s2">&quot;C01&quot;</span><span class="p">:</span> <span class="n">C01_opt</span><span class="p">,</span>
+        <span class="s2">&quot;kappa&quot;</span><span class="p">:</span> <span class="n">kappa</span><span class="p">,</span>
+        <span class="s2">&quot;mse&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span>
+        <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">,</span>
+        <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+    <span class="p">}</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">identify_parameters_combined</span><span class="p">(</span>
+    <span class="n">data_dict</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">kappa</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">4000.0</span><span class="p">,</span>
+    <span class="n">bounds</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">normalize</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">seed</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">,</span>
+    <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Identify parameters by fitting to multiple loading cases simultaneously.</span>
+
+<span class="sd">    Using NMSE (normalized MSE) ensures balanced contribution from each</span>
+<span class="sd">    loading case, preventing cases with larger stress magnitudes from</span>
+<span class="sd">    dominating the optimization.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data_dict : dict</span>
+<span class="sd">        Dictionary {case_name: (lambda_exp, P_exp)} for each loading case</span>
+<span class="sd">    kappa : float</span>
+<span class="sd">        Fixed bulk modulus [MPa]</span>
+<span class="sd">    bounds : list</span>
+<span class="sd">        Parameter bounds [(C10_min, C10_max), (C01_min, C01_max)]</span>
+<span class="sd">    normalize : bool</span>
+<span class="sd">        If True, use NMSE (recommended for combined fitting)</span>
+<span class="sd">    seed : int</span>
+<span class="sd">        Random seed</span>
+<span class="sd">    verbose : bool</span>
+<span class="sd">        Print progress</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Optimized parameters and results</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">bounds</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">bounds</span> <span class="o">=</span> <span class="p">[(</span><span class="mf">0.01</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">),</span> <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)]</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Combined optimization for: </span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">data_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;=&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">60</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Parameter bounds: C10 in </span><span class="si">{</span><span class="n">bounds</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, C01 in </span><span class="si">{</span><span class="n">bounds</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Bulk modulus (fixed): kappa = </span><span class="si">{</span><span class="n">kappa</span><span class="si">}</span><span class="s2"> MPa&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using </span><span class="si">{</span><span class="s1">&#39;NMSE&#39;</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">normalize</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="s1">&#39;MSE&#39;</span><span class="si">}</span><span class="s2"> for cost function&quot;</span><span class="p">)</span>
+
+    <span class="n">result</span> <span class="o">=</span> <span class="n">differential_evolution</span><span class="p">(</span>
+        <span class="n">cost_function_combined</span><span class="p">,</span>
+        <span class="n">bounds</span><span class="o">=</span><span class="n">bounds</span><span class="p">,</span>
+        <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="n">data_dict</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="n">normalize</span><span class="p">),</span>
+        <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;best1bin&quot;</span><span class="p">,</span>
+        <span class="n">maxiter</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+        <span class="n">popsize</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">tol</span><span class="o">=</span><span class="mf">1e-8</span><span class="p">,</span>
+        <span class="n">mutation</span><span class="o">=</span><span class="p">(</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">),</span>
+        <span class="n">recombination</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">,</span>
+        <span class="n">polish</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">disp</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">C10_opt</span><span class="p">,</span> <span class="n">C01_opt</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">x</span>
+
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Optimization completed!&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  C10 = </span><span class="si">{</span><span class="n">C10_opt</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> MPa&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  C01 = </span><span class="si">{</span><span class="n">C01_opt</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2"> MPa&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Final combined cost = </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="si">:</span><span class="s2">.6e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;C10&quot;</span><span class="p">:</span> <span class="n">C10_opt</span><span class="p">,</span>
+        <span class="s2">&quot;C01&quot;</span><span class="p">:</span> <span class="n">C01_opt</span><span class="p">,</span>
+        <span class="s2">&quot;kappa&quot;</span><span class="p">:</span> <span class="n">kappa</span><span class="p">,</span>
+        <span class="s2">&quot;cost&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">fun</span><span class="p">,</span>
+        <span class="s2">&quot;success&quot;</span><span class="p">:</span> <span class="n">result</span><span class="o">.</span><span class="n">success</span><span class="p">,</span>
+        <span class="s2">&quot;result&quot;</span><span class="p">:</span> <span class="n">result</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="visualization-functions">
+<h2>Visualization Functions<a class="headerlink" href="#visualization-functions" title="Link to this heading"></a></h2>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot_fit_comparison</span><span class="p">(</span>
+    <span class="n">lambda_exp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">P_exp</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">,</span>
+    <span class="n">params</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span>
+    <span class="n">loading_case</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">ax</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Plot experimental data vs model prediction.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    lambda_exp : np.ndarray</span>
+<span class="sd">        Experimental stretch values</span>
+<span class="sd">    P_exp : np.ndarray</span>
+<span class="sd">        Experimental PK1 stress values [MPa]</span>
+<span class="sd">    params : dict</span>
+<span class="sd">        Dictionary with &#39;C10&#39;, &#39;C01&#39;, &#39;kappa&#39; keys</span>
+<span class="sd">    loading_case : str</span>
+<span class="sd">        Loading type</span>
+<span class="sd">    title : str</span>
+<span class="sd">        Plot title (optional)</span>
+<span class="sd">    ax : matplotlib.axes.Axes</span>
+<span class="sd">        Axes to plot on (creates new figure if None)</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    matplotlib.axes.Axes</span>
+<span class="sd">        The axes with the plot</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">ax</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+    <span class="c1"># Model prediction on fine grid</span>
+    <span class="n">lambda_model</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">lambda_exp</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">*</span> <span class="mf">1.02</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">P_model</span> <span class="o">=</span> <span class="n">mooney_rivlin_pk1_stress</span><span class="p">(</span>
+        <span class="n">params</span><span class="p">[</span><span class="s2">&quot;C10&quot;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;C01&quot;</span><span class="p">],</span> <span class="n">params</span><span class="p">[</span><span class="s2">&quot;kappa&quot;</span><span class="p">],</span> <span class="n">lambda_model</span><span class="p">,</span> <span class="n">loading_case</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Experimental data</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">lambda_exp</span><span class="p">,</span>
+        <span class="n">P_exp</span><span class="p">,</span>
+        <span class="s2">&quot;o&quot;</span><span class="p">,</span>
+        <span class="n">markersize</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+        <span class="n">markerfacecolor</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span>
+        <span class="n">markeredgecolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="s2">&quot;Treloar experimental&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Model prediction</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span>
+        <span class="n">lambda_model</span><span class="p">,</span>
+        <span class="n">P_model</span><span class="p">,</span>
+        <span class="s2">&quot;-&quot;</span><span class="p">,</span>
+        <span class="n">linewidth</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+        <span class="n">color</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span>
+        <span class="n">label</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;Mooney-Rivlin (C10=</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;C10&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">, C01=</span><span class="si">{</span><span class="n">params</span><span class="p">[</span><span class="s1">&#39;C01&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;Stretch $\lambda$ [-]&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="sa">r</span><span class="s2">&quot;PK1 Stress $P_</span><span class="si">{11}</span><span class="s2">$ [MPa]&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span> <span class="ow">or</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">loading_case</span><span class="si">}</span><span class="s2"> - Parameter Identification&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">legend</span><span class="p">(</span><span class="n">loc</span><span class="o">=</span><span class="s2">&quot;upper left&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">ax</span>
+</pre></div>
+</div>
+</section>
+<section id="main-execution">
+<h2>Main Execution<a class="headerlink" href="#main-execution" title="Link to this heading"></a></h2>
+<p>We demonstrate two identification strategies:</p>
+<ol class="arabic simple">
+<li><p><strong>Individual fitting</strong>: Optimize parameters separately for each loading case</p></li>
+<li><p><strong>Combined fitting</strong>: Find a single parameter set that best fits all cases</p></li>
+</ol>
+<p>The individual fits provide loading-case-specific parameters (useful for
+understanding material behavior), while combined fitting gives a universal
+parameter set for general use.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="c1"># Locate data file relative to script</span>
+    <span class="c1"># Try multiple approaches to find the data file (supports both direct</span>
+    <span class="c1"># execution and Sphinx-Gallery which does not define __file__)</span>
+    <span class="n">data_filename</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;hyperelasticity&quot;</span><span class="p">,</span> <span class="s2">&quot;comparison&quot;</span><span class="p">,</span> <span class="s2">&quot;Treloar.txt&quot;</span><span class="p">)</span>
+    <span class="n">possible_paths</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="c1"># Try using __file__ if available</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">script_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span>
+        <span class="n">possible_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">script_dir</span><span class="p">,</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="n">data_filename</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">NameError</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="c1"># Try relative to current working directory (Sphinx-Gallery context)</span>
+    <span class="n">possible_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;..&quot;</span><span class="p">,</span> <span class="n">data_filename</span><span class="p">))</span>
+    <span class="n">possible_paths</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span><span class="p">(),</span> <span class="s2">&quot;examples&quot;</span><span class="p">,</span> <span class="n">data_filename</span><span class="p">))</span>
+
+    <span class="c1"># Find first existing path</span>
+    <span class="n">data_path</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">possible_paths</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
+            <span class="n">data_path</span> <span class="o">=</span> <span class="n">path</span>
+            <span class="k">break</span>
+
+    <span class="k">if</span> <span class="n">data_path</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">FileNotFoundError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Could not find Treloar.txt data file. Searched: </span><span class="si">{</span><span class="n">possible_paths</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; MOONEY-RIVLIN PARAMETER IDENTIFICATION&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; Using scipy.differential_evolution and sklearn.mean_squared_error&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Load and prepare experimental data</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">load_treloar_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Loaded Treloar data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="p">)</span><span class="si">}</span><span class="s2"> data points&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Extract data for each loading case (remove NaN values)</span>
+    <span class="n">ut_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;lambda_1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;P1_MPa&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+    <span class="n">ps_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;lambda_2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;P2_MPa&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+    <span class="n">et_mask</span> <span class="o">=</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;lambda_3&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span> <span class="o">&amp;</span> <span class="o">~</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;P3_MPa&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">isna</span><span class="p">()</span>
+
+    <span class="n">lambda_ut</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ut_mask</span><span class="p">,</span> <span class="s2">&quot;lambda_1&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">P_ut</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ut_mask</span><span class="p">,</span> <span class="s2">&quot;P1_MPa&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="n">lambda_ps</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ps_mask</span><span class="p">,</span> <span class="s2">&quot;lambda_2&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">P_ps</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">ps_mask</span><span class="p">,</span> <span class="s2">&quot;P2_MPa&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="n">lambda_et</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">et_mask</span><span class="p">,</span> <span class="s2">&quot;lambda_3&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+    <span class="n">P_et</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">et_mask</span><span class="p">,</span> <span class="s2">&quot;P3_MPa&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Data summary:&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;  Uniaxial Tension (UT): </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lambda_ut</span><span class="p">)</span><span class="si">}</span><span class="s2"> points, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;lambda in [</span><span class="si">{</span><span class="n">lambda_ut</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">lambda_ut</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;  Pure Shear (PS):       </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lambda_ps</span><span class="p">)</span><span class="si">}</span><span class="s2"> points, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;lambda in [</span><span class="si">{</span><span class="n">lambda_ps</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">lambda_ps</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;  Equibiaxial (ET):      </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">lambda_et</span><span class="p">)</span><span class="si">}</span><span class="s2"> points, &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;lambda in [</span><span class="si">{</span><span class="n">lambda_et</span><span class="o">.</span><span class="n">min</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">lambda_et</span><span class="o">.</span><span class="n">max</span><span class="p">()</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">]&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Fixed bulk modulus (near-incompressible rubber)</span>
+    <span class="n">kappa</span> <span class="o">=</span> <span class="mf">4000.0</span>
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Individual fitting for each loading case</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; INDIVIDUAL FITTING (one parameter set per loading case)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+
+    <span class="n">params_ut</span> <span class="o">=</span> <span class="n">identify_parameters</span><span class="p">(</span><span class="n">lambda_ut</span><span class="p">,</span> <span class="n">P_ut</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="s2">&quot;UT&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">params_ps</span> <span class="o">=</span> <span class="n">identify_parameters</span><span class="p">(</span><span class="n">lambda_ps</span><span class="p">,</span> <span class="n">P_ps</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="s2">&quot;PS&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">params_et</span> <span class="o">=</span> <span class="n">identify_parameters</span><span class="p">(</span><span class="n">lambda_et</span><span class="p">,</span> <span class="n">P_et</span><span class="p">,</span> <span class="n">kappa</span><span class="p">,</span> <span class="s2">&quot;ET&quot;</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Reference values from literature (Steinmann et al., 2012)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Comparison with literature (Steinmann et al., 2012):&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Case&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;C10 (lit.)&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;C10 (ident.)&#39;</span><span class="si">:</span><span class="s2">&lt;14</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;C01 (lit.)&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;C01 (ident.)&#39;</span><span class="si">:</span><span class="s2">&lt;14</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;UT&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.2588</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ut</span><span class="p">[</span><span class="s1">&#39;C10&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;14.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="o">-</span><span class="mf">0.0449</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ut</span><span class="p">[</span><span class="s1">&#39;C01&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;14.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;PS&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.2348</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ps</span><span class="p">[</span><span class="s1">&#39;C10&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;14.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="o">-</span><span class="mf">0.065</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ps</span><span class="p">[</span><span class="s1">&#39;C01&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;14.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;ET&#39;</span><span class="si">:</span><span class="s2">&lt;8</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.1713</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_et</span><span class="p">[</span><span class="s1">&#39;C10&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;14.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="mf">0.0047</span><span class="si">:</span><span class="s2">&lt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_et</span><span class="p">[</span><span class="s1">&#39;C01&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&lt;14.4f</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Combined fitting</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; COMBINED FITTING (single parameter set for all loading cases)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+
+    <span class="n">data_combined</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;UT&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">lambda_ut</span><span class="p">,</span> <span class="n">P_ut</span><span class="p">),</span>
+        <span class="s2">&quot;PS&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">lambda_ps</span><span class="p">,</span> <span class="n">P_ps</span><span class="p">),</span>
+        <span class="s2">&quot;ET&quot;</span><span class="p">:</span> <span class="p">(</span><span class="n">lambda_et</span><span class="p">,</span> <span class="n">P_et</span><span class="p">),</span>
+    <span class="p">}</span>
+
+    <span class="n">params_combined</span> <span class="o">=</span> <span class="n">identify_parameters_combined</span><span class="p">(</span>
+        <span class="n">data_combined</span><span class="p">,</span> <span class="n">kappa</span><span class="o">=</span><span class="n">kappa</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Visualization</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; GENERATING PLOTS&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
+
+    <span class="c1"># Row 1: Individual fits</span>
+    <span class="n">plot_fit_comparison</span><span class="p">(</span>
+        <span class="n">lambda_ut</span><span class="p">,</span> <span class="n">P_ut</span><span class="p">,</span> <span class="n">params_ut</span><span class="p">,</span> <span class="s2">&quot;UT&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;UT - Individual fit&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">plot_fit_comparison</span><span class="p">(</span>
+        <span class="n">lambda_ps</span><span class="p">,</span> <span class="n">P_ps</span><span class="p">,</span> <span class="n">params_ps</span><span class="p">,</span> <span class="s2">&quot;PS&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;PS - Individual fit&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">plot_fit_comparison</span><span class="p">(</span>
+        <span class="n">lambda_et</span><span class="p">,</span> <span class="n">P_et</span><span class="p">,</span> <span class="n">params_et</span><span class="p">,</span> <span class="s2">&quot;ET&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ET - Individual fit&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Row 2: Combined fit applied to all cases</span>
+    <span class="n">plot_fit_comparison</span><span class="p">(</span>
+        <span class="n">lambda_ut</span><span class="p">,</span> <span class="n">P_ut</span><span class="p">,</span> <span class="n">params_combined</span><span class="p">,</span> <span class="s2">&quot;UT&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;UT - Combined fit&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">plot_fit_comparison</span><span class="p">(</span>
+        <span class="n">lambda_ps</span><span class="p">,</span> <span class="n">P_ps</span><span class="p">,</span> <span class="n">params_combined</span><span class="p">,</span> <span class="s2">&quot;PS&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;PS - Combined fit&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+    <span class="p">)</span>
+    <span class="n">plot_fit_comparison</span><span class="p">(</span>
+        <span class="n">lambda_et</span><span class="p">,</span> <span class="n">P_et</span><span class="p">,</span> <span class="n">params_combined</span><span class="p">,</span> <span class="s2">&quot;ET&quot;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s2">&quot;ET - Combined fit&quot;</span><span class="p">,</span> <span class="n">ax</span><span class="o">=</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="p">)</span>
+
+    <span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span><span class="p">(</span>
+        <span class="s2">&quot;Mooney-Rivlin Parameter Identification using Treloar Data</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;(Top: Individual fits, Bottom: Combined fit)&quot;</span><span class="p">,</span>
+        <span class="n">fontsize</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span>
+        <span class="n">fontweight</span><span class="o">=</span><span class="s2">&quot;bold&quot;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="c1"># Summary</span>
+    <span class="c1"># -------------------------------------------------------------------------</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot; SUMMARY OF IDENTIFIED PARAMETERS&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Case&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;C10 [MPa]&#39;</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;C01 [MPa]&#39;</span><span class="si">:</span><span class="s2">&gt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="s1">&#39;MSE [MPa^2]&#39;</span><span class="si">:</span><span class="s2">&gt;14</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">52</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;UT&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ut</span><span class="p">[</span><span class="s1">&#39;C10&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ut</span><span class="p">[</span><span class="s1">&#39;C01&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ut</span><span class="p">[</span><span class="s1">&#39;mse&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;14.2e</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;PS&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ps</span><span class="p">[</span><span class="s1">&#39;C10&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ps</span><span class="p">[</span><span class="s1">&#39;C01&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_ps</span><span class="p">[</span><span class="s1">&#39;mse&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;14.2e</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;ET&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_et</span><span class="p">[</span><span class="s1">&#39;C10&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_et</span><span class="p">[</span><span class="s1">&#39;C01&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_et</span><span class="p">[</span><span class="s1">&#39;mse&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;14.2e</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;-&quot;</span> <span class="o">*</span> <span class="mi">52</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="s1">&#39;Combined&#39;</span><span class="si">:</span><span class="s2">&lt;12</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_combined</span><span class="p">[</span><span class="s1">&#39;C10&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_combined</span><span class="p">[</span><span class="s1">&#39;C01&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;12.4f</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">params_combined</span><span class="p">[</span><span class="s1">&#39;cost&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">&gt;14.2e</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Note: The combined fit uses NMSE (normalized MSE) which explains&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;the different cost magnitude compared to individual MSE values.&quot;</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<img src="../../_images/sphx_glr_hyperelastic_parameter_identification_001.png" srcset="../../_images/sphx_glr_hyperelastic_parameter_identification_001.png" alt="Mooney-Rivlin Parameter Identification using Treloar Data (Top: Individual fits, Bottom: Combined fit), UT - Individual fit, PS - Individual fit, ET - Individual fit, UT - Combined fit, PS - Combined fit, ET - Combined fit" class = "sphx-glr-single-img"/><div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>======================================================================
+ MOONEY-RIVLIN PARAMETER IDENTIFICATION
+ Using scipy.differential_evolution and sklearn.mean_squared_error
+======================================================================
+
+Loaded Treloar data: 25 data points
+
+Data summary:
+  Uniaxial Tension (UT): 25 points, lambda in [1.00, 7.61]
+  Pure Shear (PS):       14 points, lambda in [1.00, 4.96]
+  Equibiaxial (ET):      17 points, lambda in [1.00, 4.44]
+
+======================================================================
+ INDIVIDUAL FITTING (one parameter set per loading case)
+======================================================================
+
+============================================================
+Optimizing for UT loading case
+============================================================
+Parameter bounds: C10 in (0.01, 2.0), C01 in (-1.0, 1.0)
+Bulk modulus (fixed): kappa = 4000.0 MPa
+differential_evolution step 1: f(x)= 0.4096615268469581
+differential_evolution step 2: f(x)= 0.4096615268469581
+differential_evolution step 3: f(x)= 0.3978263758640262
+differential_evolution step 4: f(x)= 0.3978263758640262
+differential_evolution step 5: f(x)= 0.39194853823940684
+differential_evolution step 6: f(x)= 0.39194853823940684
+differential_evolution step 7: f(x)= 0.390742001678335
+differential_evolution step 8: f(x)= 0.390742001678335
+differential_evolution step 9: f(x)= 0.38955535356791926
+differential_evolution step 10: f(x)= 0.38955535356791926
+differential_evolution step 11: f(x)= 0.38955535356791926
+differential_evolution step 12: f(x)= 0.3895493503783034
+differential_evolution step 13: f(x)= 0.3895134000272561
+differential_evolution step 14: f(x)= 0.3895134000272561
+differential_evolution step 15: f(x)= 0.3895134000272561
+differential_evolution step 16: f(x)= 0.38951161523788896
+differential_evolution step 17: f(x)= 0.38951044296197623
+differential_evolution step 18: f(x)= 0.3895083336274455
+differential_evolution step 19: f(x)= 0.38950807193905634
+differential_evolution step 20: f(x)= 0.3895079700689561
+differential_evolution step 21: f(x)= 0.3895079700689561
+differential_evolution step 22: f(x)= 0.3895078172607434
+differential_evolution step 23: f(x)= 0.3895078172607434
+differential_evolution step 24: f(x)= 0.3895078172607434
+differential_evolution step 25: f(x)= 0.3895078094426372
+differential_evolution step 26: f(x)= 0.3895078094426372
+differential_evolution step 27: f(x)= 0.3895078012254065
+differential_evolution step 28: f(x)= 0.38950780048910943
+differential_evolution step 29: f(x)= 0.38950780048910943
+differential_evolution step 30: f(x)= 0.38950780044294975
+differential_evolution step 31: f(x)= 0.38950780038681637
+differential_evolution step 32: f(x)= 0.38950780038681637
+Polishing solution with &#39;L-BFGS-B&#39;
+
+Optimization completed!
+  C10 = 0.407989 MPa
+  C01 = -0.751039 MPa
+  Final MSE = 3.895078e-01 MPa^2
+
+============================================================
+Optimizing for PS loading case
+============================================================
+Parameter bounds: C10 in (0.01, 2.0), C01 in (-1.0, 1.0)
+Bulk modulus (fixed): kappa = 4000.0 MPa
+differential_evolution step 1: f(x)= 0.052568489490637596
+differential_evolution step 2: f(x)= 0.009493123290881412
+differential_evolution step 3: f(x)= 0.009493123290881412
+differential_evolution step 4: f(x)= 0.009493123290881412
+differential_evolution step 5: f(x)= 0.002238709247196296
+differential_evolution step 6: f(x)= 0.002222638903038
+differential_evolution step 7: f(x)= 0.002093401662362508
+differential_evolution step 8: f(x)= 0.002051757060569482
+differential_evolution step 9: f(x)= 0.002051757060569482
+differential_evolution step 10: f(x)= 0.0020515205718457806
+differential_evolution step 11: f(x)= 0.0020486426587081443
+differential_evolution step 12: f(x)= 0.0020486426587081443
+differential_evolution step 13: f(x)= 0.002048074478582873
+differential_evolution step 14: f(x)= 0.0020480272988842034
+differential_evolution step 15: f(x)= 0.0020480272988842034
+differential_evolution step 16: f(x)= 0.0020480272988842034
+differential_evolution step 17: f(x)= 0.0020480272988842034
+differential_evolution step 18: f(x)= 0.0020480272988842034
+differential_evolution step 19: f(x)= 0.0020480250885571804
+differential_evolution step 20: f(x)= 0.0020480166211757785
+differential_evolution step 21: f(x)= 0.0020480166211757785
+differential_evolution step 22: f(x)= 0.0020480166211757785
+differential_evolution step 23: f(x)= 0.0020480166211757785
+differential_evolution step 24: f(x)= 0.0020480166211757785
+differential_evolution step 25: f(x)= 0.0020480166211757785
+differential_evolution step 26: f(x)= 0.0020480165511174825
+differential_evolution step 27: f(x)= 0.0020480162263757373
+differential_evolution step 28: f(x)= 0.0020480162263757373
+differential_evolution step 29: f(x)= 0.0020480162252322466
+differential_evolution step 30: f(x)= 0.0020480162150828224
+differential_evolution step 31: f(x)= 0.0020480162150828224
+differential_evolution step 32: f(x)= 0.0020480162150828224
+differential_evolution step 33: f(x)= 0.0020480162150828224
+differential_evolution step 34: f(x)= 0.0020480162144333124
+differential_evolution step 35: f(x)= 0.002048016214353775
+Polishing solution with &#39;L-BFGS-B&#39;
+
+Optimization completed!
+  C10 = 0.465673 MPa
+  C01 = -0.296036 MPa
+  Final MSE = 2.048016e-03 MPa^2
+
+============================================================
+Optimizing for ET loading case
+============================================================
+Parameter bounds: C10 in (0.01, 2.0), C01 in (-1.0, 1.0)
+Bulk modulus (fixed): kappa = 4000.0 MPa
+differential_evolution step 1: f(x)= 3.7890783827233254
+differential_evolution step 2: f(x)= 1.5801552994420787
+differential_evolution step 3: f(x)= 1.5801552994420787
+differential_evolution step 4: f(x)= 1.5801552994420787
+differential_evolution step 5: f(x)= 0.033449646241513344
+differential_evolution step 6: f(x)= 0.033449646241513344
+differential_evolution step 7: f(x)= 0.0038665433369498774
+differential_evolution step 8: f(x)= 0.0038665433369498774
+differential_evolution step 9: f(x)= 0.0038665433369498774
+differential_evolution step 10: f(x)= 0.0038665433369498774
+differential_evolution step 11: f(x)= 0.0038665433369498774
+differential_evolution step 12: f(x)= 0.0038665433369498774
+differential_evolution step 13: f(x)= 0.0038665433369498774
+differential_evolution step 14: f(x)= 0.0033141935848357527
+differential_evolution step 15: f(x)= 0.0028921861132308784
+differential_evolution step 16: f(x)= 0.0028921861132308784
+differential_evolution step 17: f(x)= 0.0028921861132308784
+differential_evolution step 18: f(x)= 0.0028236479044486317
+differential_evolution step 19: f(x)= 0.0028236479044486317
+differential_evolution step 20: f(x)= 0.0028236479044486317
+differential_evolution step 21: f(x)= 0.0028236479044486317
+differential_evolution step 22: f(x)= 0.0028236479044486317
+differential_evolution step 23: f(x)= 0.0028236479044486317
+differential_evolution step 24: f(x)= 0.0028236098274586146
+differential_evolution step 25: f(x)= 0.002823571015744447
+differential_evolution step 26: f(x)= 0.002823571015744447
+differential_evolution step 27: f(x)= 0.002823571015744447
+differential_evolution step 28: f(x)= 0.002823571015744447
+differential_evolution step 29: f(x)= 0.002823571015744447
+differential_evolution step 30: f(x)= 0.0028235703402129573
+differential_evolution step 31: f(x)= 0.002823569975441282
+differential_evolution step 32: f(x)= 0.002823569890218678
+differential_evolution step 33: f(x)= 0.0028235698721478884
+differential_evolution step 34: f(x)= 0.00282356976826437
+differential_evolution step 35: f(x)= 0.00282356976826437
+differential_evolution step 36: f(x)= 0.00282356976826437
+differential_evolution step 37: f(x)= 0.00282356976826437
+differential_evolution step 38: f(x)= 0.002823569764235306
+differential_evolution step 39: f(x)= 0.0028235697641588657
+differential_evolution step 40: f(x)= 0.0028235697638824744
+differential_evolution step 41: f(x)= 0.0028235697638824744
+Polishing solution with &#39;L-BFGS-B&#39;
+
+Optimization completed!
+  C10 = 0.171238 MPa
+  C01 = 0.004730 MPa
+  Final MSE = 2.823570e-03 MPa^2
+
+----------------------------------------------------------------------
+Comparison with literature (Steinmann et al., 2012):
+----------------------------------------------------------------------
+Case     C10 (lit.)   C10 (ident.)   C01 (lit.)   C01 (ident.)
+----------------------------------------------------------------------
+UT       0.2588       0.4080         -0.0449      -0.7510
+PS       0.2348       0.4657         -0.0650      -0.2960
+ET       0.1713       0.1712         0.0047       0.0047
+
+======================================================================
+ COMBINED FITTING (single parameter set for all loading cases)
+======================================================================
+
+============================================================
+Combined optimization for: [&#39;UT&#39;, &#39;PS&#39;, &#39;ET&#39;]
+============================================================
+Parameter bounds: C10 in (0.01, 2.0), C01 in (-1.0, 1.0)
+Bulk modulus (fixed): kappa = 4000.0 MPa
+Using NMSE for cost function
+differential_evolution step 1: f(x)= 35.21222741563679
+differential_evolution step 2: f(x)= 9.537265331692677
+differential_evolution step 3: f(x)= 0.9974706563134659
+differential_evolution step 4: f(x)= 0.8786897719288405
+differential_evolution step 5: f(x)= 0.53121067957046
+differential_evolution step 6: f(x)= 0.4965791322994794
+differential_evolution step 7: f(x)= 0.4965791322994794
+differential_evolution step 8: f(x)= 0.46264130322439295
+differential_evolution step 9: f(x)= 0.46264130322439295
+differential_evolution step 10: f(x)= 0.46120121776724954
+differential_evolution step 11: f(x)= 0.46056166365362206
+differential_evolution step 12: f(x)= 0.46056166365362206
+differential_evolution step 13: f(x)= 0.46056166365362206
+differential_evolution step 14: f(x)= 0.46056166365362206
+differential_evolution step 15: f(x)= 0.46056166365362206
+differential_evolution step 16: f(x)= 0.46055920122048505
+differential_evolution step 17: f(x)= 0.460500046967362
+differential_evolution step 18: f(x)= 0.4604919190725185
+differential_evolution step 19: f(x)= 0.4604333550735898
+differential_evolution step 20: f(x)= 0.4604331492392568
+differential_evolution step 21: f(x)= 0.4604298987818909
+differential_evolution step 22: f(x)= 0.4604298987818909
+differential_evolution step 23: f(x)= 0.46042949481992085
+differential_evolution step 24: f(x)= 0.46042949481992085
+differential_evolution step 25: f(x)= 0.4604292754019745
+differential_evolution step 26: f(x)= 0.4604292754019745
+differential_evolution step 27: f(x)= 0.4604292663257766
+differential_evolution step 28: f(x)= 0.4604292663257766
+differential_evolution step 29: f(x)= 0.4604292663257766
+differential_evolution step 30: f(x)= 0.46042926572184356
+differential_evolution step 31: f(x)= 0.46042926572184356
+differential_evolution step 32: f(x)= 0.4604292652772896
+Polishing solution with &#39;L-BFGS-B&#39;
+
+Optimization completed!
+  C10 = 0.192048 MPa
+  C01 = 0.003199 MPa
+  Final combined cost = 4.604293e-01
+
+======================================================================
+ GENERATING PLOTS
+======================================================================
+
+======================================================================
+ SUMMARY OF IDENTIFIED PARAMETERS
+======================================================================
+Case            C10 [MPa]    C01 [MPa]    MSE [MPa^2]
+----------------------------------------------------
+UT                 0.4080      -0.7510       3.90e-01
+PS                 0.4657      -0.2960       2.05e-03
+ET                 0.1712       0.0047       2.82e-03
+----------------------------------------------------
+Combined           0.1920       0.0032       4.60e-01
+======================================================================
+
+Note: The combined fit uses NMSE (normalized MSE) which explains
+the different cost magnitude compared to individual MSE values.
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 15.946 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-examples-analysis-hyperelastic-parameter-identification-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/0b4d688e76f680b7e74faefeea43a965/hyperelastic_parameter_identification.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">hyperelastic_parameter_identification.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/1248083a027fc95da2b22ae5691f9139/hyperelastic_parameter_identification.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">hyperelastic_parameter_identification.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../../_downloads/b5eb6744b977b3bc2281ed5290261607/hyperelastic_parameter_identification.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">hyperelastic_parameter_identification.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="eshelby_numerical_vs_analytical.html" class="btn btn-neutral float-left" title="Numerical vs Analytical Eshelby Tensor Comparison" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="objective_rates.html" class="btn btn-neutral float-right" title="Comparison of objective rates" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
