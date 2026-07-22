@@ -1,0 +1,1502 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Typed Tensors (Tensor2 / Tensor4) &mdash; Simcoon 2.0.0b1 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=9edc463e" />
+      <link rel="stylesheet" type="text/css" href="../../_static/plot_directive.css?v=7f9a90b1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=fd6457a4" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+      <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+
+  
+    <link rel="canonical" href="https://3mah.github.io/simcoon-docs/continuum_mechanics/functions/doc_tensor.html"/>
+      <script src="../../_static/jquery.js?v=5d32c60e"></script>
+      <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="../../_static/documentation_options.js?v=391fd9ae"></script>
+      <script src="../../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="../../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="author" title="About these documents" href="../../about.html" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="The Contimech Library" href="doc_contimech.html" />
+    <link rel="prev" title="The Rotation Library" href="doc_rotation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #24445C" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Simcoon
+              <img src="../../_static/simcoonLogos_ss_fond.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+<p style="padding: 0.5em 1.618em; margin-bottom: 0;">
+  <a href="https://3mah.github.io/" style="color: #d9d9d9; font-weight: bold; text-decoration: none;">
+    &larr; Back to 3MAH
+  </a>
+</p>
+<hr style="border-color: #4e4e4e; margin: 0.5em 1.618em;">
+
+              <p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../about.html">About</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#quick-install">Quick install</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#blas-lapack-and-openmp">BLAS/LAPACK and OpenMP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../installation.html#developer-installation">Developer installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-conda">Prerequisites (conda)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#prerequisites-system-packages">Prerequisites (system packages)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#building-from-source">Building from source</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#running-tests">Running tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../installation.html#using-simcoon-with-fedoo">Using simcoon with fedoo</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../external.html">External</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umext-plugin-format">UMEXT Plugin Format</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umaba-plugin-format-abaqus-compatibility">UMABA Plugin Format (Abaqus Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#umans-plugin-format-ansys-compatibility">UMANS Plugin Format (Ansys Compatibility)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#compiling-external-plugins">Compiling External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#setting-up-input-files">Setting Up Input Files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#testing-external-plugins">Testing External Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../external.html#running-the-tests">Running the Tests</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../simulation/index.html">Simulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/solver.html">Use the solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#elastic-tensile-test">Elastic tensile test</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#solver-parameters">Solver parameters</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#tangent-operator-modes">Tangent-operator modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#corotational-spin-rate-types">Corotational spin rate types</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#define-the-loading-path">Define the loading path</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#general-structure">General structure</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#block-parameters">Block parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#step-definitions">Step definitions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/solver.html#examples">Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#cyclic-loading-plasticity">Cyclic loading (plasticity)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#hyperelasticity-with-deformation-gradient-control">Hyperelasticity with deformation gradient control</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#finite-deformation-with-spin-logarithmic-strain">Finite deformation with spin (logarithmic strain)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/python_solver.html">In-memory Python solver</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/python_solver.html#quick-start">Quick start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/python_solver.html#loading-control">Loading control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/python_solver.html#thermomechanical-loading">Thermomechanical loading</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/python_solver.html#legacy-file-formats">Legacy file formats</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/python_solver.html#json-configuration">JSON configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/python_solver.html#solver-parameters">Solver parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/python_solver.html#api-reference">API reference</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/python_solver.html#simcoon.solver.StepMeca"><code class="docutils literal notranslate"><span class="pre">StepMeca</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/python_solver.html#simcoon.solver.StepThermomeca"><code class="docutils literal notranslate"><span class="pre">StepThermomeca</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/python_solver.html#simcoon.solver.Block"><code class="docutils literal notranslate"><span class="pre">Block</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/python_solver.html#simcoon.solver.solve"><code class="docutils literal notranslate"><span class="pre">solve()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/python_solver.html#simcoon.solver.from_file"><code class="docutils literal notranslate"><span class="pre">from_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/python_solver.html#simcoon.solver.material_from_file"><code class="docutils literal notranslate"><span class="pre">material_from_file()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/python_solver.html#simcoon.solver.SolverResults"><code class="docutils literal notranslate"><span class="pre">SolverResults</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/umat_catalog.html">Constitutive model (UMAT) catalog</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_catalog.html#small-strain-mechanical-models">Small-strain mechanical models</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_catalog.html#shape-memory-alloys-finite-strain-multiscale-plugins">Shape memory alloys, finite strain, multiscale, plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_catalog.html#state-variable-statev-layout-for-adapter-served-names">State variable (statev) layout for adapter-served names</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_catalog.html#tangent-operator-mode">Tangent-operator mode</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_catalog.html#validation-and-performance">Validation and performance</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/modular_python.html">Building materials in Python (<code class="docutils literal notranslate"><span class="pre">modular</span></code>)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/modular_python.html#quick-start">Quick start</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/modular_python.html#elasticity">Elasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/modular_python.html#yield-criteria">Yield criteria</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/modular_python.html#isotropic-hardening">Isotropic hardening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/modular_python.html#kinematic-hardening">Kinematic hardening</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/modular_python.html#mechanisms">Mechanisms</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/modular_python.html#tangent-operator-and-finite-strain">Tangent operator and finite strain</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/modular_python.html#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/umat_tutorial.html">Hands-on: writing a UMAT with simcoon</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_tutorial.html#the-model">The model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_tutorial.html#step-1-anatomy-of-a-umat">Step 1 — anatomy of a UMAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_tutorial.html#step-2-trial-state-typed">Step 2 — trial state, typed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_tutorial.html#step-3-radial-return-closed-form">Step 3 — radial return, closed form</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_tutorial.html#step-4-the-continuum-tangent-derived-and-built">Step 4 — the continuum tangent, derived and built</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_tutorial.html#step-5-validation">Step 5 — validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/umat_tutorial.html#where-to-go-next">Where to go next</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/identification.html">Parameter Identification</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/identification.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/identification.html#key-system">Key System</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/identification.html#parameter-class">Parameter class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/identification.html#constant-class">Constant class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/identification.html#file-operations">File operations</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/identification.html#identification-global-optimization"><code class="docutils literal notranslate"><span class="pre">identification()</span></code> — Global Optimization</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/identification.html#calc-cost-multi-level-weighted-cost"><code class="docutils literal notranslate"><span class="pre">calc_cost()</span></code> — Multi-Level Weighted Cost</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/identification.html#weight-levels">Weight levels</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/identification.html#metrics">Metrics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/identification.html#using-with-external-solvers">Using with External Solvers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/identification.html#gallery-examples">Gallery Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/output.html">Configure the output</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#file-structure">File structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#basic-example">Basic example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#strain-output-options">Strain output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#stress-output-options">Stress output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#rotation-output-options">Rotation output options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#tangent-modulus-output">Tangent modulus output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#temperature-output">Temperature output</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#internal-state-variables">Internal state variables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#block-output-control">Block output control</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#hyperelasticity-example">Hyperelasticity example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#default-values">Default values</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/output.html#result-file-format">Result file format</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../simulation/fea_integration.html">FEA Integration</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#overview">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#supported-fea-software">Supported FEA Software</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/abaqus.html">Abaqus Integration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../simulation/ansys.html">Ansys Integration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#key-differences">Key Differences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../simulation/fea_integration.html#available-models">Available Models</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../examples/index.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#analysis-and-processing-examples">Analysis and processing examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/convergence_study.html">Increment size convergence study</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/directional_stiffness.html">Effective properties of a cubic material</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html">Numerical vs Analytical Eshelby Tensor Comparison</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#aspect-ratio-sweep">Aspect Ratio Sweep</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#numerical-integration-convergence">Numerical Integration Convergence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-analytical-vs-numerical-eshelby-tensor-components">Plot: Analytical vs Numerical Eshelby Tensor Components</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#relative-error-analysis">Relative Error Analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#plot-error-comparison-with-limiting-cases">Plot: Error Comparison with Limiting Cases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/eshelby_numerical_vs_analytical.html#convergence-to-limiting-cases">Convergence to Limiting Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html">Parameter Identification for Mooney-Rivlin Hyperelastic Material</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html#methodology-overview">Methodology Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html#mooney-rivlin-constitutive-model">Mooney-Rivlin Constitutive Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html#experimental-data-treloar-s-rubber-experiments">Experimental Data: Treloar’s Rubber Experiments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html#forward-model-stress-prediction-using-simcoon">Forward Model: Stress Prediction using simcoon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html#cost-function-stress-based-mean-squared-error">Cost Function: Stress-Based Mean Squared Error</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html#parameter-identification-using-differential-evolution">Parameter Identification using Differential Evolution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html#visualization-functions">Visualization Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/analysis/hyperelastic_parameter_identification.html#main-execution">Main Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/analysis/objective_rates.html">Comparison of objective rates</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#continuum-mechanics-examples">Continuum Mechanics Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html">Constitutive Library Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-iso">L_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-iso">M_iso</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-cubic">L_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-cubic">M_cubic</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-isotrans">L_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-isotrans">M_isotrans</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#l-ortho">L_ortho</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/constitutive_relations.html#m-ortho">M_ortho</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html">A Neo-Hookean material with the Tensor API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html#material-and-deformation">0. Material and deformation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html#strain-measures-and-their-transport">1. Strain measures and their transport</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html#the-law-in-the-reference-configuration-pkii-stress">2. The law in the reference configuration: PKII stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html#the-same-law-in-the-current-configuration-kirchhoff-stress">3. The same law in the current configuration: Kirchhoff stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html#stress-transport-one-object-three-measures">4. Stress transport: one object, three measures</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html#the-material-tangent-ds-de">5. The material tangent dS/dE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html#tangent-transport-from-ds-de-to-the-spatial-moduli">6. Tangent transport: from dS/dE to the spatial moduli</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/neo_hookean_tensor.html#batch-a-full-uniaxial-stretch-curve-in-three-stress-measures">7. Batch: a full uniaxial-stretch curve in three stress measures</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/rotation.html">Rotation library Examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_measures.html">Stress transfer: Cauchy → PKI/PKII/Kirchhoff</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/stress_transfer_helpers.html">Stress transfer library examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html">Tensor2 and Tensor4 Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#building-typed-tensors">1. Building typed tensors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#stiffness-and-compliance">2. Stiffness and compliance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#contraction-sigma-l-epsilon">3. Contraction: sigma = L : epsilon</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#scalar-invariants">4. Scalar invariants</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#rotation-via-simcoon-rotation">5. Rotation via simcoon.Rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#push-forward-and-pull-back">6. Push-forward and pull-back</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#material-frame-equivalence">7. Material-frame equivalence</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#arithmetic-and-dyadic-product">8. Arithmetic and dyadic product</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#building-isotropic-stiffness-from-projectors">9. Building isotropic stiffness from projectors</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#creating-a-batch-from-an-n-6-array">10. Creating a batch from an (N, 6) array</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#indexing-and-iteration">11. Indexing and iteration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#batch-contraction-sigma-l-eps-for-100-gauss-points">12. Batch contraction: sigma = L : eps for 100 Gauss points</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#batch-von-mises-and-trace">13. Batch von Mises and trace</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#batch-rotation-with-scipy">14. Batch rotation with scipy</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#batch-push-forward-pull-back">15. Batch push-forward / pull-back</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#batch-tensor4-inverse-and-rotation">16. Batch Tensor4 inverse and rotation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#concatenation-and-construction-from-lists">17. Concatenation and construction from lists</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#numpy-interop">18. numpy interop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#arithmetic-on-batches">19. Arithmetic on batches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/tensor.html#material-frame-equivalence-batch-version">20. Material-frame equivalence — batch version</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html">Yield Criteria Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#von-mises-equivalent-stress">Von Mises equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tresca-equivalent-stress">Tresca equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-equivalent-stress">Drucker equivalent stress</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropic-yield-criterion">Hill anisotropic yield criterion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-configurational-tensor">Hill configurational tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#yield-surface-visualization">Yield surface visualization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#d-yield-surfaces">3D Yield Surfaces</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#plane-stress-11-22">Plane Stress (σ₁₁, σ₂₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#tension-shear-11-12">Tension-Shear (σ₁₁, σ₁₂)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#hill-anisotropy-parameters">Hill Anisotropy Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/continuum_mechanics/yield_criteria.html#drucker-parameter-b">Drucker Parameter b</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#heterogeneous-materials-simulation">Heterogeneous materials simulation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/composite_parameter_identification.html">Composite Parameter Identification using Mori-Tanaka and Self-Consistent</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/composite_parameter_identification.html#problem-setup">Problem Setup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/composite_parameter_identification.html#forward-model">Forward Model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/composite_parameter_identification.html#main-execution">Main Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html">Micromechanics Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/effective_props.html#effect-of-aspect-ratio-on-effective-stiffness">Effect of Aspect Ratio on Effective Stiffness</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html">Eshelby Tensor Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-a-sphere">Eshelby tensor for a sphere</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-an-infinite-cylinder">Eshelby tensor for an infinite cylinder</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-prolate-ellipsoid">Eshelby tensor for prolate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-oblate-ellipsoid">Eshelby tensor for oblate ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#eshelby-tensor-for-penny-shaped-crack">Eshelby tensor for penny-shaped crack</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#numerical-eshelby-tensor-for-general-ellipsoid">Numerical Eshelby tensor for general ellipsoid</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/eshelby_tensors.html#hill-s-interaction-tensor">Hill’s interaction tensor</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html">2 phase composite homogenization example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/heterogeneous/homogenization.html#effect-of-aspect-ratio-on-eshelby-tensor-components">Effect of aspect ratio on Eshelby tensor components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#hyperelasticity">Hyperelasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_numerical.html">Hyperelastic models - use the API</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/HYPER_umat.html">Hyperelastic models - use the umat</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/hyperelasticity/hyperelastic_umat_identification.html">Mooney-Rivlin identification with the MOORI UMAT and the simcoon API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/hyperelasticity/hyperelastic_umat_identification.html#configuration">Configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/hyperelasticity/hyperelastic_umat_identification.html#forward-model-the-moori-umat-through-sim-solver">Forward model: the MOORI UMAT through <code class="docutils literal notranslate"><span class="pre">sim.solver</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/hyperelasticity/hyperelastic_umat_identification.html#cost-function-sim-calc-cost-with-nmse-per-response">Cost function: <code class="docutils literal notranslate"><span class="pre">sim.calc_cost</span></code> with NMSE-per-response</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/hyperelasticity/hyperelastic_umat_identification.html#driver">Driver</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#parameter-identification-examples">Parameter identification examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/identification/chaboche_cyclic_identification.html">Chaboche Cyclic Plasticity Identification</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#mechanical-constitutive-laws">Mechanical Constitutive Laws</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/ELISO.html">Isotropic elasticity examples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/ELIST.html">Transversely Isotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/ELIST.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/ELORT.html">Orthotropic Elasticity Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/ELORT.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/EPCHA.html">Plasticity with Chaboche Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/EPCHA.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/EPICP.html">Plasticity with isotropic hardening example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/EPKCP.html">Plasticity with Isotropic and Kinematic Hardening Example</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/MODUL.html">Modular UMAT Example — Composable Elasto-Plasticity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/MODUL.html#compose-the-constitutive-model">1. Compose the constitutive model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/MODUL.html#run-the-solver">2. Run the solver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/MODUL.html#plot-the-stress-strain-curve">3. Plot the stress-strain curve</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/MODUL_finite.html">Modular UMAT under Finite Strain — Hencky Hyperelasto-Plasticity</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/MODUL_finite.html#compose-the-constitutive-model">1. Compose the constitutive model</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/MODUL_finite.html#run-the-solver-under-nlgeom">2. Run the solver under NLGEOM</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/MODUL_finite.html#plot-the-response">3. Plot the response</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/PRONY_N.html">Prony Series Viscoelastic Model (Generalized Maxwell)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/PRONY_N.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/SMA_TR.html">Shape Memory Alloy - Superelastic Model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/SMA_TR.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/ZENER.html">Zener viscoelastic model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/ZENER.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/mechanical/ZENER_N.html">Generalized Zener model (N Kelvin branches)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/mechanical/ZENER_N.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../examples/index.html#thermomechanical-constitutive-laws">Thermomechanical Constitutive Laws</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermomechanical/ELISO.html">Isotropic elasticity (thermomechanical)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ELISO.html#plotting-the-results">Plotting the results</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermomechanical/ELIST.html">Transversely isotropic elasticity (thermomechanical)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ELIST.html#loading-in-direction-1">Loading in direction 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ELIST.html#loading-in-direction-2">Loading in direction 2</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermomechanical/ELORT.html">Orthotropic elasticity (thermomechanical)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ELORT.html#loading-in-direction-1">Loading in direction 1</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ELORT.html#loading-in-direction-2">Loading in direction 2</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ELORT.html#loading-in-direction-3">Loading in direction 3</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermomechanical/EPICP.html">Plasticity with isotropic hardening (thermomechanical)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/EPICP.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/EPICP.html#increment-size-effect">Increment size effect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/EPICP.html#plotting-the-increment-size-comparison">Plotting the increment size comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermomechanical/EPKCP.html">Plasticity with kinematic hardening (thermomechanical)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/EPKCP.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/EPKCP.html#increment-size-effect">Increment size effect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/EPKCP.html#plotting-the-increment-size-comparison">Plotting the increment size comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermomechanical/SMA_T.html">Shape Memory Alloy - Thermomechanical coupling</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/SMA_T.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/SMA_T.html#increment-size-effect">Increment size effect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/SMA_T.html#plotting-the-increment-size-comparison">Plotting the increment size comparison</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../examples/thermomechanical/ZENER.html">Zener viscoelastic model (thermomechanical)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ZENER.html#plotting-the-results">Plotting the results</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ZENER.html#increment-size-effect">Increment size effect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../examples/thermomechanical/ZENER.html#plotting-the-increment-size-comparison">Plotting the increment size comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">Continuum Mechanics</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Continuum Mechanics generic functions</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="doc_constitutive.html">The Constitutive Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ireal"><code class="docutils literal notranslate"><span class="pre">Ireal()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ivol"><code class="docutils literal notranslate"><span class="pre">Ivol()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Idev"><code class="docutils literal notranslate"><span class="pre">Idev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ireal2"><code class="docutils literal notranslate"><span class="pre">Ireal2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Idev2"><code class="docutils literal notranslate"><span class="pre">Idev2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ith"><code class="docutils literal notranslate"><span class="pre">Ith()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ir2"><code class="docutils literal notranslate"><span class="pre">Ir2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.Ir05"><code class="docutils literal notranslate"><span class="pre">Ir05()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.L_iso"><code class="docutils literal notranslate"><span class="pre">L_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.M_iso"><code class="docutils literal notranslate"><span class="pre">M_iso()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.L_cubic"><code class="docutils literal notranslate"><span class="pre">L_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.M_cubic"><code class="docutils literal notranslate"><span class="pre">M_cubic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.L_ortho"><code class="docutils literal notranslate"><span class="pre">L_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.M_ortho"><code class="docutils literal notranslate"><span class="pre">M_ortho()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.L_isotrans"><code class="docutils literal notranslate"><span class="pre">L_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.M_isotrans"><code class="docutils literal notranslate"><span class="pre">M_isotrans()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_constitutive.html#simcoon.H_iso"><code class="docutils literal notranslate"><span class="pre">H_iso()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_rotation.html">The Rotation Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_rotation.html#architecture">Architecture</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_rotation.html#the-rotation-class">The Rotation Class</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_rotation.html#euler-angle-conventions">Euler Angle Conventions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_rotation.html#practical-examples">Practical Examples</a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_rotation.html#see-also">See Also</a></li>
+</ul>
+</li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Typed Tensors (Tensor2 / Tensor4)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#batch-operations">Batch operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#api-reference">API reference</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_contimech.html">The Contimech Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.dev"><code class="docutils literal notranslate"><span class="pre">dev()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sph"><code class="docutils literal notranslate"><span class="pre">sph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.tr"><code class="docutils literal notranslate"><span class="pre">tr()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.Mises_stress"><code class="docutils literal notranslate"><span class="pre">Mises_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.eta_stress"><code class="docutils literal notranslate"><span class="pre">eta_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.Mises_strain"><code class="docutils literal notranslate"><span class="pre">Mises_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.eta_strain"><code class="docutils literal notranslate"><span class="pre">eta_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.J2_stress"><code class="docutils literal notranslate"><span class="pre">J2_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.J2_strain"><code class="docutils literal notranslate"><span class="pre">J2_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.J3_stress"><code class="docutils literal notranslate"><span class="pre">J3_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.J3_strain"><code class="docutils literal notranslate"><span class="pre">J3_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.Macaulay_p"><code class="docutils literal notranslate"><span class="pre">Macaulay_p()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.Macaulay_n"><code class="docutils literal notranslate"><span class="pre">Macaulay_n()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sign"><code class="docutils literal notranslate"><span class="pre">sign()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.normal_ellipsoid"><code class="docutils literal notranslate"><span class="pre">normal_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.curvature_ellipsoid"><code class="docutils literal notranslate"><span class="pre">curvature_ellipsoid()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sigma_int"><code class="docutils literal notranslate"><span class="pre">sigma_int()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.p_ikjl"><code class="docutils literal notranslate"><span class="pre">p_ikjl()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.auto_sym_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sym_dyadic"><code class="docutils literal notranslate"><span class="pre">sym_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.auto_dyadic"><code class="docutils literal notranslate"><span class="pre">auto_dyadic()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.dyadic_4vectors_sym"><code class="docutils literal notranslate"><span class="pre">dyadic_4vectors_sym()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.auto_sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">auto_sym_dyadic_operator()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_contimech.html#simcoon.sym_dyadic_operator"><code class="docutils literal notranslate"><span class="pre">sym_dyadic_operator()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_criteria.html">The Criteria Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Drucker_stress"><code class="docutils literal notranslate"><span class="pre">Drucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dDrucker_stress"><code class="docutils literal notranslate"><span class="pre">dDrucker_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Tresca_stress"><code class="docutils literal notranslate"><span class="pre">Tresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dTresca_stress"><code class="docutils literal notranslate"><span class="pre">dTresca_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.P_Ani"><code class="docutils literal notranslate"><span class="pre">P_Ani()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.P_Hill"><code class="docutils literal notranslate"><span class="pre">P_Hill()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.P_DFA"><code class="docutils literal notranslate"><span class="pre">P_DFA()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Hill_stress"><code class="docutils literal notranslate"><span class="pre">Hill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dHill_stress"><code class="docutils literal notranslate"><span class="pre">dHill_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Ani_stress"><code class="docutils literal notranslate"><span class="pre">Ani_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dAni_stress"><code class="docutils literal notranslate"><span class="pre">dAni_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.DFA_stress"><code class="docutils literal notranslate"><span class="pre">DFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dDFA_stress"><code class="docutils literal notranslate"><span class="pre">dDFA_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.Eq_stress"><code class="docutils literal notranslate"><span class="pre">Eq_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_criteria.html#simcoon.dEq_stress"><code class="docutils literal notranslate"><span class="pre">dEq_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_transfer.html">Transfer helpers (Voigt &lt;-&gt; matrix)</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_transfer.html#simcoon.v2t_strain"><code class="docutils literal notranslate"><span class="pre">v2t_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_transfer.html#simcoon.t2v_strain"><code class="docutils literal notranslate"><span class="pre">t2v_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_transfer.html#simcoon.v2t_stress"><code class="docutils literal notranslate"><span class="pre">v2t_stress()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_transfer.html#simcoon.t2v_stress"><code class="docutils literal notranslate"><span class="pre">t2v_stress()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_stress.html">Stress conversions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_stress.html#simcoon.stress_convert"><code class="docutils literal notranslate"><span class="pre">stress_convert()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_damage.html">The Damage Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_damage.html#simcoon.damage_weibull"><code class="docutils literal notranslate"><span class="pre">damage_weibull()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_damage.html#simcoon.damage_kachanov"><code class="docutils literal notranslate"><span class="pre">damage_kachanov()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_damage.html#simcoon.damage_miner"><code class="docutils literal notranslate"><span class="pre">damage_miner()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_damage.html#simcoon.damage_manson"><code class="docutils literal notranslate"><span class="pre">damage_manson()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_kinematics.html">The Kinematics Library</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.ER_to_F"><code class="docutils literal notranslate"><span class="pre">ER_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.eR_to_F"><code class="docutils literal notranslate"><span class="pre">eR_to_F()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.G_UdX"><code class="docutils literal notranslate"><span class="pre">G_UdX()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.G_Udx"><code class="docutils literal notranslate"><span class="pre">G_Udx()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.R_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">R_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.L_Cauchy_Green"><code class="docutils literal notranslate"><span class="pre">L_Cauchy_Green()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.RU_decomposition"><code class="docutils literal notranslate"><span class="pre">RU_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.VR_decomposition"><code class="docutils literal notranslate"><span class="pre">VR_decomposition()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Inv_X"><code class="docutils literal notranslate"><span class="pre">Inv_X()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Cauchy"><code class="docutils literal notranslate"><span class="pre">Cauchy()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Green_Lagrange"><code class="docutils literal notranslate"><span class="pre">Green_Lagrange()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Euler_Almansi"><code class="docutils literal notranslate"><span class="pre">Euler_Almansi()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.Log_strain"><code class="docutils literal notranslate"><span class="pre">Log_strain()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_L"><code class="docutils literal notranslate"><span class="pre">finite_L()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_D"><code class="docutils literal notranslate"><span class="pre">finite_D()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_W"><code class="docutils literal notranslate"><span class="pre">finite_W()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_Omega"><code class="docutils literal notranslate"><span class="pre">finite_Omega()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_kinematics.html#simcoon.finite_DQ"><code class="docutils literal notranslate"><span class="pre">finite_DQ()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="doc_hyperelastic.html">Hyperelasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="doc_recovery_props.html">Recovery of Elastic Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.check_symetries"><code class="docutils literal notranslate"><span class="pre">check_symetries()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.L_iso_props"><code class="docutils literal notranslate"><span class="pre">L_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_iso_props"><code class="docutils literal notranslate"><span class="pre">M_iso_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.L_isotrans_props"><code class="docutils literal notranslate"><span class="pre">L_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_isotrans_props"><code class="docutils literal notranslate"><span class="pre">M_isotrans_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.L_cubic_props"><code class="docutils literal notranslate"><span class="pre">L_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_cubic_props"><code class="docutils literal notranslate"><span class="pre">M_cubic_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.L_ortho_props"><code class="docutils literal notranslate"><span class="pre">L_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_ortho_props"><code class="docutils literal notranslate"><span class="pre">M_ortho_props()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="doc_recovery_props.html#simcoon.M_aniso_props"><code class="docutils literal notranslate"><span class="pre">M_aniso_props()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../homogenization/doc_eshelby.html">The Eshelby Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_sphere"><code class="docutils literal notranslate"><span class="pre">Eshelby_sphere()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_cylinder"><code class="docutils literal notranslate"><span class="pre">Eshelby_cylinder()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_prolate"><code class="docutils literal notranslate"><span class="pre">Eshelby_prolate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_oblate"><code class="docutils literal notranslate"><span class="pre">Eshelby_oblate()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby_penny"><code class="docutils literal notranslate"><span class="pre">Eshelby_penny()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.Eshelby"><code class="docutils literal notranslate"><span class="pre">Eshelby()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../homogenization/doc_eshelby.html#simcoon.T_II"><code class="docutils literal notranslate"><span class="pre">T_II()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../cpp_api/index.html">C++ API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../cpp_api/index.html#namespace-overview">Namespace Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/continuum_mechanics/index.html">Continuum Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/functions/index.html">Mechanical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/material.html">Material Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/micromechanics.html">Micromechanics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/continuum_mechanics/index.html#overview">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/simulation/index.html">Simulation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/maths.html">Mathematical Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/rotation.html">The Rotation Module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/solver.html">Solver Functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/phase.html">Phase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/index.html#overview">Overview</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/simulation/index.html#what-s-new-in-simcoon-2-0">What’s New in Simcoon 2.0</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/homogenization/index.html">Homogenization</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/homogenization/index.html#eshelby-tensor">Eshelby Tensor</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/homogenization/index.html#homogenization-schemes">Homogenization Schemes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../cpp_api/umat/index.html">User Material Subroutines</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/finite.html">Finite Strain Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/mechanical.html">Mechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/thermomechanical.html">Thermomechanical Models</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../cpp_api/umat/index.html#overview">Overview</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #24445C" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Simcoon</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Continuum Mechanics</a></li>
+          <li class="breadcrumb-item"><a href="index.html">Continuum Mechanics generic functions</a></li>
+      <li class="breadcrumb-item active">Typed Tensors (Tensor2 / Tensor4)</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/continuum_mechanics/functions/doc_tensor.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="typed-tensors-tensor2-tensor4">
+<h1>Typed Tensors (Tensor2 / Tensor4)<a class="headerlink" href="#typed-tensors-tensor2-tensor4" title="Link to this heading"></a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">simcoon.Tensor2</span></code> and <code class="docutils literal notranslate"><span class="pre">simcoon.Tensor4</span></code> are unified typed wrappers for 2nd-
+and 4th-order tensors. A single object transparently represents either one tensor
+or a batch (scipy <code class="docutils literal notranslate"><span class="pre">Rotation</span></code> style): shape <code class="docutils literal notranslate"><span class="pre">(6,)</span></code> / <code class="docutils literal notranslate"><span class="pre">(6,6)</span></code> is a single
+tensor, <code class="docutils literal notranslate"><span class="pre">(N,6)</span></code> / <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code> a batch. <code class="docutils literal notranslate"><span class="pre">Tensor4</span></code> stores its data internally
+in the <strong>Kelvin-Mandel</strong> convention, so the double contraction, inverse and
+composition of 4th-order tensors become ordinary 6x6 linear algebra; the
+engineering Voigt form is recovered on demand via <code class="docutils literal notranslate"><span class="pre">.mat</span></code> / <code class="docutils literal notranslate"><span class="pre">.voigt</span></code>.</p>
+<p>Objects are built through typed factories, e.g. <code class="docutils literal notranslate"><span class="pre">Tensor2.stress(v)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Tensor2.strain(v)</span></code>, <code class="docutils literal notranslate"><span class="pre">Tensor4.stiffness(m)</span></code>, <code class="docutils literal notranslate"><span class="pre">Tensor4.compliance(m)</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Tensor4.from_voigt(v,</span> <span class="pre">type_str)</span></code>.</p>
+<section id="batch-operations">
+<h2>Batch operations<a class="headerlink" href="#batch-operations" title="Link to this heading"></a></h2>
+<p>Batch <code class="docutils literal notranslate"><span class="pre">contract</span></code>, <code class="docutils literal notranslate"><span class="pre">rotate</span></code>, <code class="docutils literal notranslate"><span class="pre">push_forward</span></code>, <code class="docutils literal notranslate"><span class="pre">pull_back</span></code> and <code class="docutils literal notranslate"><span class="pre">inverse</span></code>
+dispatch to vectorised kernels over the <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">...)</span></code> data.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Shared-tangent contraction is ~20x faster — pass a single Tensor4.</strong></p>
+<p>When the same 4th-order tensor is contracted against many 2nd-order tensors
+(a shared elastic tangent applied at every integration point), pass a
+<strong>single</strong> <code class="docutils literal notranslate"><span class="pre">Tensor4</span></code> and contract it with a <strong>batch</strong> <code class="docutils literal notranslate"><span class="pre">Tensor2</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">L</span>   <span class="o">=</span> <span class="n">Tensor4</span><span class="o">.</span><span class="n">stiffness</span><span class="p">(</span><span class="n">L6x6</span><span class="p">)</span>     <span class="c1"># single (6,6)</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="n">Tensor2</span><span class="o">.</span><span class="n">strain</span><span class="p">(</span><span class="n">eps_Nx6</span><span class="p">)</span>     <span class="c1"># batch  (N,6)</span>
+<span class="n">sig</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">contract</span><span class="p">(</span><span class="n">eps</span><span class="p">)</span>             <span class="c1"># one BLAS GEMM  -&gt;  ~20x</span>
+</pre></div>
+</div>
+<p>This collapses to a single <code class="docutils literal notranslate"><span class="pre">L</span> <span class="pre">&#64;</span> <span class="pre">X</span></code> matrix-matrix product (BLAS <code class="docutils literal notranslate"><span class="pre">dgemm</span></code>):
+measured ~3.7 ns/point vs ~74 ns/point for the per-point path (N = 1e5).
+The C++ <code class="docutils literal notranslate"><span class="pre">batch_contract</span></code> implements the same fast path when the tensor4
+cube has a single slice (<code class="docutils literal notranslate"><span class="pre">N4</span> <span class="pre">==</span> <span class="pre">1</span></code>).</p>
+<p><strong>Anti-pattern:</strong> materialising the shared tangent as a <em>tiled</em> <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code>
+batch of identical slices — that forces <code class="docutils literal notranslate"><span class="pre">N</span></code> independent 6x6 matrix-vector
+products and the GEMM speed-up is lost. Tile the tangent <strong>only</strong> when it
+genuinely differs per point (a distinct consistent tangent, e.g. plasticity);
+there a GEMM collapse is not possible and per-point evaluation is correct.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A dedicated symmetric <code class="docutils literal notranslate"><span class="pre">symtensor2</span></code> (Kelvin-Mandel 6-vector storage)
+was benchmarked as a way to speed the general contraction path and
+<strong>rejected</strong>: it yields only ~1.1x on a single contraction and ~1.07x on
+realistic distinct-tangent batch work, and Armadillo fixed-size containers
+negate the 6-vs-9-double storage saving. The real ~20x lever is the
+shared-tangent GEMM path above, which needs no new type; <code class="docutils literal notranslate"><span class="pre">Tensor2</span></code> stays
+the general 3x3 type (it remains the only one able to hold a non-symmetric
+tensor such as <code class="docutils literal notranslate"><span class="pre">F</span></code>, <code class="docutils literal notranslate"><span class="pre">L</span></code>, <code class="docutils literal notranslate"><span class="pre">R</span></code>).</p>
+</div>
+</section>
+<section id="api-reference">
+<h2>API reference<a class="headerlink" href="#api-reference" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="simcoon.Tensor2">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">simcoon.</span></span><span class="sig-name descname"><span class="pre">Tensor2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2" title="Link to this definition"></a></dt>
+<dd><p>A 2nd-order tensor with a type tag driving the Voigt convention and rotation dispatch.</p>
+<p>A single object transparently represents either one tensor or a batch
+(scipy <code class="docutils literal notranslate"><span class="pre">Rotation</span></code> style): the stored numpy array is <code class="docutils literal notranslate"><span class="pre">(6,)</span></code> for a single
+tensor and <code class="docutils literal notranslate"><span class="pre">(N,</span> <span class="pre">6)</span></code> for a batch. The type is a string: <code class="docutils literal notranslate"><span class="pre">&quot;stress&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;strain&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>; it selects the shear factors of
+the Voigt vector (<code class="docutils literal notranslate"><span class="pre">2*e_ij</span></code> for strain, <code class="docutils literal notranslate"><span class="pre">s_ij</span></code> for stress) and the
+rotation/transport rules.</p>
+<p>Construct through the typed factories (<cite>stress</cite>, <cite>strain</cite>, <cite>from_mat</cite>,
+<cite>from_voigt</cite>, <cite>from_mandel</cite>), never through <code class="docutils literal notranslate"><span class="pre">Tensor2(array)</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sim</span>
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Tensor2</span><span class="o">.</span><span class="n">stress</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">50.</span><span class="p">,</span> <span class="mf">75.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]))</span>
+<span class="n">sigma</span><span class="o">.</span><span class="n">mises</span><span class="p">()</span>          <span class="c1"># von Mises equivalent stress</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Tensor2</span><span class="o">.</span><span class="n">strain</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="mf">0.01</span><span class="p">)</span>  <span class="c1"># batch</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">eps</span><span class="p">),</span> <span class="n">eps</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>       <span class="c1"># 1000, single Tensor2</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.concatenate">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">concatenate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.concatenate" title="Link to this definition"></a></dt>
+<dd><p>Join multiple batches and/or singles (all of the same type) into one batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.count" title="Link to this definition"></a></dt>
+<dd><p>Count occurrences of a single tensor in batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.dev">
+<span class="sig-name descname"><span class="pre">dev</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.dev" title="Link to this definition"></a></dt>
+<dd><p>Deviatoric part <code class="docutils literal notranslate"><span class="pre">t</span> <span class="pre">-</span> <span class="pre">tr(t)/3</span> <span class="pre">I</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Deviatoric tensor(s), same type tag.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.from_columns">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_columns</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">arr</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.from_columns" title="Link to this definition"></a></dt>
+<dd><p>Create a batch from a column-major array (C++ interop).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>arr</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,</span> <span class="pre">N)</span></code> array, one Voigt vector per column (the simcoon C++
+batch convention).</p></li>
+<li><p><strong>type_str</strong> (<em>str</em>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;stress&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;strain&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Batch of N tensors.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.from_list">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.from_list" title="Link to this definition"></a></dt>
+<dd><p>Stack a list of single tensors (all of the same type) into a batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.from_mandel">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mandel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.from_mandel" title="Link to this definition"></a></dt>
+<dd><p>Create from a Kelvin-Mandel 6-vector (inverse of the <cite>mandel</cite> property).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,)</span></code> Kelvin-Mandel vector (<code class="docutils literal notranslate"><span class="pre">sqrt(2)</span></code> factor on shear terms,
+identical for stress and strain) or <code class="docutils literal notranslate"><span class="pre">(N,6)</span></code> batch.</p></li>
+<li><p><strong>type_str</strong> (<em>str</em>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;stress&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;strain&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor(s) of the requested type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.from_mat">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.from_mat" title="Link to this definition"></a></dt>
+<dd><p>Create from a 3x3 matrix representation with an explicit type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(3,3)</span></code> matrix or <code class="docutils literal notranslate"><span class="pre">(N,3,3)</span></code> batch of matrices.</p></li>
+<li><p><strong>type_str</strong> (<em>str</em>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;stress&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;strain&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor(s) of the requested type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.from_tensor">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.from_tensor" title="Link to this definition"></a></dt>
+<dd><p>Broadcast a single tensor to a batch of size <code class="docutils literal notranslate"><span class="pre">n</span></code> (copies the data).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.from_voigt">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_voigt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.from_voigt" title="Link to this definition"></a></dt>
+<dd><p>Create from a Voigt 6-vector with an explicit type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>v</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,)</span></code> Voigt vector or <code class="docutils literal notranslate"><span class="pre">(N,6)</span></code> batch. Shear components follow
+the type convention (<code class="docutils literal notranslate"><span class="pre">2*e_ij</span></code> for strain, <code class="docutils literal notranslate"><span class="pre">s_ij</span></code> for stress).</p></li>
+<li><p><strong>type_str</strong> (<em>str</em>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;stress&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;strain&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;none&quot;</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tensor(s) of the requested type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.identity">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stress'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.identity" title="Link to this definition"></a></dt>
+<dd><p>Create the single identity tensor (Voigt <code class="docutils literal notranslate"><span class="pre">[1,1,1,0,0,0]</span></code>) of the given type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.is_symmetric">
+<span class="sig-name descname"><span class="pre">is_symmetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tol</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1e-12</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.is_symmetric" title="Link to this definition"></a></dt>
+<dd><p>Check symmetry of the 3x3 matrix representation (single only).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>tol</strong> (<em>float</em><em>, </em><em>optional</em>) – Absolute tolerance on the off-diagonal differences (default 1e-12).</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor2.mandel">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mandel</span></span><a class="headerlink" href="#simcoon.Tensor2.mandel" title="Link to this definition"></a></dt>
+<dd><p>Kelvin-Mandel vector (sqrt2 on shear, identical for stress/strain):
+(6,) for single, (N,6) for batch. Returns a copy.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor2.mat">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mat</span></span><a class="headerlink" href="#simcoon.Tensor2.mat" title="Link to this definition"></a></dt>
+<dd><p>(3,3) for single, (N,3,3) for batch.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.mises">
+<span class="sig-name descname"><span class="pre">mises</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.mises" title="Link to this definition"></a></dt>
+<dd><p>Von Mises equivalent (type-aware).</p>
+<p>Uses the stress definition <code class="docutils literal notranslate"><span class="pre">sqrt(3/2</span> <span class="pre">s_dev:s_dev)</span></code> for stress/generic
+and the strain definition <code class="docutils literal notranslate"><span class="pre">sqrt(2/3</span> <span class="pre">e_dev:e_dev)</span></code> for strain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Scalar for a single tensor, <code class="docutils literal notranslate"><span class="pre">(N,)</span></code> for a batch.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float or numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.norm">
+<span class="sig-name descname"><span class="pre">norm</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.norm" title="Link to this definition"></a></dt>
+<dd><p>Frobenius norm <code class="docutils literal notranslate"><span class="pre">sqrt(t_ij</span> <span class="pre">t_ij)</span></code> (type-aware shear factors).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Scalar for a single tensor, <code class="docutils literal notranslate"><span class="pre">(N,)</span></code> for a batch.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float or numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.pull_back">
+<span class="sig-name descname"><span class="pre">pull_back</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.pull_back" title="Link to this definition"></a></dt>
+<dd><p>Pull-back (current to reference configuration) via the deformation gradient.</p>
+<p>Inverse of <cite>push_forward</cite>; same type-dependent transport and
+<code class="docutils literal notranslate"><span class="pre">metric</span></code> semantics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(3,3)</span></code> deformation gradient, or <code class="docutils literal notranslate"><span class="pre">(N,3,3)</span></code> batch.</p></li>
+<li><p><strong>metric</strong> (<em>bool</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> (default) includes the <code class="docutils literal notranslate"><span class="pre">J</span> <span class="pre">=</span> <span class="pre">det(F)</span></code> factor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transported tensor(s), same type tag.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.push_forward">
+<span class="sig-name descname"><span class="pre">push_forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.push_forward" title="Link to this definition"></a></dt>
+<dd><p>Push-forward (reference to current configuration) via the deformation gradient.</p>
+<p>Type-dependent transport: stress is fully contravariant
+(<code class="docutils literal notranslate"><span class="pre">F</span> <span class="pre">s</span> <span class="pre">F^T</span></code>, Piola with <code class="docutils literal notranslate"><span class="pre">1/J</span></code>), strain fully covariant
+(<code class="docutils literal notranslate"><span class="pre">F^-T</span> <span class="pre">e</span> <span class="pre">F^-1</span></code>).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(3,3)</span></code> deformation gradient, or <code class="docutils literal notranslate"><span class="pre">(N,3,3)</span></code> batch (a single F
+is broadcast over a tensor batch).</p></li>
+<li><p><strong>metric</strong> (<em>bool</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> (default) includes the <code class="docutils literal notranslate"><span class="pre">J</span> <span class="pre">=</span> <span class="pre">det(F)</span></code> factor (proper
+Piola transformation); <code class="docutils literal notranslate"><span class="pre">False</span></code> is pure transport.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transported tensor(s), same type tag.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.rotate" title="Link to this definition"></a></dt>
+<dd><p>Rotate the tensor(s) by a rotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>R</strong> (<em>simcoon.Rotation</em><em> or </em><em>scipy.spatial.transform.Rotation</em>) – Rotation(s) to apply. On a batch, a single rotation is broadcast
+to all N tensors; a batch of N rotations is applied slice-wise.</p></li>
+<li><p><strong>active</strong> (<em>bool</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> (default) rotates the tensor (active convention
+<code class="docutils literal notranslate"><span class="pre">Q</span> <span class="pre">A</span> <span class="pre">Q^T</span></code>); <code class="docutils literal notranslate"><span class="pre">False</span></code> rotates the frame (passive).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Rotated tensor(s), same type tag.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">scipy.spatial.transform</span><span class="w"> </span><span class="kn">import</span> <span class="n">Rotation</span>
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Tensor2</span><span class="o">.</span><span class="n">stress</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">100.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]))</span>
+<span class="n">R</span> <span class="o">=</span> <span class="n">Rotation</span><span class="o">.</span><span class="n">from_euler</span><span class="p">(</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">degrees</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">sigma_rot</span> <span class="o">=</span> <span class="n">sigma</span><span class="o">.</span><span class="n">rotate</span><span class="p">(</span><span class="n">R</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor2.single">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">single</span></span><a class="headerlink" href="#simcoon.Tensor2.single" title="Link to this definition"></a></dt>
+<dd><p>True if this is a single tensor, False if batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.strain">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">strain</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.strain" title="Link to this definition"></a></dt>
+<dd><p>Create strain tensor(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,)</span></code> Voigt vector (with <code class="docutils literal notranslate"><span class="pre">2*e_ij</span></code> shear terms), <code class="docutils literal notranslate"><span class="pre">(3,3)</span></code>
+matrix, <code class="docutils literal notranslate"><span class="pre">(N,6)</span></code> Voigt batch, or <code class="docutils literal notranslate"><span class="pre">(N,3,3)</span></code> matrix batch.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Strain-typed tensor (single or batch, matching the input shape).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.stress">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stress</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.stress" title="Link to this definition"></a></dt>
+<dd><p>Create stress tensor(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,)</span></code> Voigt vector, <code class="docutils literal notranslate"><span class="pre">(3,3)</span></code> matrix, <code class="docutils literal notranslate"><span class="pre">(N,6)</span></code> Voigt batch,
+or <code class="docutils literal notranslate"><span class="pre">(N,3,3)</span></code> matrix batch.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Stress-typed tensor (single or batch, matching the input shape).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.trace">
+<span class="sig-name descname"><span class="pre">trace</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.trace" title="Link to this definition"></a></dt>
+<dd><p>Trace <code class="docutils literal notranslate"><span class="pre">t_kk</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Scalar for a single tensor, <code class="docutils literal notranslate"><span class="pre">(N,)</span></code> for a batch.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>float or numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor2.type">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#simcoon.Tensor2.type" title="Link to this definition"></a></dt>
+<dd><p>Type string.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor2.voigt">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">voigt</span></span><a class="headerlink" href="#simcoon.Tensor2.voigt" title="Link to this definition"></a></dt>
+<dd><p>(6,) for single, (N,6) for batch. Returns a copy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Voigt vector</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor2.voigt_T">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">voigt_T</span></span><a class="headerlink" href="#simcoon.Tensor2.voigt_T" title="Link to this definition"></a></dt>
+<dd><p>(6, N) transposed Voigt array (batch only, for C++ interop).</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor2.vtype">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">vtype</span></span><a class="headerlink" href="#simcoon.Tensor2.vtype" title="Link to this definition"></a></dt>
+<dd><p>Alias for type (backward compatibility).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor2.zeros">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zeros</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stress'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor2.zeros" title="Link to this definition"></a></dt>
+<dd><p>Create a single zero tensor of the given type (default <code class="docutils literal notranslate"><span class="pre">&quot;stress&quot;</span></code>).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="simcoon.Tensor4">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">simcoon.</span></span><span class="sig-name descname"><span class="pre">Tensor4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4" title="Link to this definition"></a></dt>
+<dd><p>A 4th-order tensor with a type tag driving rotation dispatch and Voigt factors.</p>
+<p>A single object transparently represents either one tensor or a batch:
+the stored numpy array is <code class="docutils literal notranslate"><span class="pre">(6,6)</span></code> (engineering Voigt) for a single
+tensor and <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code> for a batch. The type is a string: <code class="docutils literal notranslate"><span class="pre">&quot;stiffness&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;compliance&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;strain_concentration&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;stress_concentration&quot;</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>; it selects the Kelvin-Mandel congruence factors and the
+rotation/transport rules, and is propagated through operations
+(e.g. <code class="docutils literal notranslate"><span class="pre">stiffness.inverse()</span></code> is a compliance).</p>
+<p>The C++ backend works internally in the Kelvin-Mandel convention, so
+contraction, inverse and composition are plain 6x6 linear algebra; the
+engineering Voigt form is what <cite>mat</cite> / <cite>voigt</cite> expose.</p>
+<p>Construct through the typed factories (<cite>stiffness</cite>, <cite>compliance</cite>,
+<cite>strain_concentration</cite>, <cite>stress_concentration</cite>, <cite>from_mat</cite>, <cite>from_mandel</cite>),
+never through <code class="docutils literal notranslate"><span class="pre">Tensor4(array)</span></code>.</p>
+<p class="rubric">Examples</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">simcoon</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sim</span>
+
+<span class="n">L</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Tensor4</span><span class="o">.</span><span class="n">stiffness</span><span class="p">(</span><span class="n">sim</span><span class="o">.</span><span class="n">L_iso</span><span class="p">([</span><span class="mi">70000</span><span class="p">,</span> <span class="mf">0.3</span><span class="p">],</span> <span class="s1">&#39;Enu&#39;</span><span class="p">))</span>
+<span class="n">eps</span> <span class="o">=</span> <span class="n">sim</span><span class="o">.</span><span class="n">Tensor2</span><span class="o">.</span><span class="n">strain</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">0.01</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.003</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.003</span><span class="p">,</span> <span class="mf">0.005</span><span class="p">,</span> <span class="mf">0.</span><span class="p">,</span> <span class="mf">0.</span><span class="p">]))</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="n">L</span> <span class="o">@</span> <span class="n">eps</span>                  <span class="c1"># contraction -&gt; stress Tensor2</span>
+<span class="n">M</span> <span class="o">=</span> <span class="n">L</span><span class="o">.</span><span class="n">inverse</span><span class="p">()</span>                  <span class="c1"># compliance Tensor4</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The underlying C++ <code class="docutils literal notranslate"><span class="pre">tensor4</span></code> class uses a lazy mutable Fastor cache
+that is <strong>not</strong> thread-safe.  However, the Python <code class="docutils literal notranslate"><span class="pre">Tensor4</span></code> class
+creates fresh C++ objects for each operation (via <code class="docutils literal notranslate"><span class="pre">_to_cpp()</span></code>), so
+Python-level <code class="docutils literal notranslate"><span class="pre">Tensor4</span></code> instances are safe to use from multiple
+threads (subject to the GIL).</p>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.compliance">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compliance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.compliance" title="Link to this definition"></a></dt>
+<dd><p>Create compliance tensor(s) from an engineering Voigt 6x6.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,6)</span></code> matrix (e.g. from <code class="docutils literal notranslate"><span class="pre">sim.M_iso</span></code>) or <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code> batch.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.concatenate">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">concatenate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">batches</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.concatenate" title="Link to this definition"></a></dt>
+<dd><p>Join multiple batches and/or singles (all of the same type) into one batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.contract">
+<span class="sig-name descname"><span class="pre">contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.contract" title="Link to this definition"></a></dt>
+<dd><p>Double contraction with a Tensor2 (also available as <code class="docutils literal notranslate"><span class="pre">L</span> <span class="pre">&#64;</span> <span class="pre">t</span></code>).</p>
+<p>The output type follows the tensor4 type: stiffness and
+stress_concentration produce a stress, compliance and
+strain_concentration produce a strain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>t</strong> (<a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2"><em>Tensor2</em></a>) – Single or batch. Single ⊗ batch combinations broadcast; a single
+Tensor4 contracted with a batch Tensor2 collapses to one BLAS
+matrix-matrix product (the fast shared-tangent path).</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Contracted tensor(s) with the inferred type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2">Tensor2</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.count">
+<span class="sig-name descname"><span class="pre">count</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.count" title="Link to this definition"></a></dt>
+<dd><p>Count occurrences of a single tensor in batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.deviatoric">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">deviatoric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stiffness'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.deviatoric" title="Link to this definition"></a></dt>
+<dd><p>Create the deviatoric projector <code class="docutils literal notranslate"><span class="pre">K</span> <span class="pre">=</span> <span class="pre">I</span> <span class="pre">-</span> <span class="pre">J</span></code> of the given type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.from_list">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_list</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">tensors</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.from_list" title="Link to this definition"></a></dt>
+<dd><p>Stack a list of single tensors (all of the same type) into a batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.from_mandel">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mandel</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.from_mandel" title="Link to this definition"></a></dt>
+<dd><p>Create from a Kelvin-Mandel 6x6 (inverse of the <cite>mandel</cite> property).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,6)</span></code> Kelvin-Mandel matrix (per-type <code class="docutils literal notranslate"><span class="pre">sqrt(2)</span></code> congruence
+factors) or <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code> batch.</p></li>
+<li><p><strong>type_str</strong> (<em>str</em>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;stiffness&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;compliance&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;strain_concentration&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;stress_concentration&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.from_mat">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_mat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">m</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.from_mat" title="Link to this definition"></a></dt>
+<dd><p>Create from an engineering Voigt 6x6 with an explicit type.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>m</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,6)</span></code> matrix or <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code> batch.</p></li>
+<li><p><strong>type_str</strong> (<em>str</em>) – One of <code class="docutils literal notranslate"><span class="pre">&quot;stiffness&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;compliance&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;strain_concentration&quot;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&quot;stress_concentration&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;generic&quot;</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.from_tensor">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_tensor</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">t</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.from_tensor" title="Link to this definition"></a></dt>
+<dd><p>Broadcast a single tensor to a batch of size <code class="docutils literal notranslate"><span class="pre">n</span></code> (copies the data).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.from_voigt">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">from_voigt</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">v</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type_str</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.from_voigt" title="Link to this definition"></a></dt>
+<dd><p>Alias for <cite>from_mat</cite> (explicit counterpart of <cite>from_mandel</cite>).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.identity">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">identity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stiffness'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.identity" title="Link to this definition"></a></dt>
+<dd><p>Create the identity tensor of the given type (default <code class="docutils literal notranslate"><span class="pre">&quot;stiffness&quot;</span></code>).</p>
+<p>For every type the identity contracts to the unchanged field
+(<code class="docutils literal notranslate"><span class="pre">I</span> <span class="pre">:</span> <span class="pre">t</span> <span class="pre">==</span> <span class="pre">t</span></code>); in Kelvin-Mandel it is <code class="docutils literal notranslate"><span class="pre">eye(6)</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.inverse">
+<span class="sig-name descname"><span class="pre">inverse</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.inverse" title="Link to this definition"></a></dt>
+<dd><p>Invert the tensor (plain 6x6 inverse in Kelvin-Mandel).</p>
+<p>The type follows the algebra: stiffness ↔ compliance,
+concentration types keep their type, generic stays generic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Inverse tensor(s) with the inferred type.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor4.mandel">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mandel</span></span><a class="headerlink" href="#simcoon.Tensor4.mandel" title="Link to this definition"></a></dt>
+<dd><p>Kelvin-Mandel 6x6 (per-type sqrt2 congruence; identity = eye(6) for every
+type): (6,6) single, (N,6,6) batch. Returns a copy.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor4.mat">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">mat</span></span><a class="headerlink" href="#simcoon.Tensor4.mat" title="Link to this definition"></a></dt>
+<dd><p>(6,6) single, (N,6,6) batch. Returns a copy.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>6x6 matrix</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.pull_back">
+<span class="sig-name descname"><span class="pre">pull_back</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.pull_back" title="Link to this definition"></a></dt>
+<dd><p>Pull-back (current to reference configuration) via the deformation gradient.</p>
+<p>Inverse of <cite>push_forward</cite>; same type-dependent transport and
+<code class="docutils literal notranslate"><span class="pre">metric</span></code> semantics.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(3,3)</span></code> deformation gradient, or <code class="docutils literal notranslate"><span class="pre">(N,3,3)</span></code> batch.</p></li>
+<li><p><strong>metric</strong> (<em>bool</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> (default) includes the <code class="docutils literal notranslate"><span class="pre">J</span> <span class="pre">=</span> <span class="pre">det(F)</span></code> factor.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transported tensor(s), same type tag.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.push_forward">
+<span class="sig-name descname"><span class="pre">push_forward</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">F</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">metric</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.push_forward" title="Link to this definition"></a></dt>
+<dd><p>Push-forward (reference to current configuration) via the deformation gradient.</p>
+<p>Type-dependent transport: stiffness is fully contravariant
+(<code class="docutils literal notranslate"><span class="pre">F⊗F</span> <span class="pre">:</span> <span class="pre">L</span> <span class="pre">:</span> <span class="pre">F^T⊗F^T</span></code> with <code class="docutils literal notranslate"><span class="pre">1/J</span></code>), compliance fully covariant.
+Concentration types raise (mixed variance, no pure transport).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>F</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(3,3)</span></code> deformation gradient, or <code class="docutils literal notranslate"><span class="pre">(N,3,3)</span></code> batch (a single F
+is broadcast over a tensor batch).</p></li>
+<li><p><strong>metric</strong> (<em>bool</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> (default) includes the <code class="docutils literal notranslate"><span class="pre">J</span> <span class="pre">=</span> <span class="pre">det(F)</span></code> factor;
+<code class="docutils literal notranslate"><span class="pre">False</span></code> is pure transport.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Transported tensor(s), same type tag.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.rotate">
+<span class="sig-name descname"><span class="pre">rotate</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">R</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">active</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.rotate" title="Link to this definition"></a></dt>
+<dd><p>Rotate the tensor(s) by a rotation (type-dependent Voigt congruence).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>R</strong> (<em>simcoon.Rotation</em><em> or </em><em>scipy.spatial.transform.Rotation</em>) – Rotation(s) to apply. On a batch, a single rotation is broadcast;
+a batch of N rotations is applied slice-wise.</p></li>
+<li><p><strong>active</strong> (<em>bool</em><em>, </em><em>optional</em>) – <code class="docutils literal notranslate"><span class="pre">True</span></code> (default) rotates the tensor, <code class="docutils literal notranslate"><span class="pre">False</span></code> the frame.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Rotated tensor(s), same type tag.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor4.single">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">single</span></span><a class="headerlink" href="#simcoon.Tensor4.single" title="Link to this definition"></a></dt>
+<dd><p>True if this is a single tensor, False if batch.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.stiffness">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stiffness</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.stiffness" title="Link to this definition"></a></dt>
+<dd><p>Create stiffness tensor(s) from an engineering Voigt 6x6.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,6)</span></code> matrix (e.g. from <code class="docutils literal notranslate"><span class="pre">sim.L_iso</span></code>) or <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code> batch.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.strain_concentration">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">strain_concentration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.strain_concentration" title="Link to this definition"></a></dt>
+<dd><p>Create strain concentration tensor(s) (<code class="docutils literal notranslate"><span class="pre">De</span> <span class="pre">=</span> <span class="pre">A</span> <span class="pre">:</span> <span class="pre">D</span></code> maps, e.g. <code class="docutils literal notranslate"><span class="pre">sim.A_R(F)</span></code>).</p>
+<p>Uses the engineering Voigt convention: the identity concentration is
+<code class="docutils literal notranslate"><span class="pre">eye(6)</span></code> and <code class="docutils literal notranslate"><span class="pre">A.contract(strain)</span></code> returns a strain.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,6)</span></code> matrix or <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code> batch.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.stress_concentration">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stress_concentration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.stress_concentration" title="Link to this definition"></a></dt>
+<dd><p>Create stress concentration tensor(s) (<code class="docutils literal notranslate"><span class="pre">s_local</span> <span class="pre">=</span> <span class="pre">B</span> <span class="pre">:</span> <span class="pre">s</span></code> maps).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>data</strong> (<em>array_like</em>) – <code class="docutils literal notranslate"><span class="pre">(6,6)</span></code> matrix or <code class="docutils literal notranslate"><span class="pre">(N,6,6)</span></code> batch.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor4.type">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">type</span></span><a class="headerlink" href="#simcoon.Tensor4.type" title="Link to this definition"></a></dt>
+<dd><p>Type string.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="simcoon.Tensor4.voigt">
+<em class="property"><span class="k"><span class="pre">property</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">voigt</span></span><a class="headerlink" href="#simcoon.Tensor4.voigt" title="Link to this definition"></a></dt>
+<dd><p>Alias for mat.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.volumetric">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">volumetric</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stiffness'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.volumetric" title="Link to this definition"></a></dt>
+<dd><p>Create the volumetric (spherical) projector <code class="docutils literal notranslate"><span class="pre">J</span> <span class="pre">=</span> <span class="pre">1/3</span> <span class="pre">I⊗I</span></code> of the given type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="simcoon.Tensor4.zeros">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">zeros</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type_str</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'stiffness'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.Tensor4.zeros" title="Link to this definition"></a></dt>
+<dd><p>Create a single zero tensor of the given type (default <code class="docutils literal notranslate"><span class="pre">&quot;stiffness&quot;</span></code>).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simcoon.dyadic">
+<span class="sig-prename descclassname"><span class="pre">simcoon.</span></span><span class="sig-name descname"><span class="pre">dyadic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.dyadic" title="Link to this definition"></a></dt>
+<dd><p>Dyadic (outer) product <code class="docutils literal notranslate"><span class="pre">C_ijkl</span> <span class="pre">=</span> <span class="pre">a_ij</span> <span class="pre">b_kl</span></code> of two single Tensor2.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2"><em>Tensor2</em></a>) – Single tensors.</p></li>
+<li><p><strong>b</strong> (<a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2"><em>Tensor2</em></a>) – Single tensors.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Stiffness-typed tensor.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#simcoon.Tensor4" title="simcoon.Tensor4">Tensor4</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simcoon.auto_dyadic">
+<span class="sig-prename descclassname"><span class="pre">simcoon.</span></span><span class="sig-name descname"><span class="pre">auto_dyadic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.auto_dyadic" title="Link to this definition"></a></dt>
+<dd><p>Dyadic product of a single Tensor2 with itself: <code class="docutils literal notranslate"><span class="pre">C_ijkl</span> <span class="pre">=</span> <span class="pre">a_ij</span> <span class="pre">a_kl</span></code> -&gt; stiffness Tensor4.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simcoon.sym_dyadic">
+<span class="sig-prename descclassname"><span class="pre">simcoon.</span></span><span class="sig-name descname"><span class="pre">sym_dyadic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.sym_dyadic" title="Link to this definition"></a></dt>
+<dd><p>Symmetric Voigt dyadic product <code class="docutils literal notranslate"><span class="pre">C</span> <span class="pre">=</span> <span class="pre">v(a)</span> <span class="pre">v(b)^T</span></code> of two single Tensor2 -&gt; stiffness Tensor4.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simcoon.auto_sym_dyadic">
+<span class="sig-prename descclassname"><span class="pre">simcoon.</span></span><span class="sig-name descname"><span class="pre">auto_sym_dyadic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.auto_sym_dyadic" title="Link to this definition"></a></dt>
+<dd><p>Symmetric Voigt dyadic product of a single Tensor2 with itself -&gt; stiffness Tensor4.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="simcoon.double_contract">
+<span class="sig-prename descclassname"><span class="pre">simcoon.</span></span><span class="sig-name descname"><span class="pre">double_contract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#simcoon.double_contract" title="Link to this definition"></a></dt>
+<dd><p>Double contraction <code class="docutils literal notranslate"><span class="pre">A_ij</span> <span class="pre">B_ij</span></code> of two Tensor2 (single or batch).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2"><em>Tensor2</em></a>) – Single or batch; singles broadcast against batches.</p></li>
+<li><p><strong>b</strong> (<a class="reference internal" href="#simcoon.Tensor2" title="simcoon.Tensor2"><em>Tensor2</em></a>) – Single or batch; singles broadcast against batches.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><code class="docutils literal notranslate"><span class="pre">(N,)</span></code> values (<code class="docutils literal notranslate"><span class="pre">(1,)</span></code> if both are single).</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="doc_rotation.html" class="btn btn-neutral float-left" title="The Rotation Library" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="doc_contimech.html" class="btn btn-neutral float-right" title="The Contimech Library" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, 3MAH development team.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
